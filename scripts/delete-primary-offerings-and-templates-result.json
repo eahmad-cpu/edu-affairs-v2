@@ -1,0 +1,315 @@
+{
+  "orgId": "takween",
+  "dryRun": false,
+  "scanned": {
+    "classSubjectOfferings": 44,
+    "studentAssessmentTemplates": 27,
+    "studentTrackerTemplates": 13
+  },
+  "targets": {
+    "classSubjectOfferings": 26,
+    "studentAssessmentTemplates": 5,
+    "studentTrackerTemplates": 2,
+    "total": 33
+  },
+  "deleted": [
+    {
+      "collectionName": "classSubjectOfferings",
+      "id": "g1-general-1-general",
+      "title": "الدراسات العامة",
+      "subjectKey": "GENERAL",
+      "gradeId": "g1",
+      "classId": "g1-general-1",
+      "kind": ""
+    },
+    {
+      "collectionName": "classSubjectOfferings",
+      "id": "g1-general-2-general",
+      "title": "الدراسات العامة",
+      "subjectKey": "GENERAL",
+      "gradeId": "g1",
+      "classId": "g1-general-2",
+      "kind": ""
+    },
+    {
+      "collectionName": "classSubjectOfferings",
+      "id": "g1-general-3-general",
+      "title": "الدراسات العامة",
+      "subjectKey": "GENERAL",
+      "gradeId": "g1",
+      "classId": "g1-general-3",
+      "kind": ""
+    },
+    {
+      "collectionName": "classSubjectOfferings",
+      "id": "g1-international-1-international",
+      "title": "الدراسات العالمية",
+      "subjectKey": "INTERNATIONAL",
+      "gradeId": "g1",
+      "classId": "g1-international-1",
+      "kind": ""
+    },
+    {
+      "collectionName": "classSubjectOfferings",
+      "id": "g1-quran-1-quran",
+      "title": "القرآن",
+      "subjectKey": "QURAN",
+      "gradeId": "g1",
+      "classId": "g1-quran-1",
+      "kind": ""
+    },
+    {
+      "collectionName": "classSubjectOfferings",
+      "id": "g2-general-1-general",
+      "title": "الدراسات العامة",
+      "subjectKey": "GENERAL",
+      "gradeId": "g2",
+      "classId": "g2-general-1",
+      "kind": ""
+    },
+    {
+      "collectionName": "classSubjectOfferings",
+      "id": "g2-general-2-general",
+      "title": "الدراسات العامة",
+      "subjectKey": "GENERAL",
+      "gradeId": "g2",
+      "classId": "g2-general-2",
+      "kind": ""
+    },
+    {
+      "collectionName": "classSubjectOfferings",
+      "id": "g2-general-3-general",
+      "title": "الدراسات العامة",
+      "subjectKey": "GENERAL",
+      "gradeId": "g2",
+      "classId": "g2-general-3",
+      "kind": ""
+    },
+    {
+      "collectionName": "classSubjectOfferings",
+      "id": "g2-international-1-international",
+      "title": "الدراسات العالمية",
+      "subjectKey": "INTERNATIONAL",
+      "gradeId": "g2",
+      "classId": "g2-international-1",
+      "kind": ""
+    },
+    {
+      "collectionName": "classSubjectOfferings",
+      "id": "g2-quran-1-quran",
+      "title": "القرآن",
+      "subjectKey": "QURAN",
+      "gradeId": "g2",
+      "classId": "g2-quran-1",
+      "kind": ""
+    },
+    {
+      "collectionName": "classSubjectOfferings",
+      "id": "g3-general-1-general",
+      "title": "الدراسات العامة",
+      "subjectKey": "GENERAL",
+      "gradeId": "g3",
+      "classId": "g3-general-1",
+      "kind": ""
+    },
+    {
+      "collectionName": "classSubjectOfferings",
+      "id": "g3-general-2-general",
+      "title": "الدراسات العامة",
+      "subjectKey": "GENERAL",
+      "gradeId": "g3",
+      "classId": "g3-general-2",
+      "kind": ""
+    },
+    {
+      "collectionName": "classSubjectOfferings",
+      "id": "g3-general-3-general",
+      "title": "الدراسات العامة",
+      "subjectKey": "GENERAL",
+      "gradeId": "g3",
+      "classId": "g3-general-3",
+      "kind": ""
+    },
+    {
+      "collectionName": "classSubjectOfferings",
+      "id": "g3-quran-1-quran",
+      "title": "القرآن",
+      "subjectKey": "QURAN",
+      "gradeId": "g3",
+      "classId": "g3-quran-1",
+      "kind": ""
+    },
+    {
+      "collectionName": "classSubjectOfferings",
+      "id": "g4-general-1-general",
+      "title": "الدراسات العامة",
+      "subjectKey": "GENERAL",
+      "gradeId": "g4",
+      "classId": "g4-general-1",
+      "kind": ""
+    },
+    {
+      "collectionName": "classSubjectOfferings",
+      "id": "g4-general-2-general",
+      "title": "الدراسات العامة",
+      "subjectKey": "GENERAL",
+      "gradeId": "g4",
+      "classId": "g4-general-2",
+      "kind": ""
+    },
+    {
+      "collectionName": "classSubjectOfferings",
+      "id": "g4-general-3-general",
+      "title": "الدراسات العامة",
+      "subjectKey": "GENERAL",
+      "gradeId": "g4",
+      "classId": "g4-general-3",
+      "kind": ""
+    },
+    {
+      "collectionName": "classSubjectOfferings",
+      "id": "g4-quran-1-quran",
+      "title": "القرآن",
+      "subjectKey": "QURAN",
+      "gradeId": "g4",
+      "classId": "g4-quran-1",
+      "kind": ""
+    },
+    {
+      "collectionName": "classSubjectOfferings",
+      "id": "g5-general-1-general",
+      "title": "الدراسات العامة",
+      "subjectKey": "GENERAL",
+      "gradeId": "g5",
+      "classId": "g5-general-1",
+      "kind": ""
+    },
+    {
+      "collectionName": "classSubjectOfferings",
+      "id": "g5-general-2-general",
+      "title": "الدراسات العامة",
+      "subjectKey": "GENERAL",
+      "gradeId": "g5",
+      "classId": "g5-general-2",
+      "kind": ""
+    },
+    {
+      "collectionName": "classSubjectOfferings",
+      "id": "g5-general-3-general",
+      "title": "الدراسات العامة",
+      "subjectKey": "GENERAL",
+      "gradeId": "g5",
+      "classId": "g5-general-3",
+      "kind": ""
+    },
+    {
+      "collectionName": "classSubjectOfferings",
+      "id": "g5-quran-1-quran",
+      "title": "القرآن",
+      "subjectKey": "QURAN",
+      "gradeId": "g5",
+      "classId": "g5-quran-1",
+      "kind": ""
+    },
+    {
+      "collectionName": "classSubjectOfferings",
+      "id": "g6-general-1-general",
+      "title": "الدراسات العامة",
+      "subjectKey": "GENERAL",
+      "gradeId": "g6",
+      "classId": "g6-general-1",
+      "kind": ""
+    },
+    {
+      "collectionName": "classSubjectOfferings",
+      "id": "g6-general-2-general",
+      "title": "الدراسات العامة",
+      "subjectKey": "GENERAL",
+      "gradeId": "g6",
+      "classId": "g6-general-2",
+      "kind": ""
+    },
+    {
+      "collectionName": "classSubjectOfferings",
+      "id": "g6-general-3-general",
+      "title": "الدراسات العامة",
+      "subjectKey": "GENERAL",
+      "gradeId": "g6",
+      "classId": "g6-general-3",
+      "kind": ""
+    },
+    {
+      "collectionName": "classSubjectOfferings",
+      "id": "g6-quran-1-quran",
+      "title": "القرآن",
+      "subjectKey": "QURAN",
+      "gradeId": "g6",
+      "classId": "g6-quran-1",
+      "kind": ""
+    },
+    {
+      "collectionName": "studentAssessmentTemplates",
+      "id": "primary-central-1",
+      "title": "القياس المركزي الأول",
+      "subjectKey": "",
+      "gradeId": "",
+      "classId": "",
+      "kind": "PRIMARY_CENTRAL_MEASUREMENT_1"
+    },
+    {
+      "collectionName": "studentAssessmentTemplates",
+      "id": "primary-central-2",
+      "title": "القياس المركزي الثاني",
+      "subjectKey": "",
+      "gradeId": "",
+      "classId": "",
+      "kind": "PRIMARY_CENTRAL_MEASUREMENT_2"
+    },
+    {
+      "collectionName": "studentAssessmentTemplates",
+      "id": "primary-diagnostic",
+      "title": "الاختبار التشخيصي",
+      "subjectKey": "",
+      "gradeId": "",
+      "classId": "",
+      "kind": "PRIMARY_DIAGNOSTIC_TEST"
+    },
+    {
+      "collectionName": "studentAssessmentTemplates",
+      "id": "primary-periodic-1",
+      "title": "الاختبار الفتري الأول",
+      "subjectKey": "",
+      "gradeId": "",
+      "classId": "",
+      "kind": "PRIMARY_PERIODIC_TEST_1"
+    },
+    {
+      "collectionName": "studentAssessmentTemplates",
+      "id": "primary-periodic-2",
+      "title": "الاختبار الفتري الثاني",
+      "subjectKey": "",
+      "gradeId": "",
+      "classId": "",
+      "kind": "PRIMARY_PERIODIC_TEST_2"
+    },
+    {
+      "collectionName": "studentTrackerTemplates",
+      "id": "primary-loss-tracker",
+      "title": "متابعة الفاقد",
+      "subjectKey": "",
+      "gradeId": "",
+      "classId": "",
+      "kind": "PRIMARY_LOSS_TRACKER"
+    },
+    {
+      "collectionName": "studentTrackerTemplates",
+      "id": "primary-quran-tracker",
+      "title": "متابعة القرآن",
+      "subjectKey": "",
+      "gradeId": "",
+      "classId": "",
+      "kind": "PRIMARY_QURAN_TRACKER"
+    }
+  ],
+  "skippedMissing": []
+}

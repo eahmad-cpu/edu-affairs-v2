@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "377332053546",
+    "project_id": "edu-affairs-dev",
+    "storage_bucket": "edu-affairs-dev.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:377332053546:android:69724c93c7db1843a07553",
+        "android_client_info": {
+          "package_name": "com.takween.edu.mobile_parent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "377332053546-99hvtr13kh654nup3msv6in93sbirlq2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrv8mqaNMY0bJYoMlVFIsAyGJCCZlVTN8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "377332053546-99hvtr13kh654nup3msv6in93sbirlq2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "377332053546-ceib1oavsok9pl2cpp6tufm9l43mrdof.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.takween.edu.mobileParent"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

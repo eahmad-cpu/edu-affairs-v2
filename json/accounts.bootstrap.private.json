@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "defaultOrgId": "takween",
+    "mustChangePassword": true,
+    "passwordStrategy": "nationalIdLast6WithPrefix",
+    "passwordPrefix": "Tk@",
+    "writeOrgMirrorMembership": false,
+    "updateExistingUser": true,
+    "resetPasswordOnExisting": false
+  },
+  "accounts": [
+    {
+      "email": "e.ahmad@qz.org.sa",
+      "displayName": "e.ahmad@qz.org.sa",
+      "personId": "",
+      "mustExistInAuth": true,
+      "createAuthIfMissing": false,
+      "accessRole": "platform_owner",
+      "orgId": "takween",
+      "schoolIds": [],
+      "isOrgAdmin": true,
+      "disabled": false
+    }
+  ]
+}

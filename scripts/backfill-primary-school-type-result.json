@@ -1,0 +1,5943 @@
+{
+  "orgId": "takween",
+  "academicYearId": "ay-1448",
+  "dryRun": false,
+  "schools": [
+    "mrb-boys-sayh",
+    "mrb-boys-faleh",
+    "mrb-girls"
+  ],
+  "classes": {
+    "toUpdate": 78,
+    "alreadyOk": 3,
+    "skipped": 0,
+    "updated": [
+      {
+        "schoolId": "mrb-boys-sayh",
+        "classId": "g1-general-1",
+        "title": "أول ابتدائي / العام / أ",
+        "gradeId": "g1",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-boys-sayh",
+        "classId": "g1-general-2",
+        "title": "أول ابتدائي / العام / ب",
+        "gradeId": "g1",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-boys-sayh",
+        "classId": "g1-general-3",
+        "title": "أول ابتدائي / العام / ج",
+        "gradeId": "g1",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-boys-sayh",
+        "classId": "g1-international-1",
+        "title": "أول ابتدائي / العالمي / أ",
+        "gradeId": "g1",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-boys-sayh",
+        "classId": "g1-quran-1",
+        "title": "أول ابتدائي / التحفيظ / أ",
+        "gradeId": "g1",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-boys-sayh",
+        "classId": "g2-general-1",
+        "title": "ثاني ابتدائي / العام / أ",
+        "gradeId": "g2",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-boys-sayh",
+        "classId": "g2-general-2",
+        "title": "ثاني ابتدائي / العام / ب",
+        "gradeId": "g2",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-boys-sayh",
+        "classId": "g2-general-3",
+        "title": "ثاني ابتدائي / العام / ج",
+        "gradeId": "g2",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-boys-sayh",
+        "classId": "g2-international-1",
+        "title": "ثاني ابتدائي / العالمي / أ",
+        "gradeId": "g2",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-boys-sayh",
+        "classId": "g2-quran-1",
+        "title": "ثاني ابتدائي / التحفيظ / أ",
+        "gradeId": "g2",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-boys-sayh",
+        "classId": "g3-general-1",
+        "title": "ثالث ابتدائي / العام / أ",
+        "gradeId": "g3",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-boys-sayh",
+        "classId": "g3-general-2",
+        "title": "ثالث ابتدائي / العام / ب",
+        "gradeId": "g3",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-boys-sayh",
+        "classId": "g3-general-3",
+        "title": "ثالث ابتدائي / العام / ج",
+        "gradeId": "g3",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-boys-sayh",
+        "classId": "g3-quran-1",
+        "title": "ثالث ابتدائي / التحفيظ / أ",
+        "gradeId": "g3",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-boys-sayh",
+        "classId": "g4-general-1",
+        "title": "رابع ابتدائي / العام / أ",
+        "gradeId": "g4",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-boys-sayh",
+        "classId": "g4-general-2",
+        "title": "رابع ابتدائي / العام / ب",
+        "gradeId": "g4",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-boys-sayh",
+        "classId": "g4-general-3",
+        "title": "رابع ابتدائي / العام / ج",
+        "gradeId": "g4",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-boys-sayh",
+        "classId": "g4-quran-1",
+        "title": "رابع ابتدائي / التحفيظ / أ",
+        "gradeId": "g4",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-boys-sayh",
+        "classId": "g5-general-1",
+        "title": "خامس ابتدائي / العام / أ",
+        "gradeId": "g5",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-boys-sayh",
+        "classId": "g5-general-2",
+        "title": "خامس ابتدائي / العام / ب",
+        "gradeId": "g5",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-boys-sayh",
+        "classId": "g5-general-3",
+        "title": "خامس ابتدائي / العام / ج",
+        "gradeId": "g5",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-boys-sayh",
+        "classId": "g5-quran-1",
+        "title": "خامس ابتدائي / التحفيظ / أ",
+        "gradeId": "g5",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-boys-sayh",
+        "classId": "g6-general-1",
+        "title": "سادس ابتدائي / العام / أ",
+        "gradeId": "g6",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-boys-sayh",
+        "classId": "g6-general-2",
+        "title": "سادس ابتدائي / العام / ب",
+        "gradeId": "g6",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-boys-sayh",
+        "classId": "g6-general-3",
+        "title": "سادس ابتدائي / العام / ج",
+        "gradeId": "g6",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-boys-sayh",
+        "classId": "g6-quran-1",
+        "title": "سادس ابتدائي / التحفيظ / أ",
+        "gradeId": "g6",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-boys-faleh",
+        "classId": "g1-general-1",
+        "title": "أول ابتدائي / العام / أ",
+        "gradeId": "g1",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-boys-faleh",
+        "classId": "g1-general-2",
+        "title": "أول ابتدائي / العام / ب",
+        "gradeId": "g1",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-boys-faleh",
+        "classId": "g1-general-3",
+        "title": "أول ابتدائي / العام / ج",
+        "gradeId": "g1",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-boys-faleh",
+        "classId": "g1-international-1",
+        "title": "أول ابتدائي / العالمي / أ",
+        "gradeId": "g1",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-boys-faleh",
+        "classId": "g1-quran-1",
+        "title": "أول ابتدائي / التحفيظ / أ",
+        "gradeId": "g1",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-boys-faleh",
+        "classId": "g2-general-1",
+        "title": "ثاني ابتدائي / العام / أ",
+        "gradeId": "g2",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-boys-faleh",
+        "classId": "g2-general-2",
+        "title": "ثاني ابتدائي / العام / ب",
+        "gradeId": "g2",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-boys-faleh",
+        "classId": "g2-general-3",
+        "title": "ثاني ابتدائي / العام / ج",
+        "gradeId": "g2",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-boys-faleh",
+        "classId": "g2-international-1",
+        "title": "ثاني ابتدائي / العالمي / أ",
+        "gradeId": "g2",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-boys-faleh",
+        "classId": "g2-quran-1",
+        "title": "ثاني ابتدائي / التحفيظ / أ",
+        "gradeId": "g2",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-boys-faleh",
+        "classId": "g3-general-1",
+        "title": "ثالث ابتدائي / العام / أ",
+        "gradeId": "g3",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-boys-faleh",
+        "classId": "g3-general-2",
+        "title": "ثالث ابتدائي / العام / ب",
+        "gradeId": "g3",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-boys-faleh",
+        "classId": "g3-general-3",
+        "title": "ثالث ابتدائي / العام / ج",
+        "gradeId": "g3",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-boys-faleh",
+        "classId": "g3-quran-1",
+        "title": "ثالث ابتدائي / التحفيظ / أ",
+        "gradeId": "g3",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-boys-faleh",
+        "classId": "g4-general-1",
+        "title": "رابع ابتدائي / العام / أ",
+        "gradeId": "g4",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-boys-faleh",
+        "classId": "g4-general-2",
+        "title": "رابع ابتدائي / العام / ب",
+        "gradeId": "g4",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-boys-faleh",
+        "classId": "g4-general-3",
+        "title": "رابع ابتدائي / العام / ج",
+        "gradeId": "g4",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-boys-faleh",
+        "classId": "g4-quran-1",
+        "title": "رابع ابتدائي / التحفيظ / أ",
+        "gradeId": "g4",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-boys-faleh",
+        "classId": "g5-general-1",
+        "title": "خامس ابتدائي / العام / أ",
+        "gradeId": "g5",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-boys-faleh",
+        "classId": "g5-general-2",
+        "title": "خامس ابتدائي / العام / ب",
+        "gradeId": "g5",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-boys-faleh",
+        "classId": "g5-general-3",
+        "title": "خامس ابتدائي / العام / ج",
+        "gradeId": "g5",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-boys-faleh",
+        "classId": "g5-quran-1",
+        "title": "خامس ابتدائي / التحفيظ / أ",
+        "gradeId": "g5",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-boys-faleh",
+        "classId": "g6-general-1",
+        "title": "سادس ابتدائي / العام / أ",
+        "gradeId": "g6",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-boys-faleh",
+        "classId": "g6-general-2",
+        "title": "سادس ابتدائي / العام / ب",
+        "gradeId": "g6",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-boys-faleh",
+        "classId": "g6-general-3",
+        "title": "سادس ابتدائي / العام / ج",
+        "gradeId": "g6",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-boys-faleh",
+        "classId": "g6-quran-1",
+        "title": "سادس ابتدائي / التحفيظ / أ",
+        "gradeId": "g6",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-girls",
+        "classId": "g1-general-1",
+        "title": "أول ابتدائي / العام / أ",
+        "gradeId": "g1",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-girls",
+        "classId": "g1-general-2",
+        "title": "أول ابتدائي / العام / ب",
+        "gradeId": "g1",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-girls",
+        "classId": "g1-general-3",
+        "title": "أول ابتدائي / العام / ج",
+        "gradeId": "g1",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-girls",
+        "classId": "g1-international-1",
+        "title": "أول ابتدائي / العالمي / أ",
+        "gradeId": "g1",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-girls",
+        "classId": "g1-quran-1",
+        "title": "أول ابتدائي / التحفيظ / أ",
+        "gradeId": "g1",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-girls",
+        "classId": "g2-general-1",
+        "title": "ثاني ابتدائي / العام / أ",
+        "gradeId": "g2",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-girls",
+        "classId": "g2-general-2",
+        "title": "ثاني ابتدائي / العام / ب",
+        "gradeId": "g2",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-girls",
+        "classId": "g2-general-3",
+        "title": "ثاني ابتدائي / العام / ج",
+        "gradeId": "g2",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-girls",
+        "classId": "g2-international-1",
+        "title": "ثاني ابتدائي / العالمي / أ",
+        "gradeId": "g2",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-girls",
+        "classId": "g2-quran-1",
+        "title": "ثاني ابتدائي / التحفيظ / أ",
+        "gradeId": "g2",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-girls",
+        "classId": "g3-general-1",
+        "title": "ثالث ابتدائي / العام / أ",
+        "gradeId": "g3",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-girls",
+        "classId": "g3-general-2",
+        "title": "ثالث ابتدائي / العام / ب",
+        "gradeId": "g3",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-girls",
+        "classId": "g3-general-3",
+        "title": "ثالث ابتدائي / العام / ج",
+        "gradeId": "g3",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-girls",
+        "classId": "g3-quran-1",
+        "title": "ثالث ابتدائي / التحفيظ / أ",
+        "gradeId": "g3",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-girls",
+        "classId": "g4-general-1",
+        "title": "رابع ابتدائي / العام / أ",
+        "gradeId": "g4",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-girls",
+        "classId": "g4-general-2",
+        "title": "رابع ابتدائي / العام / ب",
+        "gradeId": "g4",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-girls",
+        "classId": "g4-general-3",
+        "title": "رابع ابتدائي / العام / ج",
+        "gradeId": "g4",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-girls",
+        "classId": "g4-quran-1",
+        "title": "رابع ابتدائي / التحفيظ / أ",
+        "gradeId": "g4",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-girls",
+        "classId": "g5-general-1",
+        "title": "خامس ابتدائي / العام / أ",
+        "gradeId": "g5",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-girls",
+        "classId": "g5-general-2",
+        "title": "خامس ابتدائي / العام / ب",
+        "gradeId": "g5",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-girls",
+        "classId": "g5-general-3",
+        "title": "خامس ابتدائي / العام / ج",
+        "gradeId": "g5",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-girls",
+        "classId": "g5-quran-1",
+        "title": "خامس ابتدائي / التحفيظ / أ",
+        "gradeId": "g5",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-girls",
+        "classId": "g6-general-1",
+        "title": "سادس ابتدائي / العام / أ",
+        "gradeId": "g6",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-girls",
+        "classId": "g6-general-2",
+        "title": "سادس ابتدائي / العام / ب",
+        "gradeId": "g6",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-girls",
+        "classId": "g6-general-3",
+        "title": "سادس ابتدائي / العام / ج",
+        "gradeId": "g6",
+        "previousSchoolType": ""
+      },
+      {
+        "schoolId": "mrb-girls",
+        "classId": "g6-quran-1",
+        "title": "سادس ابتدائي / التحفيظ / أ",
+        "gradeId": "g6",
+        "previousSchoolType": ""
+      }
+    ]
+  },
+  "offerings": {
+    "toUpdate": 597,
+    "alreadyOk": 0,
+    "skipped": 18,
+    "updated": [
+      {
+        "offeringId": "mrb-boys-faleh-g1-general-1-arabic",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-1",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g1-general-1-english",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-1",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g1-general-1-life-skills",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-1",
+        "subjectKey": "LIFE_SKILLS",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g1-general-1-math",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-1",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g1-general-1-quran",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-1",
+        "subjectKey": "QURAN",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g1-general-1-science",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-1",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g1-general-2-arabic",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-2",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g1-general-2-art",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-2",
+        "subjectKey": "ART",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g1-general-2-english",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-2",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g1-general-2-life-skills",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-2",
+        "subjectKey": "LIFE_SKILLS",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g1-general-2-math",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-2",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g1-general-2-quran",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-2",
+        "subjectKey": "QURAN",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g1-general-2-science",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-2",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g1-general-3-arabic",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-3",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g1-general-3-art",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-3",
+        "subjectKey": "ART",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g1-general-3-english",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-3",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g1-general-3-life-skills",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-3",
+        "subjectKey": "LIFE_SKILLS",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g1-general-3-math",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-3",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g1-general-3-quran",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-3",
+        "subjectKey": "QURAN",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g1-general-3-science",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-3",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g1-international-1-arabic",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-international-1",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g1-international-1-art",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-international-1",
+        "subjectKey": "ART",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g1-international-1-english",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-international-1",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g1-international-1-math",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-international-1",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g1-international-1-quran",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-international-1",
+        "subjectKey": "QURAN",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g1-international-1-science",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-international-1",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g1-quran-1-arabic",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-quran-1",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g1-quran-1-art",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-quran-1",
+        "subjectKey": "ART",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g1-quran-1-english",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-quran-1",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g1-quran-1-math",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-quran-1",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g1-quran-1-quran-and-islamic-studies",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-quran-1",
+        "subjectKey": "QURAN_AND_ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g2-general-1-arabic",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-1",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g2-general-1-english",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-1",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g2-general-1-math",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-1",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g2-general-1-quran-and-islamic-studies",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-1",
+        "subjectKey": "QURAN_AND_ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g2-general-1-science",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-1",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g2-general-2-arabic",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-2",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g2-general-2-english",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-2",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g2-general-2-islamic-studies",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-2",
+        "subjectKey": "ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g2-general-2-life-skills",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-2",
+        "subjectKey": "LIFE_SKILLS",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g2-general-2-math",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-2",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g2-general-2-quran",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-2",
+        "subjectKey": "QURAN",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g2-general-2-science",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-2",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g2-general-3-arabic",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-3",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g2-general-3-art",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-3",
+        "subjectKey": "ART",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g2-general-3-english",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-3",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g2-general-3-islamic-studies",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-3",
+        "subjectKey": "ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g2-general-3-life-skills",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-3",
+        "subjectKey": "LIFE_SKILLS",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g2-general-3-math",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-3",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g2-general-3-quran",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-3",
+        "subjectKey": "QURAN",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g2-international-1-arabic",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-international-1",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g2-international-1-art",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-international-1",
+        "subjectKey": "ART",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g2-international-1-english",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-international-1",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g2-international-1-math",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-international-1",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g2-international-1-quran",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-international-1",
+        "subjectKey": "QURAN",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g2-international-1-science",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-international-1",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g2-quran-1-arabic",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-quran-1",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g2-quran-1-art",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-quran-1",
+        "subjectKey": "ART",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g2-quran-1-english",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-quran-1",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g2-quran-1-life-skills",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-quran-1",
+        "subjectKey": "LIFE_SKILLS",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g2-quran-1-math",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-quran-1",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g2-quran-1-quran",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-quran-1",
+        "subjectKey": "QURAN",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g2-quran-1-science",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-quran-1",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g2-quran-2-arabic",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-quran-2",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g2-quran-2-english",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-quran-2",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g2-quran-2-math",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-quran-2",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g2-quran-2-quran",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-quran-2",
+        "subjectKey": "QURAN",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g2-quran-2-science",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-quran-2",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g3-general-1-arabic",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-1",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g3-general-1-art",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-1",
+        "subjectKey": "ART",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g3-general-1-english",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-1",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g3-general-1-life-skills",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-1",
+        "subjectKey": "LIFE_SKILLS",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g3-general-1-math",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-1",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g3-general-1-quran",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-1",
+        "subjectKey": "QURAN",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g3-general-1-science",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-1",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g3-general-2-arabic",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-2",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g3-general-2-art",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-2",
+        "subjectKey": "ART",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g3-general-2-english",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-2",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g3-general-2-islamic-studies",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-2",
+        "subjectKey": "ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g3-general-2-life-skills",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-2",
+        "subjectKey": "LIFE_SKILLS",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g3-general-2-math",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-2",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g3-general-2-quran",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-2",
+        "subjectKey": "QURAN",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g3-general-2-science",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-2",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g3-general-3-arabic",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-3",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g3-general-3-art",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-3",
+        "subjectKey": "ART",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g3-general-3-english",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-3",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g3-general-3-islamic-studies",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-3",
+        "subjectKey": "ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g3-general-3-life-skills",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-3",
+        "subjectKey": "LIFE_SKILLS",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g3-general-3-math",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-3",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g3-general-3-quran",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-3",
+        "subjectKey": "QURAN",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g3-general-3-science",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-3",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g3-quran-1-arabic",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-quran-1",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g3-quran-1-english",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-quran-1",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g3-quran-1-life-skills",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-quran-1",
+        "subjectKey": "LIFE_SKILLS",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g3-quran-1-math",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-quran-1",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g3-quran-1-pe",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-quran-1",
+        "subjectKey": "PE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g3-quran-1-science",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-quran-1",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g4-general-1-arabic",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-1",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g4-general-1-art",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-1",
+        "subjectKey": "ART",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g4-general-1-english",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-1",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g4-general-1-life-skills",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-1",
+        "subjectKey": "LIFE_SKILLS",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g4-general-1-math",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-1",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g4-general-1-pe",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-1",
+        "subjectKey": "PE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g4-general-1-quran-and-islamic-studies",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-1",
+        "subjectKey": "QURAN_AND_ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g4-general-1-science",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-1",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g4-general-1-social-studies",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-1",
+        "subjectKey": "SOCIAL_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g4-general-2-arabic",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-2",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g4-general-2-art",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-2",
+        "subjectKey": "ART",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g4-general-2-english",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-2",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g4-general-2-life-skills",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-2",
+        "subjectKey": "LIFE_SKILLS",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g4-general-2-math",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-2",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g4-general-2-pe",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-2",
+        "subjectKey": "PE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g4-general-2-quran-and-islamic-studies",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-2",
+        "subjectKey": "QURAN_AND_ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g4-general-2-science",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-2",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g4-general-2-social-studies",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-2",
+        "subjectKey": "SOCIAL_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g4-general-3-arabic",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-3",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g4-general-3-art",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-3",
+        "subjectKey": "ART",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g4-general-3-english",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-3",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g4-general-3-life-skills",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-3",
+        "subjectKey": "LIFE_SKILLS",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g4-general-3-math",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-3",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g4-general-3-pe",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-3",
+        "subjectKey": "PE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g4-general-3-quran-and-islamic-studies",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-3",
+        "subjectKey": "QURAN_AND_ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g4-general-3-science",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-3",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g4-general-3-social-studies",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-3",
+        "subjectKey": "SOCIAL_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g4-quran-1-arabic",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-quran-1",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g4-quran-1-art",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-quran-1",
+        "subjectKey": "ART",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g4-quran-1-english",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-quran-1",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g4-quran-1-life-skills",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-quran-1",
+        "subjectKey": "LIFE_SKILLS",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g4-quran-1-math",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-quran-1",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g4-quran-1-pe",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-quran-1",
+        "subjectKey": "PE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g4-quran-1-quran-and-islamic-studies",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-quran-1",
+        "subjectKey": "QURAN_AND_ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g4-quran-1-science",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-quran-1",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g4-quran-1-social-studies",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-quran-1",
+        "subjectKey": "SOCIAL_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g5-general-1-arabic",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-1",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g5-general-1-digital",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-1",
+        "subjectKey": "DIGITAL",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g5-general-1-english",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-1",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g5-general-1-math",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-1",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g5-general-1-pe",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-1",
+        "subjectKey": "PE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g5-general-1-quran-and-islamic-studies",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-1",
+        "subjectKey": "QURAN_AND_ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g5-general-1-science",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-1",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g5-general-1-social-studies",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-1",
+        "subjectKey": "SOCIAL_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g5-general-2-arabic",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-2",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g5-general-2-digital",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-2",
+        "subjectKey": "DIGITAL",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g5-general-2-english",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-2",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g5-general-2-math",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-2",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g5-general-2-pe",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-2",
+        "subjectKey": "PE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g5-general-2-quran-and-islamic-studies",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-2",
+        "subjectKey": "QURAN_AND_ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g5-general-2-science",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-2",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g5-general-2-social-studies",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-2",
+        "subjectKey": "SOCIAL_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g5-general-3-arabic",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-3",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g5-general-3-digital",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-3",
+        "subjectKey": "DIGITAL",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g5-general-3-english",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-3",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g5-general-3-math",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-3",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g5-general-3-pe",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-3",
+        "subjectKey": "PE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g5-general-3-quran-and-islamic-studies",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-3",
+        "subjectKey": "QURAN_AND_ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g5-general-3-science",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-3",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g5-general-3-social-studies",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-3",
+        "subjectKey": "SOCIAL_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g5-quran-1-arabic",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-quran-1",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g5-quran-1-art",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-quran-1",
+        "subjectKey": "ART",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g5-quran-1-digital",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-quran-1",
+        "subjectKey": "DIGITAL",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g5-quran-1-english",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-quran-1",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g5-quran-1-math",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-quran-1",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g5-quran-1-quran-and-islamic-studies",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-quran-1",
+        "subjectKey": "QURAN_AND_ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g5-quran-1-science",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-quran-1",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g5-quran-1-social-studies",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-quran-1",
+        "subjectKey": "SOCIAL_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g5-quran-1-tajweed",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-quran-1",
+        "subjectKey": "TAJWEED",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g6-general-1-arabic",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-1",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g6-general-1-digital",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-1",
+        "subjectKey": "DIGITAL",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g6-general-1-english",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-1",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g6-general-1-math",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-1",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g6-general-1-pe",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-1",
+        "subjectKey": "PE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g6-general-1-quran-and-islamic-studies",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-1",
+        "subjectKey": "QURAN_AND_ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g6-general-1-science",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-1",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g6-general-1-social-studies",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-1",
+        "subjectKey": "SOCIAL_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g6-general-2-arabic",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-2",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g6-general-2-digital",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-2",
+        "subjectKey": "DIGITAL",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g6-general-2-english",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-2",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g6-general-2-math",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-2",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g6-general-2-pe",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-2",
+        "subjectKey": "PE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g6-general-2-quran-and-islamic-studies",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-2",
+        "subjectKey": "QURAN_AND_ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g6-general-2-science",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-2",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g6-general-2-social-studies",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-2",
+        "subjectKey": "SOCIAL_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g6-general-3-arabic",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-3",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g6-general-3-digital",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-3",
+        "subjectKey": "DIGITAL",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g6-general-3-english",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-3",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g6-general-3-math",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-3",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g6-general-3-pe",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-3",
+        "subjectKey": "PE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g6-general-3-quran-and-islamic-studies",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-3",
+        "subjectKey": "QURAN_AND_ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g6-general-3-science",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-3",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g6-general-3-social-studies",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-3",
+        "subjectKey": "SOCIAL_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g6-quran-1-arabic",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-quran-1",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g6-quran-1-art",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-quran-1",
+        "subjectKey": "ART",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g6-quran-1-digital",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-quran-1",
+        "subjectKey": "DIGITAL",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g6-quran-1-english",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-quran-1",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g6-quran-1-math",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-quran-1",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g6-quran-1-quran-and-islamic-studies",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-quran-1",
+        "subjectKey": "QURAN_AND_ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g6-quran-1-science",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-quran-1",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g6-quran-1-social-studies",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-quran-1",
+        "subjectKey": "SOCIAL_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-faleh-g6-quran-1-tajweed",
+        "schoolId": "mrb-boys-faleh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-quran-1",
+        "subjectKey": "TAJWEED",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g1-general-1-arabic",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-1",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g1-general-1-english",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-1",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g1-general-1-life-skills",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-1",
+        "subjectKey": "LIFE_SKILLS",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g1-general-1-math",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-1",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g1-general-1-quran",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-1",
+        "subjectKey": "QURAN",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g1-general-1-science",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-1",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g1-general-2-arabic",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-2",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g1-general-2-art",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-2",
+        "subjectKey": "ART",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g1-general-2-english",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-2",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g1-general-2-life-skills",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-2",
+        "subjectKey": "LIFE_SKILLS",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g1-general-2-math",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-2",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g1-general-2-quran",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-2",
+        "subjectKey": "QURAN",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g1-general-2-science",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-2",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g1-general-3-arabic",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-3",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g1-general-3-art",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-3",
+        "subjectKey": "ART",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g1-general-3-english",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-3",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g1-general-3-life-skills",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-3",
+        "subjectKey": "LIFE_SKILLS",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g1-general-3-math",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-3",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g1-general-3-quran",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-3",
+        "subjectKey": "QURAN",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g1-general-3-science",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-3",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g1-international-1-arabic",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-international-1",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g1-international-1-art",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-international-1",
+        "subjectKey": "ART",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g1-international-1-english",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-international-1",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g1-international-1-math",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-international-1",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g1-international-1-quran",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-international-1",
+        "subjectKey": "QURAN",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g1-international-1-science",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-international-1",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g1-quran-1-arabic",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-quran-1",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g1-quran-1-art",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-quran-1",
+        "subjectKey": "ART",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g1-quran-1-english",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-quran-1",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g1-quran-1-math",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-quran-1",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g1-quran-1-quran-and-islamic-studies",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-quran-1",
+        "subjectKey": "QURAN_AND_ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g2-general-1-arabic",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-1",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g2-general-1-english",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-1",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g2-general-1-math",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-1",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g2-general-1-quran-and-islamic-studies",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-1",
+        "subjectKey": "QURAN_AND_ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g2-general-1-science",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-1",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g2-general-2-arabic",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-2",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g2-general-2-english",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-2",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g2-general-2-islamic-studies",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-2",
+        "subjectKey": "ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g2-general-2-life-skills",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-2",
+        "subjectKey": "LIFE_SKILLS",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g2-general-2-math",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-2",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g2-general-2-quran",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-2",
+        "subjectKey": "QURAN",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g2-general-2-science",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-2",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g2-general-3-arabic",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-3",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g2-general-3-art",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-3",
+        "subjectKey": "ART",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g2-general-3-english",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-3",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g2-general-3-islamic-studies",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-3",
+        "subjectKey": "ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g2-general-3-life-skills",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-3",
+        "subjectKey": "LIFE_SKILLS",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g2-general-3-math",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-3",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g2-general-3-quran",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-3",
+        "subjectKey": "QURAN",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g2-international-1-arabic",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-international-1",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g2-international-1-art",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-international-1",
+        "subjectKey": "ART",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g2-international-1-english",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-international-1",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g2-international-1-math",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-international-1",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g2-international-1-quran",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-international-1",
+        "subjectKey": "QURAN",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g2-international-1-science",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-international-1",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g2-quran-1-arabic",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-quran-1",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g2-quran-1-art",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-quran-1",
+        "subjectKey": "ART",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g2-quran-1-english",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-quran-1",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g2-quran-1-life-skills",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-quran-1",
+        "subjectKey": "LIFE_SKILLS",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g2-quran-1-math",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-quran-1",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g2-quran-1-quran",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-quran-1",
+        "subjectKey": "QURAN",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g2-quran-1-science",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-quran-1",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g2-quran-2-arabic",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-quran-2",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g2-quran-2-english",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-quran-2",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g2-quran-2-math",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-quran-2",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g2-quran-2-quran",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-quran-2",
+        "subjectKey": "QURAN",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g2-quran-2-science",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-quran-2",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g3-general-1-arabic",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-1",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g3-general-1-art",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-1",
+        "subjectKey": "ART",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g3-general-1-english",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-1",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g3-general-1-life-skills",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-1",
+        "subjectKey": "LIFE_SKILLS",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g3-general-1-math",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-1",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g3-general-1-quran",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-1",
+        "subjectKey": "QURAN",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g3-general-1-science",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-1",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g3-general-2-arabic",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-2",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g3-general-2-art",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-2",
+        "subjectKey": "ART",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g3-general-2-english",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-2",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g3-general-2-islamic-studies",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-2",
+        "subjectKey": "ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g3-general-2-life-skills",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-2",
+        "subjectKey": "LIFE_SKILLS",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g3-general-2-math",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-2",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g3-general-2-quran",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-2",
+        "subjectKey": "QURAN",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g3-general-2-science",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-2",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g3-general-3-arabic",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-3",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g3-general-3-art",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-3",
+        "subjectKey": "ART",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g3-general-3-english",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-3",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g3-general-3-islamic-studies",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-3",
+        "subjectKey": "ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g3-general-3-life-skills",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-3",
+        "subjectKey": "LIFE_SKILLS",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g3-general-3-math",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-3",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g3-general-3-quran",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-3",
+        "subjectKey": "QURAN",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g3-general-3-science",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-3",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g3-quran-1-arabic",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-quran-1",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g3-quran-1-english",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-quran-1",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g3-quran-1-life-skills",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-quran-1",
+        "subjectKey": "LIFE_SKILLS",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g3-quran-1-math",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-quran-1",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g3-quran-1-pe",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-quran-1",
+        "subjectKey": "PE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g3-quran-1-science",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-quran-1",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g4-general-1-arabic",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-1",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g4-general-1-art",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-1",
+        "subjectKey": "ART",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g4-general-1-english",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-1",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g4-general-1-life-skills",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-1",
+        "subjectKey": "LIFE_SKILLS",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g4-general-1-math",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-1",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g4-general-1-pe",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-1",
+        "subjectKey": "PE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g4-general-1-quran-and-islamic-studies",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-1",
+        "subjectKey": "QURAN_AND_ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g4-general-1-science",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-1",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g4-general-1-social-studies",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-1",
+        "subjectKey": "SOCIAL_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g4-general-2-arabic",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-2",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g4-general-2-art",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-2",
+        "subjectKey": "ART",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g4-general-2-english",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-2",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g4-general-2-life-skills",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-2",
+        "subjectKey": "LIFE_SKILLS",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g4-general-2-math",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-2",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g4-general-2-pe",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-2",
+        "subjectKey": "PE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g4-general-2-quran-and-islamic-studies",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-2",
+        "subjectKey": "QURAN_AND_ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g4-general-2-science",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-2",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g4-general-2-social-studies",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-2",
+        "subjectKey": "SOCIAL_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g4-general-3-arabic",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-3",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g4-general-3-art",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-3",
+        "subjectKey": "ART",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g4-general-3-english",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-3",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g4-general-3-life-skills",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-3",
+        "subjectKey": "LIFE_SKILLS",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g4-general-3-math",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-3",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g4-general-3-pe",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-3",
+        "subjectKey": "PE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g4-general-3-quran-and-islamic-studies",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-3",
+        "subjectKey": "QURAN_AND_ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g4-general-3-science",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-3",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g4-general-3-social-studies",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-3",
+        "subjectKey": "SOCIAL_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g4-quran-1-arabic",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-quran-1",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g4-quran-1-art",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-quran-1",
+        "subjectKey": "ART",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g4-quran-1-english",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-quran-1",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g4-quran-1-life-skills",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-quran-1",
+        "subjectKey": "LIFE_SKILLS",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g4-quran-1-math",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-quran-1",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g4-quran-1-pe",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-quran-1",
+        "subjectKey": "PE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g4-quran-1-quran-and-islamic-studies",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-quran-1",
+        "subjectKey": "QURAN_AND_ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g4-quran-1-science",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-quran-1",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g4-quran-1-social-studies",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-quran-1",
+        "subjectKey": "SOCIAL_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g5-general-1-arabic",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-1",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g5-general-1-digital",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-1",
+        "subjectKey": "DIGITAL",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g5-general-1-english",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-1",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g5-general-1-math",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-1",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g5-general-1-pe",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-1",
+        "subjectKey": "PE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g5-general-1-quran-and-islamic-studies",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-1",
+        "subjectKey": "QURAN_AND_ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g5-general-1-science",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-1",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g5-general-1-social-studies",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-1",
+        "subjectKey": "SOCIAL_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g5-general-2-arabic",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-2",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g5-general-2-digital",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-2",
+        "subjectKey": "DIGITAL",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g5-general-2-english",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-2",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g5-general-2-math",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-2",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g5-general-2-pe",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-2",
+        "subjectKey": "PE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g5-general-2-quran-and-islamic-studies",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-2",
+        "subjectKey": "QURAN_AND_ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g5-general-2-science",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-2",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g5-general-2-social-studies",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-2",
+        "subjectKey": "SOCIAL_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g5-general-3-arabic",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-3",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g5-general-3-digital",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-3",
+        "subjectKey": "DIGITAL",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g5-general-3-english",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-3",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g5-general-3-math",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-3",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g5-general-3-pe",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-3",
+        "subjectKey": "PE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g5-general-3-quran-and-islamic-studies",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-3",
+        "subjectKey": "QURAN_AND_ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g5-general-3-science",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-3",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g5-general-3-social-studies",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-3",
+        "subjectKey": "SOCIAL_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g5-quran-1-arabic",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-quran-1",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g5-quran-1-art",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-quran-1",
+        "subjectKey": "ART",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g5-quran-1-digital",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-quran-1",
+        "subjectKey": "DIGITAL",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g5-quran-1-english",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-quran-1",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g5-quran-1-math",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-quran-1",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g5-quran-1-quran-and-islamic-studies",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-quran-1",
+        "subjectKey": "QURAN_AND_ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g5-quran-1-science",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-quran-1",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g5-quran-1-social-studies",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-quran-1",
+        "subjectKey": "SOCIAL_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g5-quran-1-tajweed",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-quran-1",
+        "subjectKey": "TAJWEED",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g6-general-1-arabic",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-1",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g6-general-1-digital",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-1",
+        "subjectKey": "DIGITAL",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g6-general-1-english",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-1",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g6-general-1-math",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-1",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g6-general-1-pe",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-1",
+        "subjectKey": "PE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g6-general-1-quran-and-islamic-studies",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-1",
+        "subjectKey": "QURAN_AND_ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g6-general-1-science",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-1",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g6-general-1-social-studies",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-1",
+        "subjectKey": "SOCIAL_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g6-general-2-arabic",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-2",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g6-general-2-digital",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-2",
+        "subjectKey": "DIGITAL",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g6-general-2-english",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-2",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g6-general-2-math",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-2",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g6-general-2-pe",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-2",
+        "subjectKey": "PE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g6-general-2-quran-and-islamic-studies",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-2",
+        "subjectKey": "QURAN_AND_ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g6-general-2-science",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-2",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g6-general-2-social-studies",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-2",
+        "subjectKey": "SOCIAL_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g6-general-3-arabic",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-3",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g6-general-3-digital",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-3",
+        "subjectKey": "DIGITAL",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g6-general-3-english",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-3",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g6-general-3-math",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-3",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g6-general-3-pe",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-3",
+        "subjectKey": "PE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g6-general-3-quran-and-islamic-studies",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-3",
+        "subjectKey": "QURAN_AND_ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g6-general-3-science",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-3",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g6-general-3-social-studies",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-3",
+        "subjectKey": "SOCIAL_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g6-quran-1-arabic",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-quran-1",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g6-quran-1-art",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-quran-1",
+        "subjectKey": "ART",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g6-quran-1-digital",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-quran-1",
+        "subjectKey": "DIGITAL",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g6-quran-1-english",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-quran-1",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g6-quran-1-math",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-quran-1",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g6-quran-1-quran-and-islamic-studies",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-quran-1",
+        "subjectKey": "QURAN_AND_ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g6-quran-1-science",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-quran-1",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g6-quran-1-social-studies",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-quran-1",
+        "subjectKey": "SOCIAL_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-boys-sayh-g6-quran-1-tajweed",
+        "schoolId": "mrb-boys-sayh",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-quran-1",
+        "subjectKey": "TAJWEED",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g1-general-1-arabic",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-1",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g1-general-1-english",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-1",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g1-general-1-life-skills",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-1",
+        "subjectKey": "LIFE_SKILLS",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g1-general-1-math",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-1",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g1-general-1-quran",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-1",
+        "subjectKey": "QURAN",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g1-general-1-science",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-1",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g1-general-2-arabic",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-2",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g1-general-2-art",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-2",
+        "subjectKey": "ART",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g1-general-2-english",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-2",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g1-general-2-life-skills",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-2",
+        "subjectKey": "LIFE_SKILLS",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g1-general-2-math",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-2",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g1-general-2-quran",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-2",
+        "subjectKey": "QURAN",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g1-general-2-science",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-2",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g1-general-3-arabic",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-3",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g1-general-3-art",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-3",
+        "subjectKey": "ART",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g1-general-3-english",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-3",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g1-general-3-life-skills",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-3",
+        "subjectKey": "LIFE_SKILLS",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g1-general-3-math",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-3",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g1-general-3-quran",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-3",
+        "subjectKey": "QURAN",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g1-general-3-science",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-general-3",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g1-international-1-arabic",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-international-1",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g1-international-1-art",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-international-1",
+        "subjectKey": "ART",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g1-international-1-english",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-international-1",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g1-international-1-math",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-international-1",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g1-international-1-quran",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-international-1",
+        "subjectKey": "QURAN",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g1-international-1-science",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-international-1",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g1-quran-1-arabic",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-quran-1",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g1-quran-1-art",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-quran-1",
+        "subjectKey": "ART",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g1-quran-1-english",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-quran-1",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g1-quran-1-math",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-quran-1",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g1-quran-1-quran-and-islamic-studies",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g1",
+        "classId": "g1-quran-1",
+        "subjectKey": "QURAN_AND_ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g2-general-1-arabic",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-1",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g2-general-1-english",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-1",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g2-general-1-math",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-1",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g2-general-1-quran-and-islamic-studies",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-1",
+        "subjectKey": "QURAN_AND_ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g2-general-1-science",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-1",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g2-general-2-arabic",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-2",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g2-general-2-english",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-2",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g2-general-2-islamic-studies",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-2",
+        "subjectKey": "ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g2-general-2-life-skills",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-2",
+        "subjectKey": "LIFE_SKILLS",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g2-general-2-math",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-2",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g2-general-2-quran",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-2",
+        "subjectKey": "QURAN",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g2-general-2-science",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-2",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g2-general-3-arabic",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-3",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g2-general-3-art",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-3",
+        "subjectKey": "ART",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g2-general-3-english",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-3",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g2-general-3-islamic-studies",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-3",
+        "subjectKey": "ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g2-general-3-life-skills",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-3",
+        "subjectKey": "LIFE_SKILLS",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g2-general-3-math",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-3",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g2-general-3-quran",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-general-3",
+        "subjectKey": "QURAN",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g2-international-1-arabic",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-international-1",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g2-international-1-art",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-international-1",
+        "subjectKey": "ART",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g2-international-1-english",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-international-1",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g2-international-1-math",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-international-1",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g2-international-1-quran",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-international-1",
+        "subjectKey": "QURAN",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g2-international-1-science",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-international-1",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g2-quran-1-arabic",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-quran-1",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g2-quran-1-art",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-quran-1",
+        "subjectKey": "ART",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g2-quran-1-english",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-quran-1",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g2-quran-1-life-skills",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-quran-1",
+        "subjectKey": "LIFE_SKILLS",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g2-quran-1-math",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-quran-1",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g2-quran-1-quran",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-quran-1",
+        "subjectKey": "QURAN",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g2-quran-1-science",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-quran-1",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g2-quran-2-arabic",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-quran-2",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g2-quran-2-english",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-quran-2",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g2-quran-2-math",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-quran-2",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g2-quran-2-quran",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-quran-2",
+        "subjectKey": "QURAN",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g2-quran-2-science",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g2",
+        "classId": "g2-quran-2",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g3-general-1-arabic",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-1",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g3-general-1-art",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-1",
+        "subjectKey": "ART",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g3-general-1-english",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-1",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g3-general-1-life-skills",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-1",
+        "subjectKey": "LIFE_SKILLS",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g3-general-1-math",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-1",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g3-general-1-quran",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-1",
+        "subjectKey": "QURAN",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g3-general-1-science",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-1",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g3-general-2-arabic",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-2",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g3-general-2-art",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-2",
+        "subjectKey": "ART",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g3-general-2-english",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-2",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g3-general-2-islamic-studies",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-2",
+        "subjectKey": "ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g3-general-2-life-skills",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-2",
+        "subjectKey": "LIFE_SKILLS",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g3-general-2-math",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-2",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g3-general-2-quran",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-2",
+        "subjectKey": "QURAN",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g3-general-2-science",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-2",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g3-general-3-arabic",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-3",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g3-general-3-art",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-3",
+        "subjectKey": "ART",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g3-general-3-english",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-3",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g3-general-3-islamic-studies",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-3",
+        "subjectKey": "ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g3-general-3-life-skills",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-3",
+        "subjectKey": "LIFE_SKILLS",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g3-general-3-math",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-3",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g3-general-3-quran",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-3",
+        "subjectKey": "QURAN",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g3-general-3-science",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-general-3",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g3-quran-1-arabic",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-quran-1",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g3-quran-1-english",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-quran-1",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g3-quran-1-life-skills",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-quran-1",
+        "subjectKey": "LIFE_SKILLS",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g3-quran-1-math",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-quran-1",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g3-quran-1-pe",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-quran-1",
+        "subjectKey": "PE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g3-quran-1-science",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g3",
+        "classId": "g3-quran-1",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g4-general-1-arabic",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-1",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g4-general-1-art",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-1",
+        "subjectKey": "ART",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g4-general-1-english",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-1",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g4-general-1-life-skills",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-1",
+        "subjectKey": "LIFE_SKILLS",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g4-general-1-math",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-1",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g4-general-1-pe",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-1",
+        "subjectKey": "PE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g4-general-1-quran-and-islamic-studies",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-1",
+        "subjectKey": "QURAN_AND_ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g4-general-1-science",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-1",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g4-general-1-social-studies",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-1",
+        "subjectKey": "SOCIAL_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g4-general-2-arabic",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-2",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g4-general-2-art",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-2",
+        "subjectKey": "ART",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g4-general-2-english",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-2",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g4-general-2-life-skills",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-2",
+        "subjectKey": "LIFE_SKILLS",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g4-general-2-math",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-2",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g4-general-2-pe",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-2",
+        "subjectKey": "PE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g4-general-2-quran-and-islamic-studies",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-2",
+        "subjectKey": "QURAN_AND_ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g4-general-2-science",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-2",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g4-general-2-social-studies",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-2",
+        "subjectKey": "SOCIAL_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g4-general-3-arabic",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-3",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g4-general-3-art",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-3",
+        "subjectKey": "ART",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g4-general-3-english",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-3",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g4-general-3-life-skills",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-3",
+        "subjectKey": "LIFE_SKILLS",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g4-general-3-math",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-3",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g4-general-3-pe",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-3",
+        "subjectKey": "PE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g4-general-3-quran-and-islamic-studies",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-3",
+        "subjectKey": "QURAN_AND_ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g4-general-3-science",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-3",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g4-general-3-social-studies",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-general-3",
+        "subjectKey": "SOCIAL_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g4-quran-1-arabic",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-quran-1",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g4-quran-1-art",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-quran-1",
+        "subjectKey": "ART",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g4-quran-1-english",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-quran-1",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g4-quran-1-life-skills",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-quran-1",
+        "subjectKey": "LIFE_SKILLS",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g4-quran-1-math",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-quran-1",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g4-quran-1-pe",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-quran-1",
+        "subjectKey": "PE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g4-quran-1-quran-and-islamic-studies",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-quran-1",
+        "subjectKey": "QURAN_AND_ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g4-quran-1-science",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-quran-1",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g4-quran-1-social-studies",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g4",
+        "classId": "g4-quran-1",
+        "subjectKey": "SOCIAL_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g5-general-1-arabic",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-1",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g5-general-1-digital",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-1",
+        "subjectKey": "DIGITAL",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g5-general-1-english",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-1",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g5-general-1-math",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-1",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g5-general-1-pe",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-1",
+        "subjectKey": "PE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g5-general-1-quran-and-islamic-studies",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-1",
+        "subjectKey": "QURAN_AND_ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g5-general-1-science",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-1",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g5-general-1-social-studies",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-1",
+        "subjectKey": "SOCIAL_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g5-general-2-arabic",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-2",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g5-general-2-digital",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-2",
+        "subjectKey": "DIGITAL",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g5-general-2-english",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-2",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g5-general-2-math",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-2",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g5-general-2-pe",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-2",
+        "subjectKey": "PE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g5-general-2-quran-and-islamic-studies",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-2",
+        "subjectKey": "QURAN_AND_ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g5-general-2-science",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-2",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g5-general-2-social-studies",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-2",
+        "subjectKey": "SOCIAL_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g5-general-3-arabic",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-3",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g5-general-3-digital",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-3",
+        "subjectKey": "DIGITAL",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g5-general-3-english",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-3",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g5-general-3-math",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-3",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g5-general-3-pe",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-3",
+        "subjectKey": "PE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g5-general-3-quran-and-islamic-studies",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-3",
+        "subjectKey": "QURAN_AND_ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g5-general-3-science",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-3",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g5-general-3-social-studies",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-general-3",
+        "subjectKey": "SOCIAL_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g5-quran-1-arabic",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-quran-1",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g5-quran-1-art",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-quran-1",
+        "subjectKey": "ART",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g5-quran-1-digital",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-quran-1",
+        "subjectKey": "DIGITAL",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g5-quran-1-english",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-quran-1",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g5-quran-1-math",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-quran-1",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g5-quran-1-quran-and-islamic-studies",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-quran-1",
+        "subjectKey": "QURAN_AND_ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g5-quran-1-science",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-quran-1",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g5-quran-1-social-studies",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-quran-1",
+        "subjectKey": "SOCIAL_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g5-quran-1-tajweed",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g5",
+        "classId": "g5-quran-1",
+        "subjectKey": "TAJWEED",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g6-general-1-arabic",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-1",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g6-general-1-digital",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-1",
+        "subjectKey": "DIGITAL",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g6-general-1-english",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-1",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g6-general-1-math",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-1",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g6-general-1-pe",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-1",
+        "subjectKey": "PE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g6-general-1-quran-and-islamic-studies",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-1",
+        "subjectKey": "QURAN_AND_ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g6-general-1-science",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-1",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g6-general-1-social-studies",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-1",
+        "subjectKey": "SOCIAL_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g6-general-2-arabic",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-2",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g6-general-2-digital",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-2",
+        "subjectKey": "DIGITAL",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g6-general-2-english",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-2",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g6-general-2-math",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-2",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g6-general-2-pe",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-2",
+        "subjectKey": "PE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g6-general-2-quran-and-islamic-studies",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-2",
+        "subjectKey": "QURAN_AND_ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g6-general-2-science",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-2",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g6-general-2-social-studies",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-2",
+        "subjectKey": "SOCIAL_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g6-general-3-arabic",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-3",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g6-general-3-digital",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-3",
+        "subjectKey": "DIGITAL",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g6-general-3-english",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-3",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g6-general-3-math",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-3",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g6-general-3-pe",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-3",
+        "subjectKey": "PE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g6-general-3-quran-and-islamic-studies",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-3",
+        "subjectKey": "QURAN_AND_ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g6-general-3-science",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-3",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g6-general-3-social-studies",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-general-3",
+        "subjectKey": "SOCIAL_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g6-quran-1-arabic",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-quran-1",
+        "subjectKey": "ARABIC",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g6-quran-1-art",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-quran-1",
+        "subjectKey": "ART",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g6-quran-1-digital",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-quran-1",
+        "subjectKey": "DIGITAL",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g6-quran-1-english",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-quran-1",
+        "subjectKey": "ENGLISH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g6-quran-1-math",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-quran-1",
+        "subjectKey": "MATH",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g6-quran-1-quran-and-islamic-studies",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-quran-1",
+        "subjectKey": "QURAN_AND_ISLAMIC_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g6-quran-1-science",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-quran-1",
+        "subjectKey": "SCIENCE",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g6-quran-1-social-studies",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-quran-1",
+        "subjectKey": "SOCIAL_STUDIES",
+        "previousSchoolType": ""
+      },
+      {
+        "offeringId": "mrb-girls-g6-quran-1-tajweed",
+        "schoolId": "mrb-girls",
+        "academicYearId": "ay-1448",
+        "gradeId": "g6",
+        "classId": "g6-quran-1",
+        "subjectKey": "TAJWEED",
+        "previousSchoolType": ""
+      }
+    ]
+  }
+}

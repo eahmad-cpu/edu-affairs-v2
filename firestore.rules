@@ -1,0 +1,163 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isSelf(uid) {
+      return signedIn() && request.auth.uid == uid;
+    }
+
+    function membershipPath(orgId) {
+      return /databases/$(database)/documents/users/$(request.auth.uid)/orgMemberships/$(orgId);
+    }
+
+    function membershipExists(orgId) {
+      return signedIn() && exists(membershipPath(orgId));
+    }
+
+    function membershipData(orgId) {
+      return get(membershipPath(orgId)).data;
+    }
+
+    function membershipIsActive(orgId) {
+  return membershipExists(orgId)
+    && (
+      membershipData(orgId).isActive == true ||
+      membershipData(orgId).active == true
+    );
+}
+
+    function orgRole(orgId) {
+      return membershipData(orgId).role != null
+        ? membershipData(orgId).role
+        : membershipData(orgId).roleKey;
+    }
+
+    function hasOrgMembership(orgId) {
+      return membershipIsActive(orgId);
+    }
+
+    function canManageOrg(orgId) {
+      return hasOrgMembership(orgId) && (
+        orgRole(orgId) == "platform_owner" ||
+        orgRole(orgId) == "platform_admin" ||
+        orgRole(orgId) == "org_owner" ||
+        orgRole(orgId) == "org_admin"
+      );
+    }
+
+    match /users/{uid} {
+      allow get: if isSelf(uid);
+      allow list: if false;
+      allow create, update, delete: if false;
+
+      match /orgMemberships/{orgId} {
+        allow get, list: if isSelf(uid);
+        allow create, update, delete: if false;
+      }
+    }
+
+    match /orgs/{orgId} {
+      allow get: if hasOrgMembership(orgId);
+      allow list: if false;
+      allow create: if false;
+      allow update, delete: if canManageOrg(orgId);
+
+      match /memberships/{uid} {
+        allow get: if isSelf(uid) && hasOrgMembership(orgId);
+        allow list: if canManageOrg(orgId);
+        allow create, update, delete: if canManageOrg(orgId);
+      }
+
+      match /schools/{schoolId} {
+        allow get, list: if hasOrgMembership(orgId);
+        allow create, update, delete: if canManageOrg(orgId);
+
+        match /academicYears/{yearId} {
+          allow get, list: if hasOrgMembership(orgId);
+          allow create, update, delete: if canManageOrg(orgId);
+
+          match /grades/{gradeId} {
+            allow get, list: if hasOrgMembership(orgId);
+            allow create, update, delete: if canManageOrg(orgId);
+          }
+
+          match /classes/{classId} {
+            allow get, list: if hasOrgMembership(orgId);
+            allow create, update, delete: if canManageOrg(orgId);
+          }
+        }
+
+        match /{subPath=**} {
+          allow read: if hasOrgMembership(orgId);
+          allow write: if canManageOrg(orgId);
+        }
+      }
+
+      match /{subPath=**} {
+        allow read: if hasOrgMembership(orgId);
+        allow write: if canManageOrg(orgId);
+      }
+
+      match /students/{studentId} {
+  allow get, list: if signedIn()
+    && resource.data.orgId is string
+    && hasOrgMembership(resource.data.orgId);
+
+  allow create, update, delete: if signedIn()
+    && request.resource.data.orgId is string
+    && canManageOrg(request.resource.data.orgId);
+}
+
+match /guardians/{guardianId} {
+  allow get, list: if signedIn()
+    && resource.data.orgId is string
+    && hasOrgMembership(resource.data.orgId);
+
+  allow create, update, delete: if signedIn()
+    && request.resource.data.orgId is string
+    && canManageOrg(request.resource.data.orgId);
+}
+
+
+
+match /studentEnrollments/{enrollmentId} {
+  allow get, list: if signedIn()
+    && resource.data.orgId is string
+    && hasOrgMembership(resource.data.orgId);
+
+  allow create, update, delete: if signedIn()
+    && request.resource.data.orgId is string
+    && canManageOrg(request.resource.data.orgId);
+}
+
+match /guardianLinks/{linkId} {
+  allow get, list: if hasOrgMembership(orgId);
+  allow create, update, delete: if canManageOrg(orgId);
+}
+
+match /studentCaseTypes/{caseTypeId} {
+  allow get, list: if hasOrgMembership(orgId);
+  allow create, update, delete: if canManageOrg(orgId);
+}
+
+match /studentCases/{caseId} {
+  allow get, list: if hasOrgMembership(orgId);
+  allow create, update, delete: if canManageOrg(orgId);
+}
+
+match /enrollments/{enrollmentId} {
+  allow get, list: if signedIn()
+    && resource.data.orgId is string
+    && hasOrgMembership(resource.data.orgId);
+
+  allow create, update, delete: if signedIn()
+    && request.resource.data.orgId is string
+    && canManageOrg(request.resource.data.orgId);
+}
+    }
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "context": {
+    "orgId": "takween",
+    "classId": "kg3-a",
+    "schoolId": "kg-01",
+    "academicYearId": "ay-1448"
+  },
+  "counts": {
+    "allOfferings": 44,
+    "allTeacherAssignments": 4,
+    "allTeacherAssignmentClassLinks": 6,
+    "classOfferings": 0,
+    "classTeacherAssignments": 0,
+    "classLinks": 1,
+    "classOrHomeroomAssignments": 0,
+    "classOrHomeroomLinks": 0
+  },
+  "domainKeyMatrix": [
+    {
+      "domainKey": "CLASS",
+      "offeringsCount": 0,
+      "assignmentCount": 0,
+      "linksCount": 0,
+      "offeringIds": [],
+      "assignmentIds": [],
+      "linkIds": []
+    },
+    {
+      "domainKey": "HOMEROOM",
+      "offeringsCount": 0,
+      "assignmentCount": 0,
+      "linksCount": 0,
+      "offeringIds": [],
+      "assignmentIds": [],
+      "linkIds": []
+    },
+    {
+      "domainKey": "QURAN",
+      "offeringsCount": 0,
+      "assignmentCount": 0,
+      "linksCount": 0,
+      "offeringIds": [],
+      "assignmentIds": [],
+      "linkIds": []
+    },
+    {
+      "domainKey": "LEARNING_GARDENS",
+      "offeringsCount": 0,
+      "assignmentCount": 0,
+      "linksCount": 0,
+      "offeringIds": [],
+      "assignmentIds": [],
+      "linkIds": []
+    },
+    {
+      "domainKey": "NUMBERS",
+      "offeringsCount": 0,
+      "assignmentCount": 0,
+      "linksCount": 0,
+      "offeringIds": [],
+      "assignmentIds": [],
+      "linkIds": []
+    },
+    {
+      "domainKey": "VALUES",
+      "offeringsCount": 0,
+      "assignmentCount": 0,
+      "linksCount": 1,
+      "offeringIds": [],
+      "assignmentIds": [],
+      "linkIds": [
+        "tal-kg-values-3"
+      ]
+    },
+    {
+      "domainKey": "CORNERS",
+      "offeringsCount": 0,
+      "assignmentCount": 0,
+      "linksCount": 0,
+      "offeringIds": [],
+      "assignmentIds": [],
+      "linkIds": []
+    }
+  ],
+  "classOfferings": [],
+  "classTeacherAssignments": [],
+  "classLinks": [
+    {
+      "link": {
+        "id": "tal-kg-values-3",
+        "path": "orgs/takween/teacherAssignmentClassLinks/tal-kg-values-3",
+        "personId": "",
+        "schoolId": "kg-01",
+        "academicYearId": "ay-1448",
+        "gradeId": "kg3",
+        "classId": "kg3-a"
+      },
+      "resolvedTeacherAssignmentId": "ta-kg-values-all",
+      "assignment": {
+        "id": "ta-kg-values-all",
+        "path": "orgs/takween/teacherAssignments/ta-kg-values-all",
+        "personId": "p-t-altwala",
+        "teacherPersonId": "p-t-altwala",
+        "schoolId": "kg-01",
+        "academicYearId": "ay-1448",
+        "gradeId": "",
+        "subjectKey": "VALUES",
+        "subjectId": "subject-values",
+        "status": "ACTIVE"
+      }
+    }
+  ],
+  "classOrHomeroomAssignments": [],
+  "classOrHomeroomLinks": [],
+  "offeringsSummary": []
+}

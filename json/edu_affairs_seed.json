@@ -1,0 +1,5326 @@
+[
+  {
+    "path": "orgs/takween",
+    "data": {
+      "id": "takween",
+      "slug": "takween",
+      "nameAr": "تكوين المعرفة للتعليم",
+      "nameEn": "Takween Education",
+      "shortName": "Takween",
+      "status": "active",
+      "branding": {
+        "logoUrl": "",
+        "primaryColor": "#0F766E",
+        "secondaryColor": "#334155"
+      },
+      "locale": {
+        "language": "ar",
+        "direction": "rtl",
+        "timezone": "Asia/Riyadh",
+        "countryCode": "SA",
+        "currency": "SAR"
+      },
+      "features": {
+        "enabledModules": [
+          "CORE",
+          "SCHOOLS",
+          "ACADEMICS",
+          "DIRECTORY",
+          "ASSIGNMENTS",
+          "CASES",
+          "EVALUATIONS",
+          "DISPLAY",
+          "COMMS",
+          "PARENT_APP",
+          "ANALYTICS"
+        ]
+      },
+      "settings": {
+        "academicStructureMode": "school_based",
+        "allowMultipleActiveAcademicYears": false,
+        "supportedSchoolTypes": [
+          "KG",
+          "PRIMARY"
+        ]
+      },
+      "contact": {
+        "email": "e.ahmad@qz.org.sa",
+        "phone": "",
+        "website": ""
+      },
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-sayh",
+    "data": {
+      "id": "mrb-boys-sayh",
+      "orgId": "takween",
+      "name": "مدرسة منار الريادة بنين السيح",
+      "slug": "mrb-boys-sayh",
+      "profile": {
+        "schoolType": "PRIMARY",
+        "track": "BOYS",
+        "enabledModules": [
+          "CORE",
+          "COMMS",
+          "ATTENDANCE",
+          "STUDENT_CASES",
+          "TEACHER_EVAL",
+          "CLASSROOM_DISPLAY",
+          "GAMIFICATION",
+          "PARENT_NOTIFICATIONS",
+          "KG_DAILY",
+          "PRIMARY_ASSESSMENTS",
+          "TRANSPORT"
+        ]
+      },
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-sayh/academicYears/ay-1448",
+    "data": {
+      "id": "ay-1448",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-sayh",
+      "title": "1448 هـ / 2026-2027",
+      "startsAt": 1785542400000,
+      "endsAt": 1814313600000,
+      "isActive": true,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-faleh",
+    "data": {
+      "id": "mrb-boys-faleh",
+      "orgId": "takween",
+      "name": "مدرسة منار الريادة بنين الفالح",
+      "slug": "mrb-boys-faleh",
+      "profile": {
+        "schoolType": "PRIMARY",
+        "track": "BOYS",
+        "enabledModules": [
+          "CORE",
+          "COMMS",
+          "ATTENDANCE",
+          "STUDENT_CASES",
+          "TEACHER_EVAL",
+          "CLASSROOM_DISPLAY",
+          "GAMIFICATION",
+          "PARENT_NOTIFICATIONS",
+          "KG_DAILY",
+          "PRIMARY_ASSESSMENTS",
+          "TRANSPORT"
+        ]
+      },
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-faleh/academicYears/ay-1448",
+    "data": {
+      "id": "ay-1448",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-faleh",
+      "title": "1448 هـ / 2026-2027",
+      "startsAt": 1785542400000,
+      "endsAt": 1814313600000,
+      "isActive": true,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-girls",
+    "data": {
+      "id": "mrb-girls",
+      "orgId": "takween",
+      "name": "مدرسة منار الريادة بنات",
+      "slug": "mrb-girls",
+      "profile": {
+        "schoolType": "PRIMARY",
+        "track": "GIRLS",
+        "enabledModules": [
+          "CORE",
+          "COMMS",
+          "ATTENDANCE",
+          "STUDENT_CASES",
+          "TEACHER_EVAL",
+          "CLASSROOM_DISPLAY",
+          "GAMIFICATION",
+          "PARENT_NOTIFICATIONS",
+          "KG_DAILY",
+          "PRIMARY_ASSESSMENTS",
+          "TRANSPORT"
+        ]
+      },
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-girls/academicYears/ay-1448",
+    "data": {
+      "id": "ay-1448",
+      "orgId": "takween",
+      "schoolId": "mrb-girls",
+      "title": "1448 هـ / 2026-2027",
+      "startsAt": 1785542400000,
+      "endsAt": 1814313600000,
+      "isActive": true,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/kg-01",
+    "data": {
+      "id": "kg-01",
+      "orgId": "takween",
+      "name": "روضة واحة الرياحين الأولى",
+      "slug": "kg-01",
+      "profile": {
+        "schoolType": "KG",
+        "track": "MIXED",
+        "enabledModules": [
+          "CORE",
+          "COMMS",
+          "ATTENDANCE",
+          "STUDENT_CASES",
+          "TEACHER_EVAL",
+          "CLASSROOM_DISPLAY",
+          "GAMIFICATION",
+          "PARENT_NOTIFICATIONS",
+          "KG_DAILY",
+          "PRIMARY_ASSESSMENTS",
+          "TRANSPORT"
+        ]
+      },
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/kg-01/academicYears/ay-1448",
+    "data": {
+      "id": "ay-1448",
+      "orgId": "takween",
+      "schoolId": "kg-01",
+      "title": "1448 هـ / 2026-2027",
+      "startsAt": 1785542400000,
+      "endsAt": 1814313600000,
+      "isActive": true,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/kg-02",
+    "data": {
+      "id": "kg-02",
+      "orgId": "takween",
+      "name": "روضة واحة الرياحين الثانية",
+      "slug": "kg-02",
+      "profile": {
+        "schoolType": "KG",
+        "track": "MIXED",
+        "enabledModules": [
+          "CORE",
+          "COMMS",
+          "ATTENDANCE",
+          "STUDENT_CASES",
+          "TEACHER_EVAL",
+          "CLASSROOM_DISPLAY",
+          "GAMIFICATION",
+          "PARENT_NOTIFICATIONS",
+          "KG_DAILY",
+          "PRIMARY_ASSESSMENTS",
+          "TRANSPORT"
+        ]
+      },
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/kg-02/academicYears/ay-1448",
+    "data": {
+      "id": "ay-1448",
+      "orgId": "takween",
+      "schoolId": "kg-02",
+      "title": "1448 هـ / 2026-2027",
+      "startsAt": 1785542400000,
+      "endsAt": 1814313600000,
+      "isActive": true,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/kg-03",
+    "data": {
+      "id": "kg-03",
+      "orgId": "takween",
+      "name": "روضة واحة الرياحين الثالثة",
+      "slug": "kg-03",
+      "profile": {
+        "schoolType": "KG",
+        "track": "MIXED",
+        "enabledModules": [
+          "CORE",
+          "COMMS",
+          "ATTENDANCE",
+          "STUDENT_CASES",
+          "TEACHER_EVAL",
+          "CLASSROOM_DISPLAY",
+          "GAMIFICATION",
+          "PARENT_NOTIFICATIONS",
+          "KG_DAILY",
+          "PRIMARY_ASSESSMENTS",
+          "TRANSPORT"
+        ]
+      },
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/kg-03/academicYears/ay-1448",
+    "data": {
+      "id": "ay-1448",
+      "orgId": "takween",
+      "schoolId": "kg-03",
+      "title": "1448 هـ / 2026-2027",
+      "startsAt": 1785542400000,
+      "endsAt": 1814313600000,
+      "isActive": true,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/kg-04",
+    "data": {
+      "id": "kg-04",
+      "orgId": "takween",
+      "name": "روضة واحة الرياحين الرابعة",
+      "slug": "kg-04",
+      "profile": {
+        "schoolType": "KG",
+        "track": "MIXED",
+        "enabledModules": [
+          "CORE",
+          "COMMS",
+          "ATTENDANCE",
+          "STUDENT_CASES",
+          "TEACHER_EVAL",
+          "CLASSROOM_DISPLAY",
+          "GAMIFICATION",
+          "PARENT_NOTIFICATIONS",
+          "KG_DAILY",
+          "PRIMARY_ASSESSMENTS",
+          "TRANSPORT"
+        ]
+      },
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/kg-04/academicYears/ay-1448",
+    "data": {
+      "id": "ay-1448",
+      "orgId": "takween",
+      "schoolId": "kg-04",
+      "title": "1448 هـ / 2026-2027",
+      "startsAt": 1785542400000,
+      "endsAt": 1814313600000,
+      "isActive": true,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-sayh/academicYears/ay-1448/streams/stream-general",
+    "data": {
+      "id": "stream-general",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-sayh",
+      "academicYearId": "ay-1448",
+      "code": "GENERAL",
+      "title": "العام",
+      "kind": "GENERAL",
+      "shortLabel": "عام",
+      "order": 1,
+      "isActive": true,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-sayh/academicYears/ay-1448/streams/stream-quran",
+    "data": {
+      "id": "stream-quran",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-sayh",
+      "academicYearId": "ay-1448",
+      "code": "QURAN",
+      "title": "التحفيظ",
+      "kind": "QURAN",
+      "shortLabel": "تحفيظ",
+      "order": 2,
+      "isActive": true,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-sayh/academicYears/ay-1448/streams/stream-international",
+    "data": {
+      "id": "stream-international",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-sayh",
+      "academicYearId": "ay-1448",
+      "code": "INTERNATIONAL",
+      "title": "العالمي",
+      "kind": "INTERNATIONAL",
+      "shortLabel": "عالمي",
+      "order": 3,
+      "isActive": true,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-sayh/academicYears/ay-1448/grades/g1",
+    "data": {
+      "id": "g1",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-sayh",
+      "academicYearId": "ay-1448",
+      "code": "G1",
+      "title": "أول ابتدائي",
+      "order": 1,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-sayh/academicYears/ay-1448/classes/g1-general-1",
+    "data": {
+      "id": "g1-general-1",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-sayh",
+      "academicYearId": "ay-1448",
+      "gradeId": "g1",
+      "streamId": "stream-general",
+      "code": "G1-GENERAL-1",
+      "title": "أول ابتدائي / العام / أ",
+      "sectionLabel": "أ",
+      "order": 1,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-sayh/academicYears/ay-1448/classes/g1-general-2",
+    "data": {
+      "id": "g1-general-2",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-sayh",
+      "academicYearId": "ay-1448",
+      "gradeId": "g1",
+      "streamId": "stream-general",
+      "code": "G1-GENERAL-2",
+      "title": "أول ابتدائي / العام / ب",
+      "sectionLabel": "ب",
+      "order": 2,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-sayh/academicYears/ay-1448/classes/g1-general-3",
+    "data": {
+      "id": "g1-general-3",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-sayh",
+      "academicYearId": "ay-1448",
+      "gradeId": "g1",
+      "streamId": "stream-general",
+      "code": "G1-GENERAL-3",
+      "title": "أول ابتدائي / العام / ج",
+      "sectionLabel": "ج",
+      "order": 3,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-sayh/academicYears/ay-1448/classes/g1-quran-1",
+    "data": {
+      "id": "g1-quran-1",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-sayh",
+      "academicYearId": "ay-1448",
+      "gradeId": "g1",
+      "streamId": "stream-quran",
+      "code": "G1-QURAN-1",
+      "title": "أول ابتدائي / التحفيظ / أ",
+      "sectionLabel": "أ",
+      "order": 10,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-sayh/academicYears/ay-1448/classes/g1-international-1",
+    "data": {
+      "id": "g1-international-1",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-sayh",
+      "academicYearId": "ay-1448",
+      "gradeId": "g1",
+      "streamId": "stream-international",
+      "code": "G1-INTERNATIONAL-1",
+      "title": "أول ابتدائي / العالمي / أ",
+      "sectionLabel": "أ",
+      "order": 20,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-sayh/academicYears/ay-1448/grades/g2",
+    "data": {
+      "id": "g2",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-sayh",
+      "academicYearId": "ay-1448",
+      "code": "G2",
+      "title": "ثاني ابتدائي",
+      "order": 2,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-sayh/academicYears/ay-1448/classes/g2-general-1",
+    "data": {
+      "id": "g2-general-1",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-sayh",
+      "academicYearId": "ay-1448",
+      "gradeId": "g2",
+      "streamId": "stream-general",
+      "code": "G2-GENERAL-1",
+      "title": "ثاني ابتدائي / العام / أ",
+      "sectionLabel": "أ",
+      "order": 1,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-sayh/academicYears/ay-1448/classes/g2-general-2",
+    "data": {
+      "id": "g2-general-2",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-sayh",
+      "academicYearId": "ay-1448",
+      "gradeId": "g2",
+      "streamId": "stream-general",
+      "code": "G2-GENERAL-2",
+      "title": "ثاني ابتدائي / العام / ب",
+      "sectionLabel": "ب",
+      "order": 2,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-sayh/academicYears/ay-1448/classes/g2-general-3",
+    "data": {
+      "id": "g2-general-3",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-sayh",
+      "academicYearId": "ay-1448",
+      "gradeId": "g2",
+      "streamId": "stream-general",
+      "code": "G2-GENERAL-3",
+      "title": "ثاني ابتدائي / العام / ج",
+      "sectionLabel": "ج",
+      "order": 3,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-sayh/academicYears/ay-1448/classes/g2-quran-1",
+    "data": {
+      "id": "g2-quran-1",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-sayh",
+      "academicYearId": "ay-1448",
+      "gradeId": "g2",
+      "streamId": "stream-quran",
+      "code": "G2-QURAN-1",
+      "title": "ثاني ابتدائي / التحفيظ / أ",
+      "sectionLabel": "أ",
+      "order": 10,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-sayh/academicYears/ay-1448/classes/g2-international-1",
+    "data": {
+      "id": "g2-international-1",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-sayh",
+      "academicYearId": "ay-1448",
+      "gradeId": "g2",
+      "streamId": "stream-international",
+      "code": "G2-INTERNATIONAL-1",
+      "title": "ثاني ابتدائي / العالمي / أ",
+      "sectionLabel": "أ",
+      "order": 20,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-sayh/academicYears/ay-1448/grades/g3",
+    "data": {
+      "id": "g3",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-sayh",
+      "academicYearId": "ay-1448",
+      "code": "G3",
+      "title": "ثالث ابتدائي",
+      "order": 3,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-sayh/academicYears/ay-1448/classes/g3-general-1",
+    "data": {
+      "id": "g3-general-1",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-sayh",
+      "academicYearId": "ay-1448",
+      "gradeId": "g3",
+      "streamId": "stream-general",
+      "code": "G3-GENERAL-1",
+      "title": "ثالث ابتدائي / العام / أ",
+      "sectionLabel": "أ",
+      "order": 1,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-sayh/academicYears/ay-1448/classes/g3-general-2",
+    "data": {
+      "id": "g3-general-2",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-sayh",
+      "academicYearId": "ay-1448",
+      "gradeId": "g3",
+      "streamId": "stream-general",
+      "code": "G3-GENERAL-2",
+      "title": "ثالث ابتدائي / العام / ب",
+      "sectionLabel": "ب",
+      "order": 2,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-sayh/academicYears/ay-1448/classes/g3-general-3",
+    "data": {
+      "id": "g3-general-3",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-sayh",
+      "academicYearId": "ay-1448",
+      "gradeId": "g3",
+      "streamId": "stream-general",
+      "code": "G3-GENERAL-3",
+      "title": "ثالث ابتدائي / العام / ج",
+      "sectionLabel": "ج",
+      "order": 3,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-sayh/academicYears/ay-1448/classes/g3-quran-1",
+    "data": {
+      "id": "g3-quran-1",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-sayh",
+      "academicYearId": "ay-1448",
+      "gradeId": "g3",
+      "streamId": "stream-quran",
+      "code": "G3-QURAN-1",
+      "title": "ثالث ابتدائي / التحفيظ / أ",
+      "sectionLabel": "أ",
+      "order": 10,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-sayh/academicYears/ay-1448/grades/g4",
+    "data": {
+      "id": "g4",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-sayh",
+      "academicYearId": "ay-1448",
+      "code": "G4",
+      "title": "رابع ابتدائي",
+      "order": 4,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-sayh/academicYears/ay-1448/classes/g4-general-1",
+    "data": {
+      "id": "g4-general-1",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-sayh",
+      "academicYearId": "ay-1448",
+      "gradeId": "g4",
+      "streamId": "stream-general",
+      "code": "G4-GENERAL-1",
+      "title": "رابع ابتدائي / العام / أ",
+      "sectionLabel": "أ",
+      "order": 1,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-sayh/academicYears/ay-1448/classes/g4-general-2",
+    "data": {
+      "id": "g4-general-2",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-sayh",
+      "academicYearId": "ay-1448",
+      "gradeId": "g4",
+      "streamId": "stream-general",
+      "code": "G4-GENERAL-2",
+      "title": "رابع ابتدائي / العام / ب",
+      "sectionLabel": "ب",
+      "order": 2,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-sayh/academicYears/ay-1448/classes/g4-general-3",
+    "data": {
+      "id": "g4-general-3",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-sayh",
+      "academicYearId": "ay-1448",
+      "gradeId": "g4",
+      "streamId": "stream-general",
+      "code": "G4-GENERAL-3",
+      "title": "رابع ابتدائي / العام / ج",
+      "sectionLabel": "ج",
+      "order": 3,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-sayh/academicYears/ay-1448/classes/g4-quran-1",
+    "data": {
+      "id": "g4-quran-1",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-sayh",
+      "academicYearId": "ay-1448",
+      "gradeId": "g4",
+      "streamId": "stream-quran",
+      "code": "G4-QURAN-1",
+      "title": "رابع ابتدائي / التحفيظ / أ",
+      "sectionLabel": "أ",
+      "order": 10,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-sayh/academicYears/ay-1448/grades/g5",
+    "data": {
+      "id": "g5",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-sayh",
+      "academicYearId": "ay-1448",
+      "code": "G5",
+      "title": "خامس ابتدائي",
+      "order": 5,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-sayh/academicYears/ay-1448/classes/g5-general-1",
+    "data": {
+      "id": "g5-general-1",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-sayh",
+      "academicYearId": "ay-1448",
+      "gradeId": "g5",
+      "streamId": "stream-general",
+      "code": "G5-GENERAL-1",
+      "title": "خامس ابتدائي / العام / أ",
+      "sectionLabel": "أ",
+      "order": 1,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-sayh/academicYears/ay-1448/classes/g5-general-2",
+    "data": {
+      "id": "g5-general-2",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-sayh",
+      "academicYearId": "ay-1448",
+      "gradeId": "g5",
+      "streamId": "stream-general",
+      "code": "G5-GENERAL-2",
+      "title": "خامس ابتدائي / العام / ب",
+      "sectionLabel": "ب",
+      "order": 2,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-sayh/academicYears/ay-1448/classes/g5-general-3",
+    "data": {
+      "id": "g5-general-3",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-sayh",
+      "academicYearId": "ay-1448",
+      "gradeId": "g5",
+      "streamId": "stream-general",
+      "code": "G5-GENERAL-3",
+      "title": "خامس ابتدائي / العام / ج",
+      "sectionLabel": "ج",
+      "order": 3,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-sayh/academicYears/ay-1448/classes/g5-quran-1",
+    "data": {
+      "id": "g5-quran-1",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-sayh",
+      "academicYearId": "ay-1448",
+      "gradeId": "g5",
+      "streamId": "stream-quran",
+      "code": "G5-QURAN-1",
+      "title": "خامس ابتدائي / التحفيظ / أ",
+      "sectionLabel": "أ",
+      "order": 10,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-sayh/academicYears/ay-1448/grades/g6",
+    "data": {
+      "id": "g6",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-sayh",
+      "academicYearId": "ay-1448",
+      "code": "G6",
+      "title": "سادس ابتدائي",
+      "order": 6,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-sayh/academicYears/ay-1448/classes/g6-general-1",
+    "data": {
+      "id": "g6-general-1",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-sayh",
+      "academicYearId": "ay-1448",
+      "gradeId": "g6",
+      "streamId": "stream-general",
+      "code": "G6-GENERAL-1",
+      "title": "سادس ابتدائي / العام / أ",
+      "sectionLabel": "أ",
+      "order": 1,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-sayh/academicYears/ay-1448/classes/g6-general-2",
+    "data": {
+      "id": "g6-general-2",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-sayh",
+      "academicYearId": "ay-1448",
+      "gradeId": "g6",
+      "streamId": "stream-general",
+      "code": "G6-GENERAL-2",
+      "title": "سادس ابتدائي / العام / ب",
+      "sectionLabel": "ب",
+      "order": 2,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-sayh/academicYears/ay-1448/classes/g6-general-3",
+    "data": {
+      "id": "g6-general-3",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-sayh",
+      "academicYearId": "ay-1448",
+      "gradeId": "g6",
+      "streamId": "stream-general",
+      "code": "G6-GENERAL-3",
+      "title": "سادس ابتدائي / العام / ج",
+      "sectionLabel": "ج",
+      "order": 3,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-sayh/academicYears/ay-1448/classes/g6-quran-1",
+    "data": {
+      "id": "g6-quran-1",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-sayh",
+      "academicYearId": "ay-1448",
+      "gradeId": "g6",
+      "streamId": "stream-quran",
+      "code": "G6-QURAN-1",
+      "title": "سادس ابتدائي / التحفيظ / أ",
+      "sectionLabel": "أ",
+      "order": 10,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-sayh/academicYears/ay-1448/subjects/subject-general",
+    "data": {
+      "id": "subject-general",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-sayh",
+      "academicYearId": "ay-1448",
+      "code": "GENERAL",
+      "key": "GENERAL",
+      "title": "الدراسات العامة",
+      "streamId": "stream-general",
+      "appliesToAllStreams": false,
+      "category": "GENERAL",
+      "order": 0,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-sayh/academicYears/ay-1448/subjects/subject-quran",
+    "data": {
+      "id": "subject-quran",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-sayh",
+      "academicYearId": "ay-1448",
+      "code": "QURAN",
+      "key": "QURAN",
+      "title": "القرآن",
+      "streamId": "stream-quran",
+      "appliesToAllStreams": false,
+      "category": "QURAN",
+      "order": 0,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-sayh/academicYears/ay-1448/subjects/subject-international",
+    "data": {
+      "id": "subject-international",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-sayh",
+      "academicYearId": "ay-1448",
+      "code": "INTERNATIONAL",
+      "key": "INTERNATIONAL",
+      "title": "الدراسات العالمية",
+      "streamId": "stream-international",
+      "appliesToAllStreams": false,
+      "category": "INTERNATIONAL",
+      "order": 0,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-faleh/academicYears/ay-1448/streams/stream-general",
+    "data": {
+      "id": "stream-general",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-faleh",
+      "academicYearId": "ay-1448",
+      "code": "GENERAL",
+      "title": "العام",
+      "kind": "GENERAL",
+      "shortLabel": "عام",
+      "order": 1,
+      "isActive": true,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-faleh/academicYears/ay-1448/streams/stream-quran",
+    "data": {
+      "id": "stream-quran",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-faleh",
+      "academicYearId": "ay-1448",
+      "code": "QURAN",
+      "title": "التحفيظ",
+      "kind": "QURAN",
+      "shortLabel": "تحفيظ",
+      "order": 2,
+      "isActive": true,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-faleh/academicYears/ay-1448/streams/stream-international",
+    "data": {
+      "id": "stream-international",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-faleh",
+      "academicYearId": "ay-1448",
+      "code": "INTERNATIONAL",
+      "title": "العالمي",
+      "kind": "INTERNATIONAL",
+      "shortLabel": "عالمي",
+      "order": 3,
+      "isActive": true,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-faleh/academicYears/ay-1448/grades/g1",
+    "data": {
+      "id": "g1",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-faleh",
+      "academicYearId": "ay-1448",
+      "code": "G1",
+      "title": "أول ابتدائي",
+      "order": 1,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-faleh/academicYears/ay-1448/classes/g1-general-1",
+    "data": {
+      "id": "g1-general-1",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-faleh",
+      "academicYearId": "ay-1448",
+      "gradeId": "g1",
+      "streamId": "stream-general",
+      "code": "G1-GENERAL-1",
+      "title": "أول ابتدائي / العام / أ",
+      "sectionLabel": "أ",
+      "order": 1,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-faleh/academicYears/ay-1448/classes/g1-general-2",
+    "data": {
+      "id": "g1-general-2",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-faleh",
+      "academicYearId": "ay-1448",
+      "gradeId": "g1",
+      "streamId": "stream-general",
+      "code": "G1-GENERAL-2",
+      "title": "أول ابتدائي / العام / ب",
+      "sectionLabel": "ب",
+      "order": 2,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-faleh/academicYears/ay-1448/classes/g1-general-3",
+    "data": {
+      "id": "g1-general-3",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-faleh",
+      "academicYearId": "ay-1448",
+      "gradeId": "g1",
+      "streamId": "stream-general",
+      "code": "G1-GENERAL-3",
+      "title": "أول ابتدائي / العام / ج",
+      "sectionLabel": "ج",
+      "order": 3,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-faleh/academicYears/ay-1448/classes/g1-quran-1",
+    "data": {
+      "id": "g1-quran-1",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-faleh",
+      "academicYearId": "ay-1448",
+      "gradeId": "g1",
+      "streamId": "stream-quran",
+      "code": "G1-QURAN-1",
+      "title": "أول ابتدائي / التحفيظ / أ",
+      "sectionLabel": "أ",
+      "order": 10,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-faleh/academicYears/ay-1448/classes/g1-international-1",
+    "data": {
+      "id": "g1-international-1",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-faleh",
+      "academicYearId": "ay-1448",
+      "gradeId": "g1",
+      "streamId": "stream-international",
+      "code": "G1-INTERNATIONAL-1",
+      "title": "أول ابتدائي / العالمي / أ",
+      "sectionLabel": "أ",
+      "order": 20,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-faleh/academicYears/ay-1448/grades/g2",
+    "data": {
+      "id": "g2",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-faleh",
+      "academicYearId": "ay-1448",
+      "code": "G2",
+      "title": "ثاني ابتدائي",
+      "order": 2,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-faleh/academicYears/ay-1448/classes/g2-general-1",
+    "data": {
+      "id": "g2-general-1",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-faleh",
+      "academicYearId": "ay-1448",
+      "gradeId": "g2",
+      "streamId": "stream-general",
+      "code": "G2-GENERAL-1",
+      "title": "ثاني ابتدائي / العام / أ",
+      "sectionLabel": "أ",
+      "order": 1,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-faleh/academicYears/ay-1448/classes/g2-general-2",
+    "data": {
+      "id": "g2-general-2",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-faleh",
+      "academicYearId": "ay-1448",
+      "gradeId": "g2",
+      "streamId": "stream-general",
+      "code": "G2-GENERAL-2",
+      "title": "ثاني ابتدائي / العام / ب",
+      "sectionLabel": "ب",
+      "order": 2,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-faleh/academicYears/ay-1448/classes/g2-general-3",
+    "data": {
+      "id": "g2-general-3",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-faleh",
+      "academicYearId": "ay-1448",
+      "gradeId": "g2",
+      "streamId": "stream-general",
+      "code": "G2-GENERAL-3",
+      "title": "ثاني ابتدائي / العام / ج",
+      "sectionLabel": "ج",
+      "order": 3,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-faleh/academicYears/ay-1448/classes/g2-quran-1",
+    "data": {
+      "id": "g2-quran-1",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-faleh",
+      "academicYearId": "ay-1448",
+      "gradeId": "g2",
+      "streamId": "stream-quran",
+      "code": "G2-QURAN-1",
+      "title": "ثاني ابتدائي / التحفيظ / أ",
+      "sectionLabel": "أ",
+      "order": 10,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-faleh/academicYears/ay-1448/classes/g2-international-1",
+    "data": {
+      "id": "g2-international-1",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-faleh",
+      "academicYearId": "ay-1448",
+      "gradeId": "g2",
+      "streamId": "stream-international",
+      "code": "G2-INTERNATIONAL-1",
+      "title": "ثاني ابتدائي / العالمي / أ",
+      "sectionLabel": "أ",
+      "order": 20,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-faleh/academicYears/ay-1448/grades/g3",
+    "data": {
+      "id": "g3",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-faleh",
+      "academicYearId": "ay-1448",
+      "code": "G3",
+      "title": "ثالث ابتدائي",
+      "order": 3,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-faleh/academicYears/ay-1448/classes/g3-general-1",
+    "data": {
+      "id": "g3-general-1",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-faleh",
+      "academicYearId": "ay-1448",
+      "gradeId": "g3",
+      "streamId": "stream-general",
+      "code": "G3-GENERAL-1",
+      "title": "ثالث ابتدائي / العام / أ",
+      "sectionLabel": "أ",
+      "order": 1,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-faleh/academicYears/ay-1448/classes/g3-general-2",
+    "data": {
+      "id": "g3-general-2",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-faleh",
+      "academicYearId": "ay-1448",
+      "gradeId": "g3",
+      "streamId": "stream-general",
+      "code": "G3-GENERAL-2",
+      "title": "ثالث ابتدائي / العام / ب",
+      "sectionLabel": "ب",
+      "order": 2,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-faleh/academicYears/ay-1448/classes/g3-general-3",
+    "data": {
+      "id": "g3-general-3",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-faleh",
+      "academicYearId": "ay-1448",
+      "gradeId": "g3",
+      "streamId": "stream-general",
+      "code": "G3-GENERAL-3",
+      "title": "ثالث ابتدائي / العام / ج",
+      "sectionLabel": "ج",
+      "order": 3,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-faleh/academicYears/ay-1448/classes/g3-quran-1",
+    "data": {
+      "id": "g3-quran-1",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-faleh",
+      "academicYearId": "ay-1448",
+      "gradeId": "g3",
+      "streamId": "stream-quran",
+      "code": "G3-QURAN-1",
+      "title": "ثالث ابتدائي / التحفيظ / أ",
+      "sectionLabel": "أ",
+      "order": 10,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-faleh/academicYears/ay-1448/grades/g4",
+    "data": {
+      "id": "g4",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-faleh",
+      "academicYearId": "ay-1448",
+      "code": "G4",
+      "title": "رابع ابتدائي",
+      "order": 4,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-faleh/academicYears/ay-1448/classes/g4-general-1",
+    "data": {
+      "id": "g4-general-1",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-faleh",
+      "academicYearId": "ay-1448",
+      "gradeId": "g4",
+      "streamId": "stream-general",
+      "code": "G4-GENERAL-1",
+      "title": "رابع ابتدائي / العام / أ",
+      "sectionLabel": "أ",
+      "order": 1,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-faleh/academicYears/ay-1448/classes/g4-general-2",
+    "data": {
+      "id": "g4-general-2",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-faleh",
+      "academicYearId": "ay-1448",
+      "gradeId": "g4",
+      "streamId": "stream-general",
+      "code": "G4-GENERAL-2",
+      "title": "رابع ابتدائي / العام / ب",
+      "sectionLabel": "ب",
+      "order": 2,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-faleh/academicYears/ay-1448/classes/g4-general-3",
+    "data": {
+      "id": "g4-general-3",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-faleh",
+      "academicYearId": "ay-1448",
+      "gradeId": "g4",
+      "streamId": "stream-general",
+      "code": "G4-GENERAL-3",
+      "title": "رابع ابتدائي / العام / ج",
+      "sectionLabel": "ج",
+      "order": 3,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-faleh/academicYears/ay-1448/classes/g4-quran-1",
+    "data": {
+      "id": "g4-quran-1",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-faleh",
+      "academicYearId": "ay-1448",
+      "gradeId": "g4",
+      "streamId": "stream-quran",
+      "code": "G4-QURAN-1",
+      "title": "رابع ابتدائي / التحفيظ / أ",
+      "sectionLabel": "أ",
+      "order": 10,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-faleh/academicYears/ay-1448/grades/g5",
+    "data": {
+      "id": "g5",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-faleh",
+      "academicYearId": "ay-1448",
+      "code": "G5",
+      "title": "خامس ابتدائي",
+      "order": 5,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-faleh/academicYears/ay-1448/classes/g5-general-1",
+    "data": {
+      "id": "g5-general-1",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-faleh",
+      "academicYearId": "ay-1448",
+      "gradeId": "g5",
+      "streamId": "stream-general",
+      "code": "G5-GENERAL-1",
+      "title": "خامس ابتدائي / العام / أ",
+      "sectionLabel": "أ",
+      "order": 1,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-faleh/academicYears/ay-1448/classes/g5-general-2",
+    "data": {
+      "id": "g5-general-2",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-faleh",
+      "academicYearId": "ay-1448",
+      "gradeId": "g5",
+      "streamId": "stream-general",
+      "code": "G5-GENERAL-2",
+      "title": "خامس ابتدائي / العام / ب",
+      "sectionLabel": "ب",
+      "order": 2,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-faleh/academicYears/ay-1448/classes/g5-general-3",
+    "data": {
+      "id": "g5-general-3",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-faleh",
+      "academicYearId": "ay-1448",
+      "gradeId": "g5",
+      "streamId": "stream-general",
+      "code": "G5-GENERAL-3",
+      "title": "خامس ابتدائي / العام / ج",
+      "sectionLabel": "ج",
+      "order": 3,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-faleh/academicYears/ay-1448/classes/g5-quran-1",
+    "data": {
+      "id": "g5-quran-1",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-faleh",
+      "academicYearId": "ay-1448",
+      "gradeId": "g5",
+      "streamId": "stream-quran",
+      "code": "G5-QURAN-1",
+      "title": "خامس ابتدائي / التحفيظ / أ",
+      "sectionLabel": "أ",
+      "order": 10,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-faleh/academicYears/ay-1448/grades/g6",
+    "data": {
+      "id": "g6",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-faleh",
+      "academicYearId": "ay-1448",
+      "code": "G6",
+      "title": "سادس ابتدائي",
+      "order": 6,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-faleh/academicYears/ay-1448/classes/g6-general-1",
+    "data": {
+      "id": "g6-general-1",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-faleh",
+      "academicYearId": "ay-1448",
+      "gradeId": "g6",
+      "streamId": "stream-general",
+      "code": "G6-GENERAL-1",
+      "title": "سادس ابتدائي / العام / أ",
+      "sectionLabel": "أ",
+      "order": 1,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-faleh/academicYears/ay-1448/classes/g6-general-2",
+    "data": {
+      "id": "g6-general-2",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-faleh",
+      "academicYearId": "ay-1448",
+      "gradeId": "g6",
+      "streamId": "stream-general",
+      "code": "G6-GENERAL-2",
+      "title": "سادس ابتدائي / العام / ب",
+      "sectionLabel": "ب",
+      "order": 2,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-faleh/academicYears/ay-1448/classes/g6-general-3",
+    "data": {
+      "id": "g6-general-3",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-faleh",
+      "academicYearId": "ay-1448",
+      "gradeId": "g6",
+      "streamId": "stream-general",
+      "code": "G6-GENERAL-3",
+      "title": "سادس ابتدائي / العام / ج",
+      "sectionLabel": "ج",
+      "order": 3,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-faleh/academicYears/ay-1448/classes/g6-quran-1",
+    "data": {
+      "id": "g6-quran-1",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-faleh",
+      "academicYearId": "ay-1448",
+      "gradeId": "g6",
+      "streamId": "stream-quran",
+      "code": "G6-QURAN-1",
+      "title": "سادس ابتدائي / التحفيظ / أ",
+      "sectionLabel": "أ",
+      "order": 10,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-faleh/academicYears/ay-1448/subjects/subject-general",
+    "data": {
+      "id": "subject-general",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-faleh",
+      "academicYearId": "ay-1448",
+      "code": "GENERAL",
+      "key": "GENERAL",
+      "title": "الدراسات العامة",
+      "streamId": "stream-general",
+      "appliesToAllStreams": false,
+      "category": "GENERAL",
+      "order": 0,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-faleh/academicYears/ay-1448/subjects/subject-quran",
+    "data": {
+      "id": "subject-quran",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-faleh",
+      "academicYearId": "ay-1448",
+      "code": "QURAN",
+      "key": "QURAN",
+      "title": "القرآن",
+      "streamId": "stream-quran",
+      "appliesToAllStreams": false,
+      "category": "QURAN",
+      "order": 0,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-boys-faleh/academicYears/ay-1448/subjects/subject-international",
+    "data": {
+      "id": "subject-international",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-faleh",
+      "academicYearId": "ay-1448",
+      "code": "INTERNATIONAL",
+      "key": "INTERNATIONAL",
+      "title": "الدراسات العالمية",
+      "streamId": "stream-international",
+      "appliesToAllStreams": false,
+      "category": "INTERNATIONAL",
+      "order": 0,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-girls/academicYears/ay-1448/streams/stream-general",
+    "data": {
+      "id": "stream-general",
+      "orgId": "takween",
+      "schoolId": "mrb-girls",
+      "academicYearId": "ay-1448",
+      "code": "GENERAL",
+      "title": "العام",
+      "kind": "GENERAL",
+      "shortLabel": "عام",
+      "order": 1,
+      "isActive": true,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-girls/academicYears/ay-1448/streams/stream-quran",
+    "data": {
+      "id": "stream-quran",
+      "orgId": "takween",
+      "schoolId": "mrb-girls",
+      "academicYearId": "ay-1448",
+      "code": "QURAN",
+      "title": "التحفيظ",
+      "kind": "QURAN",
+      "shortLabel": "تحفيظ",
+      "order": 2,
+      "isActive": true,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-girls/academicYears/ay-1448/streams/stream-international",
+    "data": {
+      "id": "stream-international",
+      "orgId": "takween",
+      "schoolId": "mrb-girls",
+      "academicYearId": "ay-1448",
+      "code": "INTERNATIONAL",
+      "title": "العالمي",
+      "kind": "INTERNATIONAL",
+      "shortLabel": "عالمي",
+      "order": 3,
+      "isActive": true,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-girls/academicYears/ay-1448/grades/g1",
+    "data": {
+      "id": "g1",
+      "orgId": "takween",
+      "schoolId": "mrb-girls",
+      "academicYearId": "ay-1448",
+      "code": "G1",
+      "title": "أول ابتدائي",
+      "order": 1,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-girls/academicYears/ay-1448/classes/g1-general-1",
+    "data": {
+      "id": "g1-general-1",
+      "orgId": "takween",
+      "schoolId": "mrb-girls",
+      "academicYearId": "ay-1448",
+      "gradeId": "g1",
+      "streamId": "stream-general",
+      "code": "G1-GENERAL-1",
+      "title": "أول ابتدائي / العام / أ",
+      "sectionLabel": "أ",
+      "order": 1,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-girls/academicYears/ay-1448/classes/g1-general-2",
+    "data": {
+      "id": "g1-general-2",
+      "orgId": "takween",
+      "schoolId": "mrb-girls",
+      "academicYearId": "ay-1448",
+      "gradeId": "g1",
+      "streamId": "stream-general",
+      "code": "G1-GENERAL-2",
+      "title": "أول ابتدائي / العام / ب",
+      "sectionLabel": "ب",
+      "order": 2,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-girls/academicYears/ay-1448/classes/g1-general-3",
+    "data": {
+      "id": "g1-general-3",
+      "orgId": "takween",
+      "schoolId": "mrb-girls",
+      "academicYearId": "ay-1448",
+      "gradeId": "g1",
+      "streamId": "stream-general",
+      "code": "G1-GENERAL-3",
+      "title": "أول ابتدائي / العام / ج",
+      "sectionLabel": "ج",
+      "order": 3,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-girls/academicYears/ay-1448/classes/g1-quran-1",
+    "data": {
+      "id": "g1-quran-1",
+      "orgId": "takween",
+      "schoolId": "mrb-girls",
+      "academicYearId": "ay-1448",
+      "gradeId": "g1",
+      "streamId": "stream-quran",
+      "code": "G1-QURAN-1",
+      "title": "أول ابتدائي / التحفيظ / أ",
+      "sectionLabel": "أ",
+      "order": 10,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-girls/academicYears/ay-1448/classes/g1-international-1",
+    "data": {
+      "id": "g1-international-1",
+      "orgId": "takween",
+      "schoolId": "mrb-girls",
+      "academicYearId": "ay-1448",
+      "gradeId": "g1",
+      "streamId": "stream-international",
+      "code": "G1-INTERNATIONAL-1",
+      "title": "أول ابتدائي / العالمي / أ",
+      "sectionLabel": "أ",
+      "order": 20,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-girls/academicYears/ay-1448/grades/g2",
+    "data": {
+      "id": "g2",
+      "orgId": "takween",
+      "schoolId": "mrb-girls",
+      "academicYearId": "ay-1448",
+      "code": "G2",
+      "title": "ثاني ابتدائي",
+      "order": 2,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-girls/academicYears/ay-1448/classes/g2-general-1",
+    "data": {
+      "id": "g2-general-1",
+      "orgId": "takween",
+      "schoolId": "mrb-girls",
+      "academicYearId": "ay-1448",
+      "gradeId": "g2",
+      "streamId": "stream-general",
+      "code": "G2-GENERAL-1",
+      "title": "ثاني ابتدائي / العام / أ",
+      "sectionLabel": "أ",
+      "order": 1,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-girls/academicYears/ay-1448/classes/g2-general-2",
+    "data": {
+      "id": "g2-general-2",
+      "orgId": "takween",
+      "schoolId": "mrb-girls",
+      "academicYearId": "ay-1448",
+      "gradeId": "g2",
+      "streamId": "stream-general",
+      "code": "G2-GENERAL-2",
+      "title": "ثاني ابتدائي / العام / ب",
+      "sectionLabel": "ب",
+      "order": 2,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-girls/academicYears/ay-1448/classes/g2-general-3",
+    "data": {
+      "id": "g2-general-3",
+      "orgId": "takween",
+      "schoolId": "mrb-girls",
+      "academicYearId": "ay-1448",
+      "gradeId": "g2",
+      "streamId": "stream-general",
+      "code": "G2-GENERAL-3",
+      "title": "ثاني ابتدائي / العام / ج",
+      "sectionLabel": "ج",
+      "order": 3,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-girls/academicYears/ay-1448/classes/g2-quran-1",
+    "data": {
+      "id": "g2-quran-1",
+      "orgId": "takween",
+      "schoolId": "mrb-girls",
+      "academicYearId": "ay-1448",
+      "gradeId": "g2",
+      "streamId": "stream-quran",
+      "code": "G2-QURAN-1",
+      "title": "ثاني ابتدائي / التحفيظ / أ",
+      "sectionLabel": "أ",
+      "order": 10,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-girls/academicYears/ay-1448/classes/g2-international-1",
+    "data": {
+      "id": "g2-international-1",
+      "orgId": "takween",
+      "schoolId": "mrb-girls",
+      "academicYearId": "ay-1448",
+      "gradeId": "g2",
+      "streamId": "stream-international",
+      "code": "G2-INTERNATIONAL-1",
+      "title": "ثاني ابتدائي / العالمي / أ",
+      "sectionLabel": "أ",
+      "order": 20,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-girls/academicYears/ay-1448/grades/g3",
+    "data": {
+      "id": "g3",
+      "orgId": "takween",
+      "schoolId": "mrb-girls",
+      "academicYearId": "ay-1448",
+      "code": "G3",
+      "title": "ثالث ابتدائي",
+      "order": 3,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-girls/academicYears/ay-1448/classes/g3-general-1",
+    "data": {
+      "id": "g3-general-1",
+      "orgId": "takween",
+      "schoolId": "mrb-girls",
+      "academicYearId": "ay-1448",
+      "gradeId": "g3",
+      "streamId": "stream-general",
+      "code": "G3-GENERAL-1",
+      "title": "ثالث ابتدائي / العام / أ",
+      "sectionLabel": "أ",
+      "order": 1,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-girls/academicYears/ay-1448/classes/g3-general-2",
+    "data": {
+      "id": "g3-general-2",
+      "orgId": "takween",
+      "schoolId": "mrb-girls",
+      "academicYearId": "ay-1448",
+      "gradeId": "g3",
+      "streamId": "stream-general",
+      "code": "G3-GENERAL-2",
+      "title": "ثالث ابتدائي / العام / ب",
+      "sectionLabel": "ب",
+      "order": 2,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-girls/academicYears/ay-1448/classes/g3-general-3",
+    "data": {
+      "id": "g3-general-3",
+      "orgId": "takween",
+      "schoolId": "mrb-girls",
+      "academicYearId": "ay-1448",
+      "gradeId": "g3",
+      "streamId": "stream-general",
+      "code": "G3-GENERAL-3",
+      "title": "ثالث ابتدائي / العام / ج",
+      "sectionLabel": "ج",
+      "order": 3,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-girls/academicYears/ay-1448/classes/g3-quran-1",
+    "data": {
+      "id": "g3-quran-1",
+      "orgId": "takween",
+      "schoolId": "mrb-girls",
+      "academicYearId": "ay-1448",
+      "gradeId": "g3",
+      "streamId": "stream-quran",
+      "code": "G3-QURAN-1",
+      "title": "ثالث ابتدائي / التحفيظ / أ",
+      "sectionLabel": "أ",
+      "order": 10,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-girls/academicYears/ay-1448/grades/g4",
+    "data": {
+      "id": "g4",
+      "orgId": "takween",
+      "schoolId": "mrb-girls",
+      "academicYearId": "ay-1448",
+      "code": "G4",
+      "title": "رابع ابتدائي",
+      "order": 4,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-girls/academicYears/ay-1448/classes/g4-general-1",
+    "data": {
+      "id": "g4-general-1",
+      "orgId": "takween",
+      "schoolId": "mrb-girls",
+      "academicYearId": "ay-1448",
+      "gradeId": "g4",
+      "streamId": "stream-general",
+      "code": "G4-GENERAL-1",
+      "title": "رابع ابتدائي / العام / أ",
+      "sectionLabel": "أ",
+      "order": 1,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-girls/academicYears/ay-1448/classes/g4-general-2",
+    "data": {
+      "id": "g4-general-2",
+      "orgId": "takween",
+      "schoolId": "mrb-girls",
+      "academicYearId": "ay-1448",
+      "gradeId": "g4",
+      "streamId": "stream-general",
+      "code": "G4-GENERAL-2",
+      "title": "رابع ابتدائي / العام / ب",
+      "sectionLabel": "ب",
+      "order": 2,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-girls/academicYears/ay-1448/classes/g4-general-3",
+    "data": {
+      "id": "g4-general-3",
+      "orgId": "takween",
+      "schoolId": "mrb-girls",
+      "academicYearId": "ay-1448",
+      "gradeId": "g4",
+      "streamId": "stream-general",
+      "code": "G4-GENERAL-3",
+      "title": "رابع ابتدائي / العام / ج",
+      "sectionLabel": "ج",
+      "order": 3,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-girls/academicYears/ay-1448/classes/g4-quran-1",
+    "data": {
+      "id": "g4-quran-1",
+      "orgId": "takween",
+      "schoolId": "mrb-girls",
+      "academicYearId": "ay-1448",
+      "gradeId": "g4",
+      "streamId": "stream-quran",
+      "code": "G4-QURAN-1",
+      "title": "رابع ابتدائي / التحفيظ / أ",
+      "sectionLabel": "أ",
+      "order": 10,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-girls/academicYears/ay-1448/grades/g5",
+    "data": {
+      "id": "g5",
+      "orgId": "takween",
+      "schoolId": "mrb-girls",
+      "academicYearId": "ay-1448",
+      "code": "G5",
+      "title": "خامس ابتدائي",
+      "order": 5,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-girls/academicYears/ay-1448/classes/g5-general-1",
+    "data": {
+      "id": "g5-general-1",
+      "orgId": "takween",
+      "schoolId": "mrb-girls",
+      "academicYearId": "ay-1448",
+      "gradeId": "g5",
+      "streamId": "stream-general",
+      "code": "G5-GENERAL-1",
+      "title": "خامس ابتدائي / العام / أ",
+      "sectionLabel": "أ",
+      "order": 1,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-girls/academicYears/ay-1448/classes/g5-general-2",
+    "data": {
+      "id": "g5-general-2",
+      "orgId": "takween",
+      "schoolId": "mrb-girls",
+      "academicYearId": "ay-1448",
+      "gradeId": "g5",
+      "streamId": "stream-general",
+      "code": "G5-GENERAL-2",
+      "title": "خامس ابتدائي / العام / ب",
+      "sectionLabel": "ب",
+      "order": 2,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-girls/academicYears/ay-1448/classes/g5-general-3",
+    "data": {
+      "id": "g5-general-3",
+      "orgId": "takween",
+      "schoolId": "mrb-girls",
+      "academicYearId": "ay-1448",
+      "gradeId": "g5",
+      "streamId": "stream-general",
+      "code": "G5-GENERAL-3",
+      "title": "خامس ابتدائي / العام / ج",
+      "sectionLabel": "ج",
+      "order": 3,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-girls/academicYears/ay-1448/classes/g5-quran-1",
+    "data": {
+      "id": "g5-quran-1",
+      "orgId": "takween",
+      "schoolId": "mrb-girls",
+      "academicYearId": "ay-1448",
+      "gradeId": "g5",
+      "streamId": "stream-quran",
+      "code": "G5-QURAN-1",
+      "title": "خامس ابتدائي / التحفيظ / أ",
+      "sectionLabel": "أ",
+      "order": 10,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-girls/academicYears/ay-1448/grades/g6",
+    "data": {
+      "id": "g6",
+      "orgId": "takween",
+      "schoolId": "mrb-girls",
+      "academicYearId": "ay-1448",
+      "code": "G6",
+      "title": "سادس ابتدائي",
+      "order": 6,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-girls/academicYears/ay-1448/classes/g6-general-1",
+    "data": {
+      "id": "g6-general-1",
+      "orgId": "takween",
+      "schoolId": "mrb-girls",
+      "academicYearId": "ay-1448",
+      "gradeId": "g6",
+      "streamId": "stream-general",
+      "code": "G6-GENERAL-1",
+      "title": "سادس ابتدائي / العام / أ",
+      "sectionLabel": "أ",
+      "order": 1,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-girls/academicYears/ay-1448/classes/g6-general-2",
+    "data": {
+      "id": "g6-general-2",
+      "orgId": "takween",
+      "schoolId": "mrb-girls",
+      "academicYearId": "ay-1448",
+      "gradeId": "g6",
+      "streamId": "stream-general",
+      "code": "G6-GENERAL-2",
+      "title": "سادس ابتدائي / العام / ب",
+      "sectionLabel": "ب",
+      "order": 2,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-girls/academicYears/ay-1448/classes/g6-general-3",
+    "data": {
+      "id": "g6-general-3",
+      "orgId": "takween",
+      "schoolId": "mrb-girls",
+      "academicYearId": "ay-1448",
+      "gradeId": "g6",
+      "streamId": "stream-general",
+      "code": "G6-GENERAL-3",
+      "title": "سادس ابتدائي / العام / ج",
+      "sectionLabel": "ج",
+      "order": 3,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-girls/academicYears/ay-1448/classes/g6-quran-1",
+    "data": {
+      "id": "g6-quran-1",
+      "orgId": "takween",
+      "schoolId": "mrb-girls",
+      "academicYearId": "ay-1448",
+      "gradeId": "g6",
+      "streamId": "stream-quran",
+      "code": "G6-QURAN-1",
+      "title": "سادس ابتدائي / التحفيظ / أ",
+      "sectionLabel": "أ",
+      "order": 10,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-girls/academicYears/ay-1448/subjects/subject-general",
+    "data": {
+      "id": "subject-general",
+      "orgId": "takween",
+      "schoolId": "mrb-girls",
+      "academicYearId": "ay-1448",
+      "code": "GENERAL",
+      "key": "GENERAL",
+      "title": "الدراسات العامة",
+      "streamId": "stream-general",
+      "appliesToAllStreams": false,
+      "category": "GENERAL",
+      "order": 0,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-girls/academicYears/ay-1448/subjects/subject-quran",
+    "data": {
+      "id": "subject-quran",
+      "orgId": "takween",
+      "schoolId": "mrb-girls",
+      "academicYearId": "ay-1448",
+      "code": "QURAN",
+      "key": "QURAN",
+      "title": "القرآن",
+      "streamId": "stream-quran",
+      "appliesToAllStreams": false,
+      "category": "QURAN",
+      "order": 0,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/mrb-girls/academicYears/ay-1448/subjects/subject-international",
+    "data": {
+      "id": "subject-international",
+      "orgId": "takween",
+      "schoolId": "mrb-girls",
+      "academicYearId": "ay-1448",
+      "code": "INTERNATIONAL",
+      "key": "INTERNATIONAL",
+      "title": "الدراسات العالمية",
+      "streamId": "stream-international",
+      "appliesToAllStreams": false,
+      "category": "INTERNATIONAL",
+      "order": 0,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/kg-01/academicYears/ay-1448/grades/kg1",
+    "data": {
+      "id": "kg1",
+      "orgId": "takween",
+      "schoolId": "kg-01",
+      "academicYearId": "ay-1448",
+      "code": "KG1",
+      "title": "المستوى الأول",
+      "order": 1,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/kg-01/academicYears/ay-1448/grades/kg2",
+    "data": {
+      "id": "kg2",
+      "orgId": "takween",
+      "schoolId": "kg-01",
+      "academicYearId": "ay-1448",
+      "code": "KG2",
+      "title": "المستوى الثاني",
+      "order": 2,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/kg-01/academicYears/ay-1448/grades/kg3",
+    "data": {
+      "id": "kg3",
+      "orgId": "takween",
+      "schoolId": "kg-01",
+      "academicYearId": "ay-1448",
+      "code": "KG3",
+      "title": "المستوى الثالث",
+      "order": 3,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/kg-01/academicYears/ay-1448/classes/kg1-a",
+    "data": {
+      "id": "kg1-a",
+      "orgId": "takween",
+      "schoolId": "kg-01",
+      "academicYearId": "ay-1448",
+      "gradeId": "kg1",
+      "streamId": "",
+      "code": "KG1-A",
+      "title": "فصل النجوم",
+      "sectionLabel": "النجوم",
+      "order": 1,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/kg-01/academicYears/ay-1448/classes/kg2-a",
+    "data": {
+      "id": "kg2-a",
+      "orgId": "takween",
+      "schoolId": "kg-01",
+      "academicYearId": "ay-1448",
+      "gradeId": "kg2",
+      "streamId": "",
+      "code": "KG2-A",
+      "title": "فصل الزهور",
+      "sectionLabel": "الزهور",
+      "order": 1,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/kg-01/academicYears/ay-1448/classes/kg3-a",
+    "data": {
+      "id": "kg3-a",
+      "orgId": "takween",
+      "schoolId": "kg-01",
+      "academicYearId": "ay-1448",
+      "gradeId": "kg3",
+      "streamId": "",
+      "code": "KG3-A",
+      "title": "فصل الكادي",
+      "sectionLabel": "الكادي",
+      "order": 1,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/kg-01/academicYears/ay-1448/subjects/subject-class",
+    "data": {
+      "id": "subject-class",
+      "orgId": "takween",
+      "schoolId": "kg-01",
+      "academicYearId": "ay-1448",
+      "code": "CLASS",
+      "key": "CLASS",
+      "title": "معلمة الصف",
+      "streamId": "",
+      "appliesToAllStreams": true,
+      "category": "CLASS",
+      "order": 0,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/kg-01/academicYears/ay-1448/subjects/subject-values",
+    "data": {
+      "id": "subject-values",
+      "orgId": "takween",
+      "schoolId": "kg-01",
+      "academicYearId": "ay-1448",
+      "code": "VALUES",
+      "key": "VALUES",
+      "title": "القيم",
+      "streamId": "",
+      "appliesToAllStreams": true,
+      "category": "VALUES",
+      "order": 0,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/kg-01/academicYears/ay-1448/subjects/subject-corners",
+    "data": {
+      "id": "subject-corners",
+      "orgId": "takween",
+      "schoolId": "kg-01",
+      "academicYearId": "ay-1448",
+      "code": "CORNERS",
+      "key": "CORNERS",
+      "title": "الأركان",
+      "streamId": "",
+      "appliesToAllStreams": true,
+      "category": "CORNERS",
+      "order": 0,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/kg-02/academicYears/ay-1448/grades/kg1",
+    "data": {
+      "id": "kg1",
+      "orgId": "takween",
+      "schoolId": "kg-02",
+      "academicYearId": "ay-1448",
+      "code": "KG1",
+      "title": "المستوى الأول",
+      "order": 1,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/kg-02/academicYears/ay-1448/grades/kg2",
+    "data": {
+      "id": "kg2",
+      "orgId": "takween",
+      "schoolId": "kg-02",
+      "academicYearId": "ay-1448",
+      "code": "KG2",
+      "title": "المستوى الثاني",
+      "order": 2,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/kg-02/academicYears/ay-1448/grades/kg3",
+    "data": {
+      "id": "kg3",
+      "orgId": "takween",
+      "schoolId": "kg-02",
+      "academicYearId": "ay-1448",
+      "code": "KG3",
+      "title": "المستوى الثالث",
+      "order": 3,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/kg-02/academicYears/ay-1448/classes/kg1-a",
+    "data": {
+      "id": "kg1-a",
+      "orgId": "takween",
+      "schoolId": "kg-02",
+      "academicYearId": "ay-1448",
+      "gradeId": "kg1",
+      "streamId": "",
+      "code": "KG1-A",
+      "title": "فصل النجوم",
+      "sectionLabel": "النجوم",
+      "order": 1,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/kg-02/academicYears/ay-1448/classes/kg2-a",
+    "data": {
+      "id": "kg2-a",
+      "orgId": "takween",
+      "schoolId": "kg-02",
+      "academicYearId": "ay-1448",
+      "gradeId": "kg2",
+      "streamId": "",
+      "code": "KG2-A",
+      "title": "فصل الزهور",
+      "sectionLabel": "الزهور",
+      "order": 1,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/kg-02/academicYears/ay-1448/classes/kg3-a",
+    "data": {
+      "id": "kg3-a",
+      "orgId": "takween",
+      "schoolId": "kg-02",
+      "academicYearId": "ay-1448",
+      "gradeId": "kg3",
+      "streamId": "",
+      "code": "KG3-A",
+      "title": "فصل الكادي",
+      "sectionLabel": "الكادي",
+      "order": 1,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/kg-02/academicYears/ay-1448/subjects/subject-class",
+    "data": {
+      "id": "subject-class",
+      "orgId": "takween",
+      "schoolId": "kg-02",
+      "academicYearId": "ay-1448",
+      "code": "CLASS",
+      "key": "CLASS",
+      "title": "معلمة الصف",
+      "streamId": "",
+      "appliesToAllStreams": true,
+      "category": "CLASS",
+      "order": 0,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/kg-02/academicYears/ay-1448/subjects/subject-values",
+    "data": {
+      "id": "subject-values",
+      "orgId": "takween",
+      "schoolId": "kg-02",
+      "academicYearId": "ay-1448",
+      "code": "VALUES",
+      "key": "VALUES",
+      "title": "القيم",
+      "streamId": "",
+      "appliesToAllStreams": true,
+      "category": "VALUES",
+      "order": 0,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/kg-02/academicYears/ay-1448/subjects/subject-corners",
+    "data": {
+      "id": "subject-corners",
+      "orgId": "takween",
+      "schoolId": "kg-02",
+      "academicYearId": "ay-1448",
+      "code": "CORNERS",
+      "key": "CORNERS",
+      "title": "الأركان",
+      "streamId": "",
+      "appliesToAllStreams": true,
+      "category": "CORNERS",
+      "order": 0,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/kg-03/academicYears/ay-1448/grades/kg1",
+    "data": {
+      "id": "kg1",
+      "orgId": "takween",
+      "schoolId": "kg-03",
+      "academicYearId": "ay-1448",
+      "code": "KG1",
+      "title": "المستوى الأول",
+      "order": 1,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/kg-03/academicYears/ay-1448/grades/kg2",
+    "data": {
+      "id": "kg2",
+      "orgId": "takween",
+      "schoolId": "kg-03",
+      "academicYearId": "ay-1448",
+      "code": "KG2",
+      "title": "المستوى الثاني",
+      "order": 2,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/kg-03/academicYears/ay-1448/grades/kg3",
+    "data": {
+      "id": "kg3",
+      "orgId": "takween",
+      "schoolId": "kg-03",
+      "academicYearId": "ay-1448",
+      "code": "KG3",
+      "title": "المستوى الثالث",
+      "order": 3,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/kg-03/academicYears/ay-1448/classes/kg1-a",
+    "data": {
+      "id": "kg1-a",
+      "orgId": "takween",
+      "schoolId": "kg-03",
+      "academicYearId": "ay-1448",
+      "gradeId": "kg1",
+      "streamId": "",
+      "code": "KG1-A",
+      "title": "فصل النجوم",
+      "sectionLabel": "النجوم",
+      "order": 1,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/kg-03/academicYears/ay-1448/classes/kg2-a",
+    "data": {
+      "id": "kg2-a",
+      "orgId": "takween",
+      "schoolId": "kg-03",
+      "academicYearId": "ay-1448",
+      "gradeId": "kg2",
+      "streamId": "",
+      "code": "KG2-A",
+      "title": "فصل الزهور",
+      "sectionLabel": "الزهور",
+      "order": 1,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/kg-03/academicYears/ay-1448/classes/kg3-a",
+    "data": {
+      "id": "kg3-a",
+      "orgId": "takween",
+      "schoolId": "kg-03",
+      "academicYearId": "ay-1448",
+      "gradeId": "kg3",
+      "streamId": "",
+      "code": "KG3-A",
+      "title": "فصل الكادي",
+      "sectionLabel": "الكادي",
+      "order": 1,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/kg-03/academicYears/ay-1448/subjects/subject-class",
+    "data": {
+      "id": "subject-class",
+      "orgId": "takween",
+      "schoolId": "kg-03",
+      "academicYearId": "ay-1448",
+      "code": "CLASS",
+      "key": "CLASS",
+      "title": "معلمة الصف",
+      "streamId": "",
+      "appliesToAllStreams": true,
+      "category": "CLASS",
+      "order": 0,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/kg-03/academicYears/ay-1448/subjects/subject-values",
+    "data": {
+      "id": "subject-values",
+      "orgId": "takween",
+      "schoolId": "kg-03",
+      "academicYearId": "ay-1448",
+      "code": "VALUES",
+      "key": "VALUES",
+      "title": "القيم",
+      "streamId": "",
+      "appliesToAllStreams": true,
+      "category": "VALUES",
+      "order": 0,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/kg-03/academicYears/ay-1448/subjects/subject-corners",
+    "data": {
+      "id": "subject-corners",
+      "orgId": "takween",
+      "schoolId": "kg-03",
+      "academicYearId": "ay-1448",
+      "code": "CORNERS",
+      "key": "CORNERS",
+      "title": "الأركان",
+      "streamId": "",
+      "appliesToAllStreams": true,
+      "category": "CORNERS",
+      "order": 0,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/kg-04/academicYears/ay-1448/grades/kg1",
+    "data": {
+      "id": "kg1",
+      "orgId": "takween",
+      "schoolId": "kg-04",
+      "academicYearId": "ay-1448",
+      "code": "KG1",
+      "title": "المستوى الأول",
+      "order": 1,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/kg-04/academicYears/ay-1448/grades/kg2",
+    "data": {
+      "id": "kg2",
+      "orgId": "takween",
+      "schoolId": "kg-04",
+      "academicYearId": "ay-1448",
+      "code": "KG2",
+      "title": "المستوى الثاني",
+      "order": 2,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/kg-04/academicYears/ay-1448/grades/kg3",
+    "data": {
+      "id": "kg3",
+      "orgId": "takween",
+      "schoolId": "kg-04",
+      "academicYearId": "ay-1448",
+      "code": "KG3",
+      "title": "المستوى الثالث",
+      "order": 3,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/kg-04/academicYears/ay-1448/classes/kg1-a",
+    "data": {
+      "id": "kg1-a",
+      "orgId": "takween",
+      "schoolId": "kg-04",
+      "academicYearId": "ay-1448",
+      "gradeId": "kg1",
+      "streamId": "",
+      "code": "KG1-A",
+      "title": "فصل النجوم",
+      "sectionLabel": "النجوم",
+      "order": 1,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/kg-04/academicYears/ay-1448/classes/kg2-a",
+    "data": {
+      "id": "kg2-a",
+      "orgId": "takween",
+      "schoolId": "kg-04",
+      "academicYearId": "ay-1448",
+      "gradeId": "kg2",
+      "streamId": "",
+      "code": "KG2-A",
+      "title": "فصل الزهور",
+      "sectionLabel": "الزهور",
+      "order": 1,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/kg-04/academicYears/ay-1448/classes/kg3-a",
+    "data": {
+      "id": "kg3-a",
+      "orgId": "takween",
+      "schoolId": "kg-04",
+      "academicYearId": "ay-1448",
+      "gradeId": "kg3",
+      "streamId": "",
+      "code": "KG3-A",
+      "title": "فصل الكادي",
+      "sectionLabel": "الكادي",
+      "order": 1,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/kg-04/academicYears/ay-1448/subjects/subject-class",
+    "data": {
+      "id": "subject-class",
+      "orgId": "takween",
+      "schoolId": "kg-04",
+      "academicYearId": "ay-1448",
+      "code": "CLASS",
+      "key": "CLASS",
+      "title": "معلمة الصف",
+      "streamId": "",
+      "appliesToAllStreams": true,
+      "category": "CLASS",
+      "order": 0,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/kg-04/academicYears/ay-1448/subjects/subject-values",
+    "data": {
+      "id": "subject-values",
+      "orgId": "takween",
+      "schoolId": "kg-04",
+      "academicYearId": "ay-1448",
+      "code": "VALUES",
+      "key": "VALUES",
+      "title": "القيم",
+      "streamId": "",
+      "appliesToAllStreams": true,
+      "category": "VALUES",
+      "order": 0,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/schools/kg-04/academicYears/ay-1448/subjects/subject-corners",
+    "data": {
+      "id": "subject-corners",
+      "orgId": "takween",
+      "schoolId": "kg-04",
+      "academicYearId": "ay-1448",
+      "code": "CORNERS",
+      "key": "CORNERS",
+      "title": "الأركان",
+      "streamId": "",
+      "appliesToAllStreams": true,
+      "category": "CORNERS",
+      "order": 0,
+      "isArchived": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/config/importTemplates",
+    "data": {
+      "students": {
+        "requiredColumns": [
+          "studentNationalId",
+          "studentName",
+          "schoolId",
+          "academicYearId",
+          "gradeCode",
+          "classTitle",
+          "guardianPhone1"
+        ],
+        "optionalColumns": [
+          "guardianName1",
+          "guardianRelation1",
+          "guardianPhone2",
+          "guardianName2",
+          "guardianRelation2"
+        ],
+        "mode": "CREATE_OR_UPDATE_ONLY"
+      },
+      "staff": {
+        "requiredColumns": [
+          "name",
+          "email",
+          "roleKey",
+          "schoolId"
+        ],
+        "optionalColumns": [
+          "nationalId",
+          "phone",
+          "scopeType",
+          "scopeId"
+        ],
+        "mode": "CREATE_OR_UPDATE_ONLY"
+      },
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/studentAssessmentTemplates/kg-teacher-measure-1",
+    "data": {
+      "id": "kg-teacher-measure-1",
+      "orgId": "takween",
+      "schoolId": "",
+      "schoolType": "KG",
+      "title": "القياس الأول للمعلمة",
+      "kind": "KG_TEACHER_MEASUREMENT",
+      "evaluatorRoleKey": "KG_TEACHER",
+      "code": "KG-T-1",
+      "description": "",
+      "subjectKey": "",
+      "order": 1,
+      "maxScore": 100,
+      "scoreType": "NUMERIC",
+      "isActive": true,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/studentAssessmentTemplates/kg-teacher-measure-2",
+    "data": {
+      "id": "kg-teacher-measure-2",
+      "orgId": "takween",
+      "schoolId": "",
+      "schoolType": "KG",
+      "title": "القياس الثاني للمعلمة",
+      "kind": "KG_TEACHER_MEASUREMENT",
+      "evaluatorRoleKey": "KG_TEACHER",
+      "code": "KG-T-2",
+      "description": "",
+      "subjectKey": "",
+      "order": 2,
+      "maxScore": 100,
+      "scoreType": "NUMERIC",
+      "isActive": true,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/studentAssessmentTemplates/kg-teacher-measure-3",
+    "data": {
+      "id": "kg-teacher-measure-3",
+      "orgId": "takween",
+      "schoolId": "",
+      "schoolType": "KG",
+      "title": "القياس الثالث للمعلمة",
+      "kind": "KG_TEACHER_MEASUREMENT",
+      "evaluatorRoleKey": "KG_TEACHER",
+      "code": "KG-T-3",
+      "description": "",
+      "subjectKey": "",
+      "order": 3,
+      "maxScore": 100,
+      "scoreType": "NUMERIC",
+      "isActive": true,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/studentAssessmentTemplates/kg-teacher-measure-4",
+    "data": {
+      "id": "kg-teacher-measure-4",
+      "orgId": "takween",
+      "schoolId": "",
+      "schoolType": "KG",
+      "title": "القياس الرابع للمعلمة",
+      "kind": "KG_TEACHER_MEASUREMENT",
+      "evaluatorRoleKey": "KG_TEACHER",
+      "code": "KG-T-4",
+      "description": "",
+      "subjectKey": "",
+      "order": 4,
+      "maxScore": 100,
+      "scoreType": "NUMERIC",
+      "isActive": true,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/studentAssessmentTemplates/kg-teacher-measure-5",
+    "data": {
+      "id": "kg-teacher-measure-5",
+      "orgId": "takween",
+      "schoolId": "",
+      "schoolType": "KG",
+      "title": "القياس الخامس للمعلمة",
+      "kind": "KG_TEACHER_MEASUREMENT",
+      "evaluatorRoleKey": "KG_TEACHER",
+      "code": "KG-T-5",
+      "description": "",
+      "subjectKey": "",
+      "order": 5,
+      "maxScore": 100,
+      "scoreType": "NUMERIC",
+      "isActive": true,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/studentAssessmentTemplates/kg-vp-measure-1",
+    "data": {
+      "id": "kg-vp-measure-1",
+      "orgId": "takween",
+      "schoolId": "",
+      "schoolType": "KG",
+      "title": "القياس الأول للوكيلة",
+      "kind": "KG_VP_MEASUREMENT",
+      "evaluatorRoleKey": "KG_VP",
+      "code": "KG-VP-1",
+      "description": "",
+      "subjectKey": "",
+      "order": 6,
+      "maxScore": 100,
+      "scoreType": "NUMERIC",
+      "isActive": true,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/studentAssessmentTemplates/kg-vp-measure-2",
+    "data": {
+      "id": "kg-vp-measure-2",
+      "orgId": "takween",
+      "schoolId": "",
+      "schoolType": "KG",
+      "title": "القياس الثاني للوكيلة",
+      "kind": "KG_VP_MEASUREMENT",
+      "evaluatorRoleKey": "KG_VP",
+      "code": "KG-VP-2",
+      "description": "",
+      "subjectKey": "",
+      "order": 7,
+      "maxScore": 100,
+      "scoreType": "NUMERIC",
+      "isActive": true,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/studentAssessmentTemplates/primary-diagnostic",
+    "data": {
+      "id": "primary-diagnostic",
+      "orgId": "takween",
+      "schoolId": "",
+      "schoolType": "PRIMARY",
+      "title": "الاختبار التشخيصي",
+      "kind": "PRIMARY_DIAGNOSTIC_TEST",
+      "evaluatorRoleKey": "teacher",
+      "code": "PR-DIAG",
+      "description": "",
+      "subjectKey": "",
+      "order": 1,
+      "maxScore": 100,
+      "scoreType": "NUMERIC",
+      "isActive": true,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/studentAssessmentTemplates/primary-periodic-1",
+    "data": {
+      "id": "primary-periodic-1",
+      "orgId": "takween",
+      "schoolId": "",
+      "schoolType": "PRIMARY",
+      "title": "الاختبار الفتري الأول",
+      "kind": "PRIMARY_PERIODIC_TEST_1",
+      "evaluatorRoleKey": "teacher",
+      "code": "PR-P1",
+      "description": "",
+      "subjectKey": "",
+      "order": 2,
+      "maxScore": 100,
+      "scoreType": "NUMERIC",
+      "isActive": true,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/studentAssessmentTemplates/primary-periodic-2",
+    "data": {
+      "id": "primary-periodic-2",
+      "orgId": "takween",
+      "schoolId": "",
+      "schoolType": "PRIMARY",
+      "title": "الاختبار الفتري الثاني",
+      "kind": "PRIMARY_PERIODIC_TEST_2",
+      "evaluatorRoleKey": "teacher",
+      "code": "PR-P2",
+      "description": "",
+      "subjectKey": "",
+      "order": 3,
+      "maxScore": 100,
+      "scoreType": "NUMERIC",
+      "isActive": true,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/studentAssessmentTemplates/primary-central-1",
+    "data": {
+      "id": "primary-central-1",
+      "orgId": "takween",
+      "schoolId": "",
+      "schoolType": "PRIMARY",
+      "title": "القياس المركزي الأول",
+      "kind": "PRIMARY_CENTRAL_MEASUREMENT_1",
+      "evaluatorRoleKey": "teacher",
+      "code": "PR-C1",
+      "description": "",
+      "subjectKey": "",
+      "order": 4,
+      "maxScore": 100,
+      "scoreType": "NUMERIC",
+      "isActive": true,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/studentAssessmentTemplates/primary-central-2",
+    "data": {
+      "id": "primary-central-2",
+      "orgId": "takween",
+      "schoolId": "",
+      "schoolType": "PRIMARY",
+      "title": "القياس المركزي الثاني",
+      "kind": "PRIMARY_CENTRAL_MEASUREMENT_2",
+      "evaluatorRoleKey": "teacher",
+      "code": "PR-C2",
+      "description": "",
+      "subjectKey": "",
+      "order": 5,
+      "maxScore": 100,
+      "scoreType": "NUMERIC",
+      "isActive": true,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/studentTrackerTemplates/kg-quran-tracker",
+    "data": {
+      "id": "kg-quran-tracker",
+      "orgId": "takween",
+      "schoolId": "",
+      "schoolType": "KG",
+      "title": "متابعة القرآن",
+      "kind": "KG_QURAN_TRACKER",
+      "evaluatorRoleKey": "KG_TEACHER",
+      "code": "",
+      "description": "",
+      "subjectKey": "",
+      "scoreType": "NUMERIC",
+      "defaultLessonTitle": "",
+      "isContinuous": true,
+      "isActive": true,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000,
+      "maxScore": 3
+    }
+  },
+  {
+    "path": "orgs/takween/studentTrackerTemplates/kg-learning-gardens-tracker",
+    "data": {
+      "id": "kg-learning-gardens-tracker",
+      "orgId": "takween",
+      "schoolId": "",
+      "schoolType": "KG",
+      "title": "متابعة بساتين المعرفة",
+      "kind": "KG_LEARNING_GARDENS_TRACKER",
+      "evaluatorRoleKey": "KG_TEACHER",
+      "code": "",
+      "description": "",
+      "subjectKey": "",
+      "scoreType": "NUMERIC",
+      "defaultLessonTitle": "",
+      "isContinuous": true,
+      "isActive": true,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000,
+      "maxScore": 3
+    }
+  },
+  {
+    "path": "orgs/takween/studentTrackerTemplates/kg-numbers-tracker",
+    "data": {
+      "id": "kg-numbers-tracker",
+      "orgId": "takween",
+      "schoolId": "",
+      "schoolType": "KG",
+      "title": "متابعة الأرقام",
+      "kind": "KG_NUMBERS_TRACKER",
+      "evaluatorRoleKey": "KG_TEACHER",
+      "code": "",
+      "description": "",
+      "subjectKey": "",
+      "scoreType": "NUMERIC",
+      "defaultLessonTitle": "",
+      "isContinuous": true,
+      "isActive": true,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000,
+      "maxScore": 3
+    }
+  },
+  {
+    "path": "orgs/takween/studentTrackerTemplates/kg-loss-tracker",
+    "data": {
+      "id": "kg-loss-tracker",
+      "orgId": "takween",
+      "schoolId": "",
+      "schoolType": "KG",
+      "title": "متابعة الفاقد",
+      "kind": "KG_LOSS_TRACKER",
+      "evaluatorRoleKey": "KG_TEACHER",
+      "code": "",
+      "description": "",
+      "subjectKey": "",
+      "scoreType": "TEXT_ONLY",
+      "defaultLessonTitle": "",
+      "isContinuous": true,
+      "isActive": true,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/studentTrackerTemplates/primary-quran-tracker",
+    "data": {
+      "id": "primary-quran-tracker",
+      "orgId": "takween",
+      "schoolId": "",
+      "schoolType": "PRIMARY",
+      "title": "متابعة القرآن",
+      "kind": "PRIMARY_QURAN_TRACKER",
+      "evaluatorRoleKey": "teacher",
+      "code": "",
+      "description": "",
+      "subjectKey": "",
+      "scoreType": "NUMERIC",
+      "defaultLessonTitle": "",
+      "isContinuous": true,
+      "isActive": true,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000,
+      "maxScore": 100
+    }
+  },
+  {
+    "path": "orgs/takween/studentTrackerTemplates/primary-loss-tracker",
+    "data": {
+      "id": "primary-loss-tracker",
+      "orgId": "takween",
+      "schoolId": "",
+      "schoolType": "PRIMARY",
+      "title": "متابعة الفاقد",
+      "kind": "PRIMARY_LOSS_TRACKER",
+      "evaluatorRoleKey": "teacher",
+      "code": "",
+      "description": "",
+      "subjectKey": "",
+      "scoreType": "TEXT_ONLY",
+      "defaultLessonTitle": "",
+      "isContinuous": true,
+      "isActive": true,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/promotionPolicies/promo-primary-default",
+    "data": {
+      "id": "promo-primary-default",
+      "orgId": "takween",
+      "schoolType": "PRIMARY",
+      "mappings": [
+        {
+          "fromGradeCode": "G1",
+          "toGradeCode": "G2"
+        },
+        {
+          "fromGradeCode": "G2",
+          "toGradeCode": "G3"
+        },
+        {
+          "fromGradeCode": "G3",
+          "toGradeCode": "G4"
+        },
+        {
+          "fromGradeCode": "G4",
+          "toGradeCode": "G5"
+        },
+        {
+          "fromGradeCode": "G5",
+          "toGradeCode": "G6"
+        }
+      ],
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/promotionPolicies/promo-kg-default",
+    "data": {
+      "id": "promo-kg-default",
+      "orgId": "takween",
+      "schoolType": "KG",
+      "mappings": [
+        {
+          "fromGradeCode": "KG1",
+          "toGradeCode": "KG2"
+        },
+        {
+          "fromGradeCode": "KG2",
+          "toGradeCode": "KG3"
+        }
+      ],
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-h-alnasser",
+    "data": {
+      "id": "p-h-alnasser",
+      "displayName": "حمد زيد عبدالعزيز الناصر",
+      "nationalId": "",
+      "phone": "",
+      "email": "h-alnasser@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-n-alshaya",
+    "data": {
+      "id": "p-n-alshaya",
+      "displayName": "ناصر عبدالله عبدالعزيز الشايع",
+      "nationalId": "",
+      "phone": "",
+      "email": "n-alshaya@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-k-altariqii",
+    "data": {
+      "id": "p-k-altariqii",
+      "displayName": "خالد عبدالمحسن عبدالله الطريقي",
+      "nationalId": "",
+      "phone": "",
+      "email": "k-altariqii@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-malrameh",
+    "data": {
+      "id": "p-malrameh",
+      "displayName": "منصور رميح حمود الرميح",
+      "nationalId": "",
+      "phone": "",
+      "email": "malrameh@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-s-sayed",
+    "data": {
+      "id": "p-s-sayed",
+      "displayName": "السيد محمد احمد احمد",
+      "nationalId": "",
+      "phone": "",
+      "email": "s.sayed@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-a-almansur",
+    "data": {
+      "id": "p-a-almansur",
+      "displayName": "اسماء محمد المنصور",
+      "nationalId": "",
+      "phone": "",
+      "email": "a-almansur@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-f-alhamaad",
+    "data": {
+      "id": "p-f-alhamaad",
+      "displayName": "فاطمة حامد الحماد",
+      "nationalId": "",
+      "phone": "",
+      "email": "f-alhamaad@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-t-altwala",
+    "data": {
+      "id": "p-t-altwala",
+      "displayName": "طيبة سليمان الطوالة",
+      "nationalId": "",
+      "phone": "",
+      "email": "t.altwala@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-a-s-alkmays",
+    "data": {
+      "id": "p-a-s-alkmays",
+      "displayName": "أحمد سليمان عبدالله الخميس",
+      "nationalId": "",
+      "phone": "",
+      "email": "a-s-alkmays@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-r-almutawa",
+    "data": {
+      "id": "p-r-almutawa",
+      "displayName": "رائد سليمان المطوع",
+      "nationalId": "",
+      "phone": "",
+      "email": "r.almutawa@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-ralfaiz",
+    "data": {
+      "id": "p-ralfaiz",
+      "displayName": "راشد سليمان فايز الفايز",
+      "nationalId": "",
+      "phone": "",
+      "email": "ralfaiz@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-a-almotwa",
+    "data": {
+      "id": "p-a-almotwa",
+      "displayName": "أيوب صالح عبدالكريم المطوع",
+      "nationalId": "",
+      "phone": "",
+      "email": "a.almotwa@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-m-alateeq",
+    "data": {
+      "id": "p-m-alateeq",
+      "displayName": "محمد صالح حمد العتيق",
+      "nationalId": "",
+      "phone": "",
+      "email": "m.alateeq@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-q-alfrhud",
+    "data": {
+      "id": "p-q-alfrhud",
+      "displayName": "قاسم محمد الفرهود",
+      "nationalId": "",
+      "phone": "",
+      "email": "q.alfrhud@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-f-alqashami",
+    "data": {
+      "id": "p-f-alqashami",
+      "displayName": "فهد محمد عبدالله القشعمي",
+      "nationalId": "",
+      "phone": "",
+      "email": "f.alqashami@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-a-d-alawad",
+    "data": {
+      "id": "p-a-d-alawad",
+      "displayName": "عبدالرحمن دخيل العواد",
+      "nationalId": "",
+      "phone": "",
+      "email": "a.d.alawad@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-a-brakat",
+    "data": {
+      "id": "p-a-brakat",
+      "displayName": "احمد فتحى محمد بركات",
+      "nationalId": "",
+      "phone": "",
+      "email": "a.brakat@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-n-albader",
+    "data": {
+      "id": "p-n-albader",
+      "displayName": "نادية عثمان ناصر البدر",
+      "nationalId": "",
+      "phone": "",
+      "email": "n.albader@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-f-alobawe",
+    "data": {
+      "id": "p-f-alobawe",
+      "displayName": "فوزيه عبدالله مطلق العبيوي",
+      "nationalId": "",
+      "phone": "",
+      "email": "f.alobawe@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-hanaz",
+    "data": {
+      "id": "p-hanaz",
+      "displayName": "هناء فراج سليمان الزنيدي",
+      "nationalId": "",
+      "phone": "",
+      "email": "hanaz@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-ny-almasoud",
+    "data": {
+      "id": "p-ny-almasoud",
+      "displayName": "نوره يوسف علي المسعود",
+      "nationalId": "",
+      "phone": "",
+      "email": "ny.almasoud@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-a-aljasir",
+    "data": {
+      "id": "p-a-aljasir",
+      "displayName": "انفال عبدالعزيز عبدالرحمن الجاسر",
+      "nationalId": "",
+      "phone": "",
+      "email": "a.aljasir@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-m-alfrraj",
+    "data": {
+      "id": "p-m-alfrraj",
+      "displayName": "مرام صالح جوير الفراج",
+      "nationalId": "",
+      "phone": "",
+      "email": "m.alfrraj@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-aa-almansor",
+    "data": {
+      "id": "p-aa-almansor",
+      "displayName": "أريج عبدالله عبدالرحمن المنصور",
+      "nationalId": "",
+      "phone": "",
+      "email": "aa.almansor@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-r-almuhatrsh",
+    "data": {
+      "id": "p-r-almuhatrsh",
+      "displayName": "ريف فهد سعود المحترش",
+      "nationalId": "",
+      "phone": "",
+      "email": "r.almuhatrsh@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-aa-alshaya",
+    "data": {
+      "id": "p-aa-alshaya",
+      "displayName": "أروى عبدالله الشايع",
+      "nationalId": "",
+      "phone": "",
+      "email": "aa.alshaya@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-aa-alnutifi",
+    "data": {
+      "id": "p-aa-alnutifi",
+      "displayName": "أسماء عبدالله راشد النتيفي",
+      "nationalId": "",
+      "phone": "",
+      "email": "aa.alnutifi@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-afnanf",
+    "data": {
+      "id": "p-afnanf",
+      "displayName": "افنان احمد سعود الفهد",
+      "nationalId": "",
+      "phone": "",
+      "email": "afnanf@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-a-alhomidi",
+    "data": {
+      "id": "p-a-alhomidi",
+      "displayName": "أشواق الحميدي الحميدي",
+      "nationalId": "",
+      "phone": "",
+      "email": "a.alhomidi@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-s-alhumaidan",
+    "data": {
+      "id": "p-s-alhumaidan",
+      "displayName": "سعاد حميدان محمد الحميدان",
+      "nationalId": "",
+      "phone": "",
+      "email": "s.alhumaidan@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-ms-alswiket",
+    "data": {
+      "id": "p-ms-alswiket",
+      "displayName": "مريم سليمان محمد السويكت",
+      "nationalId": "",
+      "phone": "",
+      "email": "ms.alswiket@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-a-alfarag",
+    "data": {
+      "id": "p-a-alfarag",
+      "displayName": "امجاد عبدالله صالح الفرج",
+      "nationalId": "",
+      "phone": "",
+      "email": "a.alfarag@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-s-s-alaues",
+    "data": {
+      "id": "p-s-s-alaues",
+      "displayName": "سمية سعود حمد العويس",
+      "nationalId": "",
+      "phone": "",
+      "email": "s.s.alaues@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-s-alturiqe",
+    "data": {
+      "id": "p-s-alturiqe",
+      "displayName": "سارة عبدالرحمن الطريقي",
+      "nationalId": "",
+      "phone": "",
+      "email": "s.alturiqe@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-h-aljower",
+    "data": {
+      "id": "p-h-aljower",
+      "displayName": "هاجر أحمد فهد الجوير",
+      "nationalId": "",
+      "phone": "",
+      "email": "h.aljower@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-s-alosaimi",
+    "data": {
+      "id": "p-s-alosaimi",
+      "displayName": "شادن عبدالمحسن علي العصيمي",
+      "nationalId": "",
+      "phone": "",
+      "email": "s.alosaimi@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-la-alsuwiket",
+    "data": {
+      "id": "p-la-alsuwiket",
+      "displayName": "لولوه عبدالعزيز احمد السويكت",
+      "nationalId": "",
+      "phone": "",
+      "email": "la.alsuwiket@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-r-alrasheed",
+    "data": {
+      "id": "p-r-alrasheed",
+      "displayName": "رشا عبدالرحمن الرشيد",
+      "nationalId": "",
+      "phone": "",
+      "email": "r.alrasheed@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-s-alnafea",
+    "data": {
+      "id": "p-s-alnafea",
+      "displayName": "سمية أحمد راشد النافع",
+      "nationalId": "",
+      "phone": "",
+      "email": "s.alnafea@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-s-alslman",
+    "data": {
+      "id": "p-s-alslman",
+      "displayName": "ساره سعد أحمد السلمان",
+      "nationalId": "",
+      "phone": "",
+      "email": "s.alslman@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-n-alshammri",
+    "data": {
+      "id": "p-n-alshammri",
+      "displayName": "نوره ابراهيم فنيسان الشمري",
+      "nationalId": "",
+      "phone": "",
+      "email": "n.alshammri@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-f-alzuwaid",
+    "data": {
+      "id": "p-f-alzuwaid",
+      "displayName": "فاطمة عبدالله صالح الزويد",
+      "nationalId": "",
+      "phone": "",
+      "email": "f.alzuwaid@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-b-alarajh",
+    "data": {
+      "id": "p-b-alarajh",
+      "displayName": "بشاير خالد محمد العراجة",
+      "nationalId": "",
+      "phone": "",
+      "email": "b.alarajh@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-n-alhamiyn",
+    "data": {
+      "id": "p-n-alhamiyn",
+      "displayName": "نورة علي عبدالعزيز الحمين",
+      "nationalId": "",
+      "phone": "",
+      "email": "n.alhamiyn@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-h-alshaya",
+    "data": {
+      "id": "p-h-alshaya",
+      "displayName": "حصه عبدالرزاق احمد الشايع",
+      "nationalId": "",
+      "phone": "",
+      "email": "h.alshaya@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-m-alfaraj",
+    "data": {
+      "id": "p-m-alfaraj",
+      "displayName": "ميمونة أحمد فهد الجوير",
+      "nationalId": "",
+      "phone": "",
+      "email": "m.alfaraj@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-mm-almousa",
+    "data": {
+      "id": "p-mm-almousa",
+      "displayName": "مشاعل محمد شايع الموسى",
+      "nationalId": "",
+      "phone": "",
+      "email": "mm.almousa@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-l-altayar",
+    "data": {
+      "id": "p-l-altayar",
+      "displayName": "لمى عبدالعزيز عثمان الطيار",
+      "nationalId": "",
+      "phone": "",
+      "email": "L.altayar@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-n-almosa",
+    "data": {
+      "id": "p-n-almosa",
+      "displayName": "ندى عبدالله الموسى",
+      "nationalId": "",
+      "phone": "",
+      "email": "n.almosa@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-d-fares",
+    "data": {
+      "id": "p-d-fares",
+      "displayName": "دهمه محمد فارس",
+      "nationalId": "",
+      "phone": "",
+      "email": "d.fares@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-n-myosf",
+    "data": {
+      "id": "p-n-myosf",
+      "displayName": "ناديه مصطفى يوسف",
+      "nationalId": "",
+      "phone": "",
+      "email": "n.myosf@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-d-alammar",
+    "data": {
+      "id": "p-d-alammar",
+      "displayName": "دلال يوسف موسى العمار",
+      "nationalId": "",
+      "phone": "",
+      "email": "",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-mahmood",
+    "data": {
+      "id": "p-mahmood",
+      "displayName": "محمود",
+      "nationalId": "",
+      "phone": "",
+      "email": "mahmood@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-hameed-s",
+    "data": {
+      "id": "p-hameed-s",
+      "displayName": "حميد",
+      "nationalId": "",
+      "phone": "",
+      "email": "hameed-s@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-m-ali",
+    "data": {
+      "id": "p-m-ali",
+      "displayName": "محمد علي",
+      "nationalId": "",
+      "phone": "",
+      "email": "m.ali@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-a-aljidawii",
+    "data": {
+      "id": "p-a-aljidawii",
+      "displayName": "أحمد الجدعوي",
+      "nationalId": "",
+      "phone": "",
+      "email": "a.aljidawii@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-a-ahmad",
+    "data": {
+      "id": "p-a-ahmad",
+      "displayName": "أحمد",
+      "nationalId": "",
+      "phone": "",
+      "email": "a-ahmad@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-k-m-ahmd",
+    "data": {
+      "id": "p-k-m-ahmd",
+      "displayName": "خالد محمد أحمد",
+      "nationalId": "",
+      "phone": "",
+      "email": "k-m-ahmd@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-a-mahmood",
+    "data": {
+      "id": "p-a-mahmood",
+      "displayName": "أحمد محمود",
+      "nationalId": "",
+      "phone": "",
+      "email": "a-mahmood@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/people/p-k-alsadle",
+    "data": {
+      "id": "p-k-alsadle",
+      "displayName": "خالد الصادل",
+      "nationalId": "",
+      "phone": "",
+      "email": "k.alsadle@qz.org.sa",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-org-supervision-head",
+    "data": {
+      "id": "op-org-supervision-head",
+      "personId": "p-h-alnasser",
+      "orgId": "takween",
+      "roleKey": "ORG_SUPERVISION_HEAD",
+      "scopeType": "ORG",
+      "scopeId": "takween",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-boys-supervisor-shaya",
+    "data": {
+      "id": "op-boys-supervisor-shaya",
+      "personId": "p-n-alshaya",
+      "orgId": "takween",
+      "roleKey": "BOYS_EDU_SUPERVISOR",
+      "scopeType": "ORG",
+      "scopeId": "takween",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-boys-supervisor-tariqi",
+    "data": {
+      "id": "op-boys-supervisor-tariqi",
+      "personId": "p-k-altariqii",
+      "orgId": "takween",
+      "roleKey": "BOYS_EDU_SUPERVISOR",
+      "scopeType": "ORG",
+      "scopeId": "takween",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-boys-supervisor-ramaih",
+    "data": {
+      "id": "op-boys-supervisor-ramaih",
+      "personId": "p-malrameh",
+      "orgId": "takween",
+      "roleKey": "BOYS_EDU_SUPERVISOR",
+      "scopeType": "ORG",
+      "scopeId": "takween",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-boys-supervisor-sayed",
+    "data": {
+      "id": "op-boys-supervisor-sayed",
+      "personId": "p-s-sayed",
+      "orgId": "takween",
+      "roleKey": "BOYS_EDU_SUPERVISOR",
+      "scopeType": "ORG",
+      "scopeId": "takween",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-admin-supervisor",
+    "data": {
+      "id": "op-admin-supervisor",
+      "personId": "p-a-almansur",
+      "orgId": "takween",
+      "roleKey": "ADMIN_SUPERVISOR",
+      "scopeType": "ORG",
+      "scopeId": "takween",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-kg-edu-supervisor",
+    "data": {
+      "id": "op-kg-edu-supervisor",
+      "personId": "p-f-alhamaad",
+      "orgId": "takween",
+      "roleKey": "KG_EDU_SUPERVISOR",
+      "scopeType": "ORG",
+      "scopeId": "takween",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-kg-values-coord",
+    "data": {
+      "id": "op-kg-values-coord",
+      "personId": "p-t-altwala",
+      "orgId": "takween",
+      "roleKey": "KG_VALUES_COORD",
+      "scopeType": "ORG",
+      "scopeId": "takween",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-boys-principal",
+    "data": {
+      "id": "op-boys-principal",
+      "personId": "p-a-s-alkmays",
+      "orgId": "takween",
+      "roleKey": "BOYS_PRINCIPAL",
+      "scopeType": "ORG",
+      "scopeId": "takween",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-boys-student-guide",
+    "data": {
+      "id": "op-boys-student-guide",
+      "personId": "p-r-almutawa",
+      "orgId": "takween",
+      "roleKey": "BOYS_STUDENT_GUIDE",
+      "scopeType": "ORG",
+      "scopeId": "takween",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-boys-teachers-vp",
+    "data": {
+      "id": "op-boys-teachers-vp",
+      "personId": "p-ralfaiz",
+      "orgId": "takween",
+      "roleKey": "BOYS_TEACHERS_VP",
+      "scopeType": "ORG",
+      "scopeId": "takween",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-boys-students-vp",
+    "data": {
+      "id": "op-boys-students-vp",
+      "personId": "p-a-almotwa",
+      "orgId": "takween",
+      "roleKey": "BOYS_STUDENTS_VP",
+      "scopeType": "ORG",
+      "scopeId": "takween",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-boys-edu-vp",
+    "data": {
+      "id": "op-boys-edu-vp",
+      "personId": "p-m-alateeq",
+      "orgId": "takween",
+      "roleKey": "BOYS_EDU_VP",
+      "scopeType": "ORG",
+      "scopeId": "takween",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-boys-admin-assistant",
+    "data": {
+      "id": "op-boys-admin-assistant",
+      "personId": "p-q-alfrhud",
+      "orgId": "takween",
+      "roleKey": "ADMIN_ASSISTANT",
+      "scopeType": "ORG",
+      "scopeId": "takween",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-boys-activity",
+    "data": {
+      "id": "op-boys-activity",
+      "personId": "p-f-alqashami",
+      "orgId": "takween",
+      "roleKey": "ACTIVITY_COORD",
+      "scopeType": "ORG",
+      "scopeId": "takween",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-boys-media",
+    "data": {
+      "id": "op-boys-media",
+      "personId": "p-a-d-alawad",
+      "orgId": "takween",
+      "roleKey": "MEDIA_SPECIALIST",
+      "scopeType": "ORG",
+      "scopeId": "takween",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-boys-teacher-brakat",
+    "data": {
+      "id": "op-boys-teacher-brakat",
+      "personId": "p-a-brakat",
+      "orgId": "takween",
+      "roleKey": "BOYS_TEACHER",
+      "scopeType": "ORG",
+      "scopeId": "takween",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-girls-principal",
+    "data": {
+      "id": "op-girls-principal",
+      "personId": "p-n-albader",
+      "orgId": "takween",
+      "roleKey": "GIRLS_PRINCIPAL",
+      "scopeType": "SCHOOL",
+      "scopeId": "mrb-girls",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-girls-vp",
+    "data": {
+      "id": "op-girls-vp",
+      "personId": "p-f-alobawe",
+      "orgId": "takween",
+      "roleKey": "GIRLS_VP",
+      "scopeType": "SCHOOL",
+      "scopeId": "mrb-girls",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-girls-counselor",
+    "data": {
+      "id": "op-girls-counselor",
+      "personId": "p-hanaz",
+      "orgId": "takween",
+      "roleKey": "GIRLS_STUDENT_COUNSELOR",
+      "scopeType": "SCHOOL",
+      "scopeId": "mrb-girls",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-girls-monitor",
+    "data": {
+      "id": "op-girls-monitor",
+      "personId": "p-ny-almasoud",
+      "orgId": "takween",
+      "roleKey": "SCHOOL_MONITOR",
+      "scopeType": "SCHOOL",
+      "scopeId": "mrb-girls",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-girls-designer",
+    "data": {
+      "id": "op-girls-designer",
+      "personId": "p-a-aljasir",
+      "orgId": "takween",
+      "roleKey": "MEDIA_SPECIALIST",
+      "scopeType": "SCHOOL",
+      "scopeId": "mrb-girls",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-girls-activity",
+    "data": {
+      "id": "op-girls-activity",
+      "personId": "p-m-alfrraj",
+      "orgId": "takween",
+      "roleKey": "ACTIVITY_COORD",
+      "scopeType": "SCHOOL",
+      "scopeId": "mrb-girls",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-girls-admin-assistant-1",
+    "data": {
+      "id": "op-girls-admin-assistant-1",
+      "personId": "p-aa-almansor",
+      "orgId": "takween",
+      "roleKey": "ADMIN_ASSISTANT",
+      "scopeType": "SCHOOL",
+      "scopeId": "mrb-girls",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-girls-media",
+    "data": {
+      "id": "op-girls-media",
+      "personId": "p-r-almuhatrsh",
+      "orgId": "takween",
+      "roleKey": "MEDIA_SPECIALIST",
+      "scopeType": "SCHOOL",
+      "scopeId": "mrb-girls",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-girls-hr",
+    "data": {
+      "id": "op-girls-hr",
+      "personId": "p-aa-alshaya",
+      "orgId": "takween",
+      "roleKey": "HR_SPECIALIST",
+      "scopeType": "SCHOOL",
+      "scopeId": "mrb-girls",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-girls-admin-assistant-2",
+    "data": {
+      "id": "op-girls-admin-assistant-2",
+      "personId": "p-aa-alnutifi",
+      "orgId": "takween",
+      "roleKey": "ADMIN_ASSISTANT",
+      "scopeType": "SCHOOL",
+      "scopeId": "mrb-girls",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-girls-teacher",
+    "data": {
+      "id": "op-girls-teacher",
+      "personId": "p-afnanf",
+      "orgId": "takween",
+      "roleKey": "GIRLS_TEACHER",
+      "scopeType": "SCHOOL",
+      "scopeId": "mrb-girls",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-kg1-principal",
+    "data": {
+      "id": "op-kg1-principal",
+      "personId": "p-a-alhomidi",
+      "orgId": "takween",
+      "roleKey": "KG_PRINCIPAL",
+      "scopeType": "SCHOOL",
+      "scopeId": "kg-01",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-kg1-vp",
+    "data": {
+      "id": "op-kg1-vp",
+      "personId": "p-s-alhumaidan",
+      "orgId": "takween",
+      "roleKey": "KG_VP",
+      "scopeType": "SCHOOL",
+      "scopeId": "kg-01",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-kg1-media",
+    "data": {
+      "id": "op-kg1-media",
+      "personId": "p-ms-alswiket",
+      "orgId": "takween",
+      "roleKey": "MEDIA_SPECIALIST",
+      "scopeType": "SCHOOL",
+      "scopeId": "kg-01",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-kg1-admin",
+    "data": {
+      "id": "op-kg1-admin",
+      "personId": "p-a-alfarag",
+      "orgId": "takween",
+      "roleKey": "ADMIN_ASSISTANT",
+      "scopeType": "SCHOOL",
+      "scopeId": "kg-01",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-kg1-teacher",
+    "data": {
+      "id": "op-kg1-teacher",
+      "personId": "p-s-s-alaues",
+      "orgId": "takween",
+      "roleKey": "KG_TEACHER",
+      "scopeType": "SCHOOL",
+      "scopeId": "kg-01",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-kg2-principal",
+    "data": {
+      "id": "op-kg2-principal",
+      "personId": "p-s-alturiqe",
+      "orgId": "takween",
+      "roleKey": "KG_PRINCIPAL",
+      "scopeType": "SCHOOL",
+      "scopeId": "kg-02",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-kg2-vp",
+    "data": {
+      "id": "op-kg2-vp",
+      "personId": "p-h-aljower",
+      "orgId": "takween",
+      "roleKey": "KG_VP",
+      "scopeType": "SCHOOL",
+      "scopeId": "kg-02",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-kg2-media",
+    "data": {
+      "id": "op-kg2-media",
+      "personId": "p-s-alosaimi",
+      "orgId": "takween",
+      "roleKey": "MEDIA_SPECIALIST",
+      "scopeType": "SCHOOL",
+      "scopeId": "kg-02",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-kg2-admin",
+    "data": {
+      "id": "op-kg2-admin",
+      "personId": "p-la-alsuwiket",
+      "orgId": "takween",
+      "roleKey": "ADMIN_ASSISTANT",
+      "scopeType": "SCHOOL",
+      "scopeId": "kg-02",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-kg2-teacher",
+    "data": {
+      "id": "op-kg2-teacher",
+      "personId": "p-r-alrasheed",
+      "orgId": "takween",
+      "roleKey": "KG_TEACHER",
+      "scopeType": "SCHOOL",
+      "scopeId": "kg-02",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-kg3-principal",
+    "data": {
+      "id": "op-kg3-principal",
+      "personId": "p-s-alnafea",
+      "orgId": "takween",
+      "roleKey": "KG_PRINCIPAL",
+      "scopeType": "SCHOOL",
+      "scopeId": "kg-03",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-kg3-vp",
+    "data": {
+      "id": "op-kg3-vp",
+      "personId": "p-s-alslman",
+      "orgId": "takween",
+      "roleKey": "KG_VP",
+      "scopeType": "SCHOOL",
+      "scopeId": "kg-03",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-kg3-admin",
+    "data": {
+      "id": "op-kg3-admin",
+      "personId": "p-n-alshammri",
+      "orgId": "takween",
+      "roleKey": "ADMIN_ASSISTANT",
+      "scopeType": "SCHOOL",
+      "scopeId": "kg-03",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-kg3-media",
+    "data": {
+      "id": "op-kg3-media",
+      "personId": "p-f-alzuwaid",
+      "orgId": "takween",
+      "roleKey": "MEDIA_SPECIALIST",
+      "scopeType": "SCHOOL",
+      "scopeId": "kg-03",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-kg3-teacher",
+    "data": {
+      "id": "op-kg3-teacher",
+      "personId": "p-b-alarajh",
+      "orgId": "takween",
+      "roleKey": "KG_TEACHER",
+      "scopeType": "SCHOOL",
+      "scopeId": "kg-03",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-kg4-principal",
+    "data": {
+      "id": "op-kg4-principal",
+      "personId": "p-n-alhamiyn",
+      "orgId": "takween",
+      "roleKey": "KG_PRINCIPAL",
+      "scopeType": "SCHOOL",
+      "scopeId": "kg-04",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-kg4-vp",
+    "data": {
+      "id": "op-kg4-vp",
+      "personId": "p-h-alshaya",
+      "orgId": "takween",
+      "roleKey": "KG_VP",
+      "scopeType": "SCHOOL",
+      "scopeId": "kg-04",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-kg4-admin-1",
+    "data": {
+      "id": "op-kg4-admin-1",
+      "personId": "p-m-alfaraj",
+      "orgId": "takween",
+      "roleKey": "ADMIN_ASSISTANT",
+      "scopeType": "SCHOOL",
+      "scopeId": "kg-04",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-kg4-admin-2",
+    "data": {
+      "id": "op-kg4-admin-2",
+      "personId": "p-mm-almousa",
+      "orgId": "takween",
+      "roleKey": "ADMIN_ASSISTANT",
+      "scopeType": "SCHOOL",
+      "scopeId": "kg-04",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-kg4-media",
+    "data": {
+      "id": "op-kg4-media",
+      "personId": "p-l-altayar",
+      "orgId": "takween",
+      "roleKey": "MEDIA_SPECIALIST",
+      "scopeType": "SCHOOL",
+      "scopeId": "kg-04",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-kg4-teacher",
+    "data": {
+      "id": "op-kg4-teacher",
+      "personId": "p-n-almosa",
+      "orgId": "takween",
+      "roleKey": "KG_TEACHER",
+      "scopeType": "SCHOOL",
+      "scopeId": "kg-04",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-bus-1",
+    "data": {
+      "id": "op-bus-1",
+      "personId": "p-d-fares",
+      "orgId": "takween",
+      "roleKey": "BUS_SUPERVISOR",
+      "scopeType": "ORG",
+      "scopeId": "takween",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-bus-2",
+    "data": {
+      "id": "op-bus-2",
+      "personId": "p-n-myosf",
+      "orgId": "takween",
+      "roleKey": "BUS_SUPERVISOR",
+      "scopeType": "ORG",
+      "scopeId": "takween",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-bus-3",
+    "data": {
+      "id": "op-bus-3",
+      "personId": "p-d-alammar",
+      "orgId": "takween",
+      "roleKey": "BUS_SUPERVISOR",
+      "scopeType": "ORG",
+      "scopeId": "takween",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-boys-teacher-mahmood",
+    "data": {
+      "id": "op-boys-teacher-mahmood",
+      "personId": "p-mahmood",
+      "orgId": "takween",
+      "roleKey": "BOYS_TEACHER",
+      "scopeType": "ORG",
+      "scopeId": "takween",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-boys-teacher-hameed",
+    "data": {
+      "id": "op-boys-teacher-hameed",
+      "personId": "p-hameed-s",
+      "orgId": "takween",
+      "roleKey": "BOYS_TEACHER",
+      "scopeType": "ORG",
+      "scopeId": "takween",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-boys-teacher-mali",
+    "data": {
+      "id": "op-boys-teacher-mali",
+      "personId": "p-m-ali",
+      "orgId": "takween",
+      "roleKey": "BOYS_TEACHER",
+      "scopeType": "ORG",
+      "scopeId": "takween",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-boys-teacher-jidawii",
+    "data": {
+      "id": "op-boys-teacher-jidawii",
+      "personId": "p-a-aljidawii",
+      "orgId": "takween",
+      "roleKey": "BOYS_TEACHER",
+      "scopeType": "ORG",
+      "scopeId": "takween",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-boys-teacher-aahmad",
+    "data": {
+      "id": "op-boys-teacher-aahmad",
+      "personId": "p-a-ahmad",
+      "orgId": "takween",
+      "roleKey": "BOYS_TEACHER",
+      "scopeType": "ORG",
+      "scopeId": "takween",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-boys-teacher-kmahmd",
+    "data": {
+      "id": "op-boys-teacher-kmahmd",
+      "personId": "p-k-m-ahmd",
+      "orgId": "takween",
+      "roleKey": "BOYS_TEACHER",
+      "scopeType": "ORG",
+      "scopeId": "takween",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-boys-teacher-amahmood",
+    "data": {
+      "id": "op-boys-teacher-amahmood",
+      "personId": "p-a-mahmood",
+      "orgId": "takween",
+      "roleKey": "BOYS_TEACHER",
+      "scopeType": "ORG",
+      "scopeId": "takween",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/operationalMemberships/op-boys-teacher-kalsadle",
+    "data": {
+      "id": "op-boys-teacher-kalsadle",
+      "personId": "p-k-alsadle",
+      "orgId": "takween",
+      "roleKey": "BOYS_TEACHER",
+      "scopeType": "ORG",
+      "scopeId": "takween",
+      "isActive": true,
+      "startAt": 1785542400000,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/teacherAssignments/ta-afnan-g1-general-1",
+    "data": {
+      "id": "ta-afnan-g1-general-1",
+      "orgId": "takween",
+      "schoolId": "mrb-girls",
+      "academicYearId": "ay-1448",
+      "teacherPersonId": "p-afnanf",
+      "supervisorPersonId": "",
+      "assignmentKind": "CLASS_TEACHER",
+      "targetScopeType": "CLASS",
+      "targetScopeId": "g1-general-1",
+      "coverageMode": "EXPLICIT_CLASSES",
+      "subjectKey": "GENERAL",
+      "subjectId": "",
+      "gradeId": "g1",
+      "streamId": "stream-general",
+      "isHomeroom": true,
+      "roleInAssignment": "MAIN",
+      "status": "ACTIVE",
+      "startAt": 1785542400000,
+      "note": "إسناد مبدئي ضمن seed",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/teacherAssignments/ta-brakat-g1-general-1",
+    "data": {
+      "id": "ta-brakat-g1-general-1",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-sayh",
+      "academicYearId": "ay-1448",
+      "teacherPersonId": "p-a-brakat",
+      "supervisorPersonId": "",
+      "assignmentKind": "CLASS_TEACHER",
+      "targetScopeType": "CLASS",
+      "targetScopeId": "g1-general-1",
+      "coverageMode": "EXPLICIT_CLASSES",
+      "subjectKey": "GENERAL",
+      "subjectId": "",
+      "gradeId": "g1",
+      "streamId": "stream-general",
+      "isHomeroom": true,
+      "roleInAssignment": "MAIN",
+      "status": "ACTIVE",
+      "startAt": 1785542400000,
+      "note": "إسناد مبدئي ضمن seed",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/teacherAssignments/ta-kg1-class",
+    "data": {
+      "id": "ta-kg1-class",
+      "orgId": "takween",
+      "schoolId": "kg-01",
+      "academicYearId": "ay-1448",
+      "teacherPersonId": "p-s-s-alaues",
+      "supervisorPersonId": "",
+      "assignmentKind": "CLASS_TEACHER",
+      "targetScopeType": "CLASS",
+      "targetScopeId": "kg2-a",
+      "coverageMode": "EXPLICIT_CLASSES",
+      "subjectKey": "CLASS",
+      "subjectId": "subject-class",
+      "gradeId": "kg2",
+      "streamId": "",
+      "isHomeroom": true,
+      "roleInAssignment": "MAIN",
+      "status": "ACTIVE",
+      "startAt": 1785542400000,
+      "note": "إسناد مبدئي ضمن seed",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/teacherAssignments/ta-kg-values-all",
+    "data": {
+      "id": "ta-kg-values-all",
+      "orgId": "takween",
+      "schoolId": "kg-01",
+      "academicYearId": "ay-1448",
+      "teacherPersonId": "p-t-altwala",
+      "supervisorPersonId": "",
+      "assignmentKind": "VALUES_TEACHER",
+      "targetScopeType": "SCHOOL",
+      "targetScopeId": "kg-01",
+      "coverageMode": "ALL_CLASSES_IN_SCOPE",
+      "subjectKey": "VALUES",
+      "subjectId": "subject-values",
+      "gradeId": "",
+      "streamId": "",
+      "isHomeroom": false,
+      "roleInAssignment": "MAIN",
+      "status": "ACTIVE",
+      "startAt": 1785542400000,
+      "note": "إسناد مبدئي ضمن seed",
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/teacherAssignmentClassLinks/tal-afnan-1",
+    "data": {
+      "id": "tal-afnan-1",
+      "assignmentId": "ta-afnan-g1-general-1",
+      "orgId": "takween",
+      "schoolId": "mrb-girls",
+      "academicYearId": "ay-1448",
+      "classId": "g1-general-1",
+      "gradeId": "g1",
+      "streamId": "stream-general",
+      "order": 1,
+      "isPrimaryClass": true,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/teacherAssignmentClassLinks/tal-brakat-1",
+    "data": {
+      "id": "tal-brakat-1",
+      "assignmentId": "ta-brakat-g1-general-1",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-sayh",
+      "academicYearId": "ay-1448",
+      "classId": "g1-general-1",
+      "gradeId": "g1",
+      "streamId": "stream-general",
+      "order": 1,
+      "isPrimaryClass": true,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/teacherAssignmentClassLinks/tal-kg1-class",
+    "data": {
+      "id": "tal-kg1-class",
+      "assignmentId": "ta-kg1-class",
+      "orgId": "takween",
+      "schoolId": "kg-01",
+      "academicYearId": "ay-1448",
+      "classId": "kg2-a",
+      "gradeId": "kg2",
+      "streamId": "",
+      "order": 1,
+      "isPrimaryClass": true,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/teacherAssignmentClassLinks/tal-kg-values-1",
+    "data": {
+      "id": "tal-kg-values-1",
+      "assignmentId": "ta-kg-values-all",
+      "orgId": "takween",
+      "schoolId": "kg-01",
+      "academicYearId": "ay-1448",
+      "classId": "kg1-a",
+      "gradeId": "kg1",
+      "streamId": "",
+      "order": 1,
+      "isPrimaryClass": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/teacherAssignmentClassLinks/tal-kg-values-2",
+    "data": {
+      "id": "tal-kg-values-2",
+      "assignmentId": "ta-kg-values-all",
+      "orgId": "takween",
+      "schoolId": "kg-01",
+      "academicYearId": "ay-1448",
+      "classId": "kg2-a",
+      "gradeId": "kg2",
+      "streamId": "",
+      "order": 2,
+      "isPrimaryClass": true,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/teacherAssignmentClassLinks/tal-kg-values-3",
+    "data": {
+      "id": "tal-kg-values-3",
+      "assignmentId": "ta-kg-values-all",
+      "orgId": "takween",
+      "schoolId": "kg-01",
+      "academicYearId": "ay-1448",
+      "classId": "kg3-a",
+      "gradeId": "kg3",
+      "streamId": "",
+      "order": 3,
+      "isPrimaryClass": false,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/transportRoutes/route-boys-01",
+    "data": {
+      "id": "route-boys-01",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-sayh",
+      "title": "خط بنين 1",
+      "busSupervisorPersonId": "",
+      "isActive": true,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/transportRoutes/route-boys-02",
+    "data": {
+      "id": "route-boys-02",
+      "orgId": "takween",
+      "schoolId": "mrb-boys-faleh",
+      "title": "خط بنين 2",
+      "busSupervisorPersonId": "",
+      "isActive": true,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  },
+  {
+    "path": "orgs/takween/transportRoutes/route-girls-01",
+    "data": {
+      "id": "route-girls-01",
+      "orgId": "takween",
+      "schoolId": "mrb-girls",
+      "title": "خط بنات 1",
+      "busSupervisorPersonId": "",
+      "isActive": true,
+      "createdAt": 1775433600000,
+      "updatedAt": 1775433600000
+    }
+  }
+]

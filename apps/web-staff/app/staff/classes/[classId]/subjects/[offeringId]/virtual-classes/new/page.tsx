@@ -1,0 +1,793 @@
+"use client";
+
+import Link from "next/link";
+import { FormEvent, useMemo, useState } from "react";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
+import { ArrowRight, CalendarClock, Save, Video } from "lucide-react";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  where,
+  writeBatch,
+} from "firebase/firestore";
+
+import { db } from "@/lib/firebase";
+import { getOrgId } from "@/lib/org";
+import { useRequireAuth } from "@/hooks/use-require-auth";
+import { Button } from "@/components/ui/button";
+
+type StudentEnrollmentRow = {
+  id: string;
+  studentId?: string;
+  orgId?: string;
+  schoolId?: string;
+  academicYearId?: string;
+  classId?: string;
+  status?: string;
+};
+
+type GuardianLinkRow = {
+  id: string;
+  studentId?: string;
+  guardianId?: string;
+  guardianUid?: string;
+  uid?: string;
+  authUid?: string;
+  userUid?: string;
+  active?: boolean;
+};
+
+type GuardianRow = {
+  id: string;
+  uid?: string;
+  authUid?: string;
+  userUid?: string;
+  userId?: string;
+};
+
+type GuardianRefsByStudentId = Record<
+  string,
+  {
+    guardianIds: string[];
+    guardianUids: string[];
+  }
+>;
+
+function getErrorMessage(error: unknown) {
+  if (error instanceof Error) return error.message;
+  if (typeof error === "string") return error;
+  return "حدث خطأ غير متوقع";
+}
+
+function readString(searchParams: URLSearchParams, key: string) {
+  return searchParams.get(key)?.trim() ?? "";
+}
+
+function toDatetimeLocalValue(date: Date) {
+  const pad = (value: number) => String(value).padStart(2, "0");
+
+  const year = date.getFullYear();
+  const month = pad(date.getMonth() + 1);
+  const day = pad(date.getDate());
+  const hours = pad(date.getHours());
+  const minutes = pad(date.getMinutes());
+
+  return `${year}-${month}-${day}T${hours}:${minutes}`;
+}
+
+function getDefaultStartTime() {
+  const now = new Date();
+  now.setMinutes(0, 0, 0);
+  now.setHours(now.getHours() + 1);
+  return toDatetimeLocalValue(now);
+}
+
+function getDefaultEndTime() {
+  const now = new Date();
+  now.setMinutes(0, 0, 0);
+  now.setHours(now.getHours() + 2);
+  return toDatetimeLocalValue(now);
+}
+
+function parseDatetimeLocal(value: string) {
+  const timestamp = new Date(value).getTime();
+  return Number.isFinite(timestamp) ? timestamp : 0;
+}
+
+function normalizeUrl(value: string) {
+  const trimmed = value.trim();
+  if (!trimmed) return "";
+
+  if (/^https?:\/\//i.test(trimmed)) return trimmed;
+
+  return `https://${trimmed}`;
+}
+
+function uniqueStrings(values: string[]) {
+  return Array.from(new Set(values.filter(Boolean)));
+}
+
+function chunkArray<T>(items: T[], size: number) {
+  const chunks: T[][] = [];
+
+  for (let index = 0; index < items.length; index += size) {
+    chunks.push(items.slice(index, index + size));
+  }
+
+  return chunks;
+}
+
+function createJoinToken() {
+  if (typeof crypto !== "undefined" && "randomUUID" in crypto) {
+    return crypto.randomUUID();
+  }
+
+  return `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+}
+
+function readGuardianUid(data: {
+  guardianUid?: string;
+  uid?: string;
+  authUid?: string;
+  userUid?: string;
+  userId?: string;
+}) {
+  return (
+    data.guardianUid?.trim() ||
+    data.uid?.trim() ||
+    data.authUid?.trim() ||
+    data.userUid?.trim() ||
+    data.userId?.trim() ||
+    ""
+  );
+}
+
+function buildSessionNotificationBody(params: {
+  studentCount: number;
+  subjectTitle: string;
+  subjectKey: string;
+  startsAt: number;
+}) {
+  const subjectLabel = params.subjectTitle || params.subjectKey || "المادة";
+
+  const startsAtText = new Intl.DateTimeFormat("ar-SA", {
+    dateStyle: "medium",
+    timeStyle: "short",
+  }).format(new Date(params.startsAt));
+
+  return `تم جدولة حصة افتراضية في ${subjectLabel}، موعدها ${startsAtText}.`;
+}
+
+async function loadTargetStudentIds(params: {
+  orgId: string;
+  schoolId: string;
+  academicYearId: string;
+  classId: string;
+}) {
+  const enrollmentsRef = collection(
+    db,
+    `orgs/${params.orgId}/studentEnrollments`,
+  );
+
+  /**
+   * فلتر واحد فقط لتجنب Composite Index الآن.
+   * ثم نفلتر المدرسة والسنة والحالة في الذاكرة.
+   */
+  const enrollmentsQuery = query(
+    enrollmentsRef,
+    where("classId", "==", params.classId),
+  );
+
+  const snap = await getDocs(enrollmentsQuery);
+
+  return uniqueStrings(
+    snap.docs
+      .map((docSnap) => {
+        return {
+          id: docSnap.id,
+          ...(docSnap.data() as Omit<StudentEnrollmentRow, "id">),
+        };
+      })
+      .filter((item) => item.schoolId === params.schoolId)
+      .filter((item) => item.academicYearId === params.academicYearId)
+      .filter((item) => !item.status || item.status === "ACTIVE")
+      .map((item) => item.studentId ?? ""),
+  );
+}
+
+async function loadGuardianRefsByStudentId(
+  orgId: string,
+  studentIds: string[],
+): Promise<GuardianRefsByStudentId> {
+  const result: GuardianRefsByStudentId = {};
+  const guardianUidCache: Record<string, string> = {};
+
+  if (studentIds.length === 0) return result;
+
+  const guardianLinksRef = collection(db, `orgs/${orgId}/guardianLinks`);
+
+  for (const chunk of chunkArray(studentIds, 30)) {
+    const guardianLinksQuery = query(
+      guardianLinksRef,
+      where("studentId", "in", chunk),
+    );
+
+    const snap = await getDocs(guardianLinksQuery);
+
+    for (const docSnap of snap.docs) {
+      const row = {
+        id: docSnap.id,
+        ...(docSnap.data() as Omit<GuardianLinkRow, "id">),
+      };
+
+      if (!row.studentId || !row.guardianId) continue;
+      if (row.active === false) continue;
+
+      const current = result[row.studentId] ?? {
+        guardianIds: [],
+        guardianUids: [],
+      };
+
+      current.guardianIds = uniqueStrings([
+        ...current.guardianIds,
+        row.guardianId,
+      ]);
+
+      const directUid = readGuardianUid(row);
+
+      if (directUid) {
+        current.guardianUids = uniqueStrings([
+          ...current.guardianUids,
+          directUid,
+        ]);
+
+        result[row.studentId] = current;
+        continue;
+      }
+
+      if (!(row.guardianId in guardianUidCache)) {
+        const guardianSnap = await getDoc(
+          doc(db, `orgs/${orgId}/guardians/${row.guardianId}`),
+        );
+
+        if (guardianSnap.exists()) {
+          const guardianData = {
+            id: guardianSnap.id,
+            ...(guardianSnap.data() as Omit<GuardianRow, "id">),
+          };
+
+          guardianUidCache[row.guardianId] = readGuardianUid(guardianData);
+        } else {
+          guardianUidCache[row.guardianId] = "";
+        }
+      }
+
+      const guardianUid = guardianUidCache[row.guardianId];
+
+      if (guardianUid) {
+        current.guardianUids = uniqueStrings([
+          ...current.guardianUids,
+          guardianUid,
+        ]);
+      }
+
+      result[row.studentId] = current;
+    }
+  }
+
+  return result;
+}
+
+function buildListHref(params: {
+  classId: string;
+  offeringId: string;
+  searchParams: URLSearchParams;
+}) {
+  const queryString = params.searchParams.toString();
+
+  return `/staff/classes/${encodeURIComponent(
+    params.classId,
+  )}/subjects/${encodeURIComponent(
+    params.offeringId,
+  )}/virtual-classes${queryString ? `?${queryString}` : ""}`;
+}
+
+export default function NewSubjectVirtualClassPage() {
+  const params = useParams<{
+    classId: string;
+    offeringId: string;
+  }>();
+
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const { user, checkingAuth } = useRequireAuth();
+
+  const classId = params.classId;
+  const offeringId = params.offeringId;
+
+  const schoolId = readString(searchParams, "schoolId");
+  const academicYearId = readString(searchParams, "academicYearId");
+  const gradeId = readString(searchParams, "gradeId");
+  const streamId = readString(searchParams, "streamId");
+
+  const termId = readString(searchParams, "termId");
+  const termTitle = readString(searchParams, "termTitle");
+  const termShortTitle = readString(searchParams, "termShortTitle");
+
+  const subjectKey = readString(searchParams, "subjectKey");
+  const subjectTitle = readString(searchParams, "subjectTitle");
+  const classSubjectOfferingId =
+    readString(searchParams, "classSubjectOfferingId") || offeringId;
+
+  const [title, setTitle] = useState(
+    subjectTitle ? `حصة ${subjectTitle}` : "حصة افتراضية",
+  );
+  const [description, setDescription] = useState("");
+  const [joinUrl, setJoinUrl] = useState("");
+  const [startsAtInput, setStartsAtInput] = useState(getDefaultStartTime);
+  const [endsAtInput, setEndsAtInput] = useState(getDefaultEndTime);
+
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState("");
+
+  const orgId = useMemo(() => {
+    if (!user?.uid) return "";
+    return getOrgId(user.uid) ?? "";
+  }, [user?.uid]);
+
+  const listHref = useMemo(() => {
+    return buildListHref({
+      classId,
+      offeringId,
+      searchParams: new URLSearchParams(searchParams.toString()),
+    });
+  }, [classId, offeringId, searchParams]);
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    if (!user) {
+      setError("يجب تسجيل الدخول أولًا.");
+      return;
+    }
+
+    if (!orgId) {
+      setError("تعذر تحديد المؤسسة الحالية.");
+      return;
+    }
+
+    const cleanTitle = title.trim();
+    const cleanJoinUrl = normalizeUrl(joinUrl);
+
+    const startsAt = parseDatetimeLocal(startsAtInput);
+    const endsAt = parseDatetimeLocal(endsAtInput);
+
+    if (!cleanTitle) {
+      setError("اكتب عنوان الحصة.");
+      return;
+    }
+
+    if (!schoolId || !academicYearId || !classId || !classSubjectOfferingId) {
+      setError("بيانات الفصل أو المادة غير مكتملة في الرابط.");
+      return;
+    }
+
+    if (!termId || !termTitle || !termShortTitle) {
+      setError("بيانات الفصل الدراسي غير مكتملة في الرابط.");
+      return;
+    }
+
+    if (!cleanJoinUrl) {
+      setError("أضف رابط Google Meet.");
+      return;
+    }
+
+    if (!/^https?:\/\//i.test(cleanJoinUrl)) {
+      setError("رابط Google Meet غير صحيح.");
+      return;
+    }
+
+    if (!startsAt || !endsAt) {
+      setError("حدد وقت البداية والنهاية بشكل صحيح.");
+      return;
+    }
+
+    if (endsAt <= startsAt) {
+      setError("وقت النهاية يجب أن يكون بعد وقت البداية.");
+      return;
+    }
+
+    setSaving(true);
+    setError("");
+
+    try {
+      const targetStudentIds = await loadTargetStudentIds({
+        orgId,
+        schoolId,
+        academicYearId,
+        classId,
+      });
+
+      const guardianRefsByStudentId = await loadGuardianRefsByStudentId(
+        orgId,
+        targetStudentIds,
+      );
+
+      const sessionRef = doc(
+        collection(db, `orgs/${orgId}/virtualClassSessions`),
+      );
+      const batch = writeBatch(db);
+      const now = Date.now();
+
+      const notificationTitle = "تم جدولة حصة افتراضية";
+      const notificationBody = buildSessionNotificationBody({
+        studentCount: targetStudentIds.length,
+        subjectTitle,
+        subjectKey,
+        startsAt,
+      });
+
+      batch.set(sessionRef, {
+        id: sessionRef.id,
+
+        orgId,
+        schoolId,
+        academicYearId,
+
+        termId,
+        termTitle,
+        termShortTitle,
+
+        classId,
+        gradeId,
+        streamId,
+
+        subjectKey,
+        subjectTitle,
+        classSubjectOfferingId,
+
+        title: cleanTitle,
+        description: description.trim(),
+
+        provider: "GOOGLE_MEET",
+
+        providerMeetingCode: "",
+        providerSpaceName: "",
+        providerConferenceRecordName: "",
+        providerCalendarEventId: "",
+
+        joinUrl: cleanJoinUrl,
+
+        startsAt,
+        endsAt,
+
+        status: "SCHEDULED",
+
+        /**
+         * مؤقتًا نستخدم uid إلى أن نربطها بـ personId من actor.
+         */
+        createdByPersonId: user.uid,
+        // createdByRoleKey: "",
+
+        /**
+         * سيتم تعبئتها في 15C عند إنشاء المشاركين تلقائيًا.
+         */
+        targetStudentIds,
+        targetCount: targetStudentIds.length,
+
+        attendanceImportStatus: "PENDING",
+        attendanceReviewedByPersonId: "",
+
+        recordingUrl: "",
+        summaryText: "",
+
+        isArchived: false,
+
+        createdAt: now,
+        updatedAt: now,
+      });
+
+      targetStudentIds.forEach((studentId) => {
+        const participantRef = doc(
+          collection(db, `orgs/${orgId}/virtualClassParticipants`),
+        );
+
+        batch.set(participantRef, {
+          id: participantRef.id,
+
+          orgId,
+          sessionId: sessionRef.id,
+
+          studentId,
+          guardianIds: guardianRefsByStudentId[studentId]?.guardianIds ?? [],
+          guardianUids: guardianRefsByStudentId[studentId]?.guardianUids ?? [],
+
+          joinToken: createJoinToken(),
+          joinClickedByGuardianId: "",
+          joinClickedDeviceId: "",
+
+          providerParticipantName: "",
+          providerParticipantEmail: "",
+          providerParticipantId: "",
+
+          platformJoinStatus: "SCHEDULED",
+          providerAttendanceStatus: "UNKNOWN",
+          finalAttendanceStatus: "UNKNOWN",
+
+          reviewedByPersonId: "",
+          teacherNote: "",
+
+          createdAt: now,
+          updatedAt: now,
+        });
+
+        const guardianIds =
+          guardianRefsByStudentId[studentId]?.guardianIds ?? [];
+
+        const guardianUids =
+          guardianRefsByStudentId[studentId]?.guardianUids ?? [];
+
+        guardianIds.forEach((guardianId, index) => {
+          const notificationRef = doc(
+            collection(db, `orgs/${orgId}/virtualClassNotificationLogs`),
+          );
+
+          batch.set(notificationRef, {
+            id: notificationRef.id,
+
+            orgId,
+            sessionId: sessionRef.id,
+
+            studentId,
+            guardianId,
+            guardianUid: guardianUids[index] ?? "",
+
+            type: "SESSION_SCHEDULED",
+            title: notificationTitle,
+            body: notificationBody,
+
+            status: "PENDING",
+
+            /**
+             * هذه الحقول ستفيد تطبيق ولي الأمر لاحقًا لفتح الحصة مباشرة.
+             */
+            targetRoute: "STUDENT_VIRTUAL_CLASSES",
+            targetStudentId: studentId,
+            targetSessionId: sessionRef.id,
+
+            sentAt: now,
+            createdAt: now,
+            updatedAt: now,
+          });
+        });
+      });
+
+      await batch.commit();
+
+      router.push(listHref);
+    } catch (saveError: unknown) {
+      setError(getErrorMessage(saveError));
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  if (checkingAuth) {
+    return (
+      <main className="p-6">
+        <div className="rounded-3xl border bg-card p-6 text-sm text-muted-foreground">
+          جاري التحقق من تسجيل الدخول...
+        </div>
+      </main>
+    );
+  }
+
+  return (
+    <main className="space-y-6 p-6">
+      <section className="rounded-3xl border bg-card p-6 shadow-sm">
+        <div className="flex flex-col justify-between gap-5 lg:flex-row lg:items-start">
+          <div className="space-y-3">
+            <Link
+              href={listHref}
+              className="inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground transition hover:text-foreground"
+            >
+              <ArrowRight className="h-4 w-4" />
+              رجوع لقائمة الحصص
+            </Link>
+
+            <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-sm font-semibold text-primary">
+              <Video className="h-4 w-4" />
+              إنشاء حصة افتراضية
+            </div>
+
+            <div>
+              <h1 className="text-2xl font-bold">
+                {subjectTitle || subjectKey || "المادة"} — حصة جديدة
+              </h1>
+
+              <p className="mt-2 text-sm leading-7 text-muted-foreground">
+                أنشئ حصة Google Meet مرتبطة بهذه المادة والفصل الدراسي.
+              </p>
+            </div>
+
+            <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
+              <span className="rounded-full border px-3 py-1">
+                الفصل: {classId}
+              </span>
+              <span className="rounded-full border px-3 py-1">
+                المادة: {subjectKey || "غير محددة"}
+              </span>
+              <span className="rounded-full border px-3 py-1">
+                الفصل الدراسي:{" "}
+                {termShortTitle || termTitle || termId || "غير محدد"}
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {!orgId ? (
+        <section className="rounded-3xl border border-amber-200 bg-amber-50 p-5 text-sm leading-7 text-amber-800 dark:border-amber-900 dark:bg-amber-950/30 dark:text-amber-200">
+          تعذر تحديد المؤسسة الحالية. تأكد من اختيار المؤسسة قبل إنشاء الحصة.
+        </section>
+      ) : null}
+
+      {error ? (
+        <section className="rounded-3xl border border-red-200 bg-red-50 p-5 text-sm leading-7 text-red-700 dark:border-red-900 dark:bg-red-950/30 dark:text-red-200">
+          <div className="font-bold">تعذر حفظ الحصة</div>
+          <div className="mt-1">{error}</div>
+        </section>
+      ) : null}
+
+      <form
+        onSubmit={handleSubmit}
+        className="rounded-3xl border bg-card p-6 shadow-sm"
+      >
+        <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_320px]">
+          <section className="space-y-5">
+            <div className="space-y-2">
+              <label htmlFor="title" className="text-sm font-semibold">
+                عنوان الحصة
+              </label>
+              <input
+                id="title"
+                value={title}
+                onChange={(event) => setTitle(event.target.value)}
+                className="w-full rounded-2xl border bg-background px-4 py-3 text-sm outline-none transition focus:border-primary"
+                placeholder="مثال: مراجعة الوحدة الأولى"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label htmlFor="joinUrl" className="text-sm font-semibold">
+                رابط Google Meet
+              </label>
+              <input
+                id="joinUrl"
+                value={joinUrl}
+                onChange={(event) => setJoinUrl(event.target.value)}
+                className="w-full rounded-2xl border bg-background px-4 py-3 text-sm outline-none transition focus:border-primary"
+                placeholder="https://meet.google.com/xxx-xxxx-xxx"
+                dir="ltr"
+              />
+              <p className="text-xs leading-6 text-muted-foreground">
+                مؤقتًا نضع رابط Google Meet يدويًا. لاحقًا سننشئ الرابط آليًا من
+                Google API.
+              </p>
+            </div>
+
+            <div className="grid gap-4 md:grid-cols-2">
+              <div className="space-y-2">
+                <label htmlFor="startsAt" className="text-sm font-semibold">
+                  وقت البداية
+                </label>
+                <input
+                  id="startsAt"
+                  type="datetime-local"
+                  value={startsAtInput}
+                  onChange={(event) => setStartsAtInput(event.target.value)}
+                  className="w-full rounded-2xl border bg-background px-4 py-3 text-sm outline-none transition focus:border-primary"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label htmlFor="endsAt" className="text-sm font-semibold">
+                  وقت النهاية
+                </label>
+                <input
+                  id="endsAt"
+                  type="datetime-local"
+                  value={endsAtInput}
+                  onChange={(event) => setEndsAtInput(event.target.value)}
+                  className="w-full rounded-2xl border bg-background px-4 py-3 text-sm outline-none transition focus:border-primary"
+                />
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <label htmlFor="description" className="text-sm font-semibold">
+                وصف مختصر
+              </label>
+              <textarea
+                id="description"
+                value={description}
+                onChange={(event) => setDescription(event.target.value)}
+                className="min-h-28 w-full rounded-2xl border bg-background px-4 py-3 text-sm outline-none transition focus:border-primary"
+                placeholder="اكتب هدف الحصة أو تعليمات الدخول..."
+              />
+            </div>
+          </section>
+
+          <aside className="space-y-4 rounded-3xl border bg-background p-5">
+            <div className="flex items-center gap-3">
+              <div className="rounded-2xl bg-primary/10 p-3 text-primary">
+                <CalendarClock className="h-5 w-5" />
+              </div>
+
+              <div>
+                <h2 className="font-bold">بيانات الربط</h2>
+                <p className="text-xs text-muted-foreground">
+                  تحفظ تلقائيًا مع الحصة.
+                </p>
+              </div>
+            </div>
+
+            <div className="space-y-2 text-sm">
+              <div className="rounded-2xl border px-3 py-2">
+                <div className="text-xs text-muted-foreground">المدرسة</div>
+                <div className="font-semibold">{schoolId || "غير محدد"}</div>
+              </div>
+
+              <div className="rounded-2xl border px-3 py-2">
+                <div className="text-xs text-muted-foreground">السنة</div>
+                <div className="font-semibold">
+                  {academicYearId || "غير محدد"}
+                </div>
+              </div>
+
+              <div className="rounded-2xl border px-3 py-2">
+                <div className="text-xs text-muted-foreground">الفصل</div>
+                <div className="font-semibold">{classId}</div>
+              </div>
+
+              <div className="rounded-2xl border px-3 py-2">
+                <div className="text-xs text-muted-foreground">المادة</div>
+                <div className="font-semibold">
+                  {subjectTitle || subjectKey || "غير محددة"}
+                </div>
+              </div>
+
+              <div className="rounded-2xl border px-3 py-2">
+                <div className="text-xs text-muted-foreground">
+                  الفصل الدراسي
+                </div>
+                <div className="font-semibold">
+                  {termShortTitle || termTitle || termId || "غير محدد"}
+                </div>
+              </div>
+            </div>
+
+            <div className="rounded-2xl bg-muted p-3 text-xs leading-6 text-muted-foreground">
+              في الخطوة التالية سننشئ المشاركين تلقائيًا لكل طلاب الفصل، لذلك
+              سيظهر عدد الطلاب المستهدفين في القائمة بعد 15C.
+            </div>
+          </aside>
+        </div>
+
+        <div className="mt-6 flex flex-wrap justify-end gap-2 border-t pt-5">
+          <Button asChild type="button" variant="outline">
+            <Link href={listHref}>إلغاء</Link>
+          </Button>
+
+          <Button type="submit" disabled={saving || checkingAuth}>
+            <Save className="h-4 w-4" />
+            {saving ? "جاري الحفظ..." : "حفظ الحصة"}
+          </Button>
+        </div>
+      </form>
+    </main>
+  );
+}

@@ -1,0 +1,201 @@
+import 'dart:math';
+
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
+
+const webVapidKey =
+    'BJU1plPF3C-I7uBjJvezVIMXPC2HC1669RunhOaIr8Ddu-LWGiAGBsSNe00TllBnHQgN2nD5L-a7lR5XOZuJZq0';
+
+class DeviceTokenService {
+  DeviceTokenService({
+    FirebaseAuth? auth,
+    FirebaseFirestore? firestore,
+    FirebaseMessaging? messaging,
+    this.orgId = 'takween',
+  }) : _auth = auth ?? FirebaseAuth.instance,
+       _firestore = firestore ?? FirebaseFirestore.instance,
+       _messaging = messaging ?? FirebaseMessaging.instance;
+
+  final FirebaseAuth _auth;
+  final FirebaseFirestore _firestore;
+  final FirebaseMessaging _messaging;
+  final String orgId;
+  static const _installIdKey = 'takween_parent_install_id';
+  bool _started = false;
+
+  void start() {
+    if (_started) return;
+    _started = true;
+
+    _auth.authStateChanges().listen((user) async {
+      if (user == null) return;
+      await saveCurrentDeviceToken();
+    });
+
+    _messaging.onTokenRefresh
+        .listen((token) async {
+          await _saveToken(token);
+        })
+        .onError((error) {
+          debugPrint('FCM token refresh failed: $error');
+        });
+  }
+
+  Future<void> saveCurrentDeviceToken() async {
+    final user = _auth.currentUser;
+    if (user == null) return;
+
+    try {
+      final settings = await _messaging.requestPermission(
+        alert: true,
+        badge: true,
+        sound: true,
+      );
+
+      if (settings.authorizationStatus == AuthorizationStatus.denied) {
+        debugPrint('Notification permission denied.');
+        return;
+      }
+
+      final token = await _messaging.getToken(
+        vapidKey: kIsWeb ? webVapidKey : null,
+      );
+
+      if (token == null || token.trim().isEmpty) {
+        debugPrint('FCM token is empty.');
+        return;
+      }
+
+      await _saveToken(token);
+    } catch (error) {
+      debugPrint('Failed to save FCM token: $error');
+    }
+  }
+
+  Future<void> _saveToken(String fcmToken) async {
+    final user = _auth.currentUser;
+    if (user == null) return;
+
+    final userDoc = await _firestore.doc('users/${user.uid}').get();
+    final userData = userDoc.data();
+
+    final personId = _readString(userData, 'personId');
+    final guardianId = personId.isEmpty
+        ? ''
+        : await _findGuardianIdByPersonId(personId);
+
+    final platform = _resolvePlatform();
+    final now = DateTime.now().millisecondsSinceEpoch;
+
+    final installId = await _getOrCreateInstallId();
+
+    final tokenDocId = '${user.uid}_mobile-parent_$installId';
+    final tokenRef = _firestore.doc('orgs/$orgId/deviceTokens/$tokenDocId');
+    final existing = await tokenRef.get();
+
+    final data = <String, dynamic>{
+      'id': tokenDocId,
+      'orgId': orgId,
+
+      'uid': user.uid,
+      'personId': personId,
+      'guardianId': guardianId,
+      'staffPersonId': '',
+
+      'platform': platform,
+      'app': 'mobile-parent',
+
+      'fcmToken': fcmToken,
+      'deviceId': installId,
+
+      'isActive': true,
+
+      'lastSeenAt': now,
+      'updatedAt': now,
+
+      'lastErrorCode': '',
+      'lastErrorMessage': '',
+      'disabledAt': FieldValue.delete(),
+    };
+
+    if (!existing.exists) {
+      data['createdAt'] = now;
+    }
+
+    await tokenRef.set(data, SetOptions(merge: true));
+
+    debugPrint('FCM token saved: $tokenDocId');
+  }
+
+  Future<String> _findGuardianIdByPersonId(String personId) async {
+    final guardiansSnap = await _firestore
+        .collection('orgs/$orgId/guardians')
+        .where('personId', isEqualTo: personId)
+        .limit(5)
+        .get();
+
+    for (final doc in guardiansSnap.docs) {
+      final data = doc.data();
+      final isArchived = data['isArchived'] == true;
+
+      if (!isArchived) {
+        return _readString(data, 'id', fallback: doc.id);
+      }
+    }
+
+    return '';
+  }
+
+  String _resolvePlatform() {
+    if (kIsWeb) return 'WEB';
+
+    switch (defaultTargetPlatform) {
+      case TargetPlatform.android:
+        return 'ANDROID';
+      case TargetPlatform.iOS:
+        return 'IOS';
+      default:
+        return 'UNKNOWN';
+    }
+  }
+
+  String _readString(
+    Map<String, dynamic>? data,
+    String key, {
+    String fallback = '',
+  }) {
+    final value = data?[key];
+
+    if (value is String && value.trim().isNotEmpty) {
+      return value.trim();
+    }
+
+    return fallback;
+  }
+
+  Future<String> _getOrCreateInstallId() async {
+    final prefs = await SharedPreferences.getInstance();
+
+    final existing = prefs.getString(_installIdKey);
+    if (existing != null && existing.trim().isNotEmpty) {
+      return existing.trim();
+    }
+
+    final next = _generateInstallId();
+    await prefs.setString(_installIdKey, next);
+
+    return next;
+  }
+
+  String _generateInstallId() {
+    final random = Random.secure();
+    final values = List<int>.generate(16, (_) => random.nextInt(256));
+
+    return values.map((value) {
+      return value.toRadixString(16).padLeft(2, '0');
+    }).join();
+  }
+}

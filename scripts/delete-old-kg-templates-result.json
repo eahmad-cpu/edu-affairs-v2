@@ -1,0 +1,159 @@
+{
+  "orgId": "takween",
+  "dryRun": false,
+  "scanned": 31,
+  "targets": 30,
+  "deleted": [
+    {
+      "collectionName": "studentAssessmentTemplates",
+      "id": "kg-basateen-kg1-assessment-1",
+      "title": "بساتين المعرفة — المستوى الأول — القياس الأول"
+    },
+    {
+      "collectionName": "studentAssessmentTemplates",
+      "id": "kg-basateen-kg1-assessment-2",
+      "title": "بساتين المعرفة — المستوى الأول — القياس الثاني"
+    },
+    {
+      "collectionName": "studentAssessmentTemplates",
+      "id": "kg-basateen-kg2-assessment-1",
+      "title": "بساتين المعرفة — المستوى الثاني — القياس الأول"
+    },
+    {
+      "collectionName": "studentAssessmentTemplates",
+      "id": "kg-basateen-kg2-assessment-2",
+      "title": "بساتين المعرفة — المستوى الثاني — القياس الثاني"
+    },
+    {
+      "collectionName": "studentAssessmentTemplates",
+      "id": "kg-basateen-kg2-assessment-3",
+      "title": "بساتين المعرفة — المستوى الثاني — القياس الثالث"
+    },
+    {
+      "collectionName": "studentAssessmentTemplates",
+      "id": "kg-basateen-kg2-pre",
+      "title": "بساتين المعرفة — المستوى الثاني — القياس القبلي"
+    },
+    {
+      "collectionName": "studentAssessmentTemplates",
+      "id": "kg-basateen-kg3-assessment-1",
+      "title": "بساتين المعرفة — المستوى الثالث — القياس الأول"
+    },
+    {
+      "collectionName": "studentAssessmentTemplates",
+      "id": "kg-basateen-kg3-assessment-2",
+      "title": "بساتين المعرفة — المستوى الثالث — القياس الثاني"
+    },
+    {
+      "collectionName": "studentAssessmentTemplates",
+      "id": "kg-basateen-kg3-assessment-3",
+      "title": "بساتين المعرفة — المستوى الثالث — القياس الثالث"
+    },
+    {
+      "collectionName": "studentAssessmentTemplates",
+      "id": "kg-basateen-kg3-assessment-4",
+      "title": "بساتين المعرفة — المستوى الثالث — القياس الرابع"
+    },
+    {
+      "collectionName": "studentAssessmentTemplates",
+      "id": "kg-basateen-kg3-assessment-5",
+      "title": "بساتين المعرفة — المستوى الثالث — القياس الخامس"
+    },
+    {
+      "collectionName": "studentAssessmentTemplates",
+      "id": "kg-quran-kg1-assessment-1",
+      "title": "القرآن — المستوى الأول — القياس الأول"
+    },
+    {
+      "collectionName": "studentAssessmentTemplates",
+      "id": "kg-quran-kg1-assessment-2",
+      "title": "القرآن — المستوى الأول — القياس الثاني"
+    },
+    {
+      "collectionName": "studentAssessmentTemplates",
+      "id": "kg-quran-kg2-assessment-1",
+      "title": "القرآن — المستوى الثاني — القياس الأول"
+    },
+    {
+      "collectionName": "studentAssessmentTemplates",
+      "id": "kg-quran-kg2-assessment-2",
+      "title": "القرآن — المستوى الثاني — القياس الثاني"
+    },
+    {
+      "collectionName": "studentAssessmentTemplates",
+      "id": "kg-quran-kg3-assessment-1",
+      "title": "القرآن — المستوى الثالث — القياس الأول"
+    },
+    {
+      "collectionName": "studentAssessmentTemplates",
+      "id": "kg-quran-kg3-assessment-2",
+      "title": "القرآن — المستوى الثالث — القياس الثاني"
+    },
+    {
+      "collectionName": "studentAssessmentTemplates",
+      "id": "kg-teacher-measure-1",
+      "title": "القياس الأول للمعلمة"
+    },
+    {
+      "collectionName": "studentAssessmentTemplates",
+      "id": "kg-teacher-measure-2",
+      "title": "القياس الثاني للمعلمة"
+    },
+    {
+      "collectionName": "studentAssessmentTemplates",
+      "id": "kg-teacher-measure-3",
+      "title": "القياس الثالث للمعلمة"
+    },
+    {
+      "collectionName": "studentAssessmentTemplates",
+      "id": "kg-teacher-measure-4",
+      "title": "القياس الرابع للمعلمة"
+    },
+    {
+      "collectionName": "studentAssessmentTemplates",
+      "id": "kg-teacher-measure-5",
+      "title": "القياس الخامس للمعلمة"
+    },
+    {
+      "collectionName": "studentAssessmentTemplates",
+      "id": "kg-vp-measure-1",
+      "title": "القياس الأول للوكيلة"
+    },
+    {
+      "collectionName": "studentAssessmentTemplates",
+      "id": "kg-vp-measure-2",
+      "title": "القياس الثاني للوكيلة"
+    },
+    {
+      "collectionName": "studentTrackerTemplates",
+      "id": "kg-learning-gardens-tracker",
+      "title": "متابعة بساتين المعرفة"
+    },
+    {
+      "collectionName": "studentTrackerTemplates",
+      "id": "kg-numbers-tracker",
+      "title": "متابعة الأرقام"
+    },
+    {
+      "collectionName": "studentTrackerTemplates",
+      "id": "kg-quran-tracker",
+      "title": "متابعة القرآن"
+    },
+    {
+      "collectionName": "studentTrackerTemplates",
+      "id": "kg1-basateen-tracker",
+      "title": "متابعة بساتين المعرفة — المستوى الأول"
+    },
+    {
+      "collectionName": "studentTrackerTemplates",
+      "id": "kg1-numbers-tracker",
+      "title": "متابعة الأرقام — المستوى الأول"
+    },
+    {
+      "collectionName": "studentTrackerTemplates",
+      "id": "kg1-quran-tracker",
+      "title": "متابعة القرآن — المستوى الأول"
+    }
+  ],
+  "skippedMissing": []
+}

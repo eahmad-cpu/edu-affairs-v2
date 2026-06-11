@@ -1,0 +1,11 @@
+packages:
+  - apps/*
+  - packages/*
+  - functions
+
+onlyBuiltDependencies:
+  - '@firebase/util'
+  - msw
+  - protobufjs
+  - sharp
+  - unrs-resolver

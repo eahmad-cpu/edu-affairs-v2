@@ -1,0 +1,2 @@
+node import-firestore-seed.cjs ./edu_affairs_seed.json --dry-run
+node import-firestore-seed.cjs ./edu_affairs_seed.json --serviceAccount=./service-account.json

@@ -1,0 +1,26 @@
+{
+  "name": "edu-affairs-v2",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "scripts": {
+    "dev": "pnpm --parallel --filter @takween/contracts --filter web-admin dev",
+    "dev:web": "pnpm --filter web-admin dev",
+    "dev:contracts": "pnpm --filter @takween/contracts dev",
+    "build": "pnpm --filter @takween/contracts build && pnpm --filter web-admin build",
+    "build:web": "pnpm --filter web-admin build",
+    "build:contracts": "pnpm --filter @takween/contracts build",
+    "lint": "pnpm --filter web-admin lint"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.33.0",
+  "volta": {
+    "node": "20.20.0"
+  },
+  "devDependencies": {
+    "firebase-admin": "^13.7.0",
+    "typescript": "^6.0.3"
+  }
+}
