@@ -1,746 +1,282 @@
-import {
-  resolveTermContext,
-  type TermContextInput,
-} from "../term-context";
-
 import type {
-  CasePriority,
-  CaseStatus,
-  Membership,
-  MembershipRole,
-  OperationalAssignment,
-  StaffTask,
   StudentCase,
-  StudentCaseOriginKind,
-  StudentCaseRoutingActionType,
-  StudentCaseRoutingEvent,
-  StudentCaseType,
+  StudentCaseEvent,
+  StudentCaseStatus,
 } from "@takween/contracts";
 
-import type { ActorAccessContext } from "../access";
-import { canRunOperation } from "../access";
+export type StudentCaseActor = {
+  personId: string;
+  displayName?: string;
+  roleKey?: string;
 
-export type BuildStudentCaseParams = {
-  id: string;
+  orgId: string;
 
+  schoolIds?: string[];
+  classIds?: string[];
+
+  permissions?: string[];
+
+  isOrgWideActor?: boolean;
+  isSchoolWideActor?: boolean;
+};
+
+export type StudentCaseStudentScope = {
   orgId: string;
   schoolId: string;
   academicYearId: string;
-termContext?: TermContextInput;
-  studentId: string;
-
-  caseType: StudentCaseType;
-
-  title: string;
-  description?: string;
-
-  status?: CaseStatus;
-  priority?: CasePriority;
-  originKind?: StudentCaseOriginKind;
-
-  currentOwnerRoleKey?: MembershipRole;
-  currentAssignedPersonId?: string;
-
-  createdByPersonId: string;
-  createdByRoleKey?: MembershipRole;
-
-  latestNote?: string;
-
-  guardianNotifiedOnCreate?: boolean;
-  guardianNotifiedOnForward?: boolean;
-  guardianNotifiedOnClose?: boolean;
-
-  nowMs?: number;
+  classId?: string;
 };
 
-export type StudentCaseSummary = {
-  totalCount: number;
+export type StudentCaseAssigneeCandidate = {
+  personId: string;
+  displayName: string;
+  roleKey?: string;
 
-  openCount: number;
-  inProgressCount: number;
-  referredCount: number;
-  resolvedCount: number;
-  closedCount: number;
-  cancelledCount: number;
+  orgId: string;
+  schoolIds?: string[];
+  classIds?: string[];
 
-  lowPriorityCount: number;
-  mediumPriorityCount: number;
-  highPriorityCount: number;
-  criticalPriorityCount: number;
-
-  assignedToMeCount: number;
-  createdByMeCount: number;
+  canReceiveStudentCases?: boolean;
+  canHandleStudentCases?: boolean;
+  isActive?: boolean;
 };
 
-export type StudentCaseVisibleAction =
-  | "VIEW"
-  | "ADD_NOTE"
-  | "ASSIGN"
-  | "FORWARD"
-  | "RETURN"
-  | "ESCALATE"
-  | "RESOLVE"
-  | "CLOSE"
-  | "CANCEL"
-  | "REOPEN";
+export type StudentCaseTimelineItem = {
+  id: string;
+  event: StudentCaseEvent;
+  label: string;
+  createdAt: number;
+};
 
-function getMembershipRole(membership: Membership): MembershipRole | undefined {
-  return membership.roleKey ?? membership.role;
+const CASE_RECEIVER_ROLE_KEYS = new Set([
+  "PRINCIPAL",
+  "SCHOOL_PRINCIPAL",
+  "VICE_PRINCIPAL",
+  "STUDENT_AFFAIRS_VP",
+  "COUNSELOR",
+  "STUDENT_COUNSELOR",
+  "GUIDANCE_COUNSELOR",
+  "SCHOOL_ADMIN",
+  "MANAGER",
+  "DIRECTOR",
+]);
+
+const CASE_CREATE_PERMISSION_KEYS = new Set([
+  "STUDENT_CASE_CREATE",
+  "STUDENT_CASE_REFERRAL",
+  "STUDENT_CASE_MANAGE",
+  "CASES_MANAGE",
+]);
+
+const CASE_HANDLE_PERMISSION_KEYS = new Set([
+  "STUDENT_CASE_HANDLE",
+  "STUDENT_CASE_TRANSFER",
+  "STUDENT_CASE_MANAGE",
+  "CASES_MANAGE",
+]);
+
+function hasAnyPermission(
+  permissions: string[] | undefined,
+  allowed: Set<string>
+) {
+  return (permissions ?? []).some((permission) => allowed.has(permission));
 }
 
-function actorRoleKeys(context: ActorAccessContext): MembershipRole[] {
-  return (context.memberships ?? [])
-    .filter((membership) => membership.orgId === context.orgId)
-    .filter((membership) => membership.isActive !== false)
-    .map((membership) => getMembershipRole(membership))
-    .filter((roleKey): roleKey is MembershipRole => !!roleKey);
+function sameOrg(actor: Pick<StudentCaseActor, "orgId">, orgId: string) {
+  return actor.orgId === orgId;
 }
 
-function hasCaseManagementPermission(context: ActorAccessContext): boolean {
-  return (context.memberships ?? []).some((membership) => {
-    if (membership.orgId !== context.orgId) return false;
-    if (membership.isActive === false) return false;
+function actorCanAccessSchool(
+  actor: StudentCaseActor,
+  schoolId: string
+): boolean {
+  if (actor.isOrgWideActor) return true;
+  if (actor.isSchoolWideActor && actor.schoolIds?.includes(schoolId)) {
+    return true;
+  }
 
-    return (
-      membership.permissions?.manageCases === true ||
-      membership.permissions?.manageOrg === true ||
-      membership.permissions?.manageSchools === true ||
-      membership.scopes?.canAccessAllSchools === true
-    );
-  });
+  return actor.schoolIds?.includes(schoolId) ?? false;
 }
 
-function isActiveAssignment(params: {
-  assignment: OperationalAssignment;
-  actorPersonId: string;
-  operationKind: "STUDENT_CASE_REFERRAL" | "STUDENT_CASE_HANDLING";
-  nowMs: number;
+function actorCanAccessClass(
+  actor: StudentCaseActor,
+  classId?: string
+): boolean {
+  if (!classId) return true;
+  if (actor.isOrgWideActor || actor.isSchoolWideActor) return true;
+
+  return actor.classIds?.includes(classId) ?? false;
+}
+
+function roleCanReceiveStudentCases(roleKey?: string) {
+  if (!roleKey) return false;
+  return CASE_RECEIVER_ROLE_KEYS.has(roleKey);
+}
+
+function statusAllowsTransfer(status: StudentCaseStatus) {
+  return !["CLOSED", "CANCELLED", "RESOLVED"].includes(status);
+}
+
+export function canCreateStudentCase(params: {
+  actor: StudentCaseActor;
+  studentScope: StudentCaseStudentScope;
 }) {
-  const { assignment, actorPersonId, operationKind, nowMs } = params;
+  const { actor, studentScope } = params;
 
-  if (assignment.actorPersonId !== actorPersonId) return false;
-  if (assignment.operationKind !== operationKind) return false;
-  if (assignment.isActive === false) return false;
-  if (assignment.status === "ENDED" || assignment.status === "SUSPENDED") {
-    return false;
-  }
+  if (!sameOrg(actor, studentScope.orgId)) return false;
+  if (!actorCanAccessSchool(actor, studentScope.schoolId)) return false;
+  if (!actorCanAccessClass(actor, studentScope.classId)) return false;
 
-  if (typeof assignment.startAt === "number" && assignment.startAt > nowMs) {
-    return false;
-  }
-
-  if (typeof assignment.endAt === "number" && assignment.endAt < nowMs) {
-    return false;
+  if (hasAnyPermission(actor.permissions, CASE_CREATE_PERMISSION_KEYS)) {
+    return true;
   }
 
   return true;
 }
 
-function isCaseOpenForWork(studentCase: StudentCase): boolean {
-  return (
-    studentCase.status === "OPEN" ||
-    studentCase.status === "IN_PROGRESS" ||
-    studentCase.status === "REFERRED" ||
-    studentCase.status === "RESOLVED"
-  );
-}
-
-function isCaseFinal(studentCase: StudentCase): boolean {
-  return studentCase.status === "CLOSED" || studentCase.status === "CANCELLED";
-}
-
-function priorityToTaskPriority(priority: CasePriority): StaffTask["priority"] {
-  switch (priority) {
-    case "CRITICAL":
-      return "URGENT";
-    case "HIGH":
-      return "HIGH";
-    case "MEDIUM":
-      return "NORMAL";
-    case "LOW":
-    default:
-      return "LOW";
-  }
-}
-
-function caseStatusToTaskStatus(status: CaseStatus): StaffTask["status"] {
-  switch (status) {
-    case "OPEN":
-    case "REFERRED":
-      return "PENDING";
-    case "IN_PROGRESS":
-      return "IN_PROGRESS";
-    case "RESOLVED":
-      return "NEEDS_REVIEW";
-    case "CLOSED":
-      return "COMPLETED";
-    case "CANCELLED":
-      return "CANCELLED";
-    default:
-      return "PENDING";
-  }
-}
-
-export function canCreateStudentCase(params: {
-  context: ActorAccessContext;
-  caseType?: StudentCaseType;
-  classId?: string;
-  originKind?: StudentCaseOriginKind;
-  nowMs?: number;
-}): boolean {
-  if (params.caseType?.isActive === false) return false;
-
-  if (
-    params.originKind === "TEACHER_REFERRAL" &&
-    params.caseType &&
-    !params.caseType.allowTeacherCreate
-  ) {
-    return false;
-  }
-
-  if (hasCaseManagementPermission(params.context)) return true;
-
-  return canRunOperation({
-    context: params.context,
-    operationKind: "STUDENT_CASE_REFERRAL",
-    permission: "CREATE",
-    scopeType: params.classId ? "CLASS" : undefined,
-    scopeId: params.classId,
-    nowMs: params.nowMs,
-  });
-}
-
 export function canViewStudentCase(params: {
-  context: ActorAccessContext;
-  case: StudentCase;
-}): boolean {
-  const { context, case: studentCase } = params;
+  actor: StudentCaseActor;
+  studentCase: StudentCase;
+}) {
+  const { actor, studentCase } = params;
 
-  if (studentCase.orgId !== context.orgId) return false;
+  if (!sameOrg(actor, studentCase.orgId)) return false;
+  if (!actorCanAccessSchool(actor, studentCase.schoolId)) return false;
 
-  if (hasCaseManagementPermission(context)) return true;
+  if (actor.isOrgWideActor || actor.isSchoolWideActor) return true;
 
-  if (studentCase.createdByPersonId === context.actorPersonId) return true;
+  if (studentCase.createdByPersonId === actor.personId) return true;
 
-  if (studentCase.currentAssignedPersonId === context.actorPersonId) {
+  if (studentCase.currentAssigneePersonId === actor.personId) return true;
+
+  if (studentCase.classId && actorCanAccessClass(actor, studentCase.classId)) {
     return true;
   }
 
-  const roles = actorRoleKeys(context);
-
-  return roles.includes(studentCase.currentOwnerRoleKey);
+  return hasAnyPermission(actor.permissions, CASE_HANDLE_PERMISSION_KEYS);
 }
 
-export function canHandleStudentCase(params: {
-  context: ActorAccessContext;
-  case: StudentCase;
-}): boolean {
-  const { context, case: studentCase } = params;
+export function canTransferStudentCase(params: {
+  actor: StudentCaseActor;
+  studentCase: StudentCase;
+}) {
+  const { actor, studentCase } = params;
 
-  if (!canViewStudentCase(params)) return false;
-  if (isCaseFinal(studentCase)) return false;
+  if (!canViewStudentCase({ actor, studentCase })) return false;
+  if (!statusAllowsTransfer(studentCase.status)) return false;
 
-  if (hasCaseManagementPermission(context)) return true;
+  if (actor.isOrgWideActor || actor.isSchoolWideActor) return true;
 
-  if (studentCase.currentAssignedPersonId === context.actorPersonId) {
-    return true;
-  }
+  if (studentCase.currentAssigneePersonId === actor.personId) return true;
 
-  const roles = actorRoleKeys(context);
-
-  return roles.includes(studentCase.currentOwnerRoleKey);
+  return hasAnyPermission(actor.permissions, CASE_HANDLE_PERMISSION_KEYS);
 }
 
-export function canForwardStudentCase(params: {
-  context: ActorAccessContext;
-  case: StudentCase;
-  caseType?: StudentCaseType;
-  toOwnerRoleKey: MembershipRole;
-}): boolean {
-  if (!canHandleStudentCase(params)) return false;
+export function resolveAvailableCaseAssignees(params: {
+  actor: StudentCaseActor;
+  studentCase?: StudentCase;
+  studentScope?: StudentCaseStudentScope;
+  candidates: StudentCaseAssigneeCandidate[];
+}) {
+  const { actor, studentCase, studentScope, candidates } = params;
 
-  if (!params.caseType) return true;
+  const orgId = studentCase?.orgId ?? studentScope?.orgId;
+  const schoolId = studentCase?.schoolId ?? studentScope?.schoolId;
+  const classId = studentCase?.classId ?? studentScope?.classId;
 
-  return params.caseType.allowedForwardToRoleKeys.includes(
-    params.toOwnerRoleKey,
-  );
-}
+  if (!orgId || !schoolId) return [];
 
-export function canCloseStudentCase(params: {
-  context: ActorAccessContext;
-  case: StudentCase;
-}): boolean {
-  if (!canHandleStudentCase(params)) return false;
+  return candidates
+    .filter((candidate) => candidate.isActive !== false)
+    .filter((candidate) => candidate.orgId === orgId)
+    .filter((candidate) => candidate.personId !== actor.personId)
+    .filter((candidate) => {
+      if (candidate.canReceiveStudentCases) return true;
+      if (candidate.canHandleStudentCases) return true;
+      return roleCanReceiveStudentCases(candidate.roleKey);
+    })
+    .filter((candidate) => {
+      const candidateSchools = candidate.schoolIds ?? [];
+      if (!candidateSchools.length) return true;
+      return candidateSchools.includes(schoolId);
+    })
+    .filter((candidate) => {
+      if (!classId) return true;
 
-  return (
-    params.case.status === "RESOLVED" ||
-    hasCaseManagementPermission(params.context)
-  );
-}
+      const candidateClasses = candidate.classIds ?? [];
+      if (!candidateClasses.length) return true;
 
-export function resolveCaseInitialOwner(params: {
-  caseType: StudentCaseType;
-  preferredAssignedPersonId?: string;
-}): {
-  ownerRoleKey: MembershipRole;
-  assignedPersonId: string;
-} {
-  return {
-    ownerRoleKey: params.caseType.defaultOwnerRoleKey,
-    assignedPersonId: params.preferredAssignedPersonId ?? "",
-  };
-}
+      return candidateClasses.includes(classId);
+    })
+    .sort((a, b) => {
+      const roleCompare = (a.roleKey ?? "").localeCompare(b.roleKey ?? "", "ar");
+      if (roleCompare !== 0) return roleCompare;
 
-export function buildStudentCase(params: BuildStudentCaseParams): StudentCase {
-  const nowMs = params.nowMs ?? Date.now();
-
-  const initialOwner = resolveCaseInitialOwner({
-    caseType: params.caseType,
-    preferredAssignedPersonId: params.currentAssignedPersonId,
-  });
-
-  return {
-    id: params.id,
-
-    orgId: params.orgId,
-    schoolId: params.schoolId,
-    academicYearId: params.academicYearId,
-    ...resolveTermContext(params.termContext),
-    studentId: params.studentId,
-
-    caseTypeId: params.caseType.id,
-    title: params.title,
-    description: params.description ?? "",
-
-    status: params.status ?? "OPEN",
-    priority: params.priority ?? "MEDIUM",
-    originKind: params.originKind ?? "MANUAL",
-
-    currentOwnerRoleKey:
-      params.currentOwnerRoleKey ?? initialOwner.ownerRoleKey,
-    currentAssignedPersonId:
-      params.currentAssignedPersonId ?? initialOwner.assignedPersonId,
-
-    createdByPersonId: params.createdByPersonId,
-    createdByRoleKey: params.createdByRoleKey,
-    createdAt: nowMs,
-
-    latestNote: params.latestNote ?? "",
-
-    guardianNotifiedOnCreate:
-      params.guardianNotifiedOnCreate ?? params.caseType.notifyGuardianOnCreate,
-    guardianNotifiedOnForward: params.guardianNotifiedOnForward ?? false,
-    guardianNotifiedOnClose: params.guardianNotifiedOnClose ?? false,
-
-    resolvedAt: undefined,
-    resolvedByPersonId: "",
-
-    closedAt: undefined,
-    closedByPersonId: "",
-
-    cancelledAt: undefined,
-    cancelledByPersonId: "",
-
-    updatedAt: nowMs,
-  };
-}
-
-export function buildStudentCaseRoutingEvent(params: {
-  id: string;
-  case: StudentCase;
-  actionType: StudentCaseRoutingActionType;
-
-  fromOwnerRoleKey?: MembershipRole;
-  fromAssignedPersonId?: string;
-
-  toOwnerRoleKey?: MembershipRole;
-  toAssignedPersonId?: string;
-
-  performedByPersonId: string;
-  performedByRoleKey?: MembershipRole;
-
-  performedAt?: number;
-  note?: string;
-
-  nowMs?: number;
-}): StudentCaseRoutingEvent {
-  const nowMs = params.nowMs ?? Date.now();
-  const performedAt = params.performedAt ?? nowMs;
-
-  return {
-    id: params.id,
-    caseId: params.case.id,
-    orgId: params.case.orgId,
-
-    actionType: params.actionType,
-
-    fromOwnerRoleKey:
-      params.fromOwnerRoleKey ?? params.case.currentOwnerRoleKey,
-    fromAssignedPersonId:
-      params.fromAssignedPersonId ?? params.case.currentAssignedPersonId,
-
-    toOwnerRoleKey: params.toOwnerRoleKey,
-    toAssignedPersonId: params.toAssignedPersonId ?? "",
-
-    performedByPersonId: params.performedByPersonId,
-    performedByRoleKey: params.performedByRoleKey,
-
-    performedAt,
-    note: params.note ?? "",
-
-    createdAt: nowMs,
-    updatedAt: nowMs,
-  };
-}
-
-export function assignStudentCase(params: {
-  case: StudentCase;
-  toOwnerRoleKey?: MembershipRole;
-  toAssignedPersonId?: string;
-  note?: string;
-  updatedAt?: number;
-}): StudentCase {
-  const updatedAt = params.updatedAt ?? Date.now();
-
-  return {
-    ...params.case,
-    status: "IN_PROGRESS",
-    currentOwnerRoleKey:
-      params.toOwnerRoleKey ?? params.case.currentOwnerRoleKey,
-    currentAssignedPersonId:
-      params.toAssignedPersonId ?? params.case.currentAssignedPersonId,
-    latestNote: params.note ?? params.case.latestNote,
-    updatedAt,
-  };
-}
-
-export function forwardStudentCase(params: {
-  case: StudentCase;
-  toOwnerRoleKey: MembershipRole;
-  toAssignedPersonId?: string;
-  notifyGuardian?: boolean;
-  note?: string;
-  updatedAt?: number;
-}): StudentCase {
-  const updatedAt = params.updatedAt ?? Date.now();
-
-  return {
-    ...params.case,
-    status: "REFERRED",
-    currentOwnerRoleKey: params.toOwnerRoleKey,
-    currentAssignedPersonId: params.toAssignedPersonId ?? "",
-    latestNote: params.note ?? params.case.latestNote,
-    guardianNotifiedOnForward:
-      params.notifyGuardian ?? params.case.guardianNotifiedOnForward,
-    updatedAt,
-  };
-}
-
-export function returnStudentCase(params: {
-  case: StudentCase;
-  toOwnerRoleKey: MembershipRole;
-  toAssignedPersonId?: string;
-  note?: string;
-  updatedAt?: number;
-}): StudentCase {
-  const updatedAt = params.updatedAt ?? Date.now();
-
-  return {
-    ...params.case,
-    status: "REFERRED",
-    currentOwnerRoleKey: params.toOwnerRoleKey,
-    currentAssignedPersonId: params.toAssignedPersonId ?? "",
-    latestNote: params.note ?? params.case.latestNote,
-    updatedAt,
-  };
-}
-
-export function resolveStudentCase(params: {
-  case: StudentCase;
-  resolvedByPersonId: string;
-  note?: string;
-  resolvedAt?: number;
-  autoClose?: boolean;
-}): StudentCase {
-  const resolvedAt = params.resolvedAt ?? Date.now();
-
-  return {
-    ...params.case,
-    status: params.autoClose ? "CLOSED" : "RESOLVED",
-    resolvedAt,
-    resolvedByPersonId: params.resolvedByPersonId,
-    closedAt: params.autoClose ? resolvedAt : params.case.closedAt,
-    closedByPersonId: params.autoClose
-      ? params.resolvedByPersonId
-      : params.case.closedByPersonId,
-    latestNote: params.note ?? params.case.latestNote,
-    updatedAt: resolvedAt,
-  };
-}
-
-export function closeStudentCase(params: {
-  case: StudentCase;
-  closedByPersonId: string;
-  notifyGuardian?: boolean;
-  note?: string;
-  closedAt?: number;
-}): StudentCase {
-  const closedAt = params.closedAt ?? Date.now();
-
-  return {
-    ...params.case,
-    status: "CLOSED",
-    closedAt,
-    closedByPersonId: params.closedByPersonId,
-    guardianNotifiedOnClose:
-      params.notifyGuardian ?? params.case.guardianNotifiedOnClose,
-    latestNote: params.note ?? params.case.latestNote,
-    updatedAt: closedAt,
-  };
-}
-
-export function cancelStudentCase(params: {
-  case: StudentCase;
-  cancelledByPersonId: string;
-  note?: string;
-  cancelledAt?: number;
-}): StudentCase {
-  const cancelledAt = params.cancelledAt ?? Date.now();
-
-  return {
-    ...params.case,
-    status: "CANCELLED",
-    cancelledAt,
-    cancelledByPersonId: params.cancelledByPersonId,
-    latestNote: params.note ?? params.case.latestNote,
-    updatedAt: cancelledAt,
-  };
-}
-
-export function reopenStudentCase(params: {
-  case: StudentCase;
-  toOwnerRoleKey?: MembershipRole;
-  toAssignedPersonId?: string;
-  note?: string;
-  reopenedAt?: number;
-}): StudentCase {
-  const reopenedAt = params.reopenedAt ?? Date.now();
-
-  return {
-    ...params.case,
-    status: "OPEN",
-    currentOwnerRoleKey:
-      params.toOwnerRoleKey ?? params.case.currentOwnerRoleKey,
-    currentAssignedPersonId:
-      params.toAssignedPersonId ?? params.case.currentAssignedPersonId,
-    resolvedAt: undefined,
-    resolvedByPersonId: "",
-    closedAt: undefined,
-    closedByPersonId: "",
-    cancelledAt: undefined,
-    cancelledByPersonId: "",
-    latestNote: params.note ?? params.case.latestNote,
-    updatedAt: reopenedAt,
-  };
-}
-
-export function filterStudentCasesForActor(params: {
-  context: ActorAccessContext;
-  cases: StudentCase[];
-  includeClosed?: boolean;
-  includeCancelled?: boolean;
-}): StudentCase[] {
-  return params.cases.filter((studentCase) => {
-    if (studentCase.orgId !== params.context.orgId) return false;
-    if (!params.includeClosed && studentCase.status === "CLOSED") return false;
-    if (!params.includeCancelled && studentCase.status === "CANCELLED") {
-      return false;
-    }
-
-    return canViewStudentCase({
-      context: params.context,
-      case: studentCase,
+      return a.displayName.localeCompare(b.displayName, "ar");
     });
-  });
 }
 
-export function getVisibleCaseActions(params: {
-  context: ActorAccessContext;
-  case: StudentCase;
-  caseType?: StudentCaseType;
-}): StudentCaseVisibleAction[] {
-  if (!canViewStudentCase(params)) return [];
+function getEventLabel(event: StudentCaseEvent) {
+  const actorName = event.createdByDisplayName ?? "مستخدم";
 
-  const actions: StudentCaseVisibleAction[] = ["VIEW"];
+  switch (event.eventType) {
+    case "CREATED":
+      return `${actorName} أنشأ القضية`;
 
-  if (!isCaseFinal(params.case) && canHandleStudentCase(params)) {
-    actions.push("ADD_NOTE", "ASSIGN");
+    case "REFERRED":
+      return `${actorName} أحال القضية إلى ${
+        event.toAssigneeDisplayName ?? "مستلم"
+      }`;
 
-    if (
-      !params.caseType ||
-      params.caseType.allowedForwardToRoleKeys.length > 0
-    ) {
-      actions.push("FORWARD");
-    }
+    case "TRANSFERRED":
+      return `${actorName} حوّل القضية إلى ${
+        event.toAssigneeDisplayName ?? "مستلم"
+      }`;
 
-    actions.push("RETURN", "ESCALATE", "RESOLVE", "CANCEL");
+    case "ESCALATED":
+      return `${actorName} صعّد القضية إلى ${
+        event.toAssigneeDisplayName ?? "جهة أعلى"
+      }`;
+
+    case "RETURNED":
+      return `${actorName} أعاد القضية`;
+
+    case "COMMENT_ADDED":
+      return `${actorName} أضاف تعليقًا`;
+
+    case "ACTION_ADDED":
+      return `${actorName} أضاف إجراءً`;
+
+    case "PARENT_CONTACTED":
+      return `${actorName} سجّل تواصلًا مع ولي الأمر`;
+
+    case "RESOLVED":
+      return `${actorName} وضع القضية كتم حلها`;
+
+    case "CLOSED":
+      return `${actorName} أغلق القضية`;
+
+    case "REOPENED":
+      return `${actorName} أعاد فتح القضية`;
+
+    case "CANCELLED":
+      return `${actorName} ألغى القضية`;
+
+    case "VISIBILITY_CHANGED":
+      return `${actorName} عدّل ظهور القضية لولي الأمر`;
+
+    default:
+      return `${actorName} حدّث القضية`;
   }
-
-  if (canCloseStudentCase(params)) {
-    actions.push("CLOSE");
-  }
-
-  if (hasCaseManagementPermission(params.context) && isCaseFinal(params.case)) {
-    actions.push("REOPEN");
-  }
-
-  return Array.from(new Set(actions));
 }
 
-export function calculateStudentCaseSummary(params: {
-  cases: StudentCase[];
-  actorPersonId?: string;
-}): StudentCaseSummary {
-  let openCount = 0;
-  let inProgressCount = 0;
-  let referredCount = 0;
-  let resolvedCount = 0;
-  let closedCount = 0;
-  let cancelledCount = 0;
-
-  let lowPriorityCount = 0;
-  let mediumPriorityCount = 0;
-  let highPriorityCount = 0;
-  let criticalPriorityCount = 0;
-
-  let assignedToMeCount = 0;
-  let createdByMeCount = 0;
-
-  for (const studentCase of params.cases) {
-    switch (studentCase.status) {
-      case "OPEN":
-        openCount += 1;
-        break;
-      case "IN_PROGRESS":
-        inProgressCount += 1;
-        break;
-      case "REFERRED":
-        referredCount += 1;
-        break;
-      case "RESOLVED":
-        resolvedCount += 1;
-        break;
-      case "CLOSED":
-        closedCount += 1;
-        break;
-      case "CANCELLED":
-        cancelledCount += 1;
-        break;
-      default:
-        break;
-    }
-
-    switch (studentCase.priority) {
-      case "LOW":
-        lowPriorityCount += 1;
-        break;
-      case "MEDIUM":
-        mediumPriorityCount += 1;
-        break;
-      case "HIGH":
-        highPriorityCount += 1;
-        break;
-      case "CRITICAL":
-        criticalPriorityCount += 1;
-        break;
-      default:
-        break;
-    }
-
-    if (
-      params.actorPersonId &&
-      studentCase.currentAssignedPersonId === params.actorPersonId
-    ) {
-      assignedToMeCount += 1;
-    }
-
-    if (
-      params.actorPersonId &&
-      studentCase.createdByPersonId === params.actorPersonId
-    ) {
-      createdByMeCount += 1;
-    }
-  }
-
-  return {
-    totalCount: params.cases.length,
-
-    openCount,
-    inProgressCount,
-    referredCount,
-    resolvedCount,
-    closedCount,
-    cancelledCount,
-
-    lowPriorityCount,
-    mediumPriorityCount,
-    highPriorityCount,
-    criticalPriorityCount,
-
-    assignedToMeCount,
-    createdByMeCount,
-  };
-}
-
-export function buildCaseTasksForActor(params: {
-  context: ActorAccessContext;
-  cases: StudentCase[];
-  termContext?: TermContextInput;
-  nowMs?: number;
-}): StaffTask[] {
-  const nowMs = params.nowMs ?? Date.now();
-
-  return filterStudentCasesForActor({
-    context: params.context,
-    cases: params.cases,
-  })
-    .filter((studentCase) => isCaseOpenForWork(studentCase))
-    .map((studentCase) => ({
-      id: `case-task-${studentCase.id}`,
-      orgId: studentCase.orgId,
-      ...resolveTermContext(studentCase),
-      actorPersonId: params.context.actorPersonId,
-      actorRoleKey: studentCase.currentOwnerRoleKey,
-
-      taskKind: "STUDENT_CASE_HANDLING",
-      taskTitle: studentCase.title,
-      taskDescription: studentCase.latestNote || studentCase.description,
-
-      scopeType: "CASE",
-      scopeId: studentCase.id,
-      scopeLabel: studentCase.title,
-
-      targetKind: "CASE",
-      targetId: studentCase.id,
-      targetLabel: studentCase.title,
-
-      status: caseStatusToTaskStatus(studentCase.status),
-      priority: priorityToTaskPriority(studentCase.priority),
-
-      dueAt: undefined,
-      availableFrom: studentCase.createdAt,
-      availableUntil: undefined,
-
-      sourceType: "STUDENT_CASE",
-      sourceId: studentCase.id,
-      sourcePath: `orgs/${studentCase.orgId}/studentCases/${studentCase.id}`,
-
-      actionLabel: "فتح القضية",
-      actionHref: `/cases/${studentCase.id}`,
-
-      isArchived: false,
-
-      createdAt: nowMs,
-      updatedAt: nowMs,
+export function buildStudentCaseTimeline(events: StudentCaseEvent[]) {
+  return [...events]
+    .sort((a, b) => a.createdAt - b.createdAt)
+    .map<StudentCaseTimelineItem>((event) => ({
+      id: event.id,
+      event,
+      label: getEventLabel(event),
+      createdAt: event.createdAt,
     }));
 }
