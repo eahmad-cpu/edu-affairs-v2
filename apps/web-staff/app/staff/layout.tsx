@@ -98,12 +98,12 @@ const navItems: Array<{
     moduleKey: "CASES",
   },
 
-  {
-    href: "/staff/gamification",
-    label: "التحفيز",
-    icon: Star,
-    moduleKey: "GAMIFICATION",
-  },
+  // {
+  //   href: "/staff/gamification",
+  //   label: "التحفيز",
+  //   icon: Star,
+  //   moduleKey: "GAMIFICATION",
+  // },
 
   {
     href: "/staff/transport",

@@ -2,7 +2,13 @@
 
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import {
+  browserLocalPersistence,
+  browserSessionPersistence,
+  setPersistence,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { Eye, EyeOff } from "lucide-react";
 
 import { auth } from "@/lib/firebase";
 
@@ -18,6 +24,9 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const [showPassword, setShowPassword] = useState(false);
+  const [rememberMe, setRememberMe] = useState(true);
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -28,6 +37,11 @@ export default function LoginPage() {
     setError("");
 
     try {
+      await setPersistence(
+        auth,
+        rememberMe ? browserLocalPersistence : browserSessionPersistence
+      );
+
       await signInWithEmailAndPassword(auth, email.trim(), password);
       router.replace("/select-org");
     } catch (error) {
@@ -70,14 +84,42 @@ export default function LoginPage() {
               <span className="text-sm font-medium text-slate-700">
                 كلمة المرور
               </span>
+
+              <div className="relative">
+                <input
+                  dir="ltr"
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(event) => setPassword(event.target.value)}
+                  className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 pr-10 text-left text-sm outline-none focus:border-teal-600 focus:ring-2 focus:ring-teal-100"
+                  required
+                />
+
+                <button
+                  type="button"
+                  onClick={() => setShowPassword((current) => !current)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 transition hover:text-slate-700"
+                  aria-label={
+                    showPassword ? "إخفاء كلمة المرور" : "إظهار كلمة المرور"
+                  }
+                >
+                  {showPassword ? (
+                    <EyeOff className="h-5 w-5" />
+                  ) : (
+                    <Eye className="h-5 w-5" />
+                  )}
+                </button>
+              </div>
+            </label>
+
+            <label className="flex cursor-pointer items-center gap-2 text-sm text-slate-700">
               <input
-                dir="ltr"
-                type="password"
-                value={password}
-                onChange={(event) => setPassword(event.target.value)}
-                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-left text-sm outline-none focus:border-teal-600 focus:ring-2 focus:ring-teal-100"
-                required
+                type="checkbox"
+                checked={rememberMe}
+                onChange={(event) => setRememberMe(event.target.checked)}
+                className="h-4 w-4 rounded border-slate-300 text-teal-700 focus:ring-teal-600"
               />
+              <span>تذكرني</span>
             </label>
 
             {error ? (
