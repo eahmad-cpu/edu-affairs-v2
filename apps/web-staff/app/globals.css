@@ -135,3 +135,19 @@ select,
 textarea {
   font: inherit;
 }
+
+
+.auth-glass-input:-webkit-autofill,
+.auth-glass-input:-webkit-autofill:hover,
+.auth-glass-input:-webkit-autofill:focus,
+.auth-glass-input:-webkit-autofill:active {
+  -webkit-text-fill-color: #ffffff;
+  caret-color: #ffffff;
+  box-shadow: 0 0 0 1000px rgba(15, 23, 42, 0.72) inset;
+  border-color: rgba(94, 234, 212, 0.45);
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+.auth-glass-input:-webkit-autofill::first-line {
+  color: #ffffff;
+}

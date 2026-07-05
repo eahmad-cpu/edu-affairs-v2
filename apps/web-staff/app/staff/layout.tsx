@@ -98,12 +98,12 @@ const navItems: Array<{
     moduleKey: "CASES",
   },
 
-  // {
-  //   href: "/staff/gamification",
-  //   label: "التحفيز",
-  //   icon: Star,
-  //   moduleKey: "GAMIFICATION",
-  // },
+  {
+    href: "/staff/gamification",
+    label: "التحفيز",
+    icon: Star,
+    moduleKey: "GAMIFICATION",
+  },
 
   {
     href: "/staff/transport",
@@ -151,10 +151,17 @@ function StaffShell({ children }: { children: ReactNode }) {
     ...actor.visibleModules,
     "TASKS",
   ]);
+  
+  const hiddenFromAsideModuleKeys = new Set<StaffHomeVisibleModule | "TASKS">([
+    "GAMIFICATION",
+  ]);
 
-  const visibleNavItems = navItems.filter((item) =>
-    visibleModuleSet.has(item.moduleKey),
-  );
+  const visibleNavItems = navItems.filter((item) => {
+    return (
+      visibleModuleSet.has(item.moduleKey) &&
+      !hiddenFromAsideModuleKeys.has(item.moduleKey)
+    );
+  });
 
   async function handleLogout() {
     await signOut(auth);

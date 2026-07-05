@@ -43,7 +43,7 @@ export default function SelectOrgPage() {
 
         if (nextOrgs.length === 1) {
           setOrgId(user.uid, nextOrgs[0].id);
-          router.replace("/staff");
+          router.replace("/");
         }
       } catch (error) {
         if (!active) return;
@@ -66,7 +66,7 @@ export default function SelectOrgPage() {
     if (!user) return;
 
     setOrgId(user.uid, orgId);
-    router.replace("/staff");
+    router.replace("/");
   }
 
   if (checkingAuth || loading) {

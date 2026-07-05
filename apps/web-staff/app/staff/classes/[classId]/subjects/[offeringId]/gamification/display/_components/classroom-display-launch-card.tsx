@@ -1,14 +1,25 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useMemo, useState, useEffect } from "react";
+
 import { toast } from "sonner";
-import { MonitorPlay, ShieldCheck } from "lucide-react";
+import {
+  MonitorPlay,
+  ShieldCheck,
+  Clipboard,
+  ExternalLink,
+  Pause,
+  Play,
+  Square,
+} from "lucide-react";
 
 import type {
   ClassroomDisplayPhotoFallbackMode,
   ClassroomDisplayPrivacyMode,
   MembershipRole,
+  ClassroomDisplayThemeKey,
+  ClassroomDisplaySession,
+  ClassroomDisplaySessionStatus,
 } from "@takween/contracts";
 
 import { Badge } from "@/components/ui/badge";
@@ -20,7 +31,57 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { createClassroomDisplaySession } from "@/lib/classroom-display-sessions";
+
+import {
+  createClassroomDisplaySession,
+  findReusableClassroomDisplaySession,
+  updateClassroomDisplaySessionStatus,
+  updateClassroomDisplaySessionTheme,
+} from "@/lib/classroom-display-sessions";
+
+const classroomDisplayThemeOptions: Array<{
+  value: ClassroomDisplayThemeKey;
+  label: string;
+  emoji: string;
+  description: string;
+}> = [
+  {
+    value: "STARS",
+    label: "نجوم",
+    emoji: "⭐",
+    description: "شكل عام مناسب لكل الفصول",
+  },
+  {
+    value: "SPACE",
+    label: "فضاء",
+    emoji: "🚀",
+    description: "كواكب ونجوم وحماس",
+  },
+  {
+    value: "OCEAN",
+    label: "بحر",
+    emoji: "🐬",
+    description: "ألوان هادئة ومبهجة",
+  },
+  {
+    value: "FOREST",
+    label: "غابة",
+    emoji: "🌳",
+    description: "طبيعة وحيوانات لطيفة",
+  },
+  {
+    value: "STADIUM",
+    label: "ملعب",
+    emoji: "⚽",
+    description: "منافسة وأبطال",
+  },
+  {
+    value: "CANDY",
+    label: "ألوان",
+    emoji: "🍭",
+    description: "ألوان مرحة جدًا",
+  },
+];
 
 type ClassroomDisplayLaunchCardProps = {
   orgId: string;
@@ -40,6 +101,10 @@ type ClassroomDisplayLaunchCardProps = {
   feedItemsCount: number;
 };
 
+function isReusableSessionStatus(status: ClassroomDisplaySessionStatus) {
+  return status === "ACTIVE" || status === "PAUSED";
+}
+
 export function ClassroomDisplayLaunchCard({
   orgId,
   startedByPersonId,
@@ -57,7 +122,6 @@ export function ClassroomDisplayLaunchCard({
   studentsCount,
   feedItemsCount,
 }: ClassroomDisplayLaunchCardProps) {
-  const router = useRouter();
   const [launching, setLaunching] = useState(false);
   const [privacyMode, setPrivacyMode] =
     useState<ClassroomDisplayPrivacyMode>("NICKNAME");
@@ -74,7 +138,14 @@ export function ClassroomDisplayLaunchCard({
 
   const [lessonGoal, setLessonGoal] = useState("");
   const [encouragementMessage, setEncouragementMessage] = useState("");
+  const [displayThemeKey, setDisplayThemeKey] =
+    useState<ClassroomDisplayThemeKey>("STARS");
 
+  const [activeSession, setActiveSession] =
+    useState<ClassroomDisplaySession | null>(null);
+
+  const [updatingSessionStatus, setUpdatingSessionStatus] = useState(false);
+  const [loadingReusableSession, setLoadingReusableSession] = useState(false);
   const canLaunch = useMemo(() => {
     return Boolean(
       orgId &&
@@ -88,6 +159,146 @@ export function ClassroomDisplayLaunchCard({
     );
   }, [academicYearId, classId, offeringId, schoolId, subjectKey, termId]);
 
+  function buildDisplaySessionUrl(sessionId: string, themeOverride?: string) {
+    return `/display/classroom/sessions/${sessionId}?orgId=${encodeURIComponent(
+      orgId,
+    )}&theme=${encodeURIComponent(
+      themeOverride ?? activeSession?.displayThemeKey ?? displayThemeKey,
+    )}`;
+  }
+
+  function openDisplaySession(sessionId: string, themeOverride?: string) {
+    window.open(
+      buildDisplaySessionUrl(sessionId, themeOverride),
+      "_blank",
+      "noopener,noreferrer",
+    );
+  }
+
+  async function openSessionWithSelectedTheme(
+    session: ClassroomDisplaySession,
+  ) {
+    const now = Date.now();
+
+    const nextSession =
+      session.displayThemeKey === displayThemeKey
+        ? session
+        : {
+            ...session,
+            displayThemeKey,
+            updatedAt: now,
+          };
+
+    if (session.displayThemeKey !== displayThemeKey) {
+      await updateClassroomDisplaySessionTheme({
+        orgId,
+        sessionId: session.id,
+        displayThemeKey,
+      });
+    }
+
+    setActiveSession(nextSession);
+    openDisplaySession(nextSession.id, nextSession.displayThemeKey);
+  }
+
+  async function copyDisplaySessionLink() {
+    if (!activeSession) return;
+
+    const url = `${window.location.origin}${buildDisplaySessionUrl(
+      activeSession.id,
+      activeSession.displayThemeKey ?? displayThemeKey,
+    )}`;
+
+    try {
+      await navigator.clipboard.writeText(url);
+      toast.success("تم نسخ رابط شاشة الطلاب.");
+    } catch {
+      toast.error("تعذر نسخ الرابط.");
+    }
+  }
+
+  async function handleUpdateSessionStatus(
+    nextStatus: ClassroomDisplaySessionStatus,
+  ) {
+    if (!activeSession) return;
+
+    setUpdatingSessionStatus(true);
+
+    try {
+      await updateClassroomDisplaySessionStatus({
+        orgId,
+        sessionId: activeSession.id,
+        status: nextStatus,
+      });
+
+      const now = Date.now();
+
+      setActiveSession((current) =>
+        current
+          ? {
+              ...current,
+              status: nextStatus,
+              updatedAt: now,
+              ...(nextStatus === "ENDED" ? { endedAt: now } : {}),
+              ...(nextStatus === "ACTIVE" ? { lastHeartbeatAt: now } : {}),
+            }
+          : current,
+      );
+
+      if (nextStatus === "PAUSED") {
+        toast.success("تم إيقاف شاشة الطلاب مؤقتًا.");
+      } else if (nextStatus === "ACTIVE") {
+        toast.success("تم استئناف شاشة الطلاب.");
+      } else if (nextStatus === "ENDED") {
+        toast.success("تم إنهاء جلسة شاشة الطلاب.");
+      }
+    } catch {
+      toast.error("تعذر تحديث حالة الجلسة.");
+    } finally {
+      setUpdatingSessionStatus(false);
+    }
+  }
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function loadReusableSession() {
+      if (!orgId || !schoolId || !academicYearId || !termId) return;
+      if (!classId || !offeringId) return;
+
+      setLoadingReusableSession(true);
+
+      try {
+        const session = await findReusableClassroomDisplaySession({
+          orgId,
+          schoolId,
+          academicYearId,
+          termId,
+          classId,
+          classSubjectOfferingId: offeringId,
+        });
+
+        if (cancelled) return;
+
+        setActiveSession(session);
+      } catch {
+        if (!cancelled) {
+          toast.error("تعذر فحص الجلسة النشطة الحالية.");
+        }
+      } finally {
+        if (!cancelled) {
+          setLoadingReusableSession(false);
+        }
+      }
+    }
+
+    void loadReusableSession();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [academicYearId, classId, offeringId, , orgId, schoolId, termId]);
+
   async function handleLaunch() {
     if (!canLaunch) {
       toast.error("لا يمكن إطلاق شاشة الطلاب؛ توجد بيانات ناقصة.");
@@ -97,6 +308,27 @@ export function ClassroomDisplayLaunchCard({
     setLaunching(true);
 
     try {
+      if (activeSession && isReusableSessionStatus(activeSession.status)) {
+        await openSessionWithSelectedTheme(activeSession);
+        toast.success("تم فتح الجلسة الحالية بالثيم المختار.");
+        return;
+      }
+
+      const reusableSession = await findReusableClassroomDisplaySession({
+        orgId,
+        schoolId,
+        academicYearId,
+        termId,
+        classId,
+        classSubjectOfferingId: offeringId,
+      });
+
+      if (reusableSession) {
+        await openSessionWithSelectedTheme(reusableSession);
+        toast.success("تم العثور على جلسة نشطة وفتحها بالثيم المختار.");
+        return;
+      }
+
       const session = await createClassroomDisplaySession({
         orgId,
         schoolId,
@@ -128,11 +360,16 @@ export function ClassroomDisplayLaunchCard({
 
         lessonGoal,
         encouragementMessage,
+        displayThemeKey,
       });
 
       toast.success("تم إنشاء جلسة شاشة الفصل");
 
-      router.push(`/staff/classroom-display/sessions/${session.id}`);
+      setActiveSession(session);
+
+      openDisplaySession(session.id, session.displayThemeKey);
+
+      toast.success("تم فتح شاشة الطلاب في تبويب جديد.");
     } catch (error) {
       console.error(error);
       toast.error("تعذر إنشاء جلسة شاشة الفصل");
@@ -281,13 +518,46 @@ export function ClassroomDisplayLaunchCard({
           </div>
         ) : null}
 
+        <div className="grid gap-3">
+          <div>
+            <p className="text-sm font-bold">شكل شاشة الطلاب</p>
+            <p className="text-xs text-muted-foreground">
+              اختر الشكل المناسب لعمر الطلاب وطبيعة الحصة.
+            </p>
+          </div>
+
+          <div className="grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
+            {classroomDisplayThemeOptions.map((option) => {
+              const selected = displayThemeKey === option.value;
+
+              return (
+                <button
+                  key={option.value}
+                  type="button"
+                  onClick={() => setDisplayThemeKey(option.value)}
+                  className={`rounded-2xl border p-3 text-right transition ${
+                    selected
+                      ? "border-primary bg-primary/10"
+                      : "border-border bg-background hover:bg-muted"
+                  }`}
+                >
+                  <div className="flex items-center gap-2">
+                    <span className="text-2xl">{option.emoji}</span>
+                    <span className="font-black">{option.label}</span>
+                  </div>
+
+                  <p className="mt-1 text-xs text-muted-foreground">
+                    {option.description}
+                  </p>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
         <div className="flex flex-col justify-between gap-3 rounded-2xl border border-border bg-muted/30 p-4 md:flex-row md:items-center">
           <div className="flex items-start gap-2 text-sm leading-7 text-muted-foreground">
             <ShieldCheck className="mt-0.5 size-4 shrink-0 text-primary" />
-            <span>
-              الخطوة الحالية تضيف واجهة الإعدادات فقط. إنشاء الجلسة في Firestore
-              وفتح شاشة الطلاب سيكون في الخطوة التالية.
-            </span>
           </div>
 
           <Button
@@ -296,9 +566,86 @@ export function ClassroomDisplayLaunchCard({
             disabled={!canLaunch || launching}
           >
             <MonitorPlay className="size-4" />
-            {launching ? "جارٍ الإطلاق..." : "فتح شاشة الطلاب"}
+            {activeSession && isReusableSessionStatus(activeSession.status)
+              ? "فتح الجلسة الحالية"
+              : "فتح شاشة الطلاب"}
           </Button>
         </div>
+
+        {loadingReusableSession ? (
+          <div className="rounded-2xl border bg-muted/40 p-3 text-sm text-muted-foreground">
+            جارٍ فحص وجود جلسة شاشة طلاب نشطة...
+          </div>
+        ) : null}
+
+        {activeSession ? (
+          <div className="rounded-2xl border bg-muted/40 p-4">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <div>
+                <p className="font-black">الجلسة الحالية</p>
+                <p className="mt-1 text-xs text-muted-foreground">
+                  الحالة الحالية: {activeSession.status}
+                </p>
+              </div>
+
+              <div className="flex flex-wrap gap-2">
+                <Button
+                  type="button"
+                  variant="secondary"
+                  onClick={() => openDisplaySession(activeSession.id)}
+                >
+                  <ExternalLink className="ml-2 size-4" />
+                  فتح الشاشة
+                </Button>
+
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={copyDisplaySessionLink}
+                >
+                  <Clipboard className="ml-2 size-4" />
+                  نسخ الرابط
+                </Button>
+
+                {activeSession.status === "ACTIVE" ? (
+                  <Button
+                    type="button"
+                    variant="outline"
+                    disabled={updatingSessionStatus}
+                    onClick={() => handleUpdateSessionStatus("PAUSED")}
+                  >
+                    <Pause className="ml-2 size-4" />
+                    إيقاف مؤقت
+                  </Button>
+                ) : null}
+
+                {activeSession.status === "PAUSED" ? (
+                  <Button
+                    type="button"
+                    variant="outline"
+                    disabled={updatingSessionStatus}
+                    onClick={() => handleUpdateSessionStatus("ACTIVE")}
+                  >
+                    <Play className="ml-2 size-4" />
+                    استئناف
+                  </Button>
+                ) : null}
+
+                {activeSession.status !== "ENDED" ? (
+                  <Button
+                    type="button"
+                    variant="destructive"
+                    disabled={updatingSessionStatus}
+                    onClick={() => handleUpdateSessionStatus("ENDED")}
+                  >
+                    <Square className="ml-2 size-4" />
+                    إنهاء
+                  </Button>
+                ) : null}
+              </div>
+            </div>
+          </div>
+        ) : null}
 
         <div className="hidden">
           {JSON.stringify({

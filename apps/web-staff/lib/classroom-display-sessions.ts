@@ -1,12 +1,22 @@
-import { collection, doc, setDoc } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDocs,
+  query,
+  setDoc,
+  updateDoc,
+  where,
+} from "firebase/firestore";
 
 import type {
   ClassroomDisplayPhotoFallbackMode,
   ClassroomDisplayPrivacyMode,
   ClassroomDisplaySession,
   MembershipRole,
+  ClassroomDisplayThemeKey,
+  ClassroomDisplaySessionStatus,
 } from "@takween/contracts";
-
+import { ClassroomDisplaySessionSchema } from "@takween/contracts";
 import { db } from "@/lib/firebase";
 
 export type CreateClassroomDisplaySessionInput = {
@@ -40,6 +50,7 @@ export type CreateClassroomDisplaySessionInput = {
 
   lessonGoal: string;
   encouragementMessage: string;
+  displayThemeKey: ClassroomDisplayThemeKey;
 };
 
 export async function createClassroomDisplaySession(
@@ -86,7 +97,7 @@ export async function createClassroomDisplaySession(
 
     lessonGoal: input.lessonGoal,
     encouragementMessage: input.encouragementMessage,
-
+    displayThemeKey: input.displayThemeKey,
     startedAt: now,
     lastHeartbeatAt: now,
     createdAt: now,
@@ -98,4 +109,91 @@ export async function createClassroomDisplaySession(
   await setDoc(ref, session);
 
   return session;
+}
+
+
+export async function updateClassroomDisplaySessionStatus(input: {
+  orgId: string;
+  sessionId: string;
+  status: ClassroomDisplaySessionStatus;
+}) {
+  const now = Date.now();
+
+  const ref = doc(
+    db,
+    `orgs/${input.orgId}/classroomDisplaySessions/${input.sessionId}`,
+  );
+
+  await updateDoc(ref, {
+    status: input.status,
+    updatedAt: now,
+    ...(input.status === "ENDED" ? { endedAt: now } : {}),
+    ...(input.status === "ACTIVE" ? { lastHeartbeatAt: now } : {}),
+  });
+}
+
+export async function findReusableClassroomDisplaySession(input: {
+  orgId: string;
+  schoolId: string;
+  academicYearId: string;
+  termId: string;
+  classId: string;
+  classSubjectOfferingId: string;
+}) {
+  const sessionsRef = collection(
+    db,
+    `orgs/${input.orgId}/classroomDisplaySessions`,
+  );
+
+  const snapshot = await getDocs(
+    query(sessionsRef, where("status", "in", ["ACTIVE", "PAUSED"])),
+  );
+
+  const sessions: ClassroomDisplaySession[] = [];
+
+  snapshot.forEach((docSnapshot) => {
+    const parsed = ClassroomDisplaySessionSchema.safeParse({
+      id: docSnapshot.id,
+      ...docSnapshot.data(),
+    });
+
+    if (!parsed.success) return;
+
+    const session = parsed.data;
+
+    if (session.isArchived) return;
+    if (session.schoolId !== input.schoolId) return;
+    if (session.academicYearId !== input.academicYearId) return;
+    if (session.termId !== input.termId) return;
+    if (session.classId !== input.classId) return;
+    if (session.classSubjectOfferingId !== input.classSubjectOfferingId) {
+      return;
+    }
+
+    sessions.push(session);
+  });
+
+  return (
+    sessions.sort((a, b) => {
+      return (b.startedAt ?? 0) - (a.startedAt ?? 0);
+    })[0] ?? null
+  );
+}
+
+export async function updateClassroomDisplaySessionTheme(input: {
+  orgId: string;
+  sessionId: string;
+  displayThemeKey: ClassroomDisplayThemeKey;
+}) {
+  const now = Date.now();
+
+  const ref = doc(
+    db,
+    `orgs/${input.orgId}/classroomDisplaySessions/${input.sessionId}`,
+  );
+
+  await updateDoc(ref, {
+    displayThemeKey: input.displayThemeKey,
+    updatedAt: now,
+  });
 }

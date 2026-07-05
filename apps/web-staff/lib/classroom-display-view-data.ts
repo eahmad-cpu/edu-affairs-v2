@@ -3,8 +3,10 @@ import {
   doc,
   getDoc,
   getDocs,
+  onSnapshot,
   query,
   where,
+  type Unsubscribe,
 } from "firebase/firestore";
 
 import type {
@@ -16,6 +18,7 @@ import type {
   StudentEnrollment,
   StudentGamificationEvent,
 } from "@takween/contracts";
+
 import {
   buildClassroomDisplayView,
   type ClassroomDisplayFeedItemInput,
@@ -89,7 +92,7 @@ async function loadPerson(orgId: string, personId: string) {
   return null;
 }
 
-async function loadClassroomDisplaySession(params: {
+export async function loadClassroomDisplaySession(params: {
   orgId: string;
   sessionId: string;
 }) {
@@ -108,7 +111,38 @@ async function loadClassroomDisplaySession(params: {
   } as ClassroomDisplaySession;
 }
 
-async function loadSchoolName(session: ClassroomDisplaySession) {
+export function subscribeClassroomDisplaySession(
+  params: {
+    orgId: string;
+    sessionId: string;
+  },
+  onChange: (session: ClassroomDisplaySession | null) => void,
+  onError: (error: Error) => void,
+): Unsubscribe {
+  const ref = doc(
+    db,
+    `orgs/${params.orgId}/classroomDisplaySessions/${params.sessionId}`,
+  );
+
+  return onSnapshot(
+    ref,
+    (snap) => {
+      if (!snap.exists()) {
+        onChange(null);
+        return;
+      }
+
+      onChange({
+        id: snap.id,
+        ...(snap.data() as Omit<ClassroomDisplaySession, "id">),
+      } as ClassroomDisplaySession);
+    },
+    onError,
+  );
+}
+
+
+export async function loadSchoolName(session: ClassroomDisplaySession) {
   const ref = doc(db, `orgs/${session.orgId}/schools/${session.schoolId}`);
   const snap = await getDoc(ref);
 
@@ -122,7 +156,7 @@ async function loadSchoolName(session: ClassroomDisplaySession) {
   return school.name || session.schoolId;
 }
 
-async function loadClassTitle(session: ClassroomDisplaySession) {
+export async function loadClassTitle(session: ClassroomDisplaySession) {
   const ref = doc(
     db,
     `orgs/${session.orgId}/schools/${session.schoolId}/academicYears/${session.academicYearId}/classes/${session.classId}`,
@@ -140,7 +174,7 @@ async function loadClassTitle(session: ClassroomDisplaySession) {
   return classInfo.title || session.classId;
 }
 
-async function loadClassStudents(session: ClassroomDisplaySession) {
+export async function loadClassStudents(session: ClassroomDisplaySession) {
   const enrollmentsRef = collection(
     db,
     `orgs/${session.orgId}/studentEnrollments`,
@@ -227,6 +261,52 @@ async function loadSessionGamificationEvents(session: ClassroomDisplaySession) {
     .sort((a, b) => (b.occurredAt ?? 0) - (a.occurredAt ?? 0));
 }
 
+
+export function subscribeSessionGamificationEvents(
+  session: ClassroomDisplaySession,
+  onChange: (events: StudentGamificationEvent[]) => void,
+  onError: (error: Error) => void,
+): Unsubscribe {
+  const eventsRef = collection(
+    db,
+    `orgs/${session.orgId}/studentGamificationEvents`,
+  );
+
+  const eventsQuery = query(
+    eventsRef,
+    where("classSubjectOfferingId", "==", session.classSubjectOfferingId),
+  );
+
+  return onSnapshot(
+    eventsQuery,
+    (snap) => {
+      const events = snap.docs
+        .map((item) => ({
+          id: item.id,
+          ...(item.data() as Omit<StudentGamificationEvent, "id">),
+        }))
+        .filter((event) => {
+          if (event.status !== "ACTIVE") return false;
+          if (event.schoolId !== session.schoolId) return false;
+          if (event.academicYearId !== session.academicYearId) return false;
+          if (event.termId !== session.termId) return false;
+          if (event.classId !== session.classId) return false;
+
+          if (session.subjectKey && event.subjectKey !== session.subjectKey) {
+            return false;
+          }
+
+          return true;
+        })
+        .sort((a, b) => (b.occurredAt ?? 0) - (a.occurredAt ?? 0));
+
+      onChange(events);
+    },
+    onError,
+  );
+}
+
+
 function buildPointsByStudentId(events: StudentGamificationEvent[]) {
   const map = new Map<string, number>();
 
@@ -240,7 +320,7 @@ function buildPointsByStudentId(events: StudentGamificationEvent[]) {
   return map;
 }
 
-function toStudentInputs(params: {
+export function toStudentInputs(params: {
   students: StudentDisplayRow[];
   events: StudentGamificationEvent[];
 }) {
@@ -263,7 +343,7 @@ function toStudentInputs(params: {
   });
 }
 
-function toFeedInputs(events: StudentGamificationEvent[]) {
+export function toFeedInputs(events: StudentGamificationEvent[]) {
   return events.map((event): ClassroomDisplayFeedItemInput => {
     return {
       id: event.id,

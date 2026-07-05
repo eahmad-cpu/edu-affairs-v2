@@ -1,21 +1,22 @@
 "use client";
 
 import Link from "next/link";
-import { useParams } from "next/navigation";
-
-import { useStaffActor } from "@/components/staff/staff-actor-provider";
-import { Button } from "@/components/ui/button";
+import { useParams, useSearchParams } from "next/navigation";
 
 import { ClassroomStudentScreen } from "@/components/classroom-display/classroom-student-screen";
 import { useClassroomDisplayLiveData } from "@/components/classroom-display/use-classroom-display-live-data";
+import { Button } from "@/components/ui/button";
 
-export default function ClassroomDisplaySessionPage() {
+export default function PublicClassroomDisplaySessionPage() {
   const params = useParams<{ sessionId: string }>();
-  const { actor } = useStaffActor();
+  const searchParams = useSearchParams();
 
-  const { view, loading, error, isLive, lastUpdatedAt } =
+  const orgId = searchParams.get("orgId") ?? "";
+  const themeKey = searchParams.get("theme") ?? "STARS";
+
+  const { view, session, loading, error, isLive, lastUpdatedAt } =
     useClassroomDisplayLiveData({
-      orgId: actor?.orgId ?? "",
+      orgId,
       sessionId: params.sessionId,
     });
 
@@ -56,6 +57,7 @@ export default function ClassroomDisplaySessionPage() {
       view={view}
       isLive={isLive}
       lastUpdatedAt={lastUpdatedAt}
+      themeKey={session?.displayThemeKey ?? themeKey}
     />
   );
 }

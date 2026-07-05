@@ -1237,6 +1237,16 @@ export type ClassroomDisplayPhotoFallbackMode = z.infer<
   typeof ClassroomDisplayPhotoFallbackMode
 >;
 
+export const ClassroomDisplayThemeKey = z.enum([
+  "STARS",
+  "SPACE",
+  "OCEAN",
+  "FOREST",
+  "STADIUM",
+  "CANDY",
+]);
+export type ClassroomDisplayThemeKey = z.infer<typeof ClassroomDisplayThemeKey>;
+
 export const ClassroomDisplaySessionSchema = AuditFieldsSchema.merge(
   z.object({
     id: NonEmptyStringSchema,
@@ -1293,7 +1303,7 @@ export const ClassroomDisplaySessionSchema = AuditFieldsSchema.merge(
     showChallenge: z.boolean().default(false),
     showTimer: z.boolean().default(false),
     showLessonGoal: z.boolean().default(true),
-
+    displayThemeKey: ClassroomDisplayThemeKey.default("STARS"),
     /**
      * محتوى اختياري يظهر في الشاشة.
      */
@@ -3050,12 +3060,6 @@ export type TeacherAssignmentClassLink = z.infer<
   typeof TeacherAssignmentClassLinkSchema
 >;
 
-
-
-
-
-
-
 /**
  * Operational Assignments
  * إسنادات التشغيل اليومية العامة
@@ -3555,25 +3559,6 @@ export const StudentAttendanceBatchSchema = AuditFieldsSchema.merge(
 export type StudentAttendanceBatch = z.infer<
   typeof StudentAttendanceBatchSchema
 >;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /**
  * Evaluations
@@ -5695,4 +5680,3 @@ export type ImportTemplates = z.infer<typeof ImportTemplatesSchema>;
 export * from "./staff-evaluations";
 export * from "./student-cases";
 export * from "./transport";
-
