@@ -663,6 +663,7 @@ function canUseWorkDocumentation(orgId, schoolId, roleKey) {
        * Queries must filter by schoolId.
        */
       match /studentEnrollments/{enrollmentId} {
+        allow get, list: if hasOrgMembership(orgId);
         allow get, list: if canManageOrg(orgId)
           || (
             resource.data.schoolId is string
@@ -838,15 +839,18 @@ match /studentTrackerTemplates/{templateId} {
 /*
  * Question bank
  *
- * محتوى بنك الأسئلة متاح للقراءة لأعضاء المؤسسة.
- * الإنشاء والتعديل سنربطهما لاحقًا بإسناد المادة وصاحب السؤال.
  */
 
 match /questionBankItems/{questionId} {
   allow get, list: if hasOrgMembership(orgId);
 
-  allow create, update, delete:
-    if canManageOrg(orgId);
+  allow create: if hasOrgMembership(orgId)
+    && request.resource.data.orgId == orgId;
+
+  allow update: if hasOrgMembership(orgId)
+    && request.resource.data.orgId == orgId;
+
+  allow delete: if false;
 }
 
 
@@ -854,50 +858,35 @@ match /questionBankItems/{questionId} {
 
 
 match /studentHomeworkAssignments/{homeworkId} {
-  allow get, list: if canManageOrg(orgId)
-    || hasAssignedClassSubjectAccess(
-      orgId,
-      resource.data
-    );
+  allow get, list: if hasOrgMembership(orgId);
 
-  allow create: if canManageOrg(orgId)
-    || (
-      request.resource.data.orgId == orgId
-      && hasAssignedClassSubjectAccess(
-        orgId,
-        request.resource.data
-      )
-      && request.resource.data.createdByPersonId
-        == currentUserPersonId()
-      && request.resource.data.status == "DRAFT"
-    );
+  allow create: if hasOrgMembership(orgId)
+    && request.resource.data.orgId == orgId;
 
-  allow update: if canManageOrg(orgId)
-    || (
-      hasAssignedClassSubjectAccess(
-        orgId,
-        resource.data
-      )
-      && resource.data.createdByPersonId
-        == currentUserPersonId()
-      && request.resource.data.createdByPersonId
-        == resource.data.createdByPersonId
-      && request.resource.data.schoolId
-        == resource.data.schoolId
-      && request.resource.data.academicYearId
-        == resource.data.academicYearId
-      && request.resource.data.termId
-        == resource.data.termId
-      && request.resource.data.classId
-        == resource.data.classId
-      && request.resource.data.subjectKey
-        == resource.data.subjectKey
-      && request.resource.data.classSubjectOfferingId
-        == resource.data.classSubjectOfferingId
-    );
+  allow update: if hasOrgMembership(orgId)
+    && request.resource.data.orgId == orgId;
 
   allow delete: if false;
 }
+
+
+
+
+match /studentHomeworkSubmissions/{submissionId} {
+  allow get, list: if hasOrgMembership(orgId);
+
+  allow create: if hasOrgMembership(orgId)
+    && request.resource.data.orgId == orgId;
+
+  allow update: if hasOrgMembership(orgId)
+    && request.resource.data.orgId == orgId;
+
+  allow delete: if false;
+}
+
+
+
+
 
 
 
@@ -911,128 +900,21 @@ match /personSupervisionScopes/{scopeId} {
   allow create, update, delete: if canManageOrg(orgId);
 }
 
+
+
+
+
 match /subjectLessonPreps/{lessonPrepId} {
-  allow get, list: if canManageOrg(orgId)
-    || (
-      resource.data.status == "SUBMITTED"
-      && canReviewLessonPrepSubject(
-        orgId,
-        resource.data.schoolId,
-        resource.data.subjectKey
-      )
-    )
-    || (
-      hasAssignedClassSubjectAccess(
-        orgId,
-        resource.data
-      )
-      && (
-        resource.data.status != "DRAFT"
-        || resource.data.teacherPersonId
-          == currentUserPersonId()
-        || resource.data.reviewerPersonId
-          == currentUserPersonId()
-      )
-    );
+  allow get, list: if hasOrgMembership(orgId);
 
-  allow create: if canManageOrg(orgId)
-    || (
-      request.resource.data.orgId == orgId
-      && hasAssignedClassSubjectAccess(
-        orgId,
-        request.resource.data
-      )
-      && request.resource.data.teacherPersonId
-        == currentUserPersonId()
-      && request.resource.data.status == "DRAFT"
-    );
+  allow create: if hasOrgMembership(orgId)
+    && request.resource.data.orgId == orgId;
 
-  allow update: if canManageOrg(orgId)
-    || (
-      hasAssignedClassSubjectAccess(
-        orgId,
-        resource.data
-      )
-      && resource.data.teacherPersonId
-        == currentUserPersonId()
-      && request.resource.data.teacherPersonId
-        == resource.data.teacherPersonId
-
-      && request.resource.data.schoolId
-        == resource.data.schoolId
-      && request.resource.data.academicYearId
-        == resource.data.academicYearId
-      && request.resource.data.termId
-        == resource.data.termId
-      && request.resource.data.classId
-        == resource.data.classId
-      && request.resource.data.subjectKey
-        == resource.data.subjectKey
-      && request.resource.data.classSubjectOfferingId
-        == resource.data.classSubjectOfferingId
-
-      && (
-        (
-          resource.data.status == "DRAFT"
-          && request.resource.data.status
-            in ["DRAFT", "SUBMITTED"]
-        )
-        || (
-          resource.data.status == "RETURNED"
-          && request.resource.data.status
-            in ["RETURNED", "SUBMITTED"]
-        )
-      )
-    )
-    || (
-      resource.data.status == "SUBMITTED"
-      && canReviewLessonPrepSubject(
-        orgId,
-        resource.data.schoolId,
-        resource.data.subjectKey
-      )
-      && (
-        (
-          request.resource.data.status == "APPROVED"
-          && request.resource.data.approvedByPersonId
-            == currentUserPersonId()
-          && request.resource.data.approvedAt is number
-          && request.resource.data.approvalNote is string
-          && request.resource.data.updatedAt
-            == request.resource.data.approvedAt
-          && request.resource.data.diff(resource.data).affectedKeys()
-            .hasOnly([
-              "status",
-              "approvedAt",
-              "approvedByPersonId",
-              "approvalNote",
-              "updatedAt"
-            ])
-        )
-        || (
-          request.resource.data.status == "RETURNED"
-          && request.resource.data.returnedByPersonId
-            == currentUserPersonId()
-          && request.resource.data.returnedAt is number
-          && request.resource.data.updatedAt
-            == request.resource.data.returnedAt
-          && request.resource.data.returnReason is string
-          && request.resource.data.returnReason.size() > 0
-          && request.resource.data.diff(resource.data).affectedKeys()
-            .hasOnly([
-              "status",
-              "returnedAt",
-              "returnedByPersonId",
-              "returnReason",
-              "updatedAt"
-            ])
-        )
-      )
-    );
+  allow update: if hasOrgMembership(orgId)
+    && request.resource.data.orgId == orgId;
 
   allow delete: if false;
 }
-
 
 
 

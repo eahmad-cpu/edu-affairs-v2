@@ -12,6 +12,10 @@
 const admin = require("firebase-admin");
 const fs = require("node:fs");
 const path = require("node:path");
+const {
+  buildKgSubjectCardConfiguration,
+  hasKgSubjectCardConfiguration,
+} = require("../kindergarten/kg-subject-card-configuration.cjs");
 
 const ORG_ID = "takween";
 const ACADEMIC_YEAR_ID = "ay-1448";
@@ -159,7 +163,7 @@ function buildCatalogPayload({ schoolId, subject, now }) {
   };
 }
 
-function buildOfferingPayload({ schoolId, classInfo, subject, now }) {
+function buildOfferingPayload({ schoolId, classInfo, subject, now, existingOffering = {} }) {
   return {
     id: canonicalOfferingId(schoolId, classInfo.classId, subject),
     orgId: ORG_ID,
@@ -178,30 +182,8 @@ function buildOfferingPayload({ schoolId, classInfo, subject, now }) {
     isArchived: false,
     order: subject.order,
     offeringKind: "KG_SUBJECT",
-    enabledModuleKeys: ["ASSESSMENTS", "NOTES", "GAMIFICATION"],
+    ...buildKgSubjectCardConfiguration(existingOffering),
     gradingPolicy: { gradingScaleKey: "", note: "" },
-    assessmentPolicy: {
-      assessmentTemplateIds: [],
-      trackerTemplateIds: [],
-      allowedAssessmentSlotKeys: [],
-      allowLearningLoss: true,
-      requiresReview: false,
-      note: "",
-    },
-    curriculumPolicy: {
-      curriculumPlanId: "",
-      questionBankId: "",
-      resourceFolderId: "",
-      lessonPrepRequired: false,
-      homeworkEnabled: false,
-      resourcesEnabled: false,
-      questionBankEnabled: false,
-      lessonPrepReviewMode: "APPROVAL_REQUIRED",
-      note: "",
-    },
-    curriculumPlanId: "",
-    questionBankId: "",
-    resourceFolderId: "",
     note: "Phase A KG canonical subject offering.",
     metadata: { normalizedBy: "reconcile-kindergarten-phase-a", normalizedAt: now },
     createdAt: now,
@@ -403,14 +385,21 @@ async function main() {
       }
       if (candidates.length === 1) {
         const existing = candidates[0];
-        const payload = buildOfferingPayload({ schoolId: targetClass.schoolId, classInfo: targetClass, subject, now });
+        const payload = buildOfferingPayload({
+          schoolId: targetClass.schoolId,
+          classInfo: targetClass,
+          subject,
+          now,
+          existingOffering: existing,
+        });
         const compatible =
           isActive(existing) &&
           asString(existing.subjectId) === subject.id &&
           asString(existing.subjectTitleSnapshot || existing.subjectTitle) === subject.title &&
           asString(existing.displayName) === subject.title &&
           asString(existing.status).toUpperCase() === "ACTIVE" &&
-          existing.isArchived !== true;
+          existing.isArchived !== true &&
+          hasKgSubjectCardConfiguration(existing);
         const reused = {
           schoolId: targetClass.schoolId,
           gradeId: targetClass.gradeId,

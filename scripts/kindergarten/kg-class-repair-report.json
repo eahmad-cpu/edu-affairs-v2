@@ -1,11 +1,11 @@
 {
   "metadata": {
-    "generatedAt": "2026-08-28T20:00:45.182Z",
+    "generatedAt": "2026-09-06T16:51:35.841Z",
     "mode": "DRY_RUN",
     "orgId": "takween",
     "academicYearId": "ay-1448",
     "source": "KG_CLASS_REPAIR",
-    "version": 1,
+    "version": 2,
     "writesPerformed": false,
     "writeCollections": [
       "schools/*/academicYears/*/classes",
@@ -264,7 +264,8 @@
     {
       "schoolId": "kg-01",
       "schoolName": "روضة واحة الرياحين الأولى",
-      "KEEP": 82,
+      "KEEP": 68,
+      "SKIP": 14,
       "BLOCKED": 0
     },
     {
@@ -282,7 +283,8 @@
     {
       "schoolId": "kg-04",
       "schoolName": "روضة واحة الرياحين الرابعة",
-      "KEEP": 53,
+      "KEEP": 47,
+      "SKIP": 8,
       "BLOCKED": 0
     }
   ],
@@ -669,7 +671,8 @@
       "classId": "kg1-a",
       "subjectKey": "KEY:ADHKAR_IDENTITY_ANTHEMS",
       "offeringId": "kg-01-kg1-a-adhkar-identity-anthems",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -679,7 +682,8 @@
       "classId": "kg1-a",
       "subjectKey": "KEY:COUNT_AND_CALCULATE",
       "offeringId": "kg-01-kg1-a-count-and-calculate",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -689,7 +693,8 @@
       "classId": "kg1-a",
       "subjectKey": "KEY:LEARNING_GARDENS",
       "offeringId": "kg-01-kg1-a-learning-gardens",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -699,7 +704,8 @@
       "classId": "kg1-a",
       "subjectKey": "KEY:QURAN",
       "offeringId": "kg-01-kg1-a-quran",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -709,7 +715,8 @@
       "classId": "kg2-a",
       "subjectKey": "KEY:ADHKAR_IDENTITY_ANTHEMS",
       "offeringId": "kg-01-kg2-a-adhkar-identity-anthems",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -719,7 +726,8 @@
       "classId": "kg2-a",
       "subjectKey": "KEY:CORNERS",
       "offeringId": "kg-01-kg2-a-corners",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -729,7 +737,8 @@
       "classId": "kg2-a",
       "subjectKey": "KEY:COUNT_AND_CALCULATE",
       "offeringId": "kg-01-kg2-a-count-and-calculate",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -739,7 +748,8 @@
       "classId": "kg2-a",
       "subjectKey": "KEY:LEARNING_GARDENS",
       "offeringId": "kg-01-kg2-a-learning-gardens",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -749,7 +759,8 @@
       "classId": "kg2-a",
       "subjectKey": "KEY:QURAN",
       "offeringId": "kg-01-kg2-a-quran",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -759,7 +770,8 @@
       "classId": "kg2-a",
       "subjectKey": "KEY:VALUES",
       "offeringId": "kg-01-kg2-a-values",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -769,7 +781,8 @@
       "classId": "kg2-b",
       "subjectKey": "KEY:ADHKAR_IDENTITY_ANTHEMS",
       "offeringId": "kg-01-kg2-b-adhkar-identity-anthems",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -779,7 +792,8 @@
       "classId": "kg2-b",
       "subjectKey": "KEY:CORNERS",
       "offeringId": "kg-01-kg2-b-corners",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -789,7 +803,8 @@
       "classId": "kg2-b",
       "subjectKey": "KEY:COUNT_AND_CALCULATE",
       "offeringId": "kg-01-kg2-b-count-and-calculate",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -799,7 +814,8 @@
       "classId": "kg2-b",
       "subjectKey": "KEY:LEARNING_GARDENS",
       "offeringId": "kg-01-kg2-b-learning-gardens",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -809,7 +825,8 @@
       "classId": "kg2-b",
       "subjectKey": "KEY:QURAN",
       "offeringId": "kg-01-kg2-b-quran",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -819,27 +836,8 @@
       "classId": "kg2-b",
       "subjectKey": "KEY:VALUES",
       "offeringId": "kg-01-kg2-b-values",
-      "action": "KEEP"
-    },
-    {
-      "scope": "offering",
-      "schoolId": "kg-01",
-      "schoolName": "روضة واحة الرياحين الأولى",
-      "gradeId": "kg3",
-      "classId": "kg3-a",
-      "subjectKey": "KEY:ADHKAR_IDENTITY_ANTHEMS",
-      "offeringId": "kg-01-kg3-a-adhkar-identity-anthems",
-      "action": "KEEP"
-    },
-    {
-      "scope": "offering",
-      "schoolId": "kg-01",
-      "schoolName": "روضة واحة الرياحين الأولى",
-      "gradeId": "kg3",
-      "classId": "kg3-a",
-      "subjectKey": "KEY:COUNT_AND_CALCULATE",
-      "offeringId": "kg-01-kg3-a-count-and-calculate",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -849,27 +847,8 @@
       "classId": "kg3-a",
       "subjectKey": "KEY:CLASS",
       "offeringId": "kg3-a-class",
-      "action": "KEEP"
-    },
-    {
-      "scope": "offering",
-      "schoolId": "kg-01",
-      "schoolName": "روضة واحة الرياحين الأولى",
-      "gradeId": "kg3",
-      "classId": "kg3-a",
-      "subjectKey": "KEY:CORNERS",
-      "offeringId": "kg3-a-corners",
-      "action": "KEEP"
-    },
-    {
-      "scope": "offering",
-      "schoolId": "kg-01",
-      "schoolName": "روضة واحة الرياحين الأولى",
-      "gradeId": "kg3",
-      "classId": "kg3-a",
-      "subjectKey": "KEY:LEARNING_GARDENS",
-      "offeringId": "kg3-a-learning-gardens",
-      "action": "KEEP"
+      "action": "SKIP",
+      "reason": "legacy or non-canonical KG subject is outside subject-card normalization"
     },
     {
       "scope": "offering",
@@ -879,7 +858,52 @@
       "classId": "kg3-a",
       "subjectKey": "KEY:NUMBERS",
       "offeringId": "kg3-a-numbers",
-      "action": "KEEP"
+      "action": "SKIP",
+      "reason": "legacy or non-canonical KG subject is outside subject-card normalization"
+    },
+    {
+      "scope": "offering",
+      "schoolId": "kg-01",
+      "schoolName": "روضة واحة الرياحين الأولى",
+      "gradeId": "kg3",
+      "classId": "kg3-a",
+      "subjectKey": "KEY:ADHKAR_IDENTITY_ANTHEMS",
+      "offeringId": "kg-01-kg3-a-adhkar-identity-anthems",
+      "action": "KEEP",
+      "reason": ""
+    },
+    {
+      "scope": "offering",
+      "schoolId": "kg-01",
+      "schoolName": "روضة واحة الرياحين الأولى",
+      "gradeId": "kg3",
+      "classId": "kg3-a",
+      "subjectKey": "KEY:COUNT_AND_CALCULATE",
+      "offeringId": "kg-01-kg3-a-count-and-calculate",
+      "action": "KEEP",
+      "reason": ""
+    },
+    {
+      "scope": "offering",
+      "schoolId": "kg-01",
+      "schoolName": "روضة واحة الرياحين الأولى",
+      "gradeId": "kg3",
+      "classId": "kg3-a",
+      "subjectKey": "KEY:CORNERS",
+      "offeringId": "kg3-a-corners",
+      "action": "KEEP",
+      "reason": ""
+    },
+    {
+      "scope": "offering",
+      "schoolId": "kg-01",
+      "schoolName": "روضة واحة الرياحين الأولى",
+      "gradeId": "kg3",
+      "classId": "kg3-a",
+      "subjectKey": "KEY:LEARNING_GARDENS",
+      "offeringId": "kg3-a-learning-gardens",
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -889,7 +913,8 @@
       "classId": "kg3-a",
       "subjectKey": "KEY:QURAN",
       "offeringId": "kg3-a-quran",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -899,17 +924,8 @@
       "classId": "kg3-a",
       "subjectKey": "KEY:VALUES",
       "offeringId": "kg3-a-values",
-      "action": "KEEP"
-    },
-    {
-      "scope": "offering",
-      "schoolId": "kg-01",
-      "schoolName": "روضة واحة الرياحين الأولى",
-      "gradeId": "kg3",
-      "classId": "kg3-b",
-      "subjectKey": "KEY:ADHKAR_IDENTITY_ANTHEMS",
-      "offeringId": "kg-01-kg3-b-adhkar-identity-anthems",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -919,37 +935,8 @@
       "classId": "kg3-b",
       "subjectKey": "KEY:CLASS",
       "offeringId": "kg-01-kg3-b-class",
-      "action": "KEEP"
-    },
-    {
-      "scope": "offering",
-      "schoolId": "kg-01",
-      "schoolName": "روضة واحة الرياحين الأولى",
-      "gradeId": "kg3",
-      "classId": "kg3-b",
-      "subjectKey": "KEY:CORNERS",
-      "offeringId": "kg-01-kg3-b-corners",
-      "action": "KEEP"
-    },
-    {
-      "scope": "offering",
-      "schoolId": "kg-01",
-      "schoolName": "روضة واحة الرياحين الأولى",
-      "gradeId": "kg3",
-      "classId": "kg3-b",
-      "subjectKey": "KEY:COUNT_AND_CALCULATE",
-      "offeringId": "kg-01-kg3-b-count-and-calculate",
-      "action": "KEEP"
-    },
-    {
-      "scope": "offering",
-      "schoolId": "kg-01",
-      "schoolName": "روضة واحة الرياحين الأولى",
-      "gradeId": "kg3",
-      "classId": "kg3-b",
-      "subjectKey": "KEY:LEARNING_GARDENS",
-      "offeringId": "kg-01-kg3-b-learning-gardens",
-      "action": "KEEP"
+      "action": "SKIP",
+      "reason": "legacy or non-canonical KG subject is outside subject-card normalization"
     },
     {
       "scope": "offering",
@@ -959,7 +946,52 @@
       "classId": "kg3-b",
       "subjectKey": "KEY:NUMBERS",
       "offeringId": "kg-01-kg3-b-numbers",
-      "action": "KEEP"
+      "action": "SKIP",
+      "reason": "legacy or non-canonical KG subject is outside subject-card normalization"
+    },
+    {
+      "scope": "offering",
+      "schoolId": "kg-01",
+      "schoolName": "روضة واحة الرياحين الأولى",
+      "gradeId": "kg3",
+      "classId": "kg3-b",
+      "subjectKey": "KEY:ADHKAR_IDENTITY_ANTHEMS",
+      "offeringId": "kg-01-kg3-b-adhkar-identity-anthems",
+      "action": "KEEP",
+      "reason": ""
+    },
+    {
+      "scope": "offering",
+      "schoolId": "kg-01",
+      "schoolName": "روضة واحة الرياحين الأولى",
+      "gradeId": "kg3",
+      "classId": "kg3-b",
+      "subjectKey": "KEY:CORNERS",
+      "offeringId": "kg-01-kg3-b-corners",
+      "action": "KEEP",
+      "reason": ""
+    },
+    {
+      "scope": "offering",
+      "schoolId": "kg-01",
+      "schoolName": "روضة واحة الرياحين الأولى",
+      "gradeId": "kg3",
+      "classId": "kg3-b",
+      "subjectKey": "KEY:COUNT_AND_CALCULATE",
+      "offeringId": "kg-01-kg3-b-count-and-calculate",
+      "action": "KEEP",
+      "reason": ""
+    },
+    {
+      "scope": "offering",
+      "schoolId": "kg-01",
+      "schoolName": "روضة واحة الرياحين الأولى",
+      "gradeId": "kg3",
+      "classId": "kg3-b",
+      "subjectKey": "KEY:LEARNING_GARDENS",
+      "offeringId": "kg-01-kg3-b-learning-gardens",
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -969,7 +1001,8 @@
       "classId": "kg3-b",
       "subjectKey": "KEY:QURAN",
       "offeringId": "kg-01-kg3-b-quran",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -979,17 +1012,8 @@
       "classId": "kg3-b",
       "subjectKey": "KEY:VALUES",
       "offeringId": "kg-01-kg3-b-values",
-      "action": "KEEP"
-    },
-    {
-      "scope": "offering",
-      "schoolId": "kg-01",
-      "schoolName": "روضة واحة الرياحين الأولى",
-      "gradeId": "kg3",
-      "classId": "kg3-c",
-      "subjectKey": "KEY:ADHKAR_IDENTITY_ANTHEMS",
-      "offeringId": "kg-01-kg3-c-adhkar-identity-anthems",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -999,37 +1023,8 @@
       "classId": "kg3-c",
       "subjectKey": "KEY:CLASS",
       "offeringId": "kg-01-kg3-c-class",
-      "action": "KEEP"
-    },
-    {
-      "scope": "offering",
-      "schoolId": "kg-01",
-      "schoolName": "روضة واحة الرياحين الأولى",
-      "gradeId": "kg3",
-      "classId": "kg3-c",
-      "subjectKey": "KEY:CORNERS",
-      "offeringId": "kg-01-kg3-c-corners",
-      "action": "KEEP"
-    },
-    {
-      "scope": "offering",
-      "schoolId": "kg-01",
-      "schoolName": "روضة واحة الرياحين الأولى",
-      "gradeId": "kg3",
-      "classId": "kg3-c",
-      "subjectKey": "KEY:COUNT_AND_CALCULATE",
-      "offeringId": "kg-01-kg3-c-count-and-calculate",
-      "action": "KEEP"
-    },
-    {
-      "scope": "offering",
-      "schoolId": "kg-01",
-      "schoolName": "روضة واحة الرياحين الأولى",
-      "gradeId": "kg3",
-      "classId": "kg3-c",
-      "subjectKey": "KEY:LEARNING_GARDENS",
-      "offeringId": "kg-01-kg3-c-learning-gardens",
-      "action": "KEEP"
+      "action": "SKIP",
+      "reason": "legacy or non-canonical KG subject is outside subject-card normalization"
     },
     {
       "scope": "offering",
@@ -1039,7 +1034,52 @@
       "classId": "kg3-c",
       "subjectKey": "KEY:NUMBERS",
       "offeringId": "kg-01-kg3-c-numbers",
-      "action": "KEEP"
+      "action": "SKIP",
+      "reason": "legacy or non-canonical KG subject is outside subject-card normalization"
+    },
+    {
+      "scope": "offering",
+      "schoolId": "kg-01",
+      "schoolName": "روضة واحة الرياحين الأولى",
+      "gradeId": "kg3",
+      "classId": "kg3-c",
+      "subjectKey": "KEY:ADHKAR_IDENTITY_ANTHEMS",
+      "offeringId": "kg-01-kg3-c-adhkar-identity-anthems",
+      "action": "KEEP",
+      "reason": ""
+    },
+    {
+      "scope": "offering",
+      "schoolId": "kg-01",
+      "schoolName": "روضة واحة الرياحين الأولى",
+      "gradeId": "kg3",
+      "classId": "kg3-c",
+      "subjectKey": "KEY:CORNERS",
+      "offeringId": "kg-01-kg3-c-corners",
+      "action": "KEEP",
+      "reason": ""
+    },
+    {
+      "scope": "offering",
+      "schoolId": "kg-01",
+      "schoolName": "روضة واحة الرياحين الأولى",
+      "gradeId": "kg3",
+      "classId": "kg3-c",
+      "subjectKey": "KEY:COUNT_AND_CALCULATE",
+      "offeringId": "kg-01-kg3-c-count-and-calculate",
+      "action": "KEEP",
+      "reason": ""
+    },
+    {
+      "scope": "offering",
+      "schoolId": "kg-01",
+      "schoolName": "روضة واحة الرياحين الأولى",
+      "gradeId": "kg3",
+      "classId": "kg3-c",
+      "subjectKey": "KEY:LEARNING_GARDENS",
+      "offeringId": "kg-01-kg3-c-learning-gardens",
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1049,7 +1089,8 @@
       "classId": "kg3-c",
       "subjectKey": "KEY:QURAN",
       "offeringId": "kg-01-kg3-c-quran",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1059,17 +1100,8 @@
       "classId": "kg3-c",
       "subjectKey": "KEY:VALUES",
       "offeringId": "kg-01-kg3-c-values",
-      "action": "KEEP"
-    },
-    {
-      "scope": "offering",
-      "schoolId": "kg-01",
-      "schoolName": "روضة واحة الرياحين الأولى",
-      "gradeId": "kg3",
-      "classId": "kg3-d",
-      "subjectKey": "KEY:ADHKAR_IDENTITY_ANTHEMS",
-      "offeringId": "kg-01-kg3-d-adhkar-identity-anthems",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1079,37 +1111,8 @@
       "classId": "kg3-d",
       "subjectKey": "KEY:CLASS",
       "offeringId": "kg-01-kg3-d-class",
-      "action": "KEEP"
-    },
-    {
-      "scope": "offering",
-      "schoolId": "kg-01",
-      "schoolName": "روضة واحة الرياحين الأولى",
-      "gradeId": "kg3",
-      "classId": "kg3-d",
-      "subjectKey": "KEY:CORNERS",
-      "offeringId": "kg-01-kg3-d-corners",
-      "action": "KEEP"
-    },
-    {
-      "scope": "offering",
-      "schoolId": "kg-01",
-      "schoolName": "روضة واحة الرياحين الأولى",
-      "gradeId": "kg3",
-      "classId": "kg3-d",
-      "subjectKey": "KEY:COUNT_AND_CALCULATE",
-      "offeringId": "kg-01-kg3-d-count-and-calculate",
-      "action": "KEEP"
-    },
-    {
-      "scope": "offering",
-      "schoolId": "kg-01",
-      "schoolName": "روضة واحة الرياحين الأولى",
-      "gradeId": "kg3",
-      "classId": "kg3-d",
-      "subjectKey": "KEY:LEARNING_GARDENS",
-      "offeringId": "kg-01-kg3-d-learning-gardens",
-      "action": "KEEP"
+      "action": "SKIP",
+      "reason": "legacy or non-canonical KG subject is outside subject-card normalization"
     },
     {
       "scope": "offering",
@@ -1119,7 +1122,52 @@
       "classId": "kg3-d",
       "subjectKey": "KEY:NUMBERS",
       "offeringId": "kg-01-kg3-d-numbers",
-      "action": "KEEP"
+      "action": "SKIP",
+      "reason": "legacy or non-canonical KG subject is outside subject-card normalization"
+    },
+    {
+      "scope": "offering",
+      "schoolId": "kg-01",
+      "schoolName": "روضة واحة الرياحين الأولى",
+      "gradeId": "kg3",
+      "classId": "kg3-d",
+      "subjectKey": "KEY:ADHKAR_IDENTITY_ANTHEMS",
+      "offeringId": "kg-01-kg3-d-adhkar-identity-anthems",
+      "action": "KEEP",
+      "reason": ""
+    },
+    {
+      "scope": "offering",
+      "schoolId": "kg-01",
+      "schoolName": "روضة واحة الرياحين الأولى",
+      "gradeId": "kg3",
+      "classId": "kg3-d",
+      "subjectKey": "KEY:CORNERS",
+      "offeringId": "kg-01-kg3-d-corners",
+      "action": "KEEP",
+      "reason": ""
+    },
+    {
+      "scope": "offering",
+      "schoolId": "kg-01",
+      "schoolName": "روضة واحة الرياحين الأولى",
+      "gradeId": "kg3",
+      "classId": "kg3-d",
+      "subjectKey": "KEY:COUNT_AND_CALCULATE",
+      "offeringId": "kg-01-kg3-d-count-and-calculate",
+      "action": "KEEP",
+      "reason": ""
+    },
+    {
+      "scope": "offering",
+      "schoolId": "kg-01",
+      "schoolName": "روضة واحة الرياحين الأولى",
+      "gradeId": "kg3",
+      "classId": "kg3-d",
+      "subjectKey": "KEY:LEARNING_GARDENS",
+      "offeringId": "kg-01-kg3-d-learning-gardens",
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1129,7 +1177,8 @@
       "classId": "kg3-d",
       "subjectKey": "KEY:QURAN",
       "offeringId": "kg-01-kg3-d-quran",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1139,17 +1188,8 @@
       "classId": "kg3-d",
       "subjectKey": "KEY:VALUES",
       "offeringId": "kg-01-kg3-d-values",
-      "action": "KEEP"
-    },
-    {
-      "scope": "offering",
-      "schoolId": "kg-01",
-      "schoolName": "روضة واحة الرياحين الأولى",
-      "gradeId": "kg3",
-      "classId": "kg3-e",
-      "subjectKey": "KEY:ADHKAR_IDENTITY_ANTHEMS",
-      "offeringId": "kg-01-kg3-e-adhkar-identity-anthems",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1159,37 +1199,8 @@
       "classId": "kg3-e",
       "subjectKey": "KEY:CLASS",
       "offeringId": "kg-01-kg3-e-class",
-      "action": "KEEP"
-    },
-    {
-      "scope": "offering",
-      "schoolId": "kg-01",
-      "schoolName": "روضة واحة الرياحين الأولى",
-      "gradeId": "kg3",
-      "classId": "kg3-e",
-      "subjectKey": "KEY:CORNERS",
-      "offeringId": "kg-01-kg3-e-corners",
-      "action": "KEEP"
-    },
-    {
-      "scope": "offering",
-      "schoolId": "kg-01",
-      "schoolName": "روضة واحة الرياحين الأولى",
-      "gradeId": "kg3",
-      "classId": "kg3-e",
-      "subjectKey": "KEY:COUNT_AND_CALCULATE",
-      "offeringId": "kg-01-kg3-e-count-and-calculate",
-      "action": "KEEP"
-    },
-    {
-      "scope": "offering",
-      "schoolId": "kg-01",
-      "schoolName": "روضة واحة الرياحين الأولى",
-      "gradeId": "kg3",
-      "classId": "kg3-e",
-      "subjectKey": "KEY:LEARNING_GARDENS",
-      "offeringId": "kg-01-kg3-e-learning-gardens",
-      "action": "KEEP"
+      "action": "SKIP",
+      "reason": "legacy or non-canonical KG subject is outside subject-card normalization"
     },
     {
       "scope": "offering",
@@ -1199,7 +1210,52 @@
       "classId": "kg3-e",
       "subjectKey": "KEY:NUMBERS",
       "offeringId": "kg-01-kg3-e-numbers",
-      "action": "KEEP"
+      "action": "SKIP",
+      "reason": "legacy or non-canonical KG subject is outside subject-card normalization"
+    },
+    {
+      "scope": "offering",
+      "schoolId": "kg-01",
+      "schoolName": "روضة واحة الرياحين الأولى",
+      "gradeId": "kg3",
+      "classId": "kg3-e",
+      "subjectKey": "KEY:ADHKAR_IDENTITY_ANTHEMS",
+      "offeringId": "kg-01-kg3-e-adhkar-identity-anthems",
+      "action": "KEEP",
+      "reason": ""
+    },
+    {
+      "scope": "offering",
+      "schoolId": "kg-01",
+      "schoolName": "روضة واحة الرياحين الأولى",
+      "gradeId": "kg3",
+      "classId": "kg3-e",
+      "subjectKey": "KEY:CORNERS",
+      "offeringId": "kg-01-kg3-e-corners",
+      "action": "KEEP",
+      "reason": ""
+    },
+    {
+      "scope": "offering",
+      "schoolId": "kg-01",
+      "schoolName": "روضة واحة الرياحين الأولى",
+      "gradeId": "kg3",
+      "classId": "kg3-e",
+      "subjectKey": "KEY:COUNT_AND_CALCULATE",
+      "offeringId": "kg-01-kg3-e-count-and-calculate",
+      "action": "KEEP",
+      "reason": ""
+    },
+    {
+      "scope": "offering",
+      "schoolId": "kg-01",
+      "schoolName": "روضة واحة الرياحين الأولى",
+      "gradeId": "kg3",
+      "classId": "kg3-e",
+      "subjectKey": "KEY:LEARNING_GARDENS",
+      "offeringId": "kg-01-kg3-e-learning-gardens",
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1209,7 +1265,8 @@
       "classId": "kg3-e",
       "subjectKey": "KEY:QURAN",
       "offeringId": "kg-01-kg3-e-quran",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1219,17 +1276,8 @@
       "classId": "kg3-e",
       "subjectKey": "KEY:VALUES",
       "offeringId": "kg-01-kg3-e-values",
-      "action": "KEEP"
-    },
-    {
-      "scope": "offering",
-      "schoolId": "kg-01",
-      "schoolName": "روضة واحة الرياحين الأولى",
-      "gradeId": "kg3",
-      "classId": "kg3-f",
-      "subjectKey": "KEY:ADHKAR_IDENTITY_ANTHEMS",
-      "offeringId": "kg-01-kg3-f-adhkar-identity-anthems",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1239,37 +1287,8 @@
       "classId": "kg3-f",
       "subjectKey": "KEY:CLASS",
       "offeringId": "kg-01-kg3-f-class",
-      "action": "KEEP"
-    },
-    {
-      "scope": "offering",
-      "schoolId": "kg-01",
-      "schoolName": "روضة واحة الرياحين الأولى",
-      "gradeId": "kg3",
-      "classId": "kg3-f",
-      "subjectKey": "KEY:CORNERS",
-      "offeringId": "kg-01-kg3-f-corners",
-      "action": "KEEP"
-    },
-    {
-      "scope": "offering",
-      "schoolId": "kg-01",
-      "schoolName": "روضة واحة الرياحين الأولى",
-      "gradeId": "kg3",
-      "classId": "kg3-f",
-      "subjectKey": "KEY:COUNT_AND_CALCULATE",
-      "offeringId": "kg-01-kg3-f-count-and-calculate",
-      "action": "KEEP"
-    },
-    {
-      "scope": "offering",
-      "schoolId": "kg-01",
-      "schoolName": "روضة واحة الرياحين الأولى",
-      "gradeId": "kg3",
-      "classId": "kg3-f",
-      "subjectKey": "KEY:LEARNING_GARDENS",
-      "offeringId": "kg-01-kg3-f-learning-gardens",
-      "action": "KEEP"
+      "action": "SKIP",
+      "reason": "legacy or non-canonical KG subject is outside subject-card normalization"
     },
     {
       "scope": "offering",
@@ -1279,7 +1298,52 @@
       "classId": "kg3-f",
       "subjectKey": "KEY:NUMBERS",
       "offeringId": "kg-01-kg3-f-numbers",
-      "action": "KEEP"
+      "action": "SKIP",
+      "reason": "legacy or non-canonical KG subject is outside subject-card normalization"
+    },
+    {
+      "scope": "offering",
+      "schoolId": "kg-01",
+      "schoolName": "روضة واحة الرياحين الأولى",
+      "gradeId": "kg3",
+      "classId": "kg3-f",
+      "subjectKey": "KEY:ADHKAR_IDENTITY_ANTHEMS",
+      "offeringId": "kg-01-kg3-f-adhkar-identity-anthems",
+      "action": "KEEP",
+      "reason": ""
+    },
+    {
+      "scope": "offering",
+      "schoolId": "kg-01",
+      "schoolName": "روضة واحة الرياحين الأولى",
+      "gradeId": "kg3",
+      "classId": "kg3-f",
+      "subjectKey": "KEY:CORNERS",
+      "offeringId": "kg-01-kg3-f-corners",
+      "action": "KEEP",
+      "reason": ""
+    },
+    {
+      "scope": "offering",
+      "schoolId": "kg-01",
+      "schoolName": "روضة واحة الرياحين الأولى",
+      "gradeId": "kg3",
+      "classId": "kg3-f",
+      "subjectKey": "KEY:COUNT_AND_CALCULATE",
+      "offeringId": "kg-01-kg3-f-count-and-calculate",
+      "action": "KEEP",
+      "reason": ""
+    },
+    {
+      "scope": "offering",
+      "schoolId": "kg-01",
+      "schoolName": "روضة واحة الرياحين الأولى",
+      "gradeId": "kg3",
+      "classId": "kg3-f",
+      "subjectKey": "KEY:LEARNING_GARDENS",
+      "offeringId": "kg-01-kg3-f-learning-gardens",
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1289,7 +1353,8 @@
       "classId": "kg3-f",
       "subjectKey": "KEY:QURAN",
       "offeringId": "kg-01-kg3-f-quran",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1299,17 +1364,8 @@
       "classId": "kg3-f",
       "subjectKey": "KEY:VALUES",
       "offeringId": "kg-01-kg3-f-values",
-      "action": "KEEP"
-    },
-    {
-      "scope": "offering",
-      "schoolId": "kg-01",
-      "schoolName": "روضة واحة الرياحين الأولى",
-      "gradeId": "kg3",
-      "classId": "kg3-g",
-      "subjectKey": "KEY:ADHKAR_IDENTITY_ANTHEMS",
-      "offeringId": "kg-01-kg3-g-adhkar-identity-anthems",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1319,37 +1375,8 @@
       "classId": "kg3-g",
       "subjectKey": "KEY:CLASS",
       "offeringId": "kg-01-kg3-g-class",
-      "action": "KEEP"
-    },
-    {
-      "scope": "offering",
-      "schoolId": "kg-01",
-      "schoolName": "روضة واحة الرياحين الأولى",
-      "gradeId": "kg3",
-      "classId": "kg3-g",
-      "subjectKey": "KEY:CORNERS",
-      "offeringId": "kg-01-kg3-g-corners",
-      "action": "KEEP"
-    },
-    {
-      "scope": "offering",
-      "schoolId": "kg-01",
-      "schoolName": "روضة واحة الرياحين الأولى",
-      "gradeId": "kg3",
-      "classId": "kg3-g",
-      "subjectKey": "KEY:COUNT_AND_CALCULATE",
-      "offeringId": "kg-01-kg3-g-count-and-calculate",
-      "action": "KEEP"
-    },
-    {
-      "scope": "offering",
-      "schoolId": "kg-01",
-      "schoolName": "روضة واحة الرياحين الأولى",
-      "gradeId": "kg3",
-      "classId": "kg3-g",
-      "subjectKey": "KEY:LEARNING_GARDENS",
-      "offeringId": "kg-01-kg3-g-learning-gardens",
-      "action": "KEEP"
+      "action": "SKIP",
+      "reason": "legacy or non-canonical KG subject is outside subject-card normalization"
     },
     {
       "scope": "offering",
@@ -1359,7 +1386,52 @@
       "classId": "kg3-g",
       "subjectKey": "KEY:NUMBERS",
       "offeringId": "kg-01-kg3-g-numbers",
-      "action": "KEEP"
+      "action": "SKIP",
+      "reason": "legacy or non-canonical KG subject is outside subject-card normalization"
+    },
+    {
+      "scope": "offering",
+      "schoolId": "kg-01",
+      "schoolName": "روضة واحة الرياحين الأولى",
+      "gradeId": "kg3",
+      "classId": "kg3-g",
+      "subjectKey": "KEY:ADHKAR_IDENTITY_ANTHEMS",
+      "offeringId": "kg-01-kg3-g-adhkar-identity-anthems",
+      "action": "KEEP",
+      "reason": ""
+    },
+    {
+      "scope": "offering",
+      "schoolId": "kg-01",
+      "schoolName": "روضة واحة الرياحين الأولى",
+      "gradeId": "kg3",
+      "classId": "kg3-g",
+      "subjectKey": "KEY:CORNERS",
+      "offeringId": "kg-01-kg3-g-corners",
+      "action": "KEEP",
+      "reason": ""
+    },
+    {
+      "scope": "offering",
+      "schoolId": "kg-01",
+      "schoolName": "روضة واحة الرياحين الأولى",
+      "gradeId": "kg3",
+      "classId": "kg3-g",
+      "subjectKey": "KEY:COUNT_AND_CALCULATE",
+      "offeringId": "kg-01-kg3-g-count-and-calculate",
+      "action": "KEEP",
+      "reason": ""
+    },
+    {
+      "scope": "offering",
+      "schoolId": "kg-01",
+      "schoolName": "روضة واحة الرياحين الأولى",
+      "gradeId": "kg3",
+      "classId": "kg3-g",
+      "subjectKey": "KEY:LEARNING_GARDENS",
+      "offeringId": "kg-01-kg3-g-learning-gardens",
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1369,7 +1441,8 @@
       "classId": "kg3-g",
       "subjectKey": "KEY:QURAN",
       "offeringId": "kg-01-kg3-g-quran",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1379,7 +1452,8 @@
       "classId": "kg3-g",
       "subjectKey": "KEY:VALUES",
       "offeringId": "kg-01-kg3-g-values",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1389,7 +1463,8 @@
       "classId": "kg1-a",
       "subjectKey": "KEY:ADHKAR_IDENTITY_ANTHEMS",
       "offeringId": "kg-02-kg1-a-adhkar-identity-anthems",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1399,7 +1474,8 @@
       "classId": "kg1-a",
       "subjectKey": "KEY:COUNT_AND_CALCULATE",
       "offeringId": "kg-02-kg1-a-count-and-calculate",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1409,7 +1485,8 @@
       "classId": "kg1-a",
       "subjectKey": "KEY:LEARNING_GARDENS",
       "offeringId": "kg-02-kg1-a-learning-gardens",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1419,7 +1496,8 @@
       "classId": "kg1-a",
       "subjectKey": "KEY:QURAN",
       "offeringId": "kg-02-kg1-a-quran",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1429,7 +1507,8 @@
       "classId": "kg2-a",
       "subjectKey": "KEY:ADHKAR_IDENTITY_ANTHEMS",
       "offeringId": "kg-02-kg2-a-adhkar-identity-anthems",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1439,7 +1518,8 @@
       "classId": "kg2-a",
       "subjectKey": "KEY:CORNERS",
       "offeringId": "kg-02-kg2-a-corners",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1449,7 +1529,8 @@
       "classId": "kg2-a",
       "subjectKey": "KEY:COUNT_AND_CALCULATE",
       "offeringId": "kg-02-kg2-a-count-and-calculate",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1459,7 +1540,8 @@
       "classId": "kg2-a",
       "subjectKey": "KEY:LEARNING_GARDENS",
       "offeringId": "kg-02-kg2-a-learning-gardens",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1469,7 +1551,8 @@
       "classId": "kg2-a",
       "subjectKey": "KEY:QURAN",
       "offeringId": "kg-02-kg2-a-quran",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1479,7 +1562,8 @@
       "classId": "kg2-a",
       "subjectKey": "KEY:VALUES",
       "offeringId": "kg-02-kg2-a-values",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1489,7 +1573,8 @@
       "classId": "kg2-b",
       "subjectKey": "KEY:ADHKAR_IDENTITY_ANTHEMS",
       "offeringId": "kg-02-kg2-b-adhkar-identity-anthems",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1499,7 +1584,8 @@
       "classId": "kg2-b",
       "subjectKey": "KEY:CORNERS",
       "offeringId": "kg-02-kg2-b-corners",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1509,7 +1595,8 @@
       "classId": "kg2-b",
       "subjectKey": "KEY:COUNT_AND_CALCULATE",
       "offeringId": "kg-02-kg2-b-count-and-calculate",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1519,7 +1606,8 @@
       "classId": "kg2-b",
       "subjectKey": "KEY:LEARNING_GARDENS",
       "offeringId": "kg-02-kg2-b-learning-gardens",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1529,7 +1617,8 @@
       "classId": "kg2-b",
       "subjectKey": "KEY:QURAN",
       "offeringId": "kg-02-kg2-b-quran",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1539,7 +1628,8 @@
       "classId": "kg2-b",
       "subjectKey": "KEY:VALUES",
       "offeringId": "kg-02-kg2-b-values",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1549,7 +1639,8 @@
       "classId": "kg3-a",
       "subjectKey": "KEY:ADHKAR_IDENTITY_ANTHEMS",
       "offeringId": "kg-02-kg3-a-adhkar-identity-anthems",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1559,7 +1650,8 @@
       "classId": "kg3-a",
       "subjectKey": "KEY:CORNERS",
       "offeringId": "kg-02-kg3-a-corners",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1569,7 +1661,8 @@
       "classId": "kg3-a",
       "subjectKey": "KEY:COUNT_AND_CALCULATE",
       "offeringId": "kg-02-kg3-a-count-and-calculate",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1579,7 +1672,8 @@
       "classId": "kg3-a",
       "subjectKey": "KEY:LEARNING_GARDENS",
       "offeringId": "kg-02-kg3-a-learning-gardens",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1589,7 +1683,8 @@
       "classId": "kg3-a",
       "subjectKey": "KEY:QURAN",
       "offeringId": "kg-02-kg3-a-quran",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1599,7 +1694,8 @@
       "classId": "kg3-a",
       "subjectKey": "KEY:VALUES",
       "offeringId": "kg-02-kg3-a-values",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1609,7 +1705,8 @@
       "classId": "kg3-b",
       "subjectKey": "KEY:ADHKAR_IDENTITY_ANTHEMS",
       "offeringId": "kg-02-kg3-b-adhkar-identity-anthems",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1619,7 +1716,8 @@
       "classId": "kg3-b",
       "subjectKey": "KEY:CORNERS",
       "offeringId": "kg-02-kg3-b-corners",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1629,7 +1727,8 @@
       "classId": "kg3-b",
       "subjectKey": "KEY:COUNT_AND_CALCULATE",
       "offeringId": "kg-02-kg3-b-count-and-calculate",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1639,7 +1738,8 @@
       "classId": "kg3-b",
       "subjectKey": "KEY:LEARNING_GARDENS",
       "offeringId": "kg-02-kg3-b-learning-gardens",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1649,7 +1749,8 @@
       "classId": "kg3-b",
       "subjectKey": "KEY:QURAN",
       "offeringId": "kg-02-kg3-b-quran",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1659,7 +1760,8 @@
       "classId": "kg3-b",
       "subjectKey": "KEY:VALUES",
       "offeringId": "kg-02-kg3-b-values",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1669,7 +1771,8 @@
       "classId": "kg3-c",
       "subjectKey": "KEY:ADHKAR_IDENTITY_ANTHEMS",
       "offeringId": "kg-02-kg3-c-adhkar-identity-anthems",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1679,7 +1782,8 @@
       "classId": "kg3-c",
       "subjectKey": "KEY:CORNERS",
       "offeringId": "kg-02-kg3-c-corners",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1689,7 +1793,8 @@
       "classId": "kg3-c",
       "subjectKey": "KEY:COUNT_AND_CALCULATE",
       "offeringId": "kg-02-kg3-c-count-and-calculate",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1699,7 +1804,8 @@
       "classId": "kg3-c",
       "subjectKey": "KEY:LEARNING_GARDENS",
       "offeringId": "kg-02-kg3-c-learning-gardens",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1709,7 +1815,8 @@
       "classId": "kg3-c",
       "subjectKey": "KEY:QURAN",
       "offeringId": "kg-02-kg3-c-quran",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1719,7 +1826,8 @@
       "classId": "kg3-c",
       "subjectKey": "KEY:VALUES",
       "offeringId": "kg-02-kg3-c-values",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1729,7 +1837,8 @@
       "classId": "kg3-d",
       "subjectKey": "KEY:ADHKAR_IDENTITY_ANTHEMS",
       "offeringId": "kg-02-kg3-d-adhkar-identity-anthems",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1739,7 +1848,8 @@
       "classId": "kg3-d",
       "subjectKey": "KEY:CORNERS",
       "offeringId": "kg-02-kg3-d-corners",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1749,7 +1859,8 @@
       "classId": "kg3-d",
       "subjectKey": "KEY:COUNT_AND_CALCULATE",
       "offeringId": "kg-02-kg3-d-count-and-calculate",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1759,7 +1870,8 @@
       "classId": "kg3-d",
       "subjectKey": "KEY:LEARNING_GARDENS",
       "offeringId": "kg-02-kg3-d-learning-gardens",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1769,7 +1881,8 @@
       "classId": "kg3-d",
       "subjectKey": "KEY:QURAN",
       "offeringId": "kg-02-kg3-d-quran",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1779,7 +1892,8 @@
       "classId": "kg3-d",
       "subjectKey": "KEY:VALUES",
       "offeringId": "kg-02-kg3-d-values",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1789,7 +1903,8 @@
       "classId": "kg3-e",
       "subjectKey": "KEY:ADHKAR_IDENTITY_ANTHEMS",
       "offeringId": "kg-02-kg3-e-adhkar-identity-anthems",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1799,7 +1914,8 @@
       "classId": "kg3-e",
       "subjectKey": "KEY:CORNERS",
       "offeringId": "kg-02-kg3-e-corners",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1809,7 +1925,8 @@
       "classId": "kg3-e",
       "subjectKey": "KEY:COUNT_AND_CALCULATE",
       "offeringId": "kg-02-kg3-e-count-and-calculate",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1819,7 +1936,8 @@
       "classId": "kg3-e",
       "subjectKey": "KEY:LEARNING_GARDENS",
       "offeringId": "kg-02-kg3-e-learning-gardens",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1829,7 +1947,8 @@
       "classId": "kg3-e",
       "subjectKey": "KEY:QURAN",
       "offeringId": "kg-02-kg3-e-quran",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1839,7 +1958,8 @@
       "classId": "kg3-e",
       "subjectKey": "KEY:VALUES",
       "offeringId": "kg-02-kg3-e-values",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1849,7 +1969,8 @@
       "classId": "kg3-f",
       "subjectKey": "KEY:ADHKAR_IDENTITY_ANTHEMS",
       "offeringId": "kg-02-kg3-f-adhkar-identity-anthems",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1859,7 +1980,8 @@
       "classId": "kg3-f",
       "subjectKey": "KEY:CORNERS",
       "offeringId": "kg-02-kg3-f-corners",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1869,7 +1991,8 @@
       "classId": "kg3-f",
       "subjectKey": "KEY:COUNT_AND_CALCULATE",
       "offeringId": "kg-02-kg3-f-count-and-calculate",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1879,7 +2002,8 @@
       "classId": "kg3-f",
       "subjectKey": "KEY:LEARNING_GARDENS",
       "offeringId": "kg-02-kg3-f-learning-gardens",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1889,7 +2013,8 @@
       "classId": "kg3-f",
       "subjectKey": "KEY:QURAN",
       "offeringId": "kg-02-kg3-f-quran",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1899,7 +2024,8 @@
       "classId": "kg3-f",
       "subjectKey": "KEY:VALUES",
       "offeringId": "kg-02-kg3-f-values",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1909,7 +2035,8 @@
       "classId": "kg1-a",
       "subjectKey": "KEY:ADHKAR_IDENTITY_ANTHEMS",
       "offeringId": "kg-03-kg1-a-adhkar-identity-anthems",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1919,7 +2046,8 @@
       "classId": "kg1-a",
       "subjectKey": "KEY:COUNT_AND_CALCULATE",
       "offeringId": "kg-03-kg1-a-count-and-calculate",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1929,7 +2057,8 @@
       "classId": "kg1-a",
       "subjectKey": "KEY:LEARNING_GARDENS",
       "offeringId": "kg-03-kg1-a-learning-gardens",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1939,7 +2068,8 @@
       "classId": "kg1-a",
       "subjectKey": "KEY:QURAN",
       "offeringId": "kg-03-kg1-a-quran",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1949,7 +2079,8 @@
       "classId": "kg2-a",
       "subjectKey": "KEY:ADHKAR_IDENTITY_ANTHEMS",
       "offeringId": "kg-03-kg2-a-adhkar-identity-anthems",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1959,7 +2090,8 @@
       "classId": "kg2-a",
       "subjectKey": "KEY:CORNERS",
       "offeringId": "kg-03-kg2-a-corners",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1969,7 +2101,8 @@
       "classId": "kg2-a",
       "subjectKey": "KEY:COUNT_AND_CALCULATE",
       "offeringId": "kg-03-kg2-a-count-and-calculate",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1979,7 +2112,8 @@
       "classId": "kg2-a",
       "subjectKey": "KEY:LEARNING_GARDENS",
       "offeringId": "kg-03-kg2-a-learning-gardens",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1989,7 +2123,8 @@
       "classId": "kg2-a",
       "subjectKey": "KEY:QURAN",
       "offeringId": "kg-03-kg2-a-quran",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -1999,7 +2134,8 @@
       "classId": "kg2-a",
       "subjectKey": "KEY:VALUES",
       "offeringId": "kg-03-kg2-a-values",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2009,7 +2145,8 @@
       "classId": "kg2-b",
       "subjectKey": "KEY:ADHKAR_IDENTITY_ANTHEMS",
       "offeringId": "kg-03-kg2-b-adhkar-identity-anthems",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2019,7 +2156,8 @@
       "classId": "kg2-b",
       "subjectKey": "KEY:CORNERS",
       "offeringId": "kg-03-kg2-b-corners",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2029,7 +2167,8 @@
       "classId": "kg2-b",
       "subjectKey": "KEY:COUNT_AND_CALCULATE",
       "offeringId": "kg-03-kg2-b-count-and-calculate",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2039,7 +2178,8 @@
       "classId": "kg2-b",
       "subjectKey": "KEY:LEARNING_GARDENS",
       "offeringId": "kg-03-kg2-b-learning-gardens",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2049,7 +2189,8 @@
       "classId": "kg2-b",
       "subjectKey": "KEY:QURAN",
       "offeringId": "kg-03-kg2-b-quran",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2059,7 +2200,8 @@
       "classId": "kg2-b",
       "subjectKey": "KEY:VALUES",
       "offeringId": "kg-03-kg2-b-values",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2069,7 +2211,8 @@
       "classId": "kg3-a",
       "subjectKey": "KEY:ADHKAR_IDENTITY_ANTHEMS",
       "offeringId": "kg-03-kg3-a-adhkar-identity-anthems",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2079,7 +2222,8 @@
       "classId": "kg3-a",
       "subjectKey": "KEY:CORNERS",
       "offeringId": "kg-03-kg3-a-corners",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2089,7 +2233,8 @@
       "classId": "kg3-a",
       "subjectKey": "KEY:COUNT_AND_CALCULATE",
       "offeringId": "kg-03-kg3-a-count-and-calculate",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2099,7 +2244,8 @@
       "classId": "kg3-a",
       "subjectKey": "KEY:LEARNING_GARDENS",
       "offeringId": "kg-03-kg3-a-learning-gardens",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2109,7 +2255,8 @@
       "classId": "kg3-a",
       "subjectKey": "KEY:QURAN",
       "offeringId": "kg-03-kg3-a-quran",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2119,7 +2266,8 @@
       "classId": "kg3-a",
       "subjectKey": "KEY:VALUES",
       "offeringId": "kg-03-kg3-a-values",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2129,7 +2277,8 @@
       "classId": "kg3-b",
       "subjectKey": "KEY:ADHKAR_IDENTITY_ANTHEMS",
       "offeringId": "kg-03-kg3-b-adhkar-identity-anthems",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2139,7 +2288,8 @@
       "classId": "kg3-b",
       "subjectKey": "KEY:CORNERS",
       "offeringId": "kg-03-kg3-b-corners",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2149,7 +2299,8 @@
       "classId": "kg3-b",
       "subjectKey": "KEY:COUNT_AND_CALCULATE",
       "offeringId": "kg-03-kg3-b-count-and-calculate",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2159,7 +2310,8 @@
       "classId": "kg3-b",
       "subjectKey": "KEY:LEARNING_GARDENS",
       "offeringId": "kg-03-kg3-b-learning-gardens",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2169,7 +2321,8 @@
       "classId": "kg3-b",
       "subjectKey": "KEY:QURAN",
       "offeringId": "kg-03-kg3-b-quran",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2179,7 +2332,8 @@
       "classId": "kg3-b",
       "subjectKey": "KEY:VALUES",
       "offeringId": "kg-03-kg3-b-values",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2189,7 +2343,8 @@
       "classId": "kg3-c",
       "subjectKey": "KEY:ADHKAR_IDENTITY_ANTHEMS",
       "offeringId": "kg-03-kg3-c-adhkar-identity-anthems",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2199,7 +2354,8 @@
       "classId": "kg3-c",
       "subjectKey": "KEY:CORNERS",
       "offeringId": "kg-03-kg3-c-corners",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2209,7 +2365,8 @@
       "classId": "kg3-c",
       "subjectKey": "KEY:COUNT_AND_CALCULATE",
       "offeringId": "kg-03-kg3-c-count-and-calculate",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2219,7 +2376,8 @@
       "classId": "kg3-c",
       "subjectKey": "KEY:LEARNING_GARDENS",
       "offeringId": "kg-03-kg3-c-learning-gardens",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2229,7 +2387,8 @@
       "classId": "kg3-c",
       "subjectKey": "KEY:QURAN",
       "offeringId": "kg-03-kg3-c-quran",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2239,7 +2398,8 @@
       "classId": "kg3-c",
       "subjectKey": "KEY:VALUES",
       "offeringId": "kg-03-kg3-c-values",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2249,7 +2409,8 @@
       "classId": "kg3-d",
       "subjectKey": "KEY:ADHKAR_IDENTITY_ANTHEMS",
       "offeringId": "kg-03-kg3-d-adhkar-identity-anthems",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2259,7 +2420,8 @@
       "classId": "kg3-d",
       "subjectKey": "KEY:CORNERS",
       "offeringId": "kg-03-kg3-d-corners",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2269,7 +2431,8 @@
       "classId": "kg3-d",
       "subjectKey": "KEY:COUNT_AND_CALCULATE",
       "offeringId": "kg-03-kg3-d-count-and-calculate",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2279,7 +2442,8 @@
       "classId": "kg3-d",
       "subjectKey": "KEY:LEARNING_GARDENS",
       "offeringId": "kg-03-kg3-d-learning-gardens",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2289,7 +2453,8 @@
       "classId": "kg3-d",
       "subjectKey": "KEY:QURAN",
       "offeringId": "kg-03-kg3-d-quran",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2299,7 +2464,8 @@
       "classId": "kg3-d",
       "subjectKey": "KEY:VALUES",
       "offeringId": "kg-03-kg3-d-values",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2309,7 +2475,8 @@
       "classId": "kg3-e",
       "subjectKey": "KEY:ADHKAR_IDENTITY_ANTHEMS",
       "offeringId": "kg-03-kg3-e-adhkar-identity-anthems",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2319,7 +2486,8 @@
       "classId": "kg3-e",
       "subjectKey": "KEY:CORNERS",
       "offeringId": "kg-03-kg3-e-corners",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2329,7 +2497,8 @@
       "classId": "kg3-e",
       "subjectKey": "KEY:COUNT_AND_CALCULATE",
       "offeringId": "kg-03-kg3-e-count-and-calculate",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2339,7 +2508,8 @@
       "classId": "kg3-e",
       "subjectKey": "KEY:LEARNING_GARDENS",
       "offeringId": "kg-03-kg3-e-learning-gardens",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2349,7 +2519,8 @@
       "classId": "kg3-e",
       "subjectKey": "KEY:QURAN",
       "offeringId": "kg-03-kg3-e-quran",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2359,27 +2530,8 @@
       "classId": "kg3-e",
       "subjectKey": "KEY:VALUES",
       "offeringId": "kg-03-kg3-e-values",
-      "action": "KEEP"
-    },
-    {
-      "scope": "offering",
-      "schoolId": "kg-04",
-      "schoolName": "روضة واحة الرياحين الرابعة",
-      "gradeId": "kg1",
-      "classId": "kg1-a",
-      "subjectKey": "KEY:ADHKAR_IDENTITY_ANTHEMS",
-      "offeringId": "kg-04-kg1-a-adhkar-identity-anthems",
-      "action": "KEEP"
-    },
-    {
-      "scope": "offering",
-      "schoolId": "kg-04",
-      "schoolName": "روضة واحة الرياحين الرابعة",
-      "gradeId": "kg1",
-      "classId": "kg1-a",
-      "subjectKey": "KEY:COUNT_AND_CALCULATE",
-      "offeringId": "kg-04-kg1-a-count-and-calculate",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2389,7 +2541,8 @@
       "classId": "kg1-a",
       "subjectKey": "KEY:CLASS",
       "offeringId": "kg1-a-class",
-      "action": "KEEP"
+      "action": "SKIP",
+      "reason": "legacy or non-canonical KG subject is outside subject-card normalization"
     },
     {
       "scope": "offering",
@@ -2397,9 +2550,10 @@
       "schoolName": "روضة واحة الرياحين الرابعة",
       "gradeId": "kg1",
       "classId": "kg1-a",
-      "subjectKey": "KEY:LEARNING_GARDENS",
-      "offeringId": "kg1-a-learning-gardens",
-      "action": "KEEP"
+      "subjectKey": "KEY:CORNERS",
+      "offeringId": "kg1-a-corners",
+      "action": "SKIP",
+      "reason": "legacy or non-canonical KG subject is outside subject-card normalization"
     },
     {
       "scope": "offering",
@@ -2409,7 +2563,52 @@
       "classId": "kg1-a",
       "subjectKey": "KEY:NUMBERS",
       "offeringId": "kg1-a-numbers",
-      "action": "KEEP"
+      "action": "SKIP",
+      "reason": "legacy or non-canonical KG subject is outside subject-card normalization"
+    },
+    {
+      "scope": "offering",
+      "schoolId": "kg-04",
+      "schoolName": "روضة واحة الرياحين الرابعة",
+      "gradeId": "kg1",
+      "classId": "kg1-a",
+      "subjectKey": "KEY:VALUES",
+      "offeringId": "kg1-a-values",
+      "action": "SKIP",
+      "reason": "legacy or non-canonical KG subject is outside subject-card normalization"
+    },
+    {
+      "scope": "offering",
+      "schoolId": "kg-04",
+      "schoolName": "روضة واحة الرياحين الرابعة",
+      "gradeId": "kg1",
+      "classId": "kg1-a",
+      "subjectKey": "KEY:ADHKAR_IDENTITY_ANTHEMS",
+      "offeringId": "kg-04-kg1-a-adhkar-identity-anthems",
+      "action": "KEEP",
+      "reason": ""
+    },
+    {
+      "scope": "offering",
+      "schoolId": "kg-04",
+      "schoolName": "روضة واحة الرياحين الرابعة",
+      "gradeId": "kg1",
+      "classId": "kg1-a",
+      "subjectKey": "KEY:COUNT_AND_CALCULATE",
+      "offeringId": "kg-04-kg1-a-count-and-calculate",
+      "action": "KEEP",
+      "reason": ""
+    },
+    {
+      "scope": "offering",
+      "schoolId": "kg-04",
+      "schoolName": "روضة واحة الرياحين الرابعة",
+      "gradeId": "kg1",
+      "classId": "kg1-a",
+      "subjectKey": "KEY:LEARNING_GARDENS",
+      "offeringId": "kg1-a-learning-gardens",
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2419,27 +2618,8 @@
       "classId": "kg1-a",
       "subjectKey": "KEY:QURAN",
       "offeringId": "kg1-a-quran",
-      "action": "KEEP"
-    },
-    {
-      "scope": "offering",
-      "schoolId": "kg-04",
-      "schoolName": "روضة واحة الرياحين الرابعة",
-      "gradeId": "kg2",
-      "classId": "kg2-a",
-      "subjectKey": "KEY:ADHKAR_IDENTITY_ANTHEMS",
-      "offeringId": "kg-04-kg2-a-adhkar-identity-anthems",
-      "action": "KEEP"
-    },
-    {
-      "scope": "offering",
-      "schoolId": "kg-04",
-      "schoolName": "روضة واحة الرياحين الرابعة",
-      "gradeId": "kg2",
-      "classId": "kg2-a",
-      "subjectKey": "KEY:COUNT_AND_CALCULATE",
-      "offeringId": "kg-04-kg2-a-count-and-calculate",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2449,27 +2629,8 @@
       "classId": "kg2-a",
       "subjectKey": "KEY:CLASS",
       "offeringId": "kg2-a-class",
-      "action": "KEEP"
-    },
-    {
-      "scope": "offering",
-      "schoolId": "kg-04",
-      "schoolName": "روضة واحة الرياحين الرابعة",
-      "gradeId": "kg2",
-      "classId": "kg2-a",
-      "subjectKey": "KEY:CORNERS",
-      "offeringId": "kg2-a-corners",
-      "action": "KEEP"
-    },
-    {
-      "scope": "offering",
-      "schoolId": "kg-04",
-      "schoolName": "روضة واحة الرياحين الرابعة",
-      "gradeId": "kg2",
-      "classId": "kg2-a",
-      "subjectKey": "KEY:LEARNING_GARDENS",
-      "offeringId": "kg2-a-learning-gardens",
-      "action": "KEEP"
+      "action": "SKIP",
+      "reason": "legacy or non-canonical KG subject is outside subject-card normalization"
     },
     {
       "scope": "offering",
@@ -2479,7 +2640,52 @@
       "classId": "kg2-a",
       "subjectKey": "KEY:NUMBERS",
       "offeringId": "kg2-a-numbers",
-      "action": "KEEP"
+      "action": "SKIP",
+      "reason": "legacy or non-canonical KG subject is outside subject-card normalization"
+    },
+    {
+      "scope": "offering",
+      "schoolId": "kg-04",
+      "schoolName": "روضة واحة الرياحين الرابعة",
+      "gradeId": "kg2",
+      "classId": "kg2-a",
+      "subjectKey": "KEY:ADHKAR_IDENTITY_ANTHEMS",
+      "offeringId": "kg-04-kg2-a-adhkar-identity-anthems",
+      "action": "KEEP",
+      "reason": ""
+    },
+    {
+      "scope": "offering",
+      "schoolId": "kg-04",
+      "schoolName": "روضة واحة الرياحين الرابعة",
+      "gradeId": "kg2",
+      "classId": "kg2-a",
+      "subjectKey": "KEY:COUNT_AND_CALCULATE",
+      "offeringId": "kg-04-kg2-a-count-and-calculate",
+      "action": "KEEP",
+      "reason": ""
+    },
+    {
+      "scope": "offering",
+      "schoolId": "kg-04",
+      "schoolName": "روضة واحة الرياحين الرابعة",
+      "gradeId": "kg2",
+      "classId": "kg2-a",
+      "subjectKey": "KEY:CORNERS",
+      "offeringId": "kg2-a-corners",
+      "action": "KEEP",
+      "reason": ""
+    },
+    {
+      "scope": "offering",
+      "schoolId": "kg-04",
+      "schoolName": "روضة واحة الرياحين الرابعة",
+      "gradeId": "kg2",
+      "classId": "kg2-a",
+      "subjectKey": "KEY:LEARNING_GARDENS",
+      "offeringId": "kg2-a-learning-gardens",
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2489,7 +2695,8 @@
       "classId": "kg2-a",
       "subjectKey": "KEY:QURAN",
       "offeringId": "kg2-a-quran",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2499,17 +2706,8 @@
       "classId": "kg2-a",
       "subjectKey": "KEY:VALUES",
       "offeringId": "kg2-a-values",
-      "action": "KEEP"
-    },
-    {
-      "scope": "offering",
-      "schoolId": "kg-04",
-      "schoolName": "روضة واحة الرياحين الرابعة",
-      "gradeId": "kg2",
-      "classId": "kg2-b",
-      "subjectKey": "KEY:ADHKAR_IDENTITY_ANTHEMS",
-      "offeringId": "kg-04-kg2-b-adhkar-identity-anthems",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2519,37 +2717,8 @@
       "classId": "kg2-b",
       "subjectKey": "KEY:CLASS",
       "offeringId": "kg-04-kg2-b-class",
-      "action": "KEEP"
-    },
-    {
-      "scope": "offering",
-      "schoolId": "kg-04",
-      "schoolName": "روضة واحة الرياحين الرابعة",
-      "gradeId": "kg2",
-      "classId": "kg2-b",
-      "subjectKey": "KEY:CORNERS",
-      "offeringId": "kg-04-kg2-b-corners",
-      "action": "KEEP"
-    },
-    {
-      "scope": "offering",
-      "schoolId": "kg-04",
-      "schoolName": "روضة واحة الرياحين الرابعة",
-      "gradeId": "kg2",
-      "classId": "kg2-b",
-      "subjectKey": "KEY:COUNT_AND_CALCULATE",
-      "offeringId": "kg-04-kg2-b-count-and-calculate",
-      "action": "KEEP"
-    },
-    {
-      "scope": "offering",
-      "schoolId": "kg-04",
-      "schoolName": "روضة واحة الرياحين الرابعة",
-      "gradeId": "kg2",
-      "classId": "kg2-b",
-      "subjectKey": "KEY:LEARNING_GARDENS",
-      "offeringId": "kg-04-kg2-b-learning-gardens",
-      "action": "KEEP"
+      "action": "SKIP",
+      "reason": "legacy or non-canonical KG subject is outside subject-card normalization"
     },
     {
       "scope": "offering",
@@ -2559,7 +2728,52 @@
       "classId": "kg2-b",
       "subjectKey": "KEY:NUMBERS",
       "offeringId": "kg-04-kg2-b-numbers",
-      "action": "KEEP"
+      "action": "SKIP",
+      "reason": "legacy or non-canonical KG subject is outside subject-card normalization"
+    },
+    {
+      "scope": "offering",
+      "schoolId": "kg-04",
+      "schoolName": "روضة واحة الرياحين الرابعة",
+      "gradeId": "kg2",
+      "classId": "kg2-b",
+      "subjectKey": "KEY:ADHKAR_IDENTITY_ANTHEMS",
+      "offeringId": "kg-04-kg2-b-adhkar-identity-anthems",
+      "action": "KEEP",
+      "reason": ""
+    },
+    {
+      "scope": "offering",
+      "schoolId": "kg-04",
+      "schoolName": "روضة واحة الرياحين الرابعة",
+      "gradeId": "kg2",
+      "classId": "kg2-b",
+      "subjectKey": "KEY:CORNERS",
+      "offeringId": "kg-04-kg2-b-corners",
+      "action": "KEEP",
+      "reason": ""
+    },
+    {
+      "scope": "offering",
+      "schoolId": "kg-04",
+      "schoolName": "روضة واحة الرياحين الرابعة",
+      "gradeId": "kg2",
+      "classId": "kg2-b",
+      "subjectKey": "KEY:COUNT_AND_CALCULATE",
+      "offeringId": "kg-04-kg2-b-count-and-calculate",
+      "action": "KEEP",
+      "reason": ""
+    },
+    {
+      "scope": "offering",
+      "schoolId": "kg-04",
+      "schoolName": "روضة واحة الرياحين الرابعة",
+      "gradeId": "kg2",
+      "classId": "kg2-b",
+      "subjectKey": "KEY:LEARNING_GARDENS",
+      "offeringId": "kg-04-kg2-b-learning-gardens",
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2569,7 +2783,8 @@
       "classId": "kg2-b",
       "subjectKey": "KEY:QURAN",
       "offeringId": "kg-04-kg2-b-quran",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2579,7 +2794,8 @@
       "classId": "kg2-b",
       "subjectKey": "KEY:VALUES",
       "offeringId": "kg-04-kg2-b-values",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2589,7 +2805,8 @@
       "classId": "kg3-a",
       "subjectKey": "KEY:ADHKAR_IDENTITY_ANTHEMS",
       "offeringId": "kg-04-kg3-a-adhkar-identity-anthems",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2599,7 +2816,8 @@
       "classId": "kg3-a",
       "subjectKey": "KEY:CORNERS",
       "offeringId": "kg-04-kg3-a-corners",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2609,7 +2827,8 @@
       "classId": "kg3-a",
       "subjectKey": "KEY:COUNT_AND_CALCULATE",
       "offeringId": "kg-04-kg3-a-count-and-calculate",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2619,7 +2838,8 @@
       "classId": "kg3-a",
       "subjectKey": "KEY:LEARNING_GARDENS",
       "offeringId": "kg-04-kg3-a-learning-gardens",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2629,7 +2849,8 @@
       "classId": "kg3-a",
       "subjectKey": "KEY:QURAN",
       "offeringId": "kg-04-kg3-a-quran",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2639,7 +2860,8 @@
       "classId": "kg3-a",
       "subjectKey": "KEY:VALUES",
       "offeringId": "kg-04-kg3-a-values",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2649,7 +2871,8 @@
       "classId": "kg3-b",
       "subjectKey": "KEY:ADHKAR_IDENTITY_ANTHEMS",
       "offeringId": "kg-04-kg3-b-adhkar-identity-anthems",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2659,7 +2882,8 @@
       "classId": "kg3-b",
       "subjectKey": "KEY:CORNERS",
       "offeringId": "kg-04-kg3-b-corners",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2669,7 +2893,8 @@
       "classId": "kg3-b",
       "subjectKey": "KEY:COUNT_AND_CALCULATE",
       "offeringId": "kg-04-kg3-b-count-and-calculate",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2679,7 +2904,8 @@
       "classId": "kg3-b",
       "subjectKey": "KEY:LEARNING_GARDENS",
       "offeringId": "kg-04-kg3-b-learning-gardens",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2689,7 +2915,8 @@
       "classId": "kg3-b",
       "subjectKey": "KEY:QURAN",
       "offeringId": "kg-04-kg3-b-quran",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2699,7 +2926,8 @@
       "classId": "kg3-b",
       "subjectKey": "KEY:VALUES",
       "offeringId": "kg-04-kg3-b-values",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2709,7 +2937,8 @@
       "classId": "kg3-c",
       "subjectKey": "KEY:ADHKAR_IDENTITY_ANTHEMS",
       "offeringId": "kg-04-kg3-c-adhkar-identity-anthems",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2719,7 +2948,8 @@
       "classId": "kg3-c",
       "subjectKey": "KEY:CORNERS",
       "offeringId": "kg-04-kg3-c-corners",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2729,7 +2959,8 @@
       "classId": "kg3-c",
       "subjectKey": "KEY:COUNT_AND_CALCULATE",
       "offeringId": "kg-04-kg3-c-count-and-calculate",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2739,7 +2970,8 @@
       "classId": "kg3-c",
       "subjectKey": "KEY:LEARNING_GARDENS",
       "offeringId": "kg-04-kg3-c-learning-gardens",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2749,7 +2981,8 @@
       "classId": "kg3-c",
       "subjectKey": "KEY:QURAN",
       "offeringId": "kg-04-kg3-c-quran",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2759,7 +2992,8 @@
       "classId": "kg3-c",
       "subjectKey": "KEY:VALUES",
       "offeringId": "kg-04-kg3-c-values",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2769,7 +3003,8 @@
       "classId": "kg3-d",
       "subjectKey": "KEY:ADHKAR_IDENTITY_ANTHEMS",
       "offeringId": "kg-04-kg3-d-adhkar-identity-anthems",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2779,7 +3014,8 @@
       "classId": "kg3-d",
       "subjectKey": "KEY:CORNERS",
       "offeringId": "kg-04-kg3-d-corners",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2789,7 +3025,8 @@
       "classId": "kg3-d",
       "subjectKey": "KEY:COUNT_AND_CALCULATE",
       "offeringId": "kg-04-kg3-d-count-and-calculate",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2799,7 +3036,8 @@
       "classId": "kg3-d",
       "subjectKey": "KEY:LEARNING_GARDENS",
       "offeringId": "kg-04-kg3-d-learning-gardens",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2809,7 +3047,8 @@
       "classId": "kg3-d",
       "subjectKey": "KEY:QURAN",
       "offeringId": "kg-04-kg3-d-quran",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     },
     {
       "scope": "offering",
@@ -2819,7 +3058,8 @@
       "classId": "kg3-d",
       "subjectKey": "KEY:VALUES",
       "offeringId": "kg-04-kg3-d-values",
-      "action": "KEEP"
+      "action": "KEEP",
+      "reason": ""
     }
   ],
   "blockers": [],
@@ -2828,7 +3068,8 @@
       "KEEP": 34
     },
     "offerings": {
-      "KEEP": 216
+      "KEEP": 196,
+      "SKIP": 22
     },
     "writes": 0,
     "blocked": 0

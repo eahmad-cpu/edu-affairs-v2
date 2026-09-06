@@ -11,6 +11,11 @@
 const admin = require("firebase-admin");
 const fs = require("node:fs");
 const path = require("node:path");
+const {
+  KG_SUBJECT_CARD_MODULE_KEYS,
+  buildKgSubjectCardConfiguration,
+  hasKgSubjectCardConfiguration,
+} = require("./kg-subject-card-configuration.cjs");
 
 const ORG_ID = "takween";
 const SCHOOL_ID = "kg-01";
@@ -30,17 +35,7 @@ const VERSION = 1;
 const INCORRECT_CLASS_ASSIGNMENT_ID = "ta-kg1-class";
 const INCORRECT_CLASS_LINK_ID = "tal-kg1-class";
 
-const TARGET_MODULE_KEYS = [
-  "ASSESSMENTS",
-  "LEARNING_LOSS",
-  "HOMEWORK",
-  "LESSON_PREP",
-  "QUESTION_BANK",
-  "CURRICULUM_PLAN",
-  "RESOURCES",
-  "GAMIFICATION",
-  "NOTES",
-];
+const TARGET_MODULE_KEYS = KG_SUBJECT_CARD_MODULE_KEYS;
 
 const ALLOWED_TEACHER_OPERATION_KINDS = new Set([
   "STUDENT_MEASUREMENT",
@@ -140,12 +135,6 @@ function stableId(parts) {
     .map((part) => text(part).replaceAll("/", "-").replace(/\s+/g, "-"))
     .filter(Boolean)
     .join("__");
-}
-
-function arraysEqual(left, right) {
-  return Array.isArray(left) &&
-    left.length === right.length &&
-    left.every((value, index) => value === right[index]);
 }
 
 function loadSourceReport() {
@@ -562,10 +551,10 @@ async function main() {
     const offering = entry.offering;
     const effectiveOffering = {
       ...offering,
-      enabledModuleKeys: [...TARGET_MODULE_KEYS],
+      ...buildKgSubjectCardConfiguration(offering),
     };
     effectiveOfferingById.set(offering.id, effectiveOffering);
-    const modulesMatch = arraysEqual(offering.enabledModuleKeys, TARGET_MODULE_KEYS);
+    const modulesMatch = hasKgSubjectCardConfiguration(offering);
     offeringModulePlans.push({
       collection: "classSubjectOfferings",
       id: offering.id,
@@ -573,9 +562,9 @@ async function main() {
       subjectKey: offering.subjectKey,
       before: Array.isArray(offering.enabledModuleKeys) ? offering.enabledModuleKeys : [],
       after: [...TARGET_MODULE_KEYS],
-      action: modulesMatch ? "REUSE" : "UPDATE_MODULES",
+      action: modulesMatch ? "REUSE" : "UPDATE_CONFIGURATION",
       payload: modulesMatch ? {} : {
-        enabledModuleKeys: [...TARGET_MODULE_KEYS],
+        ...buildKgSubjectCardConfiguration(offering),
         updatedAt: now,
       },
     });

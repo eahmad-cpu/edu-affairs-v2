@@ -472,7 +472,7 @@ export default function SubjectLessonPrepDetailsPage() {
       });
 
       setApprovalNote("");
-      setActionMessage("تم اعتماد التحضير بنجاح.");
+      setActionMessage("تم الاطلاع على التحضير بنجاح.");
     } catch (error) {
       setActionError(
         error instanceof Error ? error.message : "فشل اعتماد التحضير.",
@@ -754,7 +754,7 @@ export default function SubjectLessonPrepDetailsPage() {
                         className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 px-4 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-60"
                       >
                         <CheckCircle2 className="h-4 w-4" />
-                        {actionLoading ? "جارٍ الاعتماد..." : "اعتماد التحضير"}
+                        {actionLoading ? "جارٍ الاعتماد..." : "تم الاطلاع"}
                       </button>
 
                       {!showReturnReason ? (
@@ -800,8 +800,8 @@ export default function SubjectLessonPrepDetailsPage() {
                     </div>
                   ) : prep.status === "APPROVED" ? (
                     <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-sm leading-7 text-emerald-900 dark:border-emerald-900/60 dark:bg-emerald-950/30 dark:text-emerald-100">
-                      <p className="font-bold">تم اعتماد التحضير</p>
-                      <p className="mt-1">تمت مراجعة هذا التحضير واعتماده بنجاح.</p>
+                      <p className="font-bold">تم الاطلاع على التحضير</p>
+                      <p className="mt-1">تمت مراجعة هذا التحضير .</p>
                       {prep.approvalNote?.trim() ? (
                         <div className="mt-3 border-t border-emerald-200 pt-3 dark:border-emerald-900/60">
                           <p className="font-bold">ملاحظة المشرف</p>

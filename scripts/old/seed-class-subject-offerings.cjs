@@ -1,5 +1,9 @@
 const admin = require("firebase-admin");
 const path = require("path");
+const {
+  KG_SUBJECT_CARD_MODULE_KEYS,
+  buildKgSubjectCardConfiguration,
+} = require("../kindergarten/kg-subject-card-configuration.cjs");
 
 const serviceAccount = require(path.join(__dirname, "./service-account.json"));
 
@@ -63,29 +67,7 @@ function getDefaultModulesForSubject(subject, school) {
   const category = String(subject.category || "").toUpperCase();
 
   if (schoolType === "KG") {
-    if (
-      subjectKey.includes("VALUES") ||
-      category.includes("VALUES") ||
-      subjectKey.includes("QIM") ||
-      category.includes("QIM")
-    ) {
-      return ["ASSESSMENTS", "NOTES", "GAMIFICATION"];
-    }
-
-    if (
-      subjectKey.includes("CORNERS") ||
-      category.includes("CORNERS") ||
-      subjectKey.includes("ARKAN") ||
-      category.includes("ARKAN")
-    ) {
-      return ["ASSESSMENTS", "NOTES", "GAMIFICATION"];
-    }
-
-    if (subjectKey.includes("QURAN") || category.includes("QURAN")) {
-      return ["ASSESSMENTS", "LEARNING_LOSS", "NOTES", "GAMIFICATION"];
-    }
-
-    return ["ASSESSMENTS", "NOTES", "GAMIFICATION"];
+    return [...KG_SUBJECT_CARD_MODULE_KEYS];
   }
 
   if (subjectKey.includes("QURAN") || category.includes("QURAN")) {
@@ -117,6 +99,8 @@ function buildOfferingData({ orgId, school, year, classRow, subject }) {
   const subjectKey = getSubjectKey(subject);
   const subjectTitle = getSubjectTitle(subject);
   const ts = nowMs();
+  const isKg = school?.profile?.schoolType === "KG";
+  const kgConfiguration = isKg ? buildKgSubjectCardConfiguration() : null;
 
   return {
     id: buildOfferingId(classRow.id, subjectKey, subject.id),
@@ -141,14 +125,14 @@ function buildOfferingData({ orgId, school, year, classRow, subject }) {
 
     order: Number(subject.order ?? 0),
 
-    enabledModuleKeys: getDefaultModulesForSubject(subject, school),
+    enabledModuleKeys: kgConfiguration?.enabledModuleKeys || getDefaultModulesForSubject(subject, school),
 
     gradingPolicy: {
       gradingScaleKey: "",
       note: "",
     },
 
-    assessmentPolicy: {
+    assessmentPolicy: kgConfiguration?.assessmentPolicy || {
       assessmentTemplateIds: [],
       trackerTemplateIds: [],
       allowedAssessmentSlotKeys: [],
@@ -157,7 +141,7 @@ function buildOfferingData({ orgId, school, year, classRow, subject }) {
       note: "",
     },
 
-    curriculumPolicy: {
+    curriculumPolicy: kgConfiguration?.curriculumPolicy || {
       curriculumPlanId: "",
       questionBankId: "",
       resourceFolderId: "",
@@ -168,9 +152,9 @@ function buildOfferingData({ orgId, school, year, classRow, subject }) {
       note: "",
     },
 
-    curriculumPlanId: "",
-    questionBankId: "",
-    resourceFolderId: "",
+    curriculumPlanId: kgConfiguration?.curriculumPlanId || "",
+    questionBankId: kgConfiguration?.questionBankId || "",
+    resourceFolderId: kgConfiguration?.resourceFolderId || "",
 
     note: "",
     metadata: {

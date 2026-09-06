@@ -84,7 +84,7 @@ function getStatusLabel(status: SubjectLessonPrepStatus) {
     case "SUBMITTED":
       return "مرسل";
     case "APPROVED":
-      return "معتمد";
+      return "تم الإطلاع";
     case "RETURNED":
       return "معاد للتعديل";
     case "LOCKED":

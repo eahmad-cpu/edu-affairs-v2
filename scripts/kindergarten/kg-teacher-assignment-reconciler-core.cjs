@@ -619,10 +619,27 @@ function buildPlanReport({ inputPath, termId, rows, actions, blockers, teachers,
   };
 }
 
-async function buildPlan({ inputPath = getInputPath(), now = Date.now() } = {}) {
+async function buildPlan({ inputPath = getInputPath(), now = Date.now(), offeringOverrides = [] } = {}) {
   const rows = await readDistribution(inputPath);
   const db = admin.firestore();
   const state = await loadState(db, rows);
+  const overridesById = new Map(
+    offeringOverrides
+      .filter((offering) => offering && text(offering.id))
+      .map((offering) => [text(offering.id), offering]),
+  );
+  if (overridesById.size > 0) {
+    const existingIds = new Set();
+    state.offerings = state.offerings.map((offering) => {
+      existingIds.add(text(offering.id));
+      return overridesById.has(text(offering.id))
+        ? { ...offering, ...overridesById.get(text(offering.id)) }
+        : offering;
+    });
+    for (const [id, offering] of overridesById) {
+      if (!existingIds.has(id)) state.offerings.push(offering);
+    }
+  }
   const blockers = [];
   const actions = [];
   const teachers = [];

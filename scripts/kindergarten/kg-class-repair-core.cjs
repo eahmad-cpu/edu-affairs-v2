@@ -3,12 +3,16 @@
 const admin = require("firebase-admin");
 const fs = require("node:fs");
 const path = require("node:path");
+const {
+  buildKgSubjectCardConfiguration,
+  hasKgSubjectCardConfiguration,
+} = require("./kg-subject-card-configuration.cjs");
 
 const ORG_ID = "takween";
 const ACADEMIC_YEAR_ID = "ay-1448";
 const APPLY_TOKEN = "APPLY_KG_CLASS_REPAIR";
 const SOURCE = "KG_CLASS_REPAIR";
-const VERSION = 1;
+const VERSION = 2;
 
 const DESIRED_CLASSES = Object.freeze({
   "kg-01": [
@@ -56,6 +60,30 @@ const DESIRED_CLASSES = Object.freeze({
 });
 
 const SCHOOL_IDS = Object.freeze(Object.keys(DESIRED_CLASSES));
+const CANONICAL_SUBJECT_KEYS_BY_GRADE = Object.freeze({
+  kg1: new Set([
+    "QURAN",
+    "ADHKAR_IDENTITY_ANTHEMS",
+    "LEARNING_GARDENS",
+    "COUNT_AND_CALCULATE",
+  ]),
+  kg2: new Set([
+    "QURAN",
+    "ADHKAR_IDENTITY_ANTHEMS",
+    "LEARNING_GARDENS",
+    "COUNT_AND_CALCULATE",
+    "VALUES",
+    "CORNERS",
+  ]),
+  kg3: new Set([
+    "QURAN",
+    "ADHKAR_IDENTITY_ANTHEMS",
+    "LEARNING_GARDENS",
+    "COUNT_AND_CALCULATE",
+    "VALUES",
+    "CORNERS",
+  ]),
+});
 const REPORT_PATH = path.resolve(
   process.env.KG_CLASS_REPAIR_REPORT ||
     path.join(process.cwd(), "scripts", "kindergarten", "kg-class-repair-report.json"),
@@ -109,6 +137,10 @@ function offeringIdentityKey(item) {
   return subjectId ? `ID:${subjectId}` : "";
 }
 
+function isCanonicalKgOffering(item) {
+  return CANONICAL_SUBJECT_KEYS_BY_GRADE[text(item.gradeId)]?.has(upper(item.subjectKey)) === true;
+}
+
 function subjectSlug(item) {
   const metadata = item.metadata && typeof item.metadata === "object" ? item.metadata : {};
   const raw = text(
@@ -148,13 +180,7 @@ function offeringTemplateFingerprint(item) {
     "endAt",
     "order",
     "offeringKind",
-    "enabledModuleKeys",
     "gradingPolicy",
-    "assessmentPolicy",
-    "curriculumPolicy",
-    "curriculumPlanId",
-    "questionBankId",
-    "resourceFolderId",
     "note",
   ];
   return stable(Object.fromEntries(fields.map((field) => [
@@ -238,7 +264,23 @@ function offeringPayload(template, target, offeringId, now) {
     repairedBy: SOURCE,
     repairVersion: VERSION,
   };
+  Object.assign(payload, buildKgSubjectCardConfiguration(payload));
   return payload;
+}
+
+function offeringConfigurationPatch(offering, now) {
+  if (hasKgSubjectCardConfiguration(offering)) return null;
+  return {
+    id: offering.id,
+    ...buildKgSubjectCardConfiguration(offering),
+    metadata: {
+      ...(offering.metadata && typeof offering.metadata === "object" ? offering.metadata : {}),
+      repairedBy: SOURCE,
+      repairVersion: VERSION,
+      normalizedReason: "KG_PRIMARY_SUBJECT_CARD_OPERATIONS",
+    },
+    updatedAt: now,
+  };
 }
 
 function addBlocker(blockers, item) {
@@ -384,7 +426,7 @@ function buildOfferingPlan(state, classPlan, now, blockers) {
 
   for (const offering of scopedOfferings) {
     const sourceClass = validExistingClasses.find((item) => item.schoolId === offering.schoolId && item.id === offering.classId && item.gradeId === offering.gradeId);
-    if (!sourceClass || !isActiveOffering(offering)) continue;
+    if (!sourceClass || !isActiveOffering(offering) || !isCanonicalKgOffering(offering)) continue;
     if (text(offering.docId) !== text(offering.id)) {
       addBlocker(blockers, { schoolId: offering.schoolId, gradeId: offering.gradeId, classId: offering.classId, type: "OFFERING_DOCUMENT_ID", message: "Active KG offering document ID does not match its stored ID." });
       continue;
@@ -434,6 +476,20 @@ function buildOfferingPlan(state, classPlan, now, blockers) {
       }
       const identity = offeringIdentityKey(offering);
       if (!identity) continue;
+      if (!isCanonicalKgOffering(offering)) {
+        actions.push({
+          scope: "offering",
+          schoolId: target.schoolId,
+          schoolName: target.schoolName,
+          gradeId: target.gradeId,
+          classId: target.classId,
+          subjectKey: identity,
+          offeringId: offering.id,
+          action: "SKIP",
+          reason: "legacy or non-canonical KG subject is outside subject-card normalization",
+        });
+        continue;
+      }
       const destination = isActiveOffering(offering) ? activeByIdentity : inactiveByIdentity;
       const list = destination.get(identity) || [];
       list.push(offering);
@@ -445,7 +501,19 @@ function buildOfferingPlan(state, classPlan, now, blockers) {
         addBlocker(blockers, { ...target, subjectKey: identity, type: "DUPLICATE_ACTIVE_OFFERING", message: "More than one active offering matches the target class and subject." });
         actions.push({ scope: "offering", schoolId: target.schoolId, schoolName: target.schoolName, gradeId: target.gradeId, classId: target.classId, subjectKey: identity, action: "BLOCKED", reason: "duplicate active offering" });
       } else {
-        actions.push({ scope: "offering", schoolId: target.schoolId, schoolName: target.schoolName, gradeId: target.gradeId, classId: target.classId, subjectKey: identity, offeringId: list[0].id, action: "KEEP" });
+        const patch = offeringConfigurationPatch(list[0], now);
+        actions.push({
+          scope: "offering",
+          schoolId: target.schoolId,
+          schoolName: target.schoolName,
+          gradeId: target.gradeId,
+          classId: target.classId,
+          subjectKey: identity,
+          offeringId: list[0].id,
+          action: patch ? "UPDATE" : "KEEP",
+          reason: patch ? "normalize KG primary subject-card operations" : "",
+          payload: patch,
+        });
       }
     }
 
@@ -551,7 +619,9 @@ async function runRepair({ apply = false } = {}) {
   const classActions = classPlan.actions;
   const writes = [
     ...classActions.filter((item) => item.action === "CREATE" || item.action === "UPDATE").map((item) => ({ operation: item.action, path: item.path, payload: item.payload })),
-    ...offeringActions.filter((item) => item.action === "CREATE").map((item) => ({ operation: "CREATE", path: `orgs/${ORG_ID}/classSubjectOfferings/${item.offeringId}`, payload: item.payload })),
+    ...offeringActions
+      .filter((item) => item.action === "CREATE" || item.action === "UPDATE")
+      .map((item) => ({ operation: item.action, path: `orgs/${ORG_ID}/classSubjectOfferings/${item.offeringId}`, payload: item.payload })),
   ];
 
   const report = {
