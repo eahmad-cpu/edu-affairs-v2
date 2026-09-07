@@ -11,26 +11,18 @@ import {
   Loader2,
   School,
   Users,
-  Save,
-  SendHorizontal,
 } from "lucide-react";
-import { doc, getDoc, setDoc, writeBatch } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 
 import type {
   Class as SchoolClass,
   MembershipRole,
   StudentAttendanceBatch,
-  StudentAttendanceBatchStudentRow,
   StudentAttendanceStatus,
 } from "@takween/contracts";
 import {
   buildAttendanceBatchDraft,
   calculateAttendanceBatchSummary,
-  canSubmitAttendanceBatch,
-  canRunOperation,
-  submitAttendanceBatch,
-  updateAttendanceRowStatus,
-  withAttendanceBatchSummary,
 } from "@takween/domain";
 
 import { useStaffActor } from "@/components/staff/staff-actor-provider";
@@ -47,6 +39,14 @@ import {
 import { db } from "@/lib/firebase";
 import { getClassRoster } from "@/lib/class-roster";
 import { getStaffActorPrimaryRole } from "@/lib/staff-actor";
+import {
+  ATTENDANCE_STATUS_OPTIONS,
+  AttendanceBatchWorkflowActions,
+  needsExcuseReason,
+  needsLateMinutes,
+  needsLeftEarlyMinutes,
+  useAttendanceBatchWorkflow,
+} from "@/components/staff/attendance/attendance-batch-workflow";
 
 type AttendanceStudentInput = {
   studentId: string;
@@ -59,63 +59,7 @@ type LoadState = {
   error: string | null;
 };
 
-type SaveState = {
-  saving: boolean;
-  error: string | null;
-  savedAt: number | null;
-};
-
-type SubmitState = {
-  submitting: boolean;
-  error: string | null;
-  submittedAt: number | null;
-};
-
 type BadgeVariant = "default" | "secondary" | "destructive" | "outline";
-
-const ATTENDANCE_STATUS_OPTIONS: Array<{
-  value: StudentAttendanceStatus;
-  label: string;
-}> = [
-  { value: "NOT_RECORDED", label: "لم يسجل" },
-  { value: "PRESENT", label: "حاضر" },
-  { value: "ABSENT", label: "غائب" },
-  { value: "LATE", label: "متأخر" },
-  { value: "EXCUSED_LATE", label: "متأخر بعذر" },
-  { value: "EXCUSED_ABSENT", label: "غائب بعذر" },
-  { value: "LEFT_EARLY", label: "انصراف مبكر" },
-  { value: "REMOTE_PRESENT", label: "حاضر عن بعد" },
-  { value: "REMOTE_ABSENT", label: "غائب عن بعد" },
-];
-
-function compactForFirestore<T>(value: T): T {
-  return JSON.parse(JSON.stringify(value)) as T;
-}
-
-function summarizeSubmitErrors(params: {
-  generalErrors: string[];
-  rowErrors: Record<string, string[]>;
-  students: AttendanceStudentInput[];
-}) {
-  const messages: string[] = [...params.generalErrors];
-
-  const studentNameById = new Map(
-    params.students.map((student) => [
-      student.studentId,
-      student.studentDisplayName || student.studentId,
-    ]),
-  );
-
-  for (const [studentId, errors] of Object.entries(params.rowErrors)) {
-    const studentName = studentNameById.get(studentId) ?? studentId;
-
-    for (const error of errors) {
-      messages.push(`${studentName}: ${error}`);
-    }
-  }
-
-  return messages.slice(0, 8).join(" — ");
-}
 
 function formatDateInput(date: Date) {
   const year = date.getFullYear();
@@ -158,22 +102,6 @@ function getStatusBadgeVariant(status: StudentAttendanceStatus): BadgeVariant {
   }
 
   return "secondary";
-}
-
-function needsLateMinutes(status: StudentAttendanceStatus) {
-  return status === "LATE" || status === "EXCUSED_LATE";
-}
-
-function needsLeftEarlyMinutes(status: StudentAttendanceStatus) {
-  return status === "LEFT_EARLY";
-}
-
-function needsExcuseReason(status: StudentAttendanceStatus) {
-  return (
-    status === "EXCUSED_LATE" ||
-    status === "EXCUSED_ABSENT" ||
-    status === "LEFT_EARLY"
-  );
 }
 
 async function loadClassStudents(params: {
@@ -237,17 +165,9 @@ export default function ClassAttendancePage() {
     loading: true,
     error: null,
   });
-
-  const [saveState, setSaveState] = useState<SaveState>({
-    saving: false,
-    error: null,
-    savedAt: null,
-  });
-
-  const [submitState, setSubmitState] = useState<SubmitState>({
-    submitting: false,
-    error: null,
-    submittedAt: null,
+  const workflow = useAttendanceBatchWorkflow({
+    batch: draft,
+    setBatch: setDraft,
   });
 
   const classInfo =
@@ -260,28 +180,6 @@ export default function ClassAttendancePage() {
   const classTitle = getClassLabel(classInfo, classId);
 
   const canViewClass = !!classInfo;
-
-  const canSubmitAttendance = useMemo(() => {
-    if (!classInfo) return false;
-
-    return canRunOperation({
-      context: {
-        actorPersonId: actor.personId || actor.uid,
-        orgId: actor.orgId,
-        operationalAssignments: actor.operationalAssignments,
-      },
-      operationKind: "STUDENT_ATTENDANCE",
-      permission: "SUBMIT",
-      scopeType: "SCHOOL",
-      scopeId: classInfo.schoolId,
-    });
-  }, [
-    actor.operationalAssignments,
-    actor.orgId,
-    actor.personId,
-    actor.uid,
-    classInfo,
-  ]);
 
   const summary = useMemo(() => {
     if (!draft) {
@@ -396,229 +294,6 @@ export default function ClassAttendancePage() {
     rebuildDraft(students);
   }, [dateInput, rebuildDraft, students]);
 
-  function updateDraftRows(
-    updater: (
-      rows: StudentAttendanceBatchStudentRow[],
-    ) => StudentAttendanceBatchStudentRow[],
-  ) {
-    setDraft((current) => {
-      if (!current) return current;
-
-      return withAttendanceBatchSummary({
-        ...current,
-        updatedAt: Date.now(),
-        studentRows: updater(current.studentRows),
-      });
-    });
-  }
-
-  function handleRowStatusChange(
-    studentId: string,
-    status: StudentAttendanceStatus,
-  ) {
-    updateDraftRows((rows) =>
-      rows.map((row) =>
-        row.studentId === studentId
-          ? updateAttendanceRowStatus(row, status)
-          : row,
-      ),
-    );
-  }
-
-  function handleRowFieldChange(
-    studentId: string,
-    field: "lateMinutes" | "leftEarlyMinutes" | "excuseReason" | "note",
-    value: string,
-  ) {
-    updateDraftRows((rows) =>
-      rows.map((row) => {
-        if (row.studentId !== studentId) return row;
-
-        if (field === "lateMinutes") {
-          return {
-            ...row,
-            lateMinutes: Number.parseInt(value || "0", 10),
-          };
-        }
-
-        if (field === "leftEarlyMinutes") {
-          return {
-            ...row,
-            leftEarlyMinutes: Number.parseInt(value || "0", 10),
-          };
-        }
-
-        return {
-          ...row,
-          [field]: value,
-        };
-      }),
-    );
-  }
-
-  function markAllAsPresent() {
-    updateDraftRows((rows) =>
-      rows.map((row) => updateAttendanceRowStatus(row, "PRESENT")),
-    );
-  }
-
-  function resetAllRows() {
-    updateDraftRows((rows) =>
-      rows.map((row) => updateAttendanceRowStatus(row, "NOT_RECORDED")),
-    );
-  }
-
-  async function handleSaveDraft() {
-    if (!draft) return;
-
-    setSaveState({
-      saving: true,
-      error: null,
-      savedAt: null,
-    });
-
-    try {
-      const now = Date.now();
-
-      const nextDraft = withAttendanceBatchSummary({
-        ...draft,
-        status: "DRAFT",
-        updatedAt: now,
-      });
-
-      const batchRef = doc(
-        db,
-        "orgs",
-        actor.orgId,
-        "studentAttendanceBatches",
-        nextDraft.id,
-      );
-
-      await setDoc(batchRef, compactForFirestore(nextDraft), {
-        merge: true,
-      });
-
-      setDraft(nextDraft);
-
-      setSaveState({
-        saving: false,
-        error: null,
-        savedAt: now,
-      });
-    } catch (error) {
-      console.error("Failed to save attendance draft:", error);
-      setSaveState({
-        saving: false,
-        error: getErrorMessage(error),
-        savedAt: null,
-      });
-    }
-  }
-
-  async function handleSubmitBatch() {
-    if (!draft) return;
-
-    if (!canSubmitAttendance) {
-      setSubmitState({
-        submitting: false,
-        error: "لا تملك صلاحية إرسال حضور هذا الفصل.",
-        submittedAt: null,
-      });
-
-      return;
-    }
-
-    const validation = canSubmitAttendanceBatch(draft, {
-      requireAllRowsRecorded: true,
-      requireLateMinutes: true,
-      requireLeftEarlyMinutes: true,
-      requireExcuseReason: true,
-    });
-
-    if (!validation.ok) {
-      setSubmitState({
-        submitting: false,
-        error: summarizeSubmitErrors({
-          generalErrors: validation.errors,
-          rowErrors: validation.rowErrors,
-          students,
-        }),
-        submittedAt: null,
-      });
-
-      return;
-    }
-
-    setSubmitState({
-      submitting: true,
-      error: null,
-      submittedAt: null,
-    });
-
-    try {
-      const now = Date.now();
-
-      const result = submitAttendanceBatch(draft, {
-        now,
-        requireAllRowsRecorded: true,
-        requireLateMinutes: true,
-        requireLeftEarlyMinutes: true,
-        requireExcuseReason: true,
-      });
-
-      const firestoreBatch = writeBatch(db);
-
-      const batchRef = doc(
-        db,
-        "orgs",
-        actor.orgId,
-        "studentAttendanceBatches",
-        result.batch.id,
-      );
-
-      firestoreBatch.set(batchRef, compactForFirestore(result.batch), {
-        merge: true,
-      });
-
-      for (const record of result.records) {
-        const recordRef = doc(
-          db,
-          "orgs",
-          actor.orgId,
-          "studentAttendanceRecords",
-          record.id,
-        );
-
-        firestoreBatch.set(recordRef, compactForFirestore(record), {
-          merge: true,
-        });
-      }
-
-      await firestoreBatch.commit();
-
-      setDraft(result.batch);
-
-      setSaveState({
-        saving: false,
-        error: null,
-        savedAt: now,
-      });
-
-      setSubmitState({
-        submitting: false,
-        error: null,
-        submittedAt: now,
-      });
-    } catch (error) {
-      console.error("Failed to submit attendance:", error);
-      setSubmitState({
-        submitting: false,
-        error: getErrorMessage(error),
-        submittedAt: null,
-      });
-    }
-  }
-
   if (!canViewClass) {
     return (
       <Card>
@@ -665,46 +340,10 @@ export default function ClassAttendancePage() {
                 </Link>
               </Button>
 
-              <Button type="button" onClick={markAllAsPresent}>
-                <CheckCircle2 className="size-4" />
-                اعتبار الجميع حاضر
-              </Button>
-
-              <Button type="button" variant="outline" onClick={resetAllRows}>
-                تصفير الحالات
-              </Button>
-
-              <Button
-                type="button"
-                variant="secondary"
-                onClick={handleSaveDraft}
-                disabled={!draft || saveState.saving}
-              >
-                {saveState.saving ? (
-                  <Loader2 className="size-4 animate-spin" />
-                ) : (
-                  <Save className="size-4" />
-                )}
-                حفظ المسودة
-              </Button>
-
-              <Button
-                type="button"
-                onClick={handleSubmitBatch}
-                disabled={
-                  !draft ||
-                  draft.status === "SUBMITTED" ||
-                  saveState.saving ||
-                  submitState.submitting
-                }
-              >
-                {submitState.submitting ? (
-                  <Loader2 className="size-4 animate-spin" />
-                ) : (
-                  <SendHorizontal className="size-4" />
-                )}
-                إرسال الدفعة
-              </Button>
+              <AttendanceBatchWorkflowActions
+                batch={draft}
+                workflow={workflow}
+              />
             </div>
           </div>
         </CardContent>
@@ -822,7 +461,7 @@ export default function ClassAttendancePage() {
                         <select
                           value={row.status}
                           onChange={(event) =>
-                            handleRowStatusChange(
+                              workflow.handleRowStatusChange(
                               row.studentId,
                               event.target.value as StudentAttendanceStatus,
                             )
@@ -854,7 +493,7 @@ export default function ClassAttendancePage() {
                               : ""
                           }
                           onChange={(event) =>
-                            handleRowFieldChange(
+                              workflow.handleRowFieldChange(
                               row.studentId,
                               "lateMinutes",
                               event.target.value,
@@ -876,7 +515,7 @@ export default function ClassAttendancePage() {
                               : ""
                           }
                           onChange={(event) =>
-                            handleRowFieldChange(
+                              workflow.handleRowFieldChange(
                               row.studentId,
                               "leftEarlyMinutes",
                               event.target.value,
@@ -897,7 +536,7 @@ export default function ClassAttendancePage() {
                               : ""
                           }
                           onChange={(event) =>
-                            handleRowFieldChange(
+                              workflow.handleRowFieldChange(
                               row.studentId,
                               "excuseReason",
                               event.target.value,
@@ -913,7 +552,7 @@ export default function ClassAttendancePage() {
                           type="text"
                           value={row.note}
                           onChange={(event) =>
-                            handleRowFieldChange(
+                              workflow.handleRowFieldChange(
                               row.studentId,
                               "note",
                               event.target.value,
@@ -932,13 +571,13 @@ export default function ClassAttendancePage() {
         </CardContent>
       </Card>
 
-      {saveState.error ? (
+      {workflow.saveState.error ? (
         <Card className="border-destructive/30 bg-destructive/10">
           <CardContent className="p-4 text-sm text-destructive">
-            تعذر حفظ المسودة: {saveState.error}
+            تعذر حفظ المسودة: {workflow.saveState.error}
           </CardContent>
         </Card>
-      ) : saveState.savedAt ? (
+      ) : workflow.saveState.savedAt ? (
         <Card className="border-emerald-500/30 bg-emerald-500/10">
           <CardContent className="p-4 text-sm text-emerald-700 dark:text-emerald-300">
             تم حفظ مسودة الحضور بنجاح.
@@ -946,13 +585,13 @@ export default function ClassAttendancePage() {
         </Card>
       ) : null}
 
-      {submitState.error ? (
+      {workflow.submitState.error ? (
         <Card className="border-destructive/30 bg-destructive/10">
           <CardContent className="p-4 text-sm leading-6 text-destructive">
-            تعذر إرسال الدفعة: {submitState.error}
+            تعذر إرسال الدفعة: {workflow.submitState.error}
           </CardContent>
         </Card>
-      ) : submitState.submittedAt ? (
+      ) : workflow.submitState.submittedAt ? (
         <Card className="border-emerald-500/30 bg-emerald-500/10">
           <CardContent className="flex flex-col gap-3 p-4 text-sm text-emerald-700 dark:text-emerald-300 md:flex-row md:items-center md:justify-between">
             <span>تم إرسال دفعة الحضور وإنشاء السجلات الفردية بنجاح.</span>

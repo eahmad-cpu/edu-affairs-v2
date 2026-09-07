@@ -3453,6 +3453,7 @@ export const StudentAttendanceStatus = z.enum([
   "LEFT_EARLY",
   "REMOTE_PRESENT",
   "REMOTE_ABSENT",
+  "STUDY_SUSPENDED",
 ]);
 export type StudentAttendanceStatus = z.infer<typeof StudentAttendanceStatus>;
 
@@ -3646,6 +3647,7 @@ export const StudentAttendanceBatchSchema = AuditFieldsSchema.merge(
     leftEarlyCount: z.number().int().min(0).default(0),
     remotePresentCount: z.number().int().min(0).default(0),
     remoteAbsentCount: z.number().int().min(0).default(0),
+    studySuspendedCount: z.number().int().min(0).default(0),
 
     studentRows: z.array(StudentAttendanceBatchStudentRowSchema).default([]),
     recordRefs: z.array(StudentAttendanceBatchRecordRefSchema).default([]),

@@ -72,6 +72,8 @@ class StudentAttendanceItem {
         return 'حضور عن بُعد';
       case 'REMOTE_ABSENT':
         return 'غياب عن بُعد';
+      case 'STUDY_SUSPENDED':
+        return 'تعليق دراسة';
       case 'NOT_RECORDED':
         return 'لم يسجل';
       default:

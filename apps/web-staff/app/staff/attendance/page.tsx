@@ -59,6 +59,7 @@ const ATTENDANCE_STATUS_LABELS: Record<StudentAttendanceStatus, string> = {
   LEFT_EARLY: "انصراف مبكر",
   REMOTE_PRESENT: "حاضر عن بعد",
   REMOTE_ABSENT: "غائب عن بعد",
+  STUDY_SUSPENDED: "تعليق دراسة",
 };
 
 function formatDateInput(date: Date) {
@@ -127,6 +128,10 @@ function getMostImportantIssue(batch: StudentAttendanceBatch) {
     return `${batch.leftEarlyCount} انصراف مبكر`;
   }
 
+  if ((batch.studySuspendedCount ?? 0) > 0) {
+    return `${batch.studySuspendedCount} تعليق دراسة`;
+  }
+
   return "مكتملة";
 }
 
@@ -137,11 +142,6 @@ function getVisibleClassMap(classes: SchoolClass[]) {
 function getClassLabel(classMap: Map<string, SchoolClass>, classId: string) {
   const classInfo = classMap.get(classId);
   return classInfo?.title || classInfo?.code || classId;
-}
-
-function getSchoolLabel(classMap: Map<string, SchoolClass>, classId: string) {
-  const classInfo = classMap.get(classId);
-  return classInfo?.schoolId || "غير محدد";
 }
 
 function isBatchVisibleToActor(
@@ -342,6 +342,7 @@ export default function StaffAttendanceCenterPage() {
         acc.excusedLate += batch.excusedLateCount;
         acc.excusedAbsent += batch.excusedAbsentCount;
         acc.leftEarly += batch.leftEarlyCount;
+        acc.studySuspended += batch.studySuspendedCount ?? 0;
 
         if (batch.status === "DRAFT") acc.drafts += 1;
 
@@ -374,6 +375,7 @@ export default function StaffAttendanceCenterPage() {
         excusedLate: 0,
         excusedAbsent: 0,
         leftEarly: 0,
+        studySuspended: 0,
         drafts: 0,
         submitted: 0,
         incomplete: 0,
@@ -398,7 +400,6 @@ export default function StaffAttendanceCenterPage() {
           <div className="flex flex-col justify-between gap-4 lg:flex-row lg:items-center">
             <div className="space-y-2">
               <div className="flex flex-wrap items-center gap-2">
-                <Badge variant="secondary">Milestone 9I</Badge>
                 <Badge variant="outline">مركز الحضور</Badge>
               </div>
 
@@ -518,13 +519,14 @@ export default function StaffAttendanceCenterPage() {
         />
       </section>
 
-      <section className="grid gap-3 md:grid-cols-3 xl:grid-cols-6">
+      <section className="grid gap-3 md:grid-cols-3 xl:grid-cols-7">
         <SummaryCard title="الطلاب" value={summary.totalStudents} />
         <SummaryCard title="حاضر" value={summary.present} />
         <SummaryCard title="غائب" value={summary.absent} />
         <SummaryCard title="متأخر" value={summary.late} />
         <SummaryCard title="غائب بعذر" value={summary.excusedAbsent} />
         <SummaryCard title="انصراف مبكر" value={summary.leftEarly} />
+        <SummaryCard title="تعليق دراسة" value={summary.studySuspended} />
       </section>
 
       <Card>
@@ -554,18 +556,18 @@ export default function StaffAttendanceCenterPage() {
             <div className="overflow-x-auto rounded-2xl border border-border">
               <table className="w-full min-w-[1100px] text-sm">
                 <thead className="bg-muted/50">
-                  <tr className="text-right">
-                    <th className="px-3 py-3 font-medium">الفصل</th>
-                    <th className="px-3 py-3 font-medium">المدرسة</th>
-                    <th className="px-3 py-3 font-medium">الحالة</th>
-                    <th className="px-3 py-3 font-medium">الطلاب</th>
-                    <th className="px-3 py-3 font-medium">حاضر</th>
-                    <th className="px-3 py-3 font-medium">غائب</th>
-                    <th className="px-3 py-3 font-medium">متأخر</th>
-                    <th className="px-3 py-3 font-medium">الأهم</th>
-                    <th className="px-3 py-3 font-medium">آخر تحديث</th>
-                    <th className="px-3 py-3 font-medium">إجراءات</th>
-                  </tr>
+                    <tr className="text-right">
+                      <th className="px-3 py-3 font-medium">الفصل</th>
+                      <th className="px-3 py-3 font-medium">الحالة</th>
+                      <th className="px-3 py-3 font-medium">الطلاب</th>
+                      <th className="px-3 py-3 font-medium">حاضر</th>
+                      <th className="px-3 py-3 font-medium">غائب</th>
+                      <th className="px-3 py-3 font-medium">متأخر</th>
+                      <th className="px-3 py-3 font-medium">تعليق دراسة</th>
+                      <th className="px-3 py-3 font-medium">الأهم</th>
+                      <th className="px-3 py-3 font-medium">آخر تحديث</th>
+                      <th className="px-3 py-3 font-medium">إجراءات</th>
+                    </tr>
                 </thead>
 
                 <tbody>
@@ -575,13 +577,6 @@ export default function StaffAttendanceCenterPage() {
                         <div className="font-medium">
                           {getClassLabel(classMap, batch.classId)}
                         </div>
-                        <div className="mt-1 text-xs text-muted-foreground">
-                          {batch.classId}
-                        </div>
-                      </td>
-
-                      <td className="px-3 py-3">
-                        {getSchoolLabel(classMap, batch.classId)}
                       </td>
 
                       <td className="px-3 py-3">
@@ -597,6 +592,9 @@ export default function StaffAttendanceCenterPage() {
                       <td className="px-3 py-3">{batch.presentCount}</td>
                       <td className="px-3 py-3">{batch.absentCount}</td>
                       <td className="px-3 py-3">{batch.lateCount}</td>
+                      <td className="px-3 py-3">
+                        {batch.studySuspendedCount ?? 0}
+                      </td>
 
                       <td className="px-3 py-3">
                         <Badge
@@ -620,15 +618,7 @@ export default function StaffAttendanceCenterPage() {
                             <Link
                               href={`/staff/attendance/batches/${batch.id}`}
                             >
-                              عرض
-                            </Link>
-                          </Button>
-
-                          <Button asChild size="sm" variant="outline">
-                            <Link
-                              href={`/staff/classes/${batch.classId}/attendance`}
-                            >
-                              فتح الحضور
+                              عرض الحضور
                             </Link>
                           </Button>
                         </div>
@@ -665,9 +655,6 @@ export default function StaffAttendanceCenterPage() {
                 >
                   <div>
                     <p className="font-medium">{item.title || item.code}</p>
-                    <p className="mt-1 text-xs text-muted-foreground">
-                      {item.schoolId} — {item.academicYearId}
-                    </p>
                   </div>
 
                   <Button asChild size="sm" variant="outline">
@@ -682,20 +669,6 @@ export default function StaffAttendanceCenterPage() {
         </CardContent>
       </Card>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>حالة الخطوة</CardTitle>
-          <CardDescription>
-            مركز الحضور العام يعمل الآن للمتابعة اليومية.
-          </CardDescription>
-        </CardHeader>
-
-        <CardContent className="flex flex-wrap gap-2">
-          <Badge variant="secondary">9H عرض دفعة الحضور ✅</Badge>
-          <Badge variant="secondary">9I مركز عام للحضور ✅</Badge>
-          <Badge variant="outline">Milestone 9 جاهزة للإغلاق التشغيلي</Badge>
-        </CardContent>
-      </Card>
     </div>
   );
 }

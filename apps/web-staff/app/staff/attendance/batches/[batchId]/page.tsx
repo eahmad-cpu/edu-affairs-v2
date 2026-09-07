@@ -5,7 +5,6 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import {
   ArrowRight,
-  CalendarDays,
   CheckCircle2,
   Clock3,
   Loader2,
@@ -31,6 +30,14 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { db } from "@/lib/firebase";
+import {
+  ATTENDANCE_STATUS_OPTIONS,
+  AttendanceBatchWorkflowActions,
+  needsExcuseReason,
+  needsLateMinutes,
+  needsLeftEarlyMinutes,
+  useAttendanceBatchWorkflow,
+} from "@/components/staff/attendance/attendance-batch-workflow";
 
 type LoadState = {
   loading: boolean;
@@ -49,6 +56,7 @@ const ATTENDANCE_STATUS_LABELS: Record<StudentAttendanceStatus, string> = {
   LEFT_EARLY: "انصراف مبكر",
   REMOTE_PRESENT: "حاضر عن بعد",
   REMOTE_ABSENT: "غائب عن بعد",
+  STUDY_SUSPENDED: "تعليق دراسة",
 };
 
 function formatDateTime(value?: number) {
@@ -58,6 +66,26 @@ function formatDateTime(value?: number) {
     dateStyle: "medium",
     timeStyle: "short",
   }).format(new Date(value));
+}
+
+function formatAttendanceDate(batch: StudentAttendanceBatch) {
+  const match = batch.schoolDayId.match(/(\d{4})(\d{2})(\d{2})$/);
+
+  if (match) {
+    return new Intl.DateTimeFormat("ar-SA", {
+      dateStyle: "medium",
+    }).format(
+      new Date(Number(match[1]), Number(match[2]) - 1, Number(match[3])),
+    );
+  }
+
+  const fallbackTimestamp = batch.recordedAt ?? batch.createdAt;
+
+  if (!fallbackTimestamp) return "غير محدد";
+
+  return new Intl.DateTimeFormat("ar-SA", {
+    dateStyle: "medium",
+  }).format(new Date(fallbackTimestamp));
 }
 
 function getStatusBadgeVariant(status: StudentAttendanceStatus): BadgeVariant {
@@ -148,6 +176,7 @@ export default function AttendanceBatchViewPage() {
     loading: true,
     error: null,
   });
+  const workflow = useAttendanceBatchWorkflow({ batch, setBatch });
 
   const classInfo = useMemo(() => {
     if (!batch) return null;
@@ -259,7 +288,6 @@ export default function AttendanceBatchViewPage() {
           <div className="flex flex-col justify-between gap-4 lg:flex-row lg:items-center">
             <div className="space-y-2">
               <div className="flex flex-wrap items-center gap-2">
-                <Badge variant="secondary">Milestone 9H</Badge>
                 <Badge variant={getBatchStatusVariant(batch.status)}>
                   {getBatchStatusLabel(batch.status)}
                 </Badge>
@@ -273,21 +301,17 @@ export default function AttendanceBatchViewPage() {
                 عرض دفعة الحضور المحفوظة، مع صفوف الطلاب والعدادات الناتجة من
                 الدفعة.
               </p>
+
+              <p className="text-sm text-muted-foreground">
+                تاريخ الحضور: {formatAttendanceDate(batch)}
+              </p>
             </div>
 
             <div className="flex flex-wrap gap-2">
-              <Button asChild variant="outline">
-                <Link href={`/staff/classes/${batch.classId}/attendance`}>
-                  <ArrowRight className="size-4" />
-                  الرجوع لحضور الفصل
-                </Link>
-              </Button>
-
-              <Button asChild variant="outline">
-                <Link href={`/staff/classes/${batch.classId}`}>
-                  فتح الفصل
-                </Link>
-              </Button>
+              <AttendanceBatchWorkflowActions
+                batch={batch}
+                workflow={workflow}
+              />
             </div>
           </div>
         </CardContent>
@@ -313,8 +337,8 @@ export default function AttendanceBatchViewPage() {
         />
 
         <SummaryCard
-          title="السجلات الفردية"
-          value={batch.recordRefs?.filter((item) => item.recordId).length ?? 0}
+          title="تعليق دراسة"
+          value={batch.studySuspendedCount ?? 0}
           icon={<School className="size-5" />}
         />
       </section>
@@ -328,43 +352,41 @@ export default function AttendanceBatchViewPage() {
         <SummaryCard title="انصراف مبكر" value={batch.leftEarlyCount} />
       </section>
 
-      <Card>
-        <CardHeader>
-          <div className="flex items-center gap-2">
-            <CalendarDays className="size-5 text-primary" />
-            <CardTitle>بيانات الدفعة</CardTitle>
-          </div>
-        </CardHeader>
+      
 
-        <CardContent className="grid gap-3 text-sm md:grid-cols-2 xl:grid-cols-4">
-          <div className="rounded-2xl border border-border p-3">
-            <p className="text-xs text-muted-foreground">معرّف الدفعة</p>
-            <p className="mt-1 break-all font-medium">{batch.id}</p>
-          </div>
+      {workflow.saveState.error ? (
+        <Card className="border-destructive/30 bg-destructive/10">
+          <CardContent className="p-4 text-sm text-destructive">
+            تعذر حفظ المسودة: {workflow.saveState.error}
+          </CardContent>
+        </Card>
+      ) : workflow.saveState.savedAt ? (
+        <Card className="border-emerald-500/30 bg-emerald-500/10">
+          <CardContent className="p-4 text-sm text-emerald-700 dark:text-emerald-300">
+            تم حفظ مسودة الحضور بنجاح.
+          </CardContent>
+        </Card>
+      ) : null}
 
-          <div className="rounded-2xl border border-border p-3">
-            <p className="text-xs text-muted-foreground">اليوم الدراسي</p>
-            <p className="mt-1 break-all font-medium">{batch.schoolDayId}</p>
-          </div>
-
-          <div className="rounded-2xl border border-border p-3">
-            <p className="text-xs text-muted-foreground">وقت الإرسال</p>
-            <p className="mt-1 font-medium">{formatDateTime(batch.submittedAt)}</p>
-          </div>
-
-          <div className="rounded-2xl border border-border p-3">
-            <p className="text-xs text-muted-foreground">آخر تحديث</p>
-            <p className="mt-1 font-medium">{formatDateTime(batch.updatedAt)}</p>
-          </div>
-        </CardContent>
-      </Card>
+      {workflow.submitState.error ? (
+        <Card className="border-destructive/30 bg-destructive/10">
+          <CardContent className="p-4 text-sm leading-6 text-destructive">
+            تعذر إرسال الدفعة: {workflow.submitState.error}
+          </CardContent>
+        </Card>
+      ) : workflow.submitState.submittedAt ? (
+        <Card className="border-emerald-500/30 bg-emerald-500/10">
+          <CardContent className="p-4 text-sm text-emerald-700 dark:text-emerald-300">
+            تم إرسال دفعة الحضور وإنشاء السجلات الفردية بنجاح.
+          </CardContent>
+        </Card>
+      ) : null}
 
       <Card>
         <CardHeader>
           <CardTitle>صفوف الطلاب</CardTitle>
           <CardDescription>
-            هذه البيانات محفوظة داخل الدفعة كنسخة خفيفة للعرض السريع. السجلات
-            الفردية محفوظة في studentAttendanceRecords.
+            حدد حالة الحضور لكل طالب، ثم احفظ المسودة أو أرسل الدفعة.
           </CardDescription>
         </CardHeader>
 
@@ -375,17 +397,17 @@ export default function AttendanceBatchViewPage() {
             </div>
           ) : (
             <div className="overflow-x-auto rounded-2xl border border-border">
-              <table className="w-full min-w-[920px] text-sm">
+              <table className="w-full min-w-[980px] text-sm">
                 <thead className="bg-muted/50">
                   <tr className="text-right">
                     <th className="px-3 py-3 font-medium">#</th>
                     <th className="px-3 py-3 font-medium">الطالب</th>
                     <th className="px-3 py-3 font-medium">الحالة</th>
+                    <th className="px-3 py-3 font-medium">الوضع</th>
                     <th className="px-3 py-3 font-medium">دقائق التأخر</th>
                     <th className="px-3 py-3 font-medium">دقائق الانصراف</th>
                     <th className="px-3 py-3 font-medium">سبب العذر</th>
                     <th className="px-3 py-3 font-medium">ملاحظة</th>
-                    <th className="px-3 py-3 font-medium">السجل الفردي</th>
                   </tr>
                 </thead>
 
@@ -400,9 +422,25 @@ export default function AttendanceBatchViewPage() {
                         <div className="font-medium">
                           {row.studentDisplayName || row.studentId}
                         </div>
-                        <div className="mt-1 text-xs text-muted-foreground">
-                          {row.studentId}
-                        </div>
+                      </td>
+
+                      <td className="px-3 py-3">
+                        <select
+                          value={row.status}
+                          onChange={(event) =>
+                            workflow.handleRowStatusChange(
+                              row.studentId,
+                              event.target.value as StudentAttendanceStatus,
+                            )
+                          }
+                          className="w-18 rounded-xl border border-border bg-background px-3 py-2 outline-none focus:ring-2 focus:ring-ring"
+                        >
+                          {ATTENDANCE_STATUS_OPTIONS.map((item) => (
+                            <option key={item.value} value={item.value}>
+                              {item.label}
+                            </option>
+                          ))}
+                        </select>
                       </td>
 
                       <td className="px-3 py-3">
@@ -412,30 +450,86 @@ export default function AttendanceBatchViewPage() {
                       </td>
 
                       <td className="px-3 py-3">
-                        {row.lateMinutes ? `${row.lateMinutes} دقيقة` : "—"}
+                        <input
+                          type="number"
+                          min={0}
+                          disabled={!needsLateMinutes(row.status)}
+                          value={
+                            needsLateMinutes(row.status)
+                              ? String(row.lateMinutes || "")
+                              : ""
+                          }
+                          onChange={(event) =>
+                            workflow.handleRowFieldChange(
+                              row.studentId,
+                              "lateMinutes",
+                              event.target.value,
+                            )
+                          }
+                          placeholder="0"
+                          className="w-13 rounded-xl border border-border bg-background px-3 py-2 outline-none disabled:opacity-40 focus:ring-2 focus:ring-ring"
+                        />
                       </td>
 
                       <td className="px-3 py-3">
-                        {row.leftEarlyMinutes
-                          ? `${row.leftEarlyMinutes} دقيقة`
-                          : "—"}
+                        <input
+                          type="number"
+                          min={0}
+                          disabled={!needsLeftEarlyMinutes(row.status)}
+                          value={
+                            needsLeftEarlyMinutes(row.status)
+                              ? String(row.leftEarlyMinutes || "")
+                              : ""
+                          }
+                          onChange={(event) =>
+                            workflow.handleRowFieldChange(
+                              row.studentId,
+                              "leftEarlyMinutes",
+                              event.target.value,
+                            )
+                          }
+                          placeholder="0"
+                          className="w-10 rounded-xl border border-border bg-background px-3 py-2 outline-none disabled:opacity-40 focus:ring-2 focus:ring-ring"
+                        />
                       </td>
 
                       <td className="px-3 py-3">
-                        {row.excuseReason || "—"}
+                        <input
+                          type="text"
+                          disabled={!needsExcuseReason(row.status)}
+                          value={
+                            needsExcuseReason(row.status)
+                              ? row.excuseReason
+                              : ""
+                          }
+                          onChange={(event) =>
+                            workflow.handleRowFieldChange(
+                              row.studentId,
+                              "excuseReason",
+                              event.target.value,
+                            )
+                          }
+                          placeholder="سبب العذر"
+                          className="w-44 rounded-xl border border-border bg-background px-3 py-2 outline-none disabled:opacity-40 focus:ring-2 focus:ring-ring"
+                        />
                       </td>
-
-                      <td className="px-3 py-3">{row.note || "—"}</td>
 
                       <td className="px-3 py-3">
-                        {row.recordId ? (
-                          <code className="rounded-lg bg-muted px-2 py-1 text-xs">
-                            {row.recordId}
-                          </code>
-                        ) : (
-                          <span className="text-muted-foreground">—</span>
-                        )}
+                        <input
+                          type="text"
+                          value={row.note}
+                          onChange={(event) =>
+                            workflow.handleRowFieldChange(
+                              row.studentId,
+                              "note",
+                              event.target.value,
+                            )
+                          }
+                          placeholder="ملاحظة اختيارية"
+                          className="w-52 rounded-xl border border-border bg-background px-3 py-2 outline-none focus:ring-2 focus:ring-ring"
+                        />
                       </td>
+
                     </tr>
                   ))}
                 </tbody>
@@ -445,20 +539,74 @@ export default function AttendanceBatchViewPage() {
         </CardContent>
       </Card>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>حالة الخطوة</CardTitle>
-          <CardDescription>
-            صفحة عرض دفعة الحضور تعمل الآن من الدفعة نفسها.
-          </CardDescription>
-        </CardHeader>
 
-        <CardContent className="flex flex-wrap gap-2">
-          <Badge variant="secondary">9G إرسال الدفعة ✅</Badge>
-          <Badge variant="secondary">9H عرض دفعة الحضور ✅</Badge>
-          <Badge variant="outline">التالي: 9I مركز عام للحضور</Badge>
-        </CardContent>
-      </Card>
+
+
+
+<details className="rounded-2xl border border-border bg-card">
+        <summary className="cursor-pointer px-5 py-4 font-semibold">
+          تفاصيل تقنية
+        </summary>
+
+        <div className="grid gap-3 border-t border-border p-5 text-sm md:grid-cols-2 xl:grid-cols-4">
+          <div className="rounded-2xl border border-border p-3">
+            <p className="text-xs text-muted-foreground">معرّف الدفعة</p>
+            <p className="mt-1 break-all font-medium">{batch.id}</p>
+          </div>
+
+          <div className="rounded-2xl border border-border p-3">
+            <p className="text-xs text-muted-foreground">اليوم الدراسي</p>
+            <p className="mt-1 break-all font-medium">{batch.schoolDayId}</p>
+          </div>
+
+          <div className="rounded-2xl border border-border p-3">
+            <p className="text-xs text-muted-foreground">معرّف الفصل</p>
+            <p className="mt-1 break-all font-medium">{batch.classId}</p>
+          </div>
+
+          <div className="rounded-2xl border border-border p-3">
+            <p className="text-xs text-muted-foreground">معرّف المدرسة</p>
+            <p className="mt-1 break-all font-medium">{batch.schoolId}</p>
+          </div>
+
+          <div className="rounded-2xl border border-border p-3">
+            <p className="text-xs text-muted-foreground">معرّف العام الدراسي</p>
+            <p className="mt-1 break-all font-medium">{batch.academicYearId}</p>
+          </div>
+
+          <div className="rounded-2xl border border-border p-3">
+            <p className="text-xs text-muted-foreground">الحالة الداخلية</p>
+            <p className="mt-1 font-medium">{batch.status}</p>
+          </div>
+
+          <div className="rounded-2xl border border-border p-3">
+            <p className="text-xs text-muted-foreground">وقت الإنشاء</p>
+            <p className="mt-1 font-medium">{formatDateTime(batch.createdAt)}</p>
+          </div>
+
+          <div className="rounded-2xl border border-border p-3">
+            <p className="text-xs text-muted-foreground">وقت الإرسال</p>
+            <p className="mt-1 font-medium">{formatDateTime(batch.submittedAt)}</p>
+          </div>
+
+          <div className="rounded-2xl border border-border p-3">
+            <p className="text-xs text-muted-foreground">آخر تحديث</p>
+            <p className="mt-1 font-medium">{formatDateTime(batch.updatedAt)}</p>
+          </div>
+        </div>
+
+        <div className="border-t border-border p-5 text-sm">
+          <p className="font-medium">معرّفات سجلات الطلاب</p>
+          <div className="mt-3 max-h-64 space-y-2 overflow-y-auto rounded-2xl border border-border p-3 text-xs">
+            {batch.studentRows.map((row) => (
+              <div key={row.studentId} className="break-all">
+                {row.studentDisplayName || row.studentId}: الطالب {row.studentId}
+                {row.recordId ? ` — السجل ${row.recordId}` : ""}
+              </div>
+            ))}
+          </div>
+        </div>
+      </details>
     </div>
   );
 }

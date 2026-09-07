@@ -639,201 +639,177 @@ function canUseWorkDocumentation(orgId, schoolId, roleKey) {
         allow create, update, delete: if canManageOrg(orgId);
       }
 
-      /*
-       * ==========================================================
-       * Students
-       *
-       * Temporarily closed for school staff because the student
-       * document currently has no schoolId.
-       *
-       * Access will be restored through studentEnrollments or a
-       * school-scoped read model.
-       * ==========================================================
-       */
-
-      match /students/{studentId} {
-        allow get, list: if canManageOrg(orgId);
-        allow create, update, delete: if canManageOrg(orgId);
-      }
-
-      /*
-       * Enrollment documents contain schoolId and can therefore
-       * be protected properly.
-       *
-       * Queries must filter by schoolId.
-       */
-      match /studentEnrollments/{enrollmentId} {
-        allow get, list: if hasOrgMembership(orgId);
-        allow get, list: if canManageOrg(orgId)
-          || (
-            resource.data.schoolId is string
-            && hasSchoolAccess(orgId, resource.data.schoolId)
-          );
-
-        allow create, update, delete: if canManageOrg(orgId);
-      }
-
-      /*
-       * ==========================================================
-       * Student cases
-       * ==========================================================
-       */
-
-      match /studentCaseTypes/{caseTypeId} {
-        allow get, list: if hasOrgMembership(orgId);
-        allow create, update, delete: if canManageOrg(orgId);
-      }
-
-      match /studentCases/{caseId} {
-       allow get, list: if canManageOrg(orgId)
-       || (
-       resource.data.schoolId is string
-       && hasSchoolAccess(
-        orgId,
-        resource.data.schoolId
-      )
-    );
-
-       allow create: if canManageOrg(orgId)
-       || (
-      request.resource.data.orgId == orgId
-      && request.resource.data.schoolId is string
-      && hasSchoolAccess(
-        orgId,
-        request.resource.data.schoolId
-      )
-    );
-
-  allow update: if canManageOrg(orgId)
-    || (
-      resource.data.schoolId is string
-      && request.resource.data.orgId == orgId
-      && request.resource.data.schoolId
-        == resource.data.schoolId
-      && hasSchoolAccess(
-        orgId,
-        resource.data.schoolId
-      )
-    );
-
-  allow delete: if canManageOrg(orgId);
-
-  match /events/{eventId} {
-    allow read: if canManageOrg(orgId)
-      || (
-        get(
-          /databases/$(database)/documents/orgs/$(orgId)/studentCases/$(caseId)
-        ).data.schoolId is string
-        && hasSchoolAccess(
-          orgId,
-          get(
-            /databases/$(database)/documents/orgs/$(orgId)/studentCases/$(caseId)
-          ).data.schoolId
-        )
-      );
-
-    allow create: if canManageOrg(orgId)
-      || (
-        request.resource.data.orgId == orgId
-        && request.resource.data.caseId == caseId
-        && request.resource.data.schoolId is string
-        && hasSchoolAccess(
-          orgId,
-          request.resource.data.schoolId
-        )
-        && getAfter(
-          /databases/$(database)/documents/orgs/$(orgId)/studentCases/$(caseId)
-        ).data.schoolId
-          == request.resource.data.schoolId
-      );
-
-    allow update, delete: if false;
-  }
-}
-
-      /*
-       * ==========================================================
-       * Virtual class participants
-       *
-       * Keep guardian join updates only.
-       * School staff rules will be added through the session's
-       * schoolId when this module is tested.
-       * ==========================================================
-       */
-
-match /virtualClassSessions/{sessionId} {
-  allow get, list: if canManageOrg(orgId)
-    || hasAssignedClassSubjectAccess(
-      orgId,
-      resource.data
-    );
-
-  allow create, update, delete: if false;
-}
-
-
-      match /virtualClassParticipants/{participantId} {
-        allow get, list: if canManageOrg(orgId)
-          || (
-            signedIn()
-            && "guardianUids" in resource.data
-            && resource.data.guardianUids is list
-            && request.auth.uid in resource.data.guardianUids
-          );
-
-        allow create, delete: if canManageOrg(orgId);
-
-        allow update: if canManageOrg(orgId)
-          || (
-            signedIn()
-            && "guardianUids" in resource.data
-            && resource.data.guardianUids is list
-            && request.auth.uid in resource.data.guardianUids
-
-            && request.resource.data
-              .diff(resource.data)
-              .affectedKeys()
-              .hasOnly([
-                "platformJoinStatus",
-                "joinClickedAt",
-                "joinClickedByGuardianId",
-                "joinClickedByGuardianUid",
-                "joinClickedDeviceId",
-                "updatedAt"
-              ])
-
-            && request.resource.data.platformJoinStatus == "JOIN_CLICKED"
-            && request.resource.data.joinClickedByGuardianUid
-              == request.auth.uid
-          );
-      }
-
 
 
 
 /*
+ * ==========================================================
+ * Students
+ * ==========================================================
+ */
+
+match /students/{studentId} {
+  allow get, list: if hasOrgMembership(orgId);
+
+  allow create: if hasOrgMembership(orgId)
+    && request.resource.data.orgId == orgId;
+
+  allow update: if hasOrgMembership(orgId)
+    && request.resource.data.orgId == orgId;
+
+  allow delete: if false;
+}
+
+/*
+ * ==========================================================
+ * Student enrollments
+ * ==========================================================
+ */
+
+match /studentEnrollments/{enrollmentId} {
+  allow get, list: if hasOrgMembership(orgId);
+
+  allow create: if hasOrgMembership(orgId)
+    && request.resource.data.orgId == orgId;
+
+  allow update: if hasOrgMembership(orgId)
+    && request.resource.data.orgId == orgId;
+
+  allow delete: if false;
+}
+
+/*
+ * ==========================================================
+ * Student cases
+ * ==========================================================
+ */
+
+match /studentCaseTypes/{caseTypeId} {
+  allow get, list: if hasOrgMembership(orgId);
+
+  allow create: if hasOrgMembership(orgId)
+    && request.resource.data.orgId == orgId;
+
+  allow update: if hasOrgMembership(orgId)
+    && request.resource.data.orgId == orgId;
+
+  allow delete: if false;
+}
+
+match /studentCases/{caseId} {
+  allow get, list: if hasOrgMembership(orgId);
+
+  allow create: if hasOrgMembership(orgId)
+    && request.resource.data.orgId == orgId;
+
+  allow update: if hasOrgMembership(orgId)
+    && request.resource.data.orgId == orgId;
+
+  allow delete: if false;
+
+  match /events/{eventId} {
+    allow get, list: if hasOrgMembership(orgId);
+
+    allow create: if hasOrgMembership(orgId)
+      && request.resource.data.orgId == orgId
+      && request.resource.data.caseId == caseId;
+
+    allow update: if hasOrgMembership(orgId)
+      && request.resource.data.orgId == orgId
+      && request.resource.data.caseId == caseId;
+
+    allow delete: if false;
+  }
+}
+
+/*
+ * ==========================================================
+ * Virtual classes
+ * ==========================================================
+ */
+
+match /virtualClassSessions/{sessionId} {
+  allow get, list: if hasOrgMembership(orgId);
+
+  allow create: if hasOrgMembership(orgId)
+    && request.resource.data.orgId == orgId;
+
+  allow update: if hasOrgMembership(orgId)
+    && request.resource.data.orgId == orgId;
+
+  allow delete: if false;
+}
+
+match /virtualClassParticipants/{participantId} {
+  allow get, list: if hasOrgMembership(orgId)
+    || (
+      signedIn()
+      && "guardianUids" in resource.data
+      && resource.data.guardianUids is list
+      && request.auth.uid in resource.data.guardianUids
+    );
+
+  allow create: if hasOrgMembership(orgId)
+    && request.resource.data.orgId == orgId;
+
+  allow update: if (
+      hasOrgMembership(orgId)
+      && request.resource.data.orgId == orgId
+    )
+    || (
+      signedIn()
+      && "guardianUids" in resource.data
+      && resource.data.guardianUids is list
+      && request.auth.uid in resource.data.guardianUids
+
+      && request.resource.data
+        .diff(resource.data)
+        .affectedKeys()
+        .hasOnly([
+          "platformJoinStatus",
+          "joinClickedAt",
+          "joinClickedByGuardianId",
+          "joinClickedByGuardianUid",
+          "joinClickedDeviceId",
+          "updatedAt"
+        ])
+
+      && request.resource.data.platformJoinStatus == "JOIN_CLICKED"
+      && request.resource.data.joinClickedByGuardianUid == request.auth.uid
+    );
+
+  allow delete: if false;
+}
+
+/*
+ * ==========================================================
  * Measurement template configuration
- *
- * القوالب بيانات إعداد غير حساسة.
- * أي عضو نشط بالمؤسسة يستطيع قراءة القوالب،
- * بينما إدارتها تظل للإدارة العامة فقط.
+ * ==========================================================
  */
 
 match /studentAssessmentTemplates/{templateId} {
   allow get, list: if hasOrgMembership(orgId);
 
-  allow create, update, delete:
-    if canManageOrg(orgId);
+  allow create: if hasOrgMembership(orgId)
+    && request.resource.data.orgId == orgId;
+
+  allow update: if hasOrgMembership(orgId)
+    && request.resource.data.orgId == orgId;
+
+  allow delete: if false;
 }
 
 match /studentTrackerTemplates/{templateId} {
   allow get, list: if hasOrgMembership(orgId);
 
-  allow create, update, delete:
-    if canManageOrg(orgId);
+  allow create: if hasOrgMembership(orgId)
+    && request.resource.data.orgId == orgId;
+
+  allow update: if hasOrgMembership(orgId)
+    && request.resource.data.orgId == orgId;
+
+  allow delete: if false;
 }
-
-
 
 
 /*
@@ -1076,80 +1052,29 @@ match /studentLearningLossPlans/{planId} {
 }
 
 
-
 match /studentAttendanceBatches/{batchId} {
-  allow get, list: if canManageOrg(orgId)
-    || (
-      resource.data.orgId == orgId
-      && resource.data.schoolId is string
-      && canManageStudentAttendance(
-        orgId,
-        resource.data.schoolId
-      )
-    );
+  allow get, list: if hasOrgMembership(orgId);
 
-  allow create: if canManageOrg(orgId)
-    || (
-      request.resource.data.orgId == orgId
-      && request.resource.data.schoolId is string
-      && canManageStudentAttendance(
-        orgId,
-        request.resource.data.schoolId
-      )
-    );
+  allow create: if hasOrgMembership(orgId)
+    && request.resource.data.orgId == orgId;
 
-  allow update: if canManageOrg(orgId)
-    || (
-      resource.data.orgId == orgId
-      && request.resource.data.orgId == orgId
-      && resource.data.schoolId is string
-      && request.resource.data.schoolId
-        == resource.data.schoolId
-      && canManageStudentAttendance(
-        orgId,
-        resource.data.schoolId
-      )
-    );
+  allow update: if hasOrgMembership(orgId)
+    && request.resource.data.orgId == orgId;
 
-  allow delete: if canManageOrg(orgId);
+  allow delete: if false;
 }
 
 match /studentAttendanceRecords/{recordId} {
-  allow get, list: if canManageOrg(orgId)
-    || (
-      resource.data.orgId == orgId
-      && resource.data.schoolId is string
-      && canManageStudentAttendance(
-        orgId,
-        resource.data.schoolId
-      )
-    );
+  allow get, list: if hasOrgMembership(orgId);
 
-  allow create: if canManageOrg(orgId)
-    || (
-      request.resource.data.orgId == orgId
-      && request.resource.data.schoolId is string
-      && canManageStudentAttendance(
-        orgId,
-        request.resource.data.schoolId
-      )
-    );
+  allow create: if hasOrgMembership(orgId)
+    && request.resource.data.orgId == orgId;
 
-  allow update: if canManageOrg(orgId)
-    || (
-      resource.data.orgId == orgId
-      && request.resource.data.orgId == orgId
-      && resource.data.schoolId is string
-      && request.resource.data.schoolId == resource.data.schoolId
-      && canManageStudentAttendance(
-        orgId,
-        resource.data.schoolId
-      )
-    );
+  allow update: if hasOrgMembership(orgId)
+    && request.resource.data.orgId == orgId;
 
-  allow delete: if canManageOrg(orgId);
+  allow delete: if false;
 }
-
 
 
 /*evaluation*/

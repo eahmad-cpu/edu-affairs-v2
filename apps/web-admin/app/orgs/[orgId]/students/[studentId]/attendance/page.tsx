@@ -162,6 +162,8 @@ function getAttendanceStatusLabel(status?: string) {
       return "حاضر عن بعد";
     case "REMOTE_ABSENT":
       return "غائب عن بعد";
+    case "STUDY_SUSPENDED":
+      return "تعليق دراسة";
     default:
       return status || "—";
   }

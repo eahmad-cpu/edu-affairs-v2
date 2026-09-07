@@ -64,6 +64,7 @@ export type AttendanceBatchSummary = Pick<
   | "leftEarlyCount"
   | "remotePresentCount"
   | "remoteAbsentCount"
+  | "studySuspendedCount"
 >;
 
 export type AttendanceValidationOptions = {
@@ -194,6 +195,7 @@ export function calculateAttendanceBatchSummary(
     leftEarlyCount: 0,
     remotePresentCount: 0,
     remoteAbsentCount: 0,
+    studySuspendedCount: 0,
   };
 
   for (const row of rows) {
@@ -230,6 +232,9 @@ export function calculateAttendanceBatchSummary(
         break;
       case "REMOTE_ABSENT":
         summary.remoteAbsentCount += 1;
+        break;
+      case "STUDY_SUSPENDED":
+        summary.studySuspendedCount += 1;
         break;
     }
   }
@@ -296,6 +301,7 @@ export function buildAttendanceBatchDraft(
     leftEarlyCount: 0,
     remotePresentCount: 0,
     remoteAbsentCount: 0,
+    studySuspendedCount: 0,
 
     studentRows,
     recordRefs: [],

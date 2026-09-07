@@ -48,7 +48,7 @@ function statusLabel(status: string) {
     ACTIVE: "نشط", RECORDED: "مسجل", PUBLISHED: "منشور", SUBMITTED: "مرسل", GRADED: "مصَحح",
     NOT_STARTED: "لم يبدأ", IN_PROGRESS: "قيد التنفيذ", CLOSED: "مغلق", CANCELLED: "ملغى",
     PRESENT: "حاضر", ABSENT: "غائب", EXCUSED_ABSENT: "غائب بعذر", LATE: "متأخر",
-    REMOTE_PRESENT: "حاضر عن بعد", REMOTE_ABSENT: "غائب عن بعد", NEEDS_FOLLOW_UP: "تحتاج متابعة",
+    REMOTE_PRESENT: "حاضر عن بعد", REMOTE_ABSENT: "غائب عن بعد", STUDY_SUSPENDED: "تعليق دراسة", NEEDS_FOLLOW_UP: "تحتاج متابعة",
   };
   return labels[status] || status || "مسجل";
 }
