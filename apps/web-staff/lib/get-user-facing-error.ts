@@ -30,5 +30,5 @@ export function getUserFacingError(error: unknown): UserFacingError {
     return { title: "انتهت جلسة تسجيل الدخول", message: userMessage };
   }
 
-  return { title: "تعذر إكمال العملية", message: userMessage };
+  return { title: "لا تملك الصلاحية المطلوبة", message: userMessage };
 }
