@@ -643,14 +643,13 @@ export async function loadEvaluationSubmissionForm(params: {
 
   const evaluatorRoleKey = asString(assignment.evaluatorRoleKey);
 
-  const canApprove = await canEvaluatorApprove({
-    orgId,
-    schoolId,
-    planId,
-    evaluatorRoleKey,
-  });
-
-  const [framework, sections, items, submissions] = await Promise.all([
+  const [
+    framework,
+    sections,
+    items,
+    submissions,
+    canApproveByPolicy,
+  ] = await Promise.all([
     getDocData(`orgs/${orgId}/evaluationFrameworks/${frameworkId}`),
     getRubricSections(orgId, frameworkId),
     getRubricItems(orgId, frameworkId),
@@ -660,6 +659,12 @@ export async function loadEvaluationSubmissionForm(params: {
       cycleId,
       targetPersonId,
       evaluatorPersonId,
+    }),
+    canEvaluatorApprove({
+      orgId,
+      schoolId,
+      planId,
+      evaluatorRoleKey,
     }),
   ]);
 
@@ -671,6 +676,12 @@ export async function loadEvaluationSubmissionForm(params: {
     targetPersonId,
     evaluatorPersonId,
   });
+  const canApproveOwnSubmission = Boolean(existingSubmission) && [
+    asString(existingSubmission?.evaluatorPersonId),
+    asString(existingSubmission?.submittedByPersonId),
+    asString(existingSubmission?.createdByPersonId),
+  ].includes(evaluatorPersonId);
+  const canApprove = canApproveByPolicy || canApproveOwnSubmission;
 
   return {
     orgId,
@@ -873,7 +884,13 @@ export async function saveEvaluationDraft(params: {
     generalNote: params.generalNote.trim(),
 
     updatedAt: ts,
-    ...(formData.existingSubmissionId ? {} : { createdAt: ts }),
+    ...(formData.existingSubmissionId
+      ? {}
+      : {
+          createdAt: ts,
+          createdByUid: params.uid,
+          createdByPersonId: formData.evaluatorPersonId,
+        }),
   };
 
   await setDoc(
@@ -1021,8 +1038,16 @@ export async function submitEvaluation(params: {
     generalNote: params.generalNote.trim(),
 
     submittedAt: ts,
+    submittedByUid: params.uid,
+    submittedByPersonId: formData.evaluatorPersonId,
     updatedAt: ts,
-    ...(formData.existingSubmissionId ? {} : { createdAt: ts }),
+    ...(formData.existingSubmissionId
+      ? {}
+      : {
+          createdAt: ts,
+          createdByUid: params.uid,
+          createdByPersonId: formData.evaluatorPersonId,
+        }),
   };
 
   await setDoc(

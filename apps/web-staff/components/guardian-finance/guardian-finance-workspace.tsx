@@ -20,6 +20,7 @@ import {
   type GuardianFinanceSearchResult,
   type GuardianFinanceWorkspace as GuardianFinanceWorkspaceData,
 } from "@/lib/guardian-finance";
+import { getErrorMessage as getSafeErrorMessage } from "@/lib/error-message";
 
 import { FinanceSearch } from "./finance-search";
 import { FinanceSummaryCards } from "./finance-summary-cards";
@@ -53,12 +54,6 @@ const PAYMENT_METHOD_LABELS: Record<string, string> = {
   ONLINE: "دفع إلكتروني",
   OTHER: "أخرى",
 };
-
-function getErrorMessage(error: unknown): string {
-  if (error instanceof Error) return error.message;
-  if (typeof error === "string") return error;
-  return "حدث خطأ غير متوقع";
-}
 
 function formatMoney(amountMinor: number, currency = "SAR"): string {
   return new Intl.NumberFormat("ar-SA", {
@@ -231,7 +226,8 @@ export function GuardianFinanceWorkspace() {
     } catch (error) {
       setResults([]);
       setHasSearched(true);
-      setError(getErrorMessage(error));
+      console.error("Failed to search guardian finance records:", error);
+      setError(getSafeErrorMessage(error));
     } finally {
       setSearching(false);
     }
@@ -257,7 +253,8 @@ export function GuardianFinanceWorkspace() {
       setWorkspace(response.workspace);
       setResults([]);
     } catch (error) {
-      setError(getErrorMessage(error));
+      console.error("Failed to load guardian finance workspace:", error);
+      setError(getSafeErrorMessage(error));
     } finally {
       setLoadingWorkspace(false);
     }
@@ -281,7 +278,8 @@ export function GuardianFinanceWorkspace() {
 
       setWorkspace(response.workspace);
     } catch (error) {
-      setError(getErrorMessage(error));
+      console.error("Failed to refresh guardian finance workspace:", error);
+      setError(getSafeErrorMessage(error));
     } finally {
       setLoadingWorkspace(false);
     }

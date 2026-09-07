@@ -11,12 +11,7 @@ import {
   OrgRecord,
   setOrgId,
 } from "@/lib/org";
-
-function getErrorMessage(error: unknown) {
-  if (error instanceof Error) return error.message;
-  if (typeof error === "string") return error;
-  return "حدث خطأ غير متوقع";
-}
+import { getErrorMessage as getSafeErrorMessage } from "@/lib/error-message";
 
 export default function SelectOrgPage() {
   const router = useRouter();
@@ -48,7 +43,8 @@ export default function SelectOrgPage() {
         }
       } catch (error) {
         if (!active) return;
-        setError(getErrorMessage(error));
+        console.error("Failed to load available organizations:", error);
+        setError(getSafeErrorMessage(error));
       } finally {
         if (active) {
           setLoading(false);

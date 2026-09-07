@@ -2,7 +2,6 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Download, Eye, FileText, Loader2, RefreshCw } from "lucide-react";
-import { toast } from "sonner";
 import type { PdfResource } from "@takween/contracts";
 
 import { useStaffActor } from "@/components/staff/staff-actor-provider";
@@ -10,15 +9,13 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { downloadPdfResource, isTeacherPdfResourceActor, listMyTeachingPdfResources, viewPdfResource } from "@/lib/pdf-resources";
+import { appToast } from "@/lib/app-toast";
+import { getErrorMessage } from "@/lib/error-message";
 
 type TeachingTab = "CURRICULUM_DISTRIBUTION" | "ENRICHMENT_MATERIAL";
 
 function formatDate(value: number) {
   return new Intl.DateTimeFormat("ar-SA", { year: "numeric", month: "long", day: "numeric" }).format(new Date(value));
-}
-
-function errorMessage(error: unknown) {
-  return error instanceof Error ? error.message : "تعذر تنفيذ العملية. حاول مرة أخرى.";
 }
 
 export default function TeachingResourcesPage() {
@@ -34,7 +31,7 @@ export default function TeachingResourcesPage() {
   const load = useCallback(async () => {
     setLoading(true); setError("");
     try { setResources(await listMyTeachingPdfResources(actor)); }
-    catch (loadError) { setError(errorMessage(loadError)); }
+    catch (loadError) { console.error("Failed to load teaching resources:", loadError); setError(getErrorMessage(loadError)); }
     finally { setLoading(false); }
   }, [actor]);
   useEffect(() => { void load(); }, [load]);
@@ -50,7 +47,7 @@ export default function TeachingResourcesPage() {
   async function fileAction(resource: PdfResource, action: "view" | "download") {
     setBusyId(`${resource.id}-${action}`);
     try { if (action === "view") await viewPdfResource(resource); else await downloadPdfResource(resource); }
-    catch (fileError) { toast.error(errorMessage(fileError)); }
+    catch (fileError) { appToast.showErrorToast(fileError); }
     finally { setBusyId(""); }
   }
 

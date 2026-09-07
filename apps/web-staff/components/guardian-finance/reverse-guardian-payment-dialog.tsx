@@ -21,6 +21,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { reverseGuardianPayment } from "@/lib/guardian-finance";
+import { getErrorMessage as getSafeErrorMessage } from "@/lib/error-message";
 
 type ReverseGuardianPaymentDialogProps = {
   payment?: GuardianPayment;
@@ -28,12 +29,6 @@ type ReverseGuardianPaymentDialogProps = {
   onOpenChange: (open: boolean) => void;
   onReversed: () => Promise<void> | void;
 };
-
-function getErrorMessage(error: unknown): string {
-  if (error instanceof Error) return error.message;
-  if (typeof error === "string") return error;
-  return "حدث خطأ غير متوقع";
-}
 
 function formatMoney(
   amountMinor: number,
@@ -91,7 +86,8 @@ export function ReverseGuardianPaymentDialog({
       onOpenChange(false);
       await onReversed();
     } catch (error) {
-      setError(getErrorMessage(error));
+      console.error("Failed to reverse guardian payment:", error);
+      setError(getSafeErrorMessage(error));
     } finally {
       setSaving(false);
     }

@@ -2,7 +2,6 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { CheckCircle2, Download, Eye, FileText, Loader2, RefreshCw } from "lucide-react";
-import { toast } from "sonner";
 import type { PdfResource, PdfResourceAcknowledgement } from "@takween/contracts";
 
 import { useStaffActor } from "@/components/staff/staff-actor-provider";
@@ -10,13 +9,11 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { acknowledgePdfResource, downloadPdfResource, listMyPdfResources, viewPdfResource } from "@/lib/pdf-resources";
+import { appToast } from "@/lib/app-toast";
+import { getErrorMessage } from "@/lib/error-message";
 
 function formatDate(value: number) {
   return new Intl.DateTimeFormat("ar-SA", { year: "numeric", month: "long", day: "numeric" }).format(new Date(value));
-}
-
-function errorMessage(error: unknown) {
-  return error instanceof Error ? error.message : "تعذر تنفيذ العملية. حاول مرة أخرى.";
 }
 
 export default function MyDocumentsPage() {
@@ -32,7 +29,7 @@ export default function MyDocumentsPage() {
     try {
       const result = await listMyPdfResources(actor);
       setResources(result.resources); setAcknowledgements(result.acknowledgementsByResourceId);
-    } catch (loadError) { setError(errorMessage(loadError)); }
+    } catch (loadError) { console.error("Failed to load staff documents:", loadError); setError(getErrorMessage(loadError)); }
     finally { setLoading(false); }
   }, [actor]);
 
@@ -44,8 +41,8 @@ export default function MyDocumentsPage() {
     try {
       const acknowledgement = await acknowledgePdfResource({ actor, resource });
       setAcknowledgements((current) => ({ ...current, [resource.id]: acknowledgement }));
-      toast.success("تم تسجيل إقرار الاطلاع على المستند.");
-    } catch (acknowledgementError) { toast.error(errorMessage(acknowledgementError)); }
+      appToast.success("تم تسجيل إقرار الاطلاع على المستند.");
+    } catch (acknowledgementError) { appToast.showErrorToast(acknowledgementError); }
     finally { setBusyId(""); }
   }
 
@@ -54,7 +51,7 @@ export default function MyDocumentsPage() {
     try {
       if (action === "view") await viewPdfResource(resource);
       else await downloadPdfResource(resource);
-    } catch (fileError) { toast.error(errorMessage(fileError)); }
+    } catch (fileError) { appToast.showErrorToast(fileError); }
     finally { setBusyId(""); }
   }
 

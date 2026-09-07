@@ -8,10 +8,10 @@ import {
   isSupported,
   onMessage,
 } from "firebase/messaging";
-import { toast } from "sonner";
 
 import { useStaffActor } from "@/components/staff/staff-actor-provider";
 import { auth, db, firebaseApp } from "@/lib/firebase";
+import { appToast } from "@/lib/app-toast";
 
 const WEB_VAPID_KEY =
   "BJU1plPF3C-I7uBjJvezVIMXPC2HC1669RunhOaIr8Ddu-LWGiAGBsSNe00TllBnHQgN2nD5L-a7lR5XOZuJZq0";
@@ -157,7 +157,7 @@ export function WebStaffNotificationBootstrap() {
         const body =
           message.notification?.body ?? "لديك تحديث جديد من المنصة.";
 
-        toast(title, {
+        appToast.info(title, {
           description: body,
           action: {
             label: "فتح",

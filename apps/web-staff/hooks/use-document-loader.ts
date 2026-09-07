@@ -1,12 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-
-function getErrorMessage(error: unknown) {
-  if (error instanceof Error) return error.message;
-  if (typeof error === "string") return error;
-  return "حدث خطأ غير متوقع";
-}
+import { getErrorMessage as getSafeErrorMessage } from "@/lib/error-message";
 
 type UseDocumentLoaderOptions<T> = {
   enabled?: boolean;
@@ -55,7 +50,8 @@ export function useDocumentLoader<T>({
       setData(result);
     } catch (error: unknown) {
       setData(null);
-      setError(getErrorMessage(error));
+      console.error("Failed to load document data:", error);
+      setError(getSafeErrorMessage(error));
     } finally {
       setLoading(false);
     }
@@ -89,7 +85,8 @@ export function useDocumentLoader<T>({
       } catch (error: unknown) {
         if (!active) return;
         setData(null);
-        setError(getErrorMessage(error));
+        console.error("Failed to load document data:", error);
+        setError(getSafeErrorMessage(error));
       } finally {
         if (active) {
           setLoading(false);

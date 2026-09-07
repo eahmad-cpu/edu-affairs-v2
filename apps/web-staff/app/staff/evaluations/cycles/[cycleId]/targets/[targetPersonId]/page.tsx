@@ -219,6 +219,7 @@ export default function EvaluationSubmissionPage() {
           ...current,
           existingSubmissionId: result.submissionId,
           existingSubmissionStatus: "SUBMITTED",
+          canApprove: true,
         };
       });
 

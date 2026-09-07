@@ -26,6 +26,7 @@ import {
   type GuardianFinanceStudent,
 } from "@/lib/guardian-finance";
 import { db } from "@/lib/firebase";
+import { getErrorMessage as getSafeErrorMessage } from "@/lib/error-message";
 
 type EnrollmentOption = {
   id: string;
@@ -59,12 +60,6 @@ type AddStudentFeeChargeDialogProps = {
   onOpenChange: (open: boolean) => void;
   onCreated: () => Promise<void> | void;
 };
-
-function getErrorMessage(error: unknown): string {
-  if (error instanceof Error) return error.message;
-  if (typeof error === "string") return error;
-  return "حدث خطأ غير متوقع";
-}
 
 function formatEnrollmentLabel(params: {
   enrollment: EnrollmentOption;
@@ -239,7 +234,8 @@ export function AddStudentFeeChargeDialog({
         setFeeDefinitions(rows);
       } catch (error) {
         if (!active) return;
-        setError(getErrorMessage(error));
+        console.error("Failed to load fee definitions:", error);
+        setError(getSafeErrorMessage(error));
       } finally {
         if (active) {
           setLoadingDefinitions(false);
@@ -304,7 +300,8 @@ export function AddStudentFeeChargeDialog({
         setEnrollmentId(rows[0]?.id ?? "");
       } catch (error) {
         if (!active) return;
-        setError(getErrorMessage(error));
+        console.error("Failed to load student enrollments:", error);
+        setError(getSafeErrorMessage(error));
       } finally {
         if (active) {
           setLoadingEnrollments(false);
@@ -426,7 +423,8 @@ export function AddStudentFeeChargeDialog({
       onOpenChange(false);
       await onCreated();
     } catch (error) {
-      setError(getErrorMessage(error));
+      console.error("Failed to create student fee charge:", error);
+      setError(getSafeErrorMessage(error));
     } finally {
       setSaving(false);
     }

@@ -11,7 +11,6 @@ import {
   SlidersHorizontal,
   Target,
 } from "lucide-react";
-import { toast } from "sonner";
 import type {
   PerformanceImprovementPlan,
   PerformanceImprovementSettings,
@@ -37,6 +36,8 @@ import {
   type PerformanceImprovementWorkspace,
 } from "@/lib/performance-improvement";
 import { canAccessPerformanceImprovement } from "@/lib/performance-improvement-access";
+import { appToast } from "@/lib/app-toast";
+import { getErrorMessage as getSafeErrorMessage } from "@/lib/error-message";
 
 function formatScore(value: number): string {
   return Number.isInteger(value) ? String(value) : value.toFixed(1);
@@ -48,11 +49,6 @@ function formatDate(value: number): string {
     month: "short",
     day: "numeric",
   }).format(new Date(value));
-}
-
-function getErrorMessage(error: unknown): string {
-  if (error instanceof Error) return error.message;
-  return "تعذر تنفيذ العملية";
 }
 
 function getPlanStatusLabel(status: PerformanceImprovementPlan["status"]) {
@@ -130,7 +126,7 @@ function SignalCard(props: {
       .filter(Boolean);
 
     if (objective.trim().length < 3 || actions.length === 0) {
-      toast.error("اكتب هدف الخطة وإجراءً واحدًا على الأقل.");
+      appToast.error("اكتب هدف الخطة وإجراءً واحدًا على الأقل.");
       return;
     }
 
@@ -144,10 +140,10 @@ function SignalCard(props: {
         targetScore,
         durationDays,
       });
-      toast.success("تم فتح خطة تحسين الأداء.");
+      appToast.success("تم فتح خطة تحسين الأداء.");
       await props.onChanged();
     } catch (error) {
-      toast.error(getErrorMessage(error));
+      appToast.showErrorToast(error);
     } finally {
       setSaving(false);
     }
@@ -155,7 +151,7 @@ function SignalCard(props: {
 
   async function handleDismiss() {
     if (dismissalNote.trim().length < 3) {
-      toast.error("اكتب سبب استبعاد الحالة.");
+      appToast.error("اكتب سبب استبعاد الحالة.");
       return;
     }
 
@@ -166,10 +162,10 @@ function SignalCard(props: {
         signalId: signal.id,
         note: dismissalNote.trim(),
       });
-      toast.success("تم استبعاد الحالة مع حفظ السبب.");
+      appToast.success("تم استبعاد الحالة مع حفظ السبب.");
       await props.onChanged();
     } catch (error) {
-      toast.error(getErrorMessage(error));
+      appToast.showErrorToast(error);
     } finally {
       setSaving(false);
     }
@@ -345,10 +341,10 @@ function SettingsCard(props: {
         defaultTargetScore,
         defaultDurationDays,
       });
-      toast.success("تم حفظ قواعد اكتشاف الأداء المنخفض.");
+      appToast.success("تم حفظ قواعد اكتشاف الأداء المنخفض.");
       await props.onChanged();
     } catch (error) {
-      toast.error(getErrorMessage(error));
+      appToast.showErrorToast(error);
     } finally {
       setSaving(false);
     }
@@ -456,12 +452,12 @@ function PlanCard(props: {
         planId: plan.id,
         ...params,
       });
-      toast.success("تم تحديث خطة التحسين.");
+      appToast.success("تم تحديث خطة التحسين.");
       setScore("");
       setNote("");
       await props.onChanged();
     } catch (error) {
-      toast.error(getErrorMessage(error));
+      appToast.showErrorToast(error);
     } finally {
       setSaving(false);
     }
@@ -655,7 +651,8 @@ export default function PerformanceImprovementPage() {
       });
       setWorkspace(result);
     } catch (error) {
-      setError(getErrorMessage(error));
+      console.error("Failed to load performance improvement data:", error);
+      setError(getSafeErrorMessage(error));
     } finally {
       setLoading(false);
     }

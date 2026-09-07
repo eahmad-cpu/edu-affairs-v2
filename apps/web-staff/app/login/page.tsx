@@ -21,14 +21,9 @@ import {
 } from "lucide-react";
 
 import { auth } from "@/lib/firebase";
+import { getErrorMessage as getSafeErrorMessage } from "@/lib/error-message";
 
 const YOUTUBE_VIDEO_ID = "7uJwuONN4ko";
-
-function getErrorMessage(error: unknown) {
-  if (error instanceof Error) return error.message;
-  if (typeof error === "string") return error;
-  return "حدث خطأ غير متوقع";
-}
 
 export default function LoginPage() {
   const router = useRouter();
@@ -57,7 +52,8 @@ export default function LoginPage() {
       await signInWithEmailAndPassword(auth, email.trim(), password);
       router.replace("/select-org");
     } catch (error) {
-      setError(getErrorMessage(error));
+      console.error("Staff sign-in failed:", error);
+      setError(getSafeErrorMessage(error));
       setLoading(false);
     }
   }

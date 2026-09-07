@@ -4,6 +4,7 @@ import { useCallback, useState } from "react";
 import { httpsCallable } from "firebase/functions";
 
 import { functions } from "@/lib/firebase";
+import { getErrorMessage as getSafeErrorMessage } from "@/lib/error-message";
 
 type SendThreadMessageInput = {
   orgId: string;
@@ -15,12 +16,6 @@ type SendThreadMessageResult = {
   ok: true;
   messageId: string;
 };
-
-function getErrorMessage(error: unknown) {
-  if (error instanceof Error) return error.message;
-  if (typeof error === "string") return error;
-  return "تعذر إرسال الرسالة";
-}
 
 export function useSendStaffThreadMessage() {
   const [sending, setSending] = useState(false);
@@ -52,7 +47,8 @@ export function useSendStaffThreadMessage() {
 
         return result.data;
       } catch (error) {
-        const message = getErrorMessage(error);
+        console.error("Failed to send staff thread message:", error);
+        const message = getSafeErrorMessage(error);
         setError(message);
         return null;
       } finally {

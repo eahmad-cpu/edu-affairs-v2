@@ -25,7 +25,6 @@ import {
   where,
   writeBatch,
 } from "firebase/firestore";
-import { toast } from "sonner";
 
 import type {
   GamificationBadge,
@@ -63,6 +62,8 @@ import {
 } from "@/components/ui/card";
 import { db } from "@/lib/firebase";
 import { getClassRoster } from "@/lib/class-roster";
+import { appToast } from "@/lib/app-toast";
+import { getErrorMessage as getSafeErrorMessage } from "@/lib/error-message";
 
 type StudentGamificationRow = {
   studentId: string;
@@ -133,12 +134,6 @@ const LEADERBOARD_SORT_OPTIONS: Array<{
 
 function getSearchValue(searchParams: URLSearchParams, key: string) {
   return searchParams.get(key)?.trim() ?? "";
-}
-
-function getErrorMessage(error: unknown) {
-  if (error instanceof Error) return error.message;
-  if (typeof error === "string") return error;
-  return "حدث خطأ غير متوقع";
 }
 
 function toggleSetItem(source: Set<string>, item: string) {
@@ -452,7 +447,8 @@ export default function SubjectGamificationPage() {
     } catch (error: unknown) {
       setStudents([]);
       setSelectedStudentIds(new Set());
-      setError(getErrorMessage(error));
+      console.error("Failed to load class students for gamification:", error);
+      setError(getSafeErrorMessage(error));
     } finally {
       setLoading(false);
     }
@@ -482,7 +478,8 @@ export default function SubjectGamificationPage() {
       setEvents(rows);
     } catch (error: unknown) {
       setEvents([]);
-      setEventsError(getErrorMessage(error));
+      console.error("Failed to load gamification events:", error);
+      setEventsError(getSafeErrorMessage(error));
     } finally {
       setLoadingEvents(false);
     }
@@ -524,7 +521,8 @@ export default function SubjectGamificationPage() {
     } catch (error: unknown) {
       setReasons([]);
       setBadges([]);
-      setCatalogError(getErrorMessage(error));
+      console.error("Failed to load gamification catalog:", error);
+      setCatalogError(getSafeErrorMessage(error));
     } finally {
       setLoadingCatalog(false);
     }
@@ -560,7 +558,8 @@ export default function SubjectGamificationPage() {
     } catch (error: unknown) {
       setLevelRules([]);
       setAchievementRules([]);
-      setRulesError(getErrorMessage(error));
+      console.error("Failed to load gamification rules:", error);
+      setRulesError(getSafeErrorMessage(error));
     } finally {
       setLoadingRules(false);
     }
@@ -843,34 +842,34 @@ export default function SubjectGamificationPage() {
 
   async function handleCreateGamificationEvents() {
     if (!actor?.orgId) {
-      toast.error("لم يتم تحديد المؤسسة الحالية.");
+      appToast.error("لم يتم تحديد المؤسسة الحالية.");
       return;
     }
 
     const createdByPersonId = actor.personId || actor.uid;
 
     if (!createdByPersonId) {
-      toast.error("لم يتم تحديد المستخدم الحالي.");
+      appToast.error("لم يتم تحديد المستخدم الحالي.");
       return;
     }
 
     if (selectedRows.length === 0) {
-      toast.error("اختر طالبًا واحدًا على الأقل.");
+      appToast.error("اختر طالبًا واحدًا على الأقل.");
       return;
     }
 
     if (!reasonTitle.trim()) {
-      toast.error("اكتب سبب التحفيز.");
+      appToast.error("اكتب سبب التحفيز.");
       return;
     }
 
     if (!valueIsValid) {
-      toast.error("قيمة النقاط يجب أن تكون رقمًا صحيحًا أو موجبًا.");
+      appToast.error("قيمة النقاط يجب أن تكون رقمًا صحيحًا أو موجبًا.");
       return;
     }
 
     if (!termId) {
-      toast.error("لا يمكن إنشاء تحفيز قبل تحديد الفصل الدراسي الحالي.");
+      appToast.error("لا يمكن إنشاء تحفيز قبل تحديد الفصل الدراسي الحالي.");
       return;
     }
 
@@ -1008,7 +1007,7 @@ export default function SubjectGamificationPage() {
       const manualCount = newEvents.length;
       const rewardCount = achievementRewardEvents.length;
 
-      toast.success(
+      appToast.success(
         rewardCount > 0
           ? `تم إنشاء ${manualCount.toLocaleString(
               "ar-SA",
@@ -1021,7 +1020,7 @@ export default function SubjectGamificationPage() {
 
       await loadEvents();
     } catch (error: unknown) {
-      toast.error(getErrorMessage(error));
+      appToast.showErrorToast(error);
     } finally {
       setSaving(false);
     }

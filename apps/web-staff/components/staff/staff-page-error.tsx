@@ -65,18 +65,6 @@ export function StaffPageError({
               {resolvedError.message}
             </p>
 
-            {resolvedError.technicalDetails ? (
-              <details className="mt-4 rounded-xl border bg-muted/30 p-3">
-                <summary className="cursor-pointer text-xs font-medium">
-                  التفاصيل التقنية
-                </summary>
-
-                <p className="mt-2 break-words text-xs text-muted-foreground">
-                  {resolvedError.technicalDetails}
-                </p>
-              </details>
-            ) : null}
-
             <div className="mt-5 flex flex-wrap gap-2">
               {onRetry ? (
                 <Button onClick={onRetry}>

@@ -17,6 +17,7 @@ import {
 } from "@/lib/staff-actor";
 import { useRequireAuth } from "@/hooks/use-require-auth";
 import { FullScreenTakweenLoader } from "@/components/ui/takween-loader";
+import { getErrorMessage as getSafeErrorMessage } from "@/lib/error-message";
 
 
 type StaffActorContextValue = {
@@ -28,12 +29,6 @@ type StaffActorContextValue = {
 };
 
 const StaffActorContext = createContext<StaffActorContextValue | null>(null);
-
-function getErrorMessage(error: unknown) {
-  if (error instanceof Error) return error.message;
-  if (typeof error === "string") return error;
-  return "حدث خطأ غير متوقع";
-}
 
 function LoadingScreen() {
   return (
@@ -78,7 +73,8 @@ export function StaffActorProvider({
       setActor(nextActor);
     } catch (error) {
       setActor(null);
-      setError(getErrorMessage(error));
+      console.error("Failed to load staff actor:", error);
+      setError(getSafeErrorMessage(error));
     } finally {
       setLoadingActor(false);
     }
@@ -114,7 +110,8 @@ export function StaffActorProvider({
       } catch (error) {
         if (!active) return;
         setActor(null);
-        setError(getErrorMessage(error));
+        console.error("Failed to load staff actor:", error);
+        setError(getSafeErrorMessage(error));
       } finally {
         if (active) {
           setLoadingActor(false);

@@ -13,6 +13,11 @@ import {
 
 const REGION = "me-central2";
 
+const CORS_ORIGINS = [
+  "http://localhost:3001",
+  "https://edu-affairs-v2-web-staff.vercel.app",
+];
+
 const FULL_EVALUATION_ROLES = new Set([
   "platform_owner",
   "platform_admin",
@@ -170,7 +175,7 @@ function submissionMatchesAssignment(params: {
 export const approveEvaluationSubmission = onCall(
   {
     region: REGION,
-    cors: true,
+    cors: CORS_ORIGINS,
     invoker: "public",
   },
   async (
@@ -295,25 +300,28 @@ export const approveEvaluationSubmission = onCall(
           );
         }
 
-        if (readString(submission.evaluatorPersonId) !== evaluatorPersonId) {
-          throw new HttpsError(
-            "permission-denied",
-            "Only the assigned evaluator can approve this submission.",
-          );
-        }
-
         const currentStatus = readString(submission.status);
 
-        if (currentStatus !== "SUBMITTED" && currentStatus !== "APPROVED") {
+        if (currentStatus !== "SUBMITTED") {
           throw new HttpsError(
             "failed-precondition",
             "Only a submitted evaluation can be approved.",
           );
         }
 
+        const submissionEvaluatorPersonId = readString(
+          submission.evaluatorPersonId,
+        );
+        const isSubmissionActor = [
+          submissionEvaluatorPersonId,
+          readString(submission.submittedByPersonId),
+          readString(submission.createdByPersonId),
+        ].includes(evaluatorPersonId);
+
         if (
-          !hasEvaluationPermission(membership, roleKey) ||
-          !membershipCanAccessSchool({ membership, roleKey, schoolId })
+          !membershipCanAccessSchool({ membership, roleKey, schoolId }) ||
+          (!hasEvaluationPermission(membership, roleKey) &&
+            !isSubmissionActor)
         ) {
           throw new HttpsError(
             "permission-denied",
@@ -392,7 +400,7 @@ export const approveEvaluationSubmission = onCall(
           submissionMatchesAssignment({
             submission,
             assignment,
-            evaluatorPersonId,
+            evaluatorPersonId: submissionEvaluatorPersonId,
           }),
         );
 
@@ -408,7 +416,7 @@ export const approveEvaluationSubmission = onCall(
           readString(submission.evaluatorRoleKey) ||
           roleKey;
 
-        const canApprove =
+        const hasManagerOrPolicyApprovalPermission =
           FULL_EVALUATION_ROLES.has(roleKey) ||
           policySnapshot.docs.some((document) => {
             const policy = document.data();
@@ -419,6 +427,9 @@ export const approveEvaluationSubmission = onCall(
               policy.canApprove === true
             );
           });
+
+        const canApprove =
+          hasManagerOrPolicyApprovalPermission || isSubmissionActor;
 
         if (!canApprove) {
           throw new HttpsError(
@@ -553,6 +564,9 @@ export const approveEvaluationSubmission = onCall(
         const cycleCompleted = missingSubmissionsCount === 0;
         const approvedAt =
           readOptionalTimestamp(submission.approvedAt) ?? now;
+        const approvedByDisplayName =
+          readString(user.displayName) ||
+          readString(membership.displayName);
         const normalizedScore = clampPercentage(
           readNumber(submission.normalizedScore),
         );
@@ -875,7 +889,11 @@ export const approveEvaluationSubmission = onCall(
             status: "APPROVED",
             weightedScore,
             approvedAt,
+            approvedByUid: uid,
             approvedByPersonId: evaluatorPersonId,
+            ...(approvedByDisplayName
+              ? { approvedByDisplayName }
+              : {}),
             updatedAt: now,
           },
           { merge: true },

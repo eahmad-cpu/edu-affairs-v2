@@ -13,6 +13,7 @@ import {
   type GuardianFinanceWorkspace,
   type PostGuardianPaymentAllocationInput,
 } from "@/lib/guardian-finance";
+import { getErrorMessage as getSafeErrorMessage } from "@/lib/error-message";
 
 type RecordGuardianPaymentDialogProps = {
   open: boolean;
@@ -55,12 +56,6 @@ const PAYMENT_METHOD_LABELS: Record<GuardianFinancePaymentMethod, string> = {
   ONLINE: "دفع إلكتروني",
   OTHER: "أخرى",
 };
-
-function getErrorMessage(error: unknown): string {
-  if (error instanceof Error) return error.message;
-  if (typeof error === "string") return error;
-  return "حدث خطأ غير متوقع";
-}
 
 function formatMoney(amountMinor: number, currency: string): string {
   return new Intl.NumberFormat("ar-SA", {
@@ -488,7 +483,8 @@ export function RecordGuardianPaymentDialog({
       onOpenChange(false);
       await onCreated();
     } catch (error) {
-      const message = getErrorMessage(error);
+      console.error("Failed to record guardian payment:", error);
+      const message = getSafeErrorMessage(error);
 
       setError(
         draftReceiptNumber

@@ -3,7 +3,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { Archive, BarChart3, FilePlus2, FileText, Loader2, RefreshCw, X } from "lucide-react";
-import { toast } from "sonner";
 import { MembershipRole, type MembershipRole as MembershipRoleType, type PdfResource, type PdfResourceAcknowledgementReport, type PdfResourceKind } from "@takween/contracts";
 
 import { useStaffActor } from "@/components/staff/staff-actor-provider";
@@ -13,6 +12,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { db } from "@/lib/firebase";
 import { archivePdfResource, canManagePdfResources, getPdfResourceAcknowledgementReport, getSelectedTeachingOfferings, listManagedPdfResources, publishPdfResource, publishTeachingPdfResource } from "@/lib/pdf-resources";
 import { getArabicRoleLabel } from "@/lib/role-labels";
+import { appToast } from "@/lib/app-toast";
+import { getErrorMessage } from "@/lib/error-message";
 
 const TEACHER_ROLES: MembershipRoleType[] = ["teacher", "BOYS_TEACHER", "GIRLS_TEACHER", "KG_TEACHER"];
 const RESOURCE_TYPE_LABELS: Record<PdfResourceKind, string> = {
@@ -23,10 +24,6 @@ const RESOURCE_TYPE_LABELS: Record<PdfResourceKind, string> = {
 
 function formatDate(value?: number) {
   return value ? new Intl.DateTimeFormat("ar-SA", { year: "numeric", month: "short", day: "numeric" }).format(new Date(value)) : "—";
-}
-
-function errorMessage(error: unknown) {
-  return error instanceof Error ? error.message : "تعذر تنفيذ العملية. حاول مرة أخرى.";
 }
 
 function ReportPanel({ report, schoolNames }: { report: PdfResourceAcknowledgementReport; schoolNames: Map<string, string> }) {
@@ -68,7 +65,7 @@ export default function ManageDocumentsPage() {
     if (!canManage) return;
     setLoading(true); setError("");
     try { setResources(await listManagedPdfResources(actor.orgId)); }
-    catch (loadError) { setError(errorMessage(loadError)); }
+    catch (loadError) { console.error("Failed to load managed documents:", loadError); setError(getErrorMessage(loadError)); }
     finally { setLoading(false); }
   }, [actor.orgId, canManage]);
   useEffect(() => { void load(); }, [load]);
@@ -118,7 +115,7 @@ export default function ManageDocumentsPage() {
         if (!active) return;
         setTerms(termsSnapshot.docs.map((item) => ({ id: item.id, title: String(item.data().title || item.data().shortTitle || item.id) })));
         setGradeNames(new Map(gradesSnapshot.flatMap((snapshot) => snapshot.docs.map((item) => [item.id, String(item.data().title || item.id)] as const))));
-      } catch (loadError) { if (active) toast.error(errorMessage(loadError)); }
+      } catch (loadError) { if (active) appToast.showErrorToast(loadError); }
     }
     void loadTermsAndGrades();
     return () => { active = false; };
@@ -133,10 +130,10 @@ export default function ManageDocumentsPage() {
     if (nextKind !== "JOB_TASKS") { setTargetRoles(TEACHER_ROLES); setRequiresAcknowledgement(false); setSchoolIds([]); }
   }
   async function publish() {
-    if (!title.trim() || !file) { toast.error("أدخل العنوان واختر ملف PDF."); return; }
-    if (!isTeaching && targetRoles.length === 0) { toast.error("حدد دوراً واحداً على الأقل."); return; }
+    if (!title.trim() || !file) { appToast.error("أدخل العنوان واختر ملف PDF."); return; }
+    if (!isTeaching && targetRoles.length === 0) { appToast.error("حدد دوراً واحداً على الأقل."); return; }
     if (isTeaching && (selectedSchoolIds.length === 0 || !academicYearId || !termId || !gradeId || !subjectKey || selectedOfferingIds.length === 0)) {
-      toast.error("أكمل استهداف المدرسة والسنة والفصل والصف والمادة، ثم اختر فصلاً واحداً على الأقل."); return;
+      appToast.error("أكمل استهداف المدرسة والسنة والفصل والصف والمادة، ثم اختر فصلاً واحداً على الأقل."); return;
     }
     setBusyId("publish");
     try {
@@ -146,21 +143,21 @@ export default function ManageDocumentsPage() {
       } else {
         await publishPdfResource({ actor, title, description, targetRoleKeys: targetRoles, schoolIds, requiresAcknowledgement, file });
       }
-      toast.success("تم نشر المستند."); resetForm(); await load();
-    } catch (publishError) { toast.error(errorMessage(publishError)); }
+      appToast.success("تم نشر المستند."); resetForm(); await load();
+    } catch (publishError) { appToast.showErrorToast(publishError); }
     finally { setBusyId(""); }
   }
   async function archive(resource: PdfResource) {
     if (!window.confirm(`أرشفة المستند «${resource.title}»؟ سيبقى السجل محفوظاً ولن يعود ظاهراً للمستهدفين.`)) return;
     setBusyId(`archive-${resource.id}`);
-    try { await archivePdfResource({ actor, resourceId: resource.id }); toast.success("تمت أرشفة المستند."); await load(); }
-    catch (archiveError) { toast.error(errorMessage(archiveError)); }
+    try { await archivePdfResource({ actor, resourceId: resource.id }); appToast.success("تمت أرشفة المستند."); await load(); }
+    catch (archiveError) { appToast.showErrorToast(archiveError); }
     finally { setBusyId(""); }
   }
   async function loadReport(resource: PdfResource) {
     setBusyId(`report-${resource.id}`);
     try { setReport(await getPdfResourceAcknowledgementReport({ orgId: actor.orgId, resourceId: resource.id })); }
-    catch (reportError) { toast.error(errorMessage(reportError)); }
+    catch (reportError) { appToast.showErrorToast(reportError); }
     finally { setBusyId(""); }
   }
 

@@ -1154,108 +1154,33 @@ match /studentAttendanceRecords/{recordId} {
 
 /*evaluation*/
 
+// TODO: TEMPORARY EVALUATION TESTING RELAXATION - tighten before production/stable release
 
 match /evaluationEvaluatorAssignments/{assignmentId} {
-  allow get, list: if resource.data.schoolId is string
-  && (
-    canManageSchoolEvaluations(
-      orgId,
-      resource.data.schoolId
-    )
-    || (
-      resource.data.evaluatorPersonId
-        == currentUserPersonId()
-      && hasSchoolAccess(
-        orgId,
-        resource.data.schoolId
-      )
-    )
-  );
+  allow get, list: if hasOrgMembership(orgId);
 
   allow create, update, delete:
     if canManageOrg(orgId);
 }
 
 match /evaluationSubmissions/{submissionId} {
-  allow get, list: if canManageOrg(orgId)
-    || (
-      resource.data.schoolId is string
-      && hasSchoolAccess(
-        orgId,
-        resource.data.schoolId
-      )
-      && (
-        resource.data.evaluatorPersonId
-          == currentUserPersonId()
-        || (
-          resource.data.targetPersonId
-            == currentUserPersonId()
-          && resource.data.status == "APPROVED"
-        )
-      )
-    );
+  allow get, list: if hasOrgMembership(orgId);
 
-  allow create: if request.resource.data.schoolId is string
-  && request.resource.data.evaluatorPersonId
-    == currentUserPersonId()
-  && canManageSchoolEvaluations(
-    orgId,
-    request.resource.data.schoolId
-  );
-
-  allow update: if canManageOrg(orgId)
-  || (
-    resource.data.schoolId is string
-    && request.resource.data.schoolId
-      == resource.data.schoolId
-    && resource.data.evaluatorPersonId
-      == currentUserPersonId()
-    && request.resource.data.evaluatorPersonId
-      == resource.data.evaluatorPersonId
-    && canManageSchoolEvaluations(
-      orgId,
-      resource.data.schoolId
-    )
-  );
+  allow create, update: if hasOrgMembership(orgId)
+    && request.resource.data.orgId == orgId;
 
   allow delete: if false;
 }
 
 match /evaluationPlans/{planId} {
-  allow get: if canManageOrg(orgId)
-    || (
-      resource.data.schoolId is string
-      && hasSchoolAccess(
-        orgId,
-        resource.data.schoolId
-      )
-    );
-
-  allow list: if resource.data.schoolId is string
-    && canManageSchoolEvaluations(
-      orgId,
-      resource.data.schoolId
-    );
+  allow get, list: if hasOrgMembership(orgId);
 
   allow create, update, delete:
     if canManageOrg(orgId);
 }
 
 match /evaluationCycles/{cycleId} {
-  allow get: if canManageOrg(orgId)
-    || (
-      resource.data.schoolId is string
-      && hasSchoolAccess(
-        orgId,
-        resource.data.schoolId
-      )
-    );
-
-  allow list: if resource.data.schoolId is string
-    && canManageSchoolEvaluations(
-      orgId,
-      resource.data.schoolId
-    );
+  allow get, list: if hasOrgMembership(orgId);
 
   allow create, update, delete:
     if canManageOrg(orgId);
@@ -1269,11 +1194,7 @@ match /evaluationFrameworks/{frameworkId} {
 }
 
 match /evaluationTargetAssignments/{assignmentId} {
-  allow read: if resource.data.schoolId is string
-  && canManageSchoolEvaluations(
-    orgId,
-    resource.data.schoolId
-  );
+  allow read: if hasOrgMembership(orgId);
 
   allow write: if canManageOrg(orgId);
 }
@@ -1295,11 +1216,7 @@ match /evaluationRubricItems/{itemId} {
 
 
 match /evaluatorPolicies/{policyId} {
-  allow read: if resource.data.schoolId is string
-  && canManageSchoolEvaluations(
-    orgId,
-    resource.data.schoolId
-  );
+  allow read: if hasOrgMembership(orgId);
 
   allow write: if canManageOrg(orgId);
 }
@@ -1315,33 +1232,14 @@ match /evaluationApplicabilityPolicies/{policyId} {
 
 
 match /evaluationCycleTargetSummaries/{summaryId} {
-  allow get, list: if canManageOrg(orgId)
-    || (
-      resource.data.schoolId is string
-      && resource.data.targetPersonId
-        == currentUserPersonId()
-      && resource.data.status == "APPROVED"
-      && hasSchoolAccess(
-        orgId,
-        resource.data.schoolId
-      )
-    );
+  allow get, list: if hasOrgMembership(orgId);
 
   allow create, update, delete:
     if canManageOrg(orgId);
 }
 
 match /evaluationStaffSummaries/{summaryId} {
-  allow get, list: if canManageOrg(orgId)
-    || (
-      resource.data.schoolId is string
-      && resource.data.targetPersonId
-        == currentUserPersonId()
-      && hasSchoolAccess(
-        orgId,
-        resource.data.schoolId
-      )
-    );
+  allow get, list: if hasOrgMembership(orgId);
 
   allow create, update, delete:
     if canManageOrg(orgId);
@@ -1609,56 +1507,47 @@ match /workDocumentation/{recordId} {
 }
 
 
-
-/*gamificationReasons*/
+/* gamification */
 
 match /gamificationReasons/{reasonId} {
   allow get, list: if hasOrgMembership(orgId);
-  allow create, update, delete: if canManageOrg(orgId);
+
+  allow create, update: if hasOrgMembership(orgId);
+
+  allow delete: if canManageOrg(orgId);
 }
 
 match /gamificationBadges/{badgeId} {
   allow get, list: if hasOrgMembership(orgId);
-  allow create, update, delete: if canManageOrg(orgId);
+
+  allow create, update: if hasOrgMembership(orgId);
+
+  allow delete: if canManageOrg(orgId);
 }
 
 match /gamificationLevelRules/{ruleId} {
   allow get, list: if hasOrgMembership(orgId);
-  allow create, update, delete: if canManageOrg(orgId);
+
+  allow create, update: if hasOrgMembership(orgId);
+
+  allow delete: if canManageOrg(orgId);
 }
 
 match /gamificationAchievementRules/{ruleId} {
   allow get, list: if hasOrgMembership(orgId);
-  allow create, update, delete: if canManageOrg(orgId);
+
+  allow create, update: if hasOrgMembership(orgId);
+
+  allow delete: if canManageOrg(orgId);
 }
-
-
-
-
 
 match /studentGamificationEvents/{eventId} {
-  allow get, list: if canManageOrg(orgId)
-    || hasAssignedClassSubjectAccess(
-      orgId,
-      resource.data
-    );
+  allow get, list: if hasOrgMembership(orgId);
 
-  allow create: if canManageOrg(orgId)
-    || (
-      request.resource.data.orgId == orgId
-      && hasAssignedClassSubjectAccess(
-        orgId,
-        request.resource.data
-      )
-      && request.resource.data.createdByPersonId
-        == currentUserPersonId()
-      && request.resource.data.status == "ACTIVE"
-    );
+  allow create, update: if hasOrgMembership(orgId);
 
-  allow update, delete: if canManageOrg(orgId);
+  allow delete: if false;
 }
-
-
 
 
 

@@ -2,7 +2,7 @@
 
 import { useMemo, useState, useEffect } from "react";
 
-import { toast } from "sonner";
+import { appToast } from "@/lib/app-toast";
 import {
   MonitorPlay,
   ShieldCheck,
@@ -211,9 +211,9 @@ export function ClassroomDisplayLaunchCard({
 
     try {
       await navigator.clipboard.writeText(url);
-      toast.success("تم نسخ رابط شاشة الطلاب.");
+      appToast.success("تم نسخ رابط شاشة الطلاب.");
     } catch {
-      toast.error("تعذر نسخ الرابط.");
+      appToast.error("تعذر نسخ الرابط.");
     }
   }
 
@@ -246,14 +246,14 @@ export function ClassroomDisplayLaunchCard({
       );
 
       if (nextStatus === "PAUSED") {
-        toast.success("تم إيقاف شاشة الطلاب مؤقتًا.");
+        appToast.success("تم إيقاف شاشة الطلاب مؤقتًا.");
       } else if (nextStatus === "ACTIVE") {
-        toast.success("تم استئناف شاشة الطلاب.");
+        appToast.success("تم استئناف شاشة الطلاب.");
       } else if (nextStatus === "ENDED") {
-        toast.success("تم إنهاء جلسة شاشة الطلاب.");
+        appToast.success("تم إنهاء جلسة شاشة الطلاب.");
       }
     } catch {
-      toast.error("تعذر تحديث حالة الجلسة.");
+      appToast.error("تعذر تحديث حالة الجلسة.");
     } finally {
       setUpdatingSessionStatus(false);
     }
@@ -284,7 +284,7 @@ export function ClassroomDisplayLaunchCard({
         setActiveSession(session);
       } catch {
         if (!cancelled) {
-          toast.error("تعذر فحص الجلسة النشطة الحالية.");
+          appToast.error("تعذر فحص الجلسة النشطة الحالية.");
         }
       } finally {
         if (!cancelled) {
@@ -310,7 +310,7 @@ export function ClassroomDisplayLaunchCard({
 
   async function handleLaunch() {
     if (!canLaunch) {
-      toast.error("لا يمكن إطلاق شاشة الطلاب؛ توجد بيانات ناقصة.");
+      appToast.error("لا يمكن إطلاق شاشة الطلاب؛ توجد بيانات ناقصة.");
       return;
     }
 
@@ -319,7 +319,7 @@ export function ClassroomDisplayLaunchCard({
     try {
       if (activeSession && isReusableSessionStatus(activeSession.status)) {
         await openSessionWithSelectedTheme(activeSession);
-        toast.success("تم فتح الجلسة الحالية بالثيم المختار.");
+        appToast.success("تم فتح الجلسة الحالية بالثيم المختار.");
         return;
       }
 
@@ -335,7 +335,7 @@ export function ClassroomDisplayLaunchCard({
 
       if (reusableSession) {
         await openSessionWithSelectedTheme(reusableSession);
-        toast.success("تم العثور على جلسة نشطة وفتحها بالثيم المختار.");
+        appToast.success("تم العثور على جلسة نشطة وفتحها بالثيم المختار.");
         return;
       }
 
@@ -373,16 +373,16 @@ export function ClassroomDisplayLaunchCard({
         displayThemeKey,
       });
 
-      toast.success("تم إنشاء جلسة شاشة الفصل");
+      appToast.success("تم إنشاء جلسة شاشة الفصل");
 
       setActiveSession(session);
 
       openDisplaySession(session.id, session.displayThemeKey);
 
-      toast.success("تم فتح شاشة الطلاب في تبويب جديد.");
+      appToast.success("تم فتح شاشة الطلاب في تبويب جديد.");
     } catch (error) {
       console.error(error);
-      toast.error("تعذر إنشاء جلسة شاشة الفصل");
+      appToast.error("تعذر إنشاء جلسة شاشة الفصل");
     } finally {
       setLaunching(false);
     }
