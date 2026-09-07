@@ -34,6 +34,7 @@ import {
 } from "@takween/domain";
 
 import { useStaffActor } from "@/components/staff/staff-actor-provider";
+import { getErrorMessage } from "@/lib/error-message";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -86,12 +87,6 @@ const ATTENDANCE_STATUS_OPTIONS: Array<{
   { value: "REMOTE_PRESENT", label: "حاضر عن بعد" },
   { value: "REMOTE_ABSENT", label: "غائب عن بعد" },
 ];
-
-function getErrorMessage(error: unknown) {
-  if (error instanceof Error) return error.message;
-  if (typeof error === "string") return error;
-  return "حدث خطأ غير متوقع";
-}
 
 function compactForFirestore<T>(value: T): T {
   return JSON.parse(JSON.stringify(value)) as T;
@@ -385,6 +380,7 @@ export default function ClassAttendancePage() {
         error: null,
       });
     } catch (error) {
+      console.error("Failed to load class attendance:", error);
       setLoadState({
         loading: false,
         error: getErrorMessage(error),
@@ -510,6 +506,7 @@ export default function ClassAttendancePage() {
         savedAt: now,
       });
     } catch (error) {
+      console.error("Failed to save attendance draft:", error);
       setSaveState({
         saving: false,
         error: getErrorMessage(error),
@@ -613,6 +610,7 @@ export default function ClassAttendancePage() {
         submittedAt: now,
       });
     } catch (error) {
+      console.error("Failed to submit attendance:", error);
       setSubmitState({
         submitting: false,
         error: getErrorMessage(error),

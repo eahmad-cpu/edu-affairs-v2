@@ -28,6 +28,7 @@ import type {
 } from "@takween/contracts";
 
 import { useStaffActor } from "@/components/staff/staff-actor-provider";
+import { getErrorMessage } from "@/lib/error-message";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -59,12 +60,6 @@ const ATTENDANCE_STATUS_LABELS: Record<StudentAttendanceStatus, string> = {
   REMOTE_PRESENT: "حاضر عن بعد",
   REMOTE_ABSENT: "غائب عن بعد",
 };
-
-function getErrorMessage(error: unknown) {
-  if (error instanceof Error) return error.message;
-  if (typeof error === "string") return error;
-  return "حدث خطأ غير متوقع";
-}
 
 function formatDateInput(date: Date) {
   const year = date.getFullYear();
@@ -288,6 +283,7 @@ export default function StaffAttendanceCenterPage() {
         error: null,
       });
     } catch (error) {
+      console.error("Failed to load attendance batches:", error);
       setBatches([]);
 
       setLoadState({
