@@ -65,7 +65,7 @@ export type TeacherWorkDrillDownKey = Exclude<
   "lessonPrep"
 >;
 
-export type TeacherWorkDrillDownItem = {
+type TeacherWorkDrillDownBase = {
   id: string;
   title: string;
   status: string;
@@ -74,10 +74,94 @@ export type TeacherWorkDrillDownItem = {
   subjectLabel: string;
 };
 
-export type TeacherWorkDrillDowns = Record<
-  TeacherWorkDrillDownKey,
-  TeacherWorkDrillDownItem[]
->;
+export type TeacherWorkMeasurementDrillDown = TeacherWorkDrillDownBase & {
+  kind: "measurements";
+  details: {
+    batchKind: string;
+    templateTitle: string;
+    assessmentKind: string;
+    trackerKind: string;
+    measuredAt: number | null;
+    submittedAt: number | null;
+    targetCount: number | null;
+    completedCount: number | null;
+    missingCount: number | null;
+  };
+};
+
+export type TeacherWorkLearningLossDrillDown = TeacherWorkDrillDownBase & {
+  kind: "learningLoss";
+  details: {
+    sourceTitle: string;
+    planText: string;
+    planStartAt: number | null;
+    planEndAt: number | null;
+    closedAt: number | null;
+    improvementIndicator: string;
+    lostSkillTitles: string[];
+    remediationActionTitles: string[];
+  };
+};
+
+export type TeacherWorkNoteDrillDown = TeacherWorkDrillDownBase & {
+  kind: "notes";
+  details: {
+    category: string;
+    priority: string;
+    visibility: string;
+    recordedAt: number | null;
+    followUpStatus: string;
+    followUpAt: number | null;
+    body: string;
+    bodyVisible: boolean;
+  };
+};
+
+export type TeacherWorkGamificationDrillDown = TeacherWorkDrillDownBase & {
+  kind: "gamification";
+  details: {
+    eventType: string;
+    value: number | null;
+    valueKind: string;
+    reasonTitle: string;
+    categoryTitle: string;
+    badgeTitle: string;
+    occurredAt: number | null;
+    visibility: string;
+  };
+};
+
+export type TeacherWorkHomeworkDrillDown = TeacherWorkDrillDownBase & {
+  kind: "homework";
+  details: {
+    description: string;
+    publishedAt: number | null;
+    scheduledPublishAt: number | null;
+    dueAt: number | null;
+    closedAt: number | null;
+    maxScore: number | null;
+    questionCount: number | null;
+    targetCount: number | null;
+    submittedCount: number | null;
+    gradedCount: number | null;
+    missingCount: number | null;
+  };
+};
+
+export type TeacherWorkDrillDownItem =
+  | TeacherWorkMeasurementDrillDown
+  | TeacherWorkLearningLossDrillDown
+  | TeacherWorkNoteDrillDown
+  | TeacherWorkGamificationDrillDown
+  | TeacherWorkHomeworkDrillDown;
+
+export type TeacherWorkDrillDowns = {
+  measurements: TeacherWorkMeasurementDrillDown[];
+  learningLoss: TeacherWorkLearningLossDrillDown[];
+  notes: TeacherWorkNoteDrillDown[];
+  gamification: TeacherWorkGamificationDrillDown[];
+  homework: TeacherWorkHomeworkDrillDown[];
+};
 
 type TeacherWorkCallableInput = {
   orgId: string;

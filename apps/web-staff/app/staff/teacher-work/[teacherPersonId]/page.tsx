@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import {
   ArrowRight,
   BookOpen,
@@ -95,9 +95,27 @@ function drillDownStatusLabel(status: string) {
     IN_PROGRESS: "قيد التنفيذ",
     CLOSED: "مغلق",
     RECORDED: "مسجل",
+    REVIEWED: "تمت مراجعته",
+    LOCKED: "مقفل",
+    CANCELLED: "ملغي",
+    REVERSED: "تم عكسه",
+    ARCHIVED: "مؤرشف",
+    NEEDS_FOLLOW_UP: "يحتاج متابعة",
   };
 
   return labels[status] || status || "مسجل";
+}
+
+function detailDate(value: number | null) {
+  return value ? formatDate(value) : "غير محدد";
+}
+
+function detailLabel(value: string, labels: Record<string, string>) {
+  return labels[value] || safeText(value);
+}
+
+function chipList(values: string[]) {
+  return values.length ? values.join(" • ") : "لا توجد بيانات مسجلة";
 }
 
 function MetricCard({
@@ -255,6 +273,251 @@ function LessonPrepList({ lessonPreps }: { lessonPreps: TeacherWorkLessonPrep[] 
   );
 }
 
+function DetailFields({ fields }: { fields: Array<[string, ReactNode]> }) {
+  return (
+    <div className="mt-4 grid gap-3 text-sm sm:grid-cols-2">
+      {fields.map(([label, value]) => (
+        <p key={label} className="min-w-0">
+          <span className="text-muted-foreground">{label}: </span>
+          <span className="break-words text-foreground">{value}</span>
+        </p>
+      ))}
+    </div>
+  );
+}
+
+function DetailSection({ label, children }: { label: string; children: ReactNode }) {
+  return (
+    <div className="mt-4 rounded-xl border bg-card p-3">
+      <p className="text-xs font-semibold text-muted-foreground">{label}</p>
+      <div className="mt-2 whitespace-pre-wrap text-sm leading-7 text-foreground">{children}</div>
+    </div>
+  );
+}
+
+function DrillDownDetails({
+  item,
+  onClose,
+}: {
+  item: TeacherWorkDrillDownItem;
+  onClose: () => void;
+}) {
+  const details = (() => {
+    switch (item.kind) {
+      case "measurements":
+        return (
+          <DetailFields
+            fields={[
+              ["نوع الدفعة", detailLabel(item.details.batchKind, {
+                ASSESSMENT: "تقييم",
+                TRACKER: "متابعة",
+                KG_VALUES: "قيم الروضة",
+                KG_CORNERS: "أركان الروضة",
+                KG_QURAN: "القرآن الكريم",
+                LEARNING_LOSS_TRACKER: "متابعة الفاقد التعليمي",
+                CUSTOM: "مخصص",
+              })],
+              ["قالب القياس", safeText(item.details.templateTitle)],
+              ["نوع التقييم", detailLabel(item.details.assessmentKind, {
+                KG_TEACHER_MEASUREMENT: "قياس معلم الروضة",
+                KG_VP_MEASUREMENT: "قياس وكيل الروضة",
+                KG_MEASUREMENT_1: "قياس الروضة الأول",
+                KG_MEASUREMENT_2: "قياس الروضة الثاني",
+                KG_MEASUREMENT_3: "قياس الروضة الثالث",
+                KG_VALUES_ASSESSMENT: "قياس القيم",
+                KG_CORNERS_ASSESSMENT: "قياس الأركان",
+                PRIMARY_DIAGNOSTIC_TEST: "اختبار تشخيصي",
+                PRIMARY_PERIODIC_TEST_1: "اختبار دوري أول",
+                PRIMARY_PERIODIC_TEST_2: "اختبار دوري ثانٍ",
+                PRIMARY_CENTRAL_MEASUREMENT_1: "قياس مركزي أول",
+                PRIMARY_CENTRAL_MEASUREMENT_2: "قياس مركزي ثانٍ",
+                CUSTOM_ASSESSMENT: "تقييم مخصص",
+              })],
+              ["نوع المتابعة", detailLabel(item.details.trackerKind, {
+                KG_QURAN_TRACKER: "متابعة القرآن",
+                KG_LEARNING_GARDENS_TRACKER: "متابعة حدائق التعلم",
+                KG_NUMBERS_TRACKER: "متابعة الأعداد",
+                KG_VALUES_TRACKER: "متابعة القيم",
+                KG_CORNERS_TRACKER: "متابعة الأركان",
+                KG_LOSS_TRACKER: "متابعة فاقد الروضة",
+                PRIMARY_QURAN_TRACKER: "متابعة القرآن",
+                PRIMARY_LOSS_TRACKER: "متابعة الفاقد",
+                CUSTOM_TRACKER: "متابعة مخصصة",
+              })],
+              ["تاريخ القياس", detailDate(item.details.measuredAt)],
+              ["تاريخ الإرسال", detailDate(item.details.submittedAt)],
+              ["الطلاب المستهدفون", item.details.targetCount?.toLocaleString("ar-SA") ?? "غير محدد"],
+              ["المكتمل", item.details.completedCount?.toLocaleString("ar-SA") ?? "غير محدد"],
+              ["غير المكتمل", item.details.missingCount?.toLocaleString("ar-SA") ?? "غير محدد"],
+            ]}
+          />
+        );
+      case "learningLoss":
+        return (
+          <>
+            <DetailFields
+              fields={[
+                ["مصدر الخطة", safeText(item.details.sourceTitle)],
+                ["بداية الخطة", detailDate(item.details.planStartAt)],
+                ["نهاية الخطة", detailDate(item.details.planEndAt)],
+                ["تاريخ الإغلاق", detailDate(item.details.closedAt)],
+                ["مؤشر التحسن", detailLabel(item.details.improvementIndicator, {
+                  UNKNOWN: "غير محدد",
+                  NO_IMPROVEMENT: "لم يتحسن",
+                  PARTIAL_IMPROVEMENT: "تحسن جزئي",
+                  IMPROVED: "تحسن",
+                  REGRESSED: "تراجع",
+                })],
+              ]}
+            />
+            <DetailSection label="الخطة العلاجية">
+              {safeText(item.details.planText, "لا توجد بيانات مسجلة")}
+            </DetailSection>
+            <DetailSection label="المهارات المحددة">
+              {chipList(item.details.lostSkillTitles)}
+            </DetailSection>
+            <DetailSection label="الإجراءات العلاجية">
+              {chipList(item.details.remediationActionTitles)}
+            </DetailSection>
+          </>
+        );
+      case "notes":
+        return (
+          <>
+            <DetailFields
+              fields={[
+                ["الفئة", detailLabel(item.details.category, {
+                  GENERAL: "عامة",
+                  EDUCATIONAL: "تعليمية",
+                  BEHAVIORAL: "سلوكية",
+                  ADMINISTRATIVE: "إدارية",
+                  ATTENDANCE: "حضور",
+                  TRANSPORT: "نقل",
+                  GUARDIAN_COMMUNICATION: "تواصل مع ولي الأمر",
+                  LEARNING_LOSS: "فاقد تعليمي",
+                  POSITIVE: "إيجابية",
+                  CARE: "رعائية",
+                  FOLLOW_UP: "متابعة",
+                  CUSTOM: "مخصصة",
+                })],
+                ["الأولوية", detailLabel(item.details.priority, {
+                  INFO: "معلومات",
+                  FOLLOW_UP: "تحتاج متابعة",
+                  IMPORTANT: "مهمة",
+                  URGENT: "عاجلة",
+                })],
+                ["تاريخ التسجيل", detailDate(item.details.recordedAt)],
+                ["حالة المتابعة", detailLabel(item.details.followUpStatus, {
+                  NONE: "لا توجد",
+                  NEEDED: "مطلوبة",
+                  IN_PROGRESS: "قيد المتابعة",
+                  DONE: "مكتملة",
+                  CANCELLED: "ملغاة",
+                })],
+                ["تاريخ المتابعة", detailDate(item.details.followUpAt)],
+                ["مستوى الرؤية", detailLabel(item.details.visibility, {
+                  PRIVATE_TO_AUTHOR: "للكاتب فقط",
+                  STAFF_ONLY: "للطاقم فقط",
+                  STAFF_INTERNAL: "للطاقم الداخلي",
+                  SCHOOL_LEADERSHIP: "لقيادة المدرسة",
+                  ADMIN_ONLY: "للإدارة فقط",
+                  STUDENT_SUPPORT_TEAM: "لفريق الدعم الطلابي",
+                  TRANSPORT_TEAM: "لفريق النقل",
+                  GUARDIAN_VISIBLE: "ظاهر لولي الأمر",
+                  PARENT_VISIBLE: "ظاهر لولي الأمر",
+                })],
+              ]}
+            />
+            <DetailSection label="نص الملاحظة">
+              {item.details.bodyVisible
+                ? safeText(item.details.body, "لا توجد بيانات مسجلة")
+                : "لا يمكن عرض نص هذه الملاحظة وفق مستوى الخصوصية المسجل."}
+            </DetailSection>
+          </>
+        );
+      case "gamification":
+        return (
+          <DetailFields
+            fields={[
+              ["نوع الحدث", detailLabel(item.details.eventType, {
+                XP_ADD: "إضافة خبرة",
+                XP_REMOVE: "خصم خبرة",
+                POINTS_ADD: "إضافة نقاط",
+                POINTS_REMOVE: "خصم نقاط",
+                BADGE_AWARDED: "منح شارة",
+                BADGE_REVOKED: "سحب شارة",
+                LEVEL_UP: "ترقية مستوى",
+                STREAK_UPDATED: "تحديث سلسلة الإنجاز",
+                POSITIVE_NOTE: "ملاحظة إيجابية",
+                QUEST_COMPLETED: "إتمام مهمة",
+                CUSTOM: "تحفيز مخصص",
+              })],
+              ["القيمة", item.details.value === null ? "غير محدد" : `${item.details.value.toLocaleString("ar-SA")} ${detailLabel(item.details.valueKind, {
+                XP: "خبرة",
+                POINTS: "نقطة",
+                BADGE_VALUE: "قيمة شارة",
+                STREAK: "سلسلة",
+                LEVEL: "مستوى",
+                CUSTOM: "قيمة",
+              })}`],
+              ["سبب التحفيز", safeText(item.details.reasonTitle)],
+              ["التصنيف", safeText(item.details.categoryTitle)],
+              ["الشارة", safeText(item.details.badgeTitle)],
+              ["تاريخ الحدث", detailDate(item.details.occurredAt)],
+              ["مستوى العرض", detailLabel(item.details.visibility, {
+                STAFF_ONLY: "للطاقم فقط",
+                STUDENT_DISPLAY: "عرض الطالب",
+                GUARDIAN_VISIBLE: "ظاهر لولي الأمر",
+                STUDENT_AND_GUARDIAN_VISIBLE: "ظاهر للطالب وولي الأمر",
+                PUBLIC_LEADERBOARD: "لوحة المتصدرين",
+                EVERYONE: "للجميع",
+              })],
+            ]}
+          />
+        );
+      case "homework":
+        return (
+          <>
+            <DetailFields
+              fields={[
+                ["تاريخ النشر", detailDate(item.details.publishedAt)],
+                ["النشر المجدول", detailDate(item.details.scheduledPublishAt)],
+                ["تاريخ الاستحقاق", detailDate(item.details.dueAt)],
+                ["تاريخ الإغلاق", detailDate(item.details.closedAt)],
+                ["الدرجة الكاملة", item.details.maxScore?.toLocaleString("ar-SA") ?? "غير محدد"],
+                ["عدد الأسئلة", item.details.questionCount?.toLocaleString("ar-SA") ?? "غير محدد"],
+                ["الطلاب المستهدفون", item.details.targetCount?.toLocaleString("ar-SA") ?? "غير محدد"],
+                ["التسليمات", item.details.submittedCount?.toLocaleString("ar-SA") ?? "غير محدد"],
+                ["تم التصحيح", item.details.gradedCount?.toLocaleString("ar-SA") ?? "غير محدد"],
+                ["لم يُسلّم", item.details.missingCount?.toLocaleString("ar-SA") ?? "غير محدد"],
+              ]}
+            />
+            <DetailSection label="تعليمات الواجب">
+              {safeText(item.details.description, "لا توجد بيانات مسجلة")}
+            </DetailSection>
+          </>
+        );
+      default:
+        return null;
+    }
+  })();
+
+  return (
+    <section className="mt-3 rounded-2xl border border-primary/20 bg-primary/[0.03] p-4 dark:bg-primary/5">
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          <h3 className="font-bold text-foreground">{safeText(item.title)}</h3>
+          <p className="mt-1 text-xs text-muted-foreground">عرض للقراءة فقط</p>
+        </div>
+        <Button variant="ghost" size="icon" onClick={onClose} aria-label="إغلاق التفاصيل">
+          <X className="size-4" />
+        </Button>
+      </div>
+      {details}
+    </section>
+  );
+}
+
 function ModuleDrillDown({
   metric,
   items,
@@ -262,6 +525,8 @@ function ModuleDrillDown({
   metric: TeacherWorkMetric;
   items: TeacherWorkDrillDownItem[];
 }) {
+  const [openedItemId, setOpenedItemId] = useState<string | null>(null);
+
   if (!items.length) {
     return (
       <div className="rounded-2xl border border-dashed p-8 text-center text-sm text-muted-foreground">
@@ -275,26 +540,32 @@ function ModuleDrillDown({
       <p className="text-sm text-muted-foreground">
         {metric.count.toLocaleString("ar-SA")} سجلًا ضمن الفترة المحددة
       </p>
-      {items.map((item) => (
-        <article key={item.id} className="rounded-2xl border bg-card p-4 shadow-sm">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <div className="min-w-0">
-              <div className="flex flex-wrap items-center gap-2">
-                <h3 className="font-bold text-foreground">{item.title}</h3>
-                <span className="rounded-full bg-muted px-2.5 py-1 text-xs font-semibold text-muted-foreground">
-                  {drillDownStatusLabel(item.status)}
-                </span>
+      {items.map((item) => {
+        const isOpen = openedItemId === item.id;
+        return (
+          <article key={item.id} className="rounded-2xl border bg-card p-4 shadow-sm">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <div className="min-w-0">
+                <div className="flex flex-wrap items-center gap-2">
+                  <h3 className="font-bold text-foreground">{item.title}</h3>
+                  <span className="rounded-full bg-muted px-2.5 py-1 text-xs font-semibold text-muted-foreground">
+                    {drillDownStatusLabel(item.status)}
+                  </span>
+                </div>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  {[safeText(item.subjectLabel, "المادة غير محددة"), safeText(item.classLabel, "الفصل غير محدد")].join(" • ")}
+                </p>
+                <p className="mt-1 text-xs text-muted-foreground">{formatDate(item.activityAt)}</p>
               </div>
-              <p className="mt-2 text-sm text-muted-foreground">
-                {[safeText(item.subjectLabel, "المادة غير محددة"), safeText(item.classLabel, "الفصل غير محدد")].join(" • ")}
-              </p>
+              <Button variant="outline" size="sm" onClick={() => setOpenedItemId(isOpen ? null : item.id)}>
+                {isOpen ? "إغلاق" : "فتح"}
+                <ChevronLeft className="size-4" />
+              </Button>
             </div>
-            <p className="shrink-0 text-xs text-muted-foreground">
-              {formatDate(item.activityAt)}
-            </p>
-          </div>
-        </article>
-      ))}
+            {isOpen ? <DrillDownDetails item={item} onClose={() => setOpenedItemId(null)} /> : null}
+          </article>
+        );
+      })}
     </div>
   );
 }

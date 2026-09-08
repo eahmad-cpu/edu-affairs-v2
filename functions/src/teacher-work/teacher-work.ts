@@ -81,7 +81,7 @@ type TeacherWorkLessonPrep = {
 
 type TeacherWorkDrillDownKey = Exclude<TeacherWorkMetricKey, "lessonPrep">;
 
-type TeacherWorkDrillDownItem = {
+type TeacherWorkDrillDownBase = {
   id: string;
   title: string;
   status: string;
@@ -90,10 +90,87 @@ type TeacherWorkDrillDownItem = {
   subjectLabel: string;
 };
 
-type TeacherWorkDrillDowns = Record<
-  TeacherWorkDrillDownKey,
-  TeacherWorkDrillDownItem[]
->;
+type TeacherWorkMeasurementDrillDown = TeacherWorkDrillDownBase & {
+  kind: "measurements";
+  details: {
+    batchKind: string;
+    templateTitle: string;
+    assessmentKind: string;
+    trackerKind: string;
+    measuredAt: number | null;
+    submittedAt: number | null;
+    targetCount: number | null;
+    completedCount: number | null;
+    missingCount: number | null;
+  };
+};
+
+type TeacherWorkLearningLossDrillDown = TeacherWorkDrillDownBase & {
+  kind: "learningLoss";
+  details: {
+    sourceTitle: string;
+    planText: string;
+    planStartAt: number | null;
+    planEndAt: number | null;
+    closedAt: number | null;
+    improvementIndicator: string;
+    lostSkillTitles: string[];
+    remediationActionTitles: string[];
+  };
+};
+
+type TeacherWorkNoteDrillDown = TeacherWorkDrillDownBase & {
+  kind: "notes";
+  details: {
+    category: string;
+    priority: string;
+    visibility: string;
+    recordedAt: number | null;
+    followUpStatus: string;
+    followUpAt: number | null;
+    body: string;
+    bodyVisible: boolean;
+  };
+};
+
+type TeacherWorkGamificationDrillDown = TeacherWorkDrillDownBase & {
+  kind: "gamification";
+  details: {
+    eventType: string;
+    value: number | null;
+    valueKind: string;
+    reasonTitle: string;
+    categoryTitle: string;
+    badgeTitle: string;
+    occurredAt: number | null;
+    visibility: string;
+  };
+};
+
+type TeacherWorkHomeworkDrillDown = TeacherWorkDrillDownBase & {
+  kind: "homework";
+  details: {
+    description: string;
+    publishedAt: number | null;
+    scheduledPublishAt: number | null;
+    dueAt: number | null;
+    closedAt: number | null;
+    maxScore: number | null;
+    questionCount: number | null;
+    targetCount: number | null;
+    submittedCount: number | null;
+    gradedCount: number | null;
+    missingCount: number | null;
+  };
+};
+
+type TeacherWorkDrillDowns = {
+  measurements: TeacherWorkMeasurementDrillDown[];
+  learningLoss: TeacherWorkLearningLossDrillDown[];
+  notes: TeacherWorkNoteDrillDown[];
+  gamification: TeacherWorkGamificationDrillDown[];
+  homework: TeacherWorkHomeworkDrillDown[];
+};
 
 type TeacherWorkResponse = {
   academicYearId: string;
@@ -147,6 +224,18 @@ function readStringArray(value: unknown) {
   return Array.isArray(value)
     ? value.filter((item): item is string => typeof item === "string" && !!item.trim())
     : [];
+}
+
+function titlesFromRows(value: unknown) {
+  return unique(
+    Array.isArray(value)
+      ? value.map((item) => text(row(item).title))
+      : [],
+  );
+}
+
+function noteBodyIsVisibleToStaff(visibility: string) {
+  return visibility === "STAFF_ONLY" || visibility === "STAFF_INTERNAL";
 }
 
 function membershipRole(membership: Row): MembershipRoleType | null {
@@ -722,8 +811,8 @@ async function buildTeacherLessonPrepDetails(params: {
         detail: {
           id: text(lessonPrep.id),
           lessonTitle: text(lessonPrep.lessonTitle),
-          subjectLabel: offeringLabel(offering) || text(lessonPrep.subjectKey),
-          classLabel: classLabels.get(text(lessonPrep.classId)) || text(lessonPrep.classId),
+          subjectLabel: offeringLabel(offering),
+          classLabel: classLabels.get(text(lessonPrep.classId)) || "",
           lessonDate: text(lessonPrep.lessonDate),
           status: text(lessonPrep.status),
           unitTitle: text(lessonPrep.unitTitle),
@@ -783,13 +872,12 @@ async function buildTeacherWorkDrillDowns(params: {
   const periodStartAt = periodStart(params.period);
   const drillDowns = emptyDrillDowns();
 
-  const add = (item: {
-    key: TeacherWorkDrillDownKey;
+  const baseItem = (item: {
     rowData: Row;
     title: string;
     status: string;
     activityFields: string[];
-  }) => {
+  }): TeacherWorkDrillDownBase | null => {
     if (
       !canViewTeacherWorkSubject({
         actor: params.actor,
@@ -801,60 +889,105 @@ async function buildTeacherWorkDrillDowns(params: {
         ),
       })
     ) {
-      return;
+      return null;
     }
 
     if (
       params.academicYearId &&
       text(item.rowData.academicYearId) !== params.academicYearId
     ) {
-      return;
+      return null;
     }
 
     const activityAt = rowActivity(item.rowData, item.activityFields);
-    if (!isInPeriod(activityAt, periodStartAt)) return;
+    if (!isInPeriod(activityAt, periodStartAt)) return null;
 
     const offering = offeringById.get(text(item.rowData.classSubjectOfferingId));
-    drillDowns[item.key].push({
+    return {
       id: text(item.rowData.id),
       title: item.title,
       status: item.status,
       activityAt,
-      classLabel: classLabels.get(text(item.rowData.classId)) || text(item.rowData.classId),
+      classLabel: classLabels.get(text(item.rowData.classId)) || "",
       subjectLabel: offeringLabel(offering),
-    });
+    };
   };
 
   for (const rowData of measurementRows) {
     if (text(rowData.createdByPersonId) !== params.teacherPersonId) continue;
-    add({
-      key: "measurements",
+    const item = baseItem({
       rowData,
-      title: "دفعة قياسات",
+      title: text(rowData.templateTitle) || "دفعة قياسات",
       status: text(rowData.status),
       activityFields: ["measuredAt", "submittedAt", "createdAt"],
+    });
+    if (!item) continue;
+    drillDowns.measurements.push({
+      ...item,
+      kind: "measurements",
+      details: {
+        batchKind: text(rowData.batchKind),
+        templateTitle: text(rowData.templateTitle),
+        assessmentKind: text(rowData.assessmentKind),
+        trackerKind: text(rowData.trackerKind),
+        measuredAt: numberValue(rowData.measuredAt),
+        submittedAt: numberValue(rowData.submittedAt),
+        targetCount: numberValue(rowData.targetCount),
+        completedCount: numberValue(rowData.completedCount),
+        missingCount: numberValue(rowData.missingCount),
+      },
     });
   }
 
   for (const rowData of learningLossRows) {
     if (text(rowData.createdByPersonId) !== params.teacherPersonId) continue;
-    add({
-      key: "learningLoss",
+    const item = baseItem({
       rowData,
-      title: "خطة فاقد تعليمي",
+      title: text(rowData.planTitle) || "خطة فاقد تعليمي",
       status: text(rowData.status),
       activityFields: ["createdAt"],
+    });
+    if (!item) continue;
+    drillDowns.learningLoss.push({
+      ...item,
+      kind: "learningLoss",
+      details: {
+        sourceTitle: text(rowData.sourceTitle),
+        planText: text(rowData.planText),
+        planStartAt: numberValue(rowData.planStartAt),
+        planEndAt: numberValue(rowData.planEndAt),
+        closedAt: numberValue(rowData.closedAt),
+        improvementIndicator: text(rowData.improvementIndicator),
+        lostSkillTitles: titlesFromRows(rowData.lostSkills),
+        remediationActionTitles: titlesFromRows(rowData.remediationActions),
+      },
     });
   }
 
   for (const rowData of noteRows) {
     if (text(rowData.recordedByPersonId) !== params.teacherPersonId) continue;
-    add({
-      key: "notes",
+    const item = baseItem({
       rowData,
       title: "ملاحظة مسجلة",
-      status: "RECORDED",
+      status: text(rowData.status) || "RECORDED",
       activityFields: ["recordedAt", "createdAt"],
+    });
+    if (!item) continue;
+    const visibility = text(rowData.visibility);
+    const bodyVisible = noteBodyIsVisibleToStaff(visibility);
+    drillDowns.notes.push({
+      ...item,
+      kind: "notes",
+      details: {
+        category: text(rowData.category),
+        priority: text(rowData.priority),
+        visibility,
+        recordedAt: numberValue(rowData.recordedAt),
+        followUpStatus: text(rowData.followUpStatus),
+        followUpAt: numberValue(rowData.followUpAt),
+        body: bodyVisible ? text(rowData.body) : "",
+        bodyVisible,
+      },
     });
   }
 
@@ -865,23 +998,54 @@ async function buildTeacherWorkDrillDowns(params: {
     ) {
       continue;
     }
-    add({
-      key: "gamification",
+    const item = baseItem({
       rowData,
-      title: "تحفيز يدوي",
-      status: "RECORDED",
+      title: text(rowData.title) || text(rowData.reasonTitle) || "تحفيز يدوي",
+      status: text(rowData.status) || "RECORDED",
       activityFields: ["occurredAt", "createdAt"],
+    });
+    if (!item) continue;
+    drillDowns.gamification.push({
+      ...item,
+      kind: "gamification",
+      details: {
+        eventType: text(rowData.eventType),
+        value: numberValue(rowData.value),
+        valueKind: text(rowData.valueKind),
+        reasonTitle: text(rowData.reasonTitle),
+        categoryTitle: text(rowData.categoryTitle),
+        badgeTitle: text(rowData.badgeTitle),
+        occurredAt: numberValue(rowData.occurredAt),
+        visibility: text(rowData.visibility),
+      },
     });
   }
 
   for (const rowData of homeworkRows) {
     if (text(rowData.createdByPersonId) !== params.teacherPersonId) continue;
-    add({
-      key: "homework",
+    const item = baseItem({
       rowData,
-      title: "واجب دراسي",
+      title: text(rowData.title) || "واجب دراسي",
       status: text(rowData.status),
       activityFields: ["publishedAt", "createdAt"],
+    });
+    if (!item) continue;
+    drillDowns.homework.push({
+      ...item,
+      kind: "homework",
+      details: {
+        description: text(rowData.description),
+        publishedAt: numberValue(rowData.publishedAt),
+        scheduledPublishAt: numberValue(rowData.scheduledPublishAt),
+        dueAt: numberValue(rowData.dueAt),
+        closedAt: numberValue(rowData.closedAt),
+        maxScore: numberValue(rowData.maxScore),
+        questionCount: Array.isArray(rowData.questions) ? rowData.questions.length : null,
+        targetCount: numberValue(rowData.targetCount),
+        submittedCount: numberValue(rowData.submittedCount),
+        gradedCount: numberValue(rowData.gradedCount),
+        missingCount: numberValue(rowData.missingCount),
+      },
     });
   }
 
