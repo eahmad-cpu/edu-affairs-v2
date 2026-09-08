@@ -90,6 +90,15 @@ type TeacherWorkDrillDownBase = {
   subjectLabel: string;
 };
 
+type TeacherWorkMeasurementStudentResult = {
+  studentDisplayName: string;
+  status: string;
+  score: number | null;
+  maxScore: number | null;
+  level: string;
+  valueText: string;
+};
+
 type TeacherWorkMeasurementDrillDown = TeacherWorkDrillDownBase & {
   kind: "measurements";
   details: {
@@ -102,6 +111,7 @@ type TeacherWorkMeasurementDrillDown = TeacherWorkDrillDownBase & {
     targetCount: number | null;
     completedCount: number | null;
     missingCount: number | null;
+    studentResults: TeacherWorkMeasurementStudentResult[];
   };
 };
 
@@ -236,6 +246,76 @@ function titlesFromRows(value: unknown) {
 
 function noteBodyIsVisibleToStaff(visibility: string) {
   return visibility === "STAFF_ONLY" || visibility === "STAFF_INTERNAL";
+}
+
+type MeasurementStudentResultSource = TeacherWorkMeasurementStudentResult & {
+  studentId: string;
+};
+
+function measurementStudentResultSources(rowData: Row): MeasurementStudentResultSource[] {
+  const storedRows = Array.isArray(rowData.studentRows) ? rowData.studentRows : [];
+  const sourceRows = storedRows.length
+    ? storedRows
+    : readStringArray(rowData.targetStudentIds).map((studentId) => ({
+        studentId,
+        studentDisplayName: "",
+        status: "PENDING",
+      }));
+
+  return sourceRows.flatMap((source) => {
+    const studentRow = row(source);
+    const studentId = text(studentRow.studentId);
+    if (!studentId) return [];
+
+    return [{
+      studentId,
+      studentDisplayName: text(studentRow.studentDisplayName),
+      status: text(studentRow.status) || "PENDING",
+      score: numberValue(studentRow.score),
+      maxScore: numberValue(studentRow.maxScore),
+      level: text(studentRow.level),
+      valueText: text(studentRow.valueText),
+    }];
+  });
+}
+
+function hasFriendlyStudentName(value: string, studentId: string) {
+  return Boolean(value) && value !== studentId;
+}
+
+async function loadMeasurementStudentNames(params: {
+  orgId: string;
+  lookups: Array<{ schoolId: string; studentId: string }>;
+}) {
+  const db = getFirestore();
+  const uniqueLookups = Array.from(
+    new Map(
+      params.lookups
+        .filter(({ schoolId, studentId }) => schoolId && studentId)
+        .map((lookup) => [`${lookup.schoolId}:${lookup.studentId}`, lookup]),
+    ).values(),
+  );
+  const names = new Map<string, string>();
+
+  for (let start = 0; start < uniqueLookups.length; start += 100) {
+    const lookupChunk = uniqueLookups.slice(start, start + 100);
+    const snapshots = await db.getAll(
+      ...lookupChunk.map(({ schoolId, studentId }) =>
+        db.doc(`orgs/${params.orgId}/schools/${schoolId}/studentDirectory/${studentId}`),
+      ),
+    );
+
+    snapshots.forEach((snapshot, index) => {
+      const lookup = lookupChunk[index];
+      if (!lookup) return;
+      const displayName = text(snapshot.data()?.displayName);
+      if (displayName) {
+        names.set(`${lookup.schoolId}:${lookup.studentId}`, displayName);
+      }
+    });
+  }
+
+  return names;
 }
 
 function membershipRole(membership: Row): MembershipRoleType | null {
@@ -913,6 +993,12 @@ async function buildTeacherWorkDrillDowns(params: {
     };
   };
 
+  const measurementItems: Array<{
+    item: TeacherWorkDrillDownBase;
+    rowData: Row;
+    studentResults: MeasurementStudentResultSource[];
+  }> = [];
+
   for (const rowData of measurementRows) {
     if (text(rowData.createdByPersonId) !== params.teacherPersonId) continue;
     const item = baseItem({
@@ -922,6 +1008,28 @@ async function buildTeacherWorkDrillDowns(params: {
       activityFields: ["measuredAt", "submittedAt", "createdAt"],
     });
     if (!item) continue;
+    measurementItems.push({
+      item,
+      rowData,
+      studentResults: measurementStudentResultSources(rowData),
+    });
+  }
+
+  const measurementStudentNames = await loadMeasurementStudentNames({
+    orgId: params.orgId,
+    lookups: measurementItems.flatMap(({ rowData, studentResults }) =>
+      studentResults
+        .filter(({ studentDisplayName, studentId }) =>
+          !hasFriendlyStudentName(studentDisplayName, studentId),
+        )
+        .map(({ studentId }) => ({
+          schoolId: text(rowData.schoolId),
+          studentId,
+        })),
+    ),
+  });
+
+  for (const { item, rowData, studentResults } of measurementItems) {
     drillDowns.measurements.push({
       ...item,
       kind: "measurements",
@@ -935,6 +1043,15 @@ async function buildTeacherWorkDrillDowns(params: {
         targetCount: numberValue(rowData.targetCount),
         completedCount: numberValue(rowData.completedCount),
         missingCount: numberValue(rowData.missingCount),
+        studentResults: studentResults.map(({ studentId, studentDisplayName, ...result }) => ({
+          ...result,
+          studentDisplayName:
+            (hasFriendlyStudentName(studentDisplayName, studentId)
+              ? studentDisplayName
+              : "") ||
+            measurementStudentNames.get(`${text(rowData.schoolId)}:${studentId}`) ||
+            "غير محدد",
+        })),
       },
     });
   }

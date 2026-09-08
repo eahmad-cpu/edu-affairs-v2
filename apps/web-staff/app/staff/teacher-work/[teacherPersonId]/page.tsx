@@ -22,6 +22,7 @@ import {
   type TeacherWorkLessonPrep,
   type TeacherWorkDrillDownItem,
   type TeacherWorkDrillDowns,
+  type TeacherWorkMeasurementStudentResult,
   type TeacherWorkMetric,
   type TeacherWorkMetricKey,
   type TeacherWorkPeriod,
@@ -116,6 +117,96 @@ function detailLabel(value: string, labels: Record<string, string>) {
 
 function chipList(values: string[]) {
   return values.length ? values.join(" • ") : "لا توجد بيانات مسجلة";
+}
+
+function measurementRowStatusLabel(status: string) {
+  const labels: Record<string, string> = {
+    PENDING: "لم يكتمل",
+    COMPLETED: "مكتمل",
+    ABSENT: "غائب",
+    EXCUSED: "معذور",
+    SKIPPED: "متجاوز",
+  };
+
+  return labels[status] || "غير محدد";
+}
+
+function measurementResultValue(result: TeacherWorkMeasurementStudentResult) {
+  if (result.score !== null && result.maxScore !== null) {
+    return `${result.score.toLocaleString("ar-SA")} / ${result.maxScore.toLocaleString("ar-SA")}`;
+  }
+
+  return result.valueText.trim() || result.level.trim() || "—";
+}
+
+function MeasurementStudentResults({
+  results,
+}: {
+  results: TeacherWorkMeasurementStudentResult[];
+}) {
+  if (!results.length) {
+    return (
+      <DetailSection label="نتائج الطلاب">
+        لا توجد بيانات طلاب مسجلة لهذه الدفعة.
+      </DetailSection>
+    );
+  }
+
+  const statusCounts = results.reduce(
+    (counts, result) => {
+      counts[result.status] = (counts[result.status] ?? 0) + 1;
+      return counts;
+    },
+    {} as Record<string, number>,
+  );
+  const summary: Array<[string, number]> = [
+    ["إجمالي الطلاب", results.length],
+    ["مكتمل", statusCounts.COMPLETED ?? 0],
+    ["غير مكتمل", statusCounts.PENDING ?? 0],
+    ["غائب", statusCounts.ABSENT ?? 0],
+  ];
+  if (statusCounts.EXCUSED) summary.push(["معذور", statusCounts.EXCUSED]);
+  if (statusCounts.SKIPPED) summary.push(["متجاوز", statusCounts.SKIPPED]);
+
+  return (
+    <section className="mt-4 rounded-xl border bg-card p-3">
+      <div className="flex flex-wrap gap-2">
+        {summary.map(([label, count]) => (
+          <span key={label} className="rounded-full bg-muted px-2.5 py-1 text-xs text-muted-foreground">
+            {label}: {count.toLocaleString("ar-SA")}
+          </span>
+        ))}
+      </div>
+      <div className="mt-3 overflow-x-auto">
+        <table className="w-full min-w-[26rem] text-right text-sm">
+          <thead className="bg-muted/50 text-muted-foreground">
+            <tr>
+              <th className="px-3 py-2 text-right font-medium">الطالب</th>
+              <th className="px-3 py-2 text-right font-medium">الحالة</th>
+              <th className="px-3 py-2 text-right font-medium">الدرجة</th>
+            </tr>
+          </thead>
+          <tbody>
+            {results.map((result, index) => (
+              <tr key={`${result.studentDisplayName}-${index}`} className="border-t">
+                <td className="px-3 py-2.5 font-medium text-foreground">
+                  {safeText(result.studentDisplayName)}
+                </td>
+                <td className="px-3 py-2.5">
+                  <span className="rounded-full bg-muted px-2 py-1 text-xs text-muted-foreground">
+                    {measurementRowStatusLabel(result.status)}
+                  </span>
+                </td>
+                <td className="px-3 py-2.5 text-foreground">
+                  {measurementResultValue(result)}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  );
 }
 
 function MetricCard({
@@ -306,51 +397,54 @@ function DrillDownDetails({
     switch (item.kind) {
       case "measurements":
         return (
-          <DetailFields
-            fields={[
-              ["نوع الدفعة", detailLabel(item.details.batchKind, {
-                ASSESSMENT: "تقييم",
-                TRACKER: "متابعة",
-                KG_VALUES: "قيم الروضة",
-                KG_CORNERS: "أركان الروضة",
-                KG_QURAN: "القرآن الكريم",
-                LEARNING_LOSS_TRACKER: "متابعة الفاقد التعليمي",
-                CUSTOM: "مخصص",
-              })],
-              ["قالب القياس", safeText(item.details.templateTitle)],
-              ["نوع التقييم", detailLabel(item.details.assessmentKind, {
-                KG_TEACHER_MEASUREMENT: "قياس معلم الروضة",
-                KG_VP_MEASUREMENT: "قياس وكيل الروضة",
-                KG_MEASUREMENT_1: "قياس الروضة الأول",
-                KG_MEASUREMENT_2: "قياس الروضة الثاني",
-                KG_MEASUREMENT_3: "قياس الروضة الثالث",
-                KG_VALUES_ASSESSMENT: "قياس القيم",
-                KG_CORNERS_ASSESSMENT: "قياس الأركان",
-                PRIMARY_DIAGNOSTIC_TEST: "اختبار تشخيصي",
-                PRIMARY_PERIODIC_TEST_1: "اختبار دوري أول",
-                PRIMARY_PERIODIC_TEST_2: "اختبار دوري ثانٍ",
-                PRIMARY_CENTRAL_MEASUREMENT_1: "قياس مركزي أول",
-                PRIMARY_CENTRAL_MEASUREMENT_2: "قياس مركزي ثانٍ",
-                CUSTOM_ASSESSMENT: "تقييم مخصص",
-              })],
-              ["نوع المتابعة", detailLabel(item.details.trackerKind, {
-                KG_QURAN_TRACKER: "متابعة القرآن",
-                KG_LEARNING_GARDENS_TRACKER: "متابعة حدائق التعلم",
-                KG_NUMBERS_TRACKER: "متابعة الأعداد",
-                KG_VALUES_TRACKER: "متابعة القيم",
-                KG_CORNERS_TRACKER: "متابعة الأركان",
-                KG_LOSS_TRACKER: "متابعة فاقد الروضة",
-                PRIMARY_QURAN_TRACKER: "متابعة القرآن",
-                PRIMARY_LOSS_TRACKER: "متابعة الفاقد",
-                CUSTOM_TRACKER: "متابعة مخصصة",
-              })],
-              ["تاريخ القياس", detailDate(item.details.measuredAt)],
-              ["تاريخ الإرسال", detailDate(item.details.submittedAt)],
-              ["الطلاب المستهدفون", item.details.targetCount?.toLocaleString("ar-SA") ?? "غير محدد"],
-              ["المكتمل", item.details.completedCount?.toLocaleString("ar-SA") ?? "غير محدد"],
-              ["غير المكتمل", item.details.missingCount?.toLocaleString("ar-SA") ?? "غير محدد"],
-            ]}
-          />
+          <>
+            <DetailFields
+              fields={[
+                ["نوع الدفعة", detailLabel(item.details.batchKind, {
+                  ASSESSMENT: "تقييم",
+                  TRACKER: "متابعة",
+                  KG_VALUES: "قيم الروضة",
+                  KG_CORNERS: "أركان الروضة",
+                  KG_QURAN: "القرآن الكريم",
+                  LEARNING_LOSS_TRACKER: "متابعة الفاقد التعليمي",
+                  CUSTOM: "مخصص",
+                })],
+                ["قالب القياس", safeText(item.details.templateTitle)],
+                ["نوع التقييم", detailLabel(item.details.assessmentKind, {
+                  KG_TEACHER_MEASUREMENT: "قياس معلم الروضة",
+                  KG_VP_MEASUREMENT: "قياس وكيل الروضة",
+                  KG_MEASUREMENT_1: "قياس الروضة الأول",
+                  KG_MEASUREMENT_2: "قياس الروضة الثاني",
+                  KG_MEASUREMENT_3: "قياس الروضة الثالث",
+                  KG_VALUES_ASSESSMENT: "قياس القيم",
+                  KG_CORNERS_ASSESSMENT: "قياس الأركان",
+                  PRIMARY_DIAGNOSTIC_TEST: "اختبار تشخيصي",
+                  PRIMARY_PERIODIC_TEST_1: "اختبار دوري أول",
+                  PRIMARY_PERIODIC_TEST_2: "اختبار دوري ثانٍ",
+                  PRIMARY_CENTRAL_MEASUREMENT_1: "قياس مركزي أول",
+                  PRIMARY_CENTRAL_MEASUREMENT_2: "قياس مركزي ثانٍ",
+                  CUSTOM_ASSESSMENT: "تقييم مخصص",
+                })],
+                ["نوع المتابعة", detailLabel(item.details.trackerKind, {
+                  KG_QURAN_TRACKER: "متابعة القرآن",
+                  KG_LEARNING_GARDENS_TRACKER: "متابعة حدائق التعلم",
+                  KG_NUMBERS_TRACKER: "متابعة الأعداد",
+                  KG_VALUES_TRACKER: "متابعة القيم",
+                  KG_CORNERS_TRACKER: "متابعة الأركان",
+                  KG_LOSS_TRACKER: "متابعة فاقد الروضة",
+                  PRIMARY_QURAN_TRACKER: "متابعة القرآن",
+                  PRIMARY_LOSS_TRACKER: "متابعة الفاقد",
+                  CUSTOM_TRACKER: "متابعة مخصصة",
+                })],
+                ["تاريخ القياس", detailDate(item.details.measuredAt)],
+                ["تاريخ الإرسال", detailDate(item.details.submittedAt)],
+                ["الطلاب المستهدفون", item.details.targetCount?.toLocaleString("ar-SA") ?? "غير محدد"],
+                ["المكتمل", item.details.completedCount?.toLocaleString("ar-SA") ?? "غير محدد"],
+                ["غير المكتمل", item.details.missingCount?.toLocaleString("ar-SA") ?? "غير محدد"],
+              ]}
+            />
+            <MeasurementStudentResults results={item.details.studentResults} />
+          </>
         );
       case "learningLoss":
         return (

@@ -1,37 +1,66 @@
 {
-  "generatedAt": "2026-09-04T09:16:26.362Z",
+  "generatedAt": "2026-09-08T11:35:39.562Z",
   "orgId": "takween",
   "summary": {
-    "totalRows": 1,
+    "totalRows": 2,
     "newAccounts": 0,
-    "existingComplete": 1,
+    "existingComplete": 2,
     "existingIncomplete": 0,
     "conflicts": 0
   },
   "results": [
     {
       "rowNumber": 2,
-      "displayName": "حامد السيد السيد نافع",
-      "email": "hameed-s@qz.org.sa",
-      "employeeNumber": "KF100000030",
-      "schoolId": "mrb-boys-sayh",
-      "roleKey": "BOYS_TEACHER",
+      "displayName": "ميعاد احمد عبداللطيف المنصور",
+      "email": "m.a.almansor@qz.org.sa",
+      "employeeNumber": "KF100000122",
+      "schoolId": "kg-01",
+      "roleKey": "KG_TEACHER",
       "previewStatus": "EXISTING_COMPLETE",
       "schoolExists": true,
       "authExists": true,
-      "uid": "YDwGInju4xVzKeSs6cC1BTkfu3W2",
+      "uid": "gsL51GoUEBam1cpAjRO03x718dg1",
       "peopleMatches": [
         {
-          "id": "p-hameed-s",
-          "personId": "p-hameed-s",
-          "displayName": "حامد السيد السيد نافع"
+          "id": "p-m-a-almansor",
+          "personId": "p-m-a-almansor",
+          "displayName": "ميعاد احمد عبداللطيف المنصور"
         }
       ],
       "userMatches": [
         {
-          "uid": "YDwGInju4xVzKeSs6cC1BTkfu3W2",
-          "personId": "p-hameed-s",
-          "displayName": "حامد السيد السيد نافع"
+          "uid": "gsL51GoUEBam1cpAjRO03x718dg1",
+          "personId": "p-m-a-almansor",
+          "displayName": "ميعاد احمد عبداللطيف المنصور"
+        }
+      ],
+      "userMembershipExists": true,
+      "orgMembershipExists": true,
+      "conflicts": []
+    },
+    {
+      "rowNumber": 3,
+      "displayName": "منار جبر احمد الجبر",
+      "email": "m.aljabr@qz.org.sa",
+      "employeeNumber": "KF100000100",
+      "schoolId": "kg-04",
+      "roleKey": "KG_TEACHER",
+      "previewStatus": "EXISTING_COMPLETE",
+      "schoolExists": true,
+      "authExists": true,
+      "uid": "bWXCcSYPZHdMM1qNVgk1ML7Gx3b2",
+      "peopleMatches": [
+        {
+          "id": "p-m-aljabr",
+          "personId": "p-m-aljabr",
+          "displayName": "منار جبر احمد الجبر"
+        }
+      ],
+      "userMatches": [
+        {
+          "uid": "bWXCcSYPZHdMM1qNVgk1ML7Gx3b2",
+          "personId": "p-m-aljabr",
+          "displayName": "منار جبر احمد الجبر"
         }
       ],
       "userMembershipExists": true,

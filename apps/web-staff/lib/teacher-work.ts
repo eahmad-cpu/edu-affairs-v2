@@ -74,6 +74,15 @@ type TeacherWorkDrillDownBase = {
   subjectLabel: string;
 };
 
+export type TeacherWorkMeasurementStudentResult = {
+  studentDisplayName: string;
+  status: string;
+  score: number | null;
+  maxScore: number | null;
+  level: string;
+  valueText: string;
+};
+
 export type TeacherWorkMeasurementDrillDown = TeacherWorkDrillDownBase & {
   kind: "measurements";
   details: {
@@ -86,6 +95,7 @@ export type TeacherWorkMeasurementDrillDown = TeacherWorkDrillDownBase & {
     targetCount: number | null;
     completedCount: number | null;
     missingCount: number | null;
+    studentResults: TeacherWorkMeasurementStudentResult[];
   };
 };
 
