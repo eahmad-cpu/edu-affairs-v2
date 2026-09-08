@@ -707,19 +707,16 @@ match /studentCases/{caseId} {
 
   allow delete: if false;
 
-  match /events/{eventId} {
-    allow get, list: if hasOrgMembership(orgId);
 
-    allow create: if hasOrgMembership(orgId)
-      && request.resource.data.orgId == orgId
-      && request.resource.data.caseId == caseId;
+match /events/{eventId} {
+  allow get, list: if hasOrgMembership(orgId);
 
-    allow update: if hasOrgMembership(orgId)
-      && request.resource.data.orgId == orgId
-      && request.resource.data.caseId == caseId;
+  allow create, update: if hasOrgMembership(orgId);
 
-    allow delete: if false;
-  }
+  allow delete: if false;
+}
+
+
 }
 
 /*
@@ -1672,6 +1669,29 @@ match /pdfResources/{resourceId} {
  * reviewer filtering are resolved by Callables, never by client queries. */
 match /staffPortfolioItems/{itemId} {
   allow read, write: if false;
+}
+
+/*
+ * TEMPORARY RELAXED RULES: hierarchical document visibility is currently
+ * enforced by application logic. Tighten Firestore rules before final
+ * production hardening.
+ */
+match /staffPdfFiles/{fileId} {
+  /*
+   * TEMPORARY VERY RELAXED ACCESS:
+   * any signed-in user with an organization membership can use this feature.
+   * Application code currently handles owner/scope visibility.
+   */
+  allow get, list: if membershipExists(orgId);
+
+  allow create: if membershipExists(orgId)
+    && request.resource.data.orgId == orgId;
+
+  allow update: if membershipExists(orgId)
+    && resource.data.orgId == orgId
+    && request.resource.data.orgId == orgId;
+
+  allow delete: if false;
 }
 
 

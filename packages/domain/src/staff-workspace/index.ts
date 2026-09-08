@@ -25,7 +25,8 @@ export type StaffHomeVisibleModule =
   | "MY_EVALUATIONS"
   | "MESSAGES"
   | "GUARDIAN_SERVICES"
-  | "ACTIVITIES";
+  | "ACTIVITIES"
+  | "PDF_FILES";
 
 export type StaffHomeSummaryCard = {
   key: string;

@@ -5,6 +5,7 @@ import {
   CalendarDays,
   ClipboardList,
   FileText,
+  FolderUp,
   GraduationCap,
   LayoutDashboard,
   MessageSquare,
@@ -68,6 +69,12 @@ export const staffNavItems: StaffNavItem[] = [
     label: "مهام وظيفتي",
     icon: FileText,
     pdfDocuments: "MY_DOCUMENTS",
+  },
+  {
+    href: "/staff/pdf-files",
+    label: "رفع ملفات PDF",
+    icon: FolderUp,
+    moduleKey: "PDF_FILES",
   },
   {
     href: "/staff/tasks",

@@ -5793,3 +5793,4 @@ export * from "./teacher-provisioning";
 export * from "./school-scope-groups";
 export * from "./pdf-resources";
 export * from "./staff-portfolio";
+export * from "./staff-pdf-files";

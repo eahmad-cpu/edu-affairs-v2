@@ -95,17 +95,17 @@ async function allowedItems(params: { orgId: string; uid: string; ownOnly?: bool
   }).sort((a, b) => b.submittedAt - a.submittedAt);
 }
 
-export const listMyStaffPortfolioItems = onCall({ region: REGION, cors: true, invoker: "public" }, async (request): Promise<StaffPortfolioItem[]> => {
+export const listMyStaffPortfolioItems = onCall({ region: REGION, cors: true, invoker: "public", memory: "512MiB" }, async (request): Promise<StaffPortfolioItem[]> => {
   if (!request.auth?.uid) throw new HttpsError("unauthenticated", "Authentication is required.");
   return allowedItems({ orgId: assertId(request.data?.orgId, "orgId"), uid: request.auth.uid, ownOnly: true });
 });
 
-export const listTeacherPortfolioItems = onCall({ region: REGION, cors: true, invoker: "public" }, async (request): Promise<StaffPortfolioItem[]> => {
+export const listTeacherPortfolioItems = onCall({ region: REGION, cors: true, invoker: "public", memory: "512MiB" }, async (request): Promise<StaffPortfolioItem[]> => {
   if (!request.auth?.uid) throw new HttpsError("unauthenticated", "Authentication is required.");
   return allowedItems({ orgId: assertId(request.data?.orgId, "orgId"), uid: request.auth.uid, filters: request.data?.filters });
 });
 
-export const beginStaffPortfolioItem = onCall({ region: REGION, cors: true, invoker: "public" }, async (request): Promise<StaffPortfolioItem> => {
+export const beginStaffPortfolioItem = onCall({ region: REGION, cors: true, invoker: "public", memory: "512MiB" }, async (request): Promise<StaffPortfolioItem> => {
   if (!request.auth?.uid) throw new HttpsError("unauthenticated", "Authentication is required.");
   const orgId = assertId(request.data?.orgId, "orgId"); const actor = await caller(orgId, request.auth.uid);
   if (!isStaffPortfolioTeacherRole(actor.role)) throw new HttpsError("permission-denied", "A teacher membership is required.");
@@ -131,7 +131,7 @@ export const beginStaffPortfolioItem = onCall({ region: REGION, cors: true, invo
   return item;
 });
 
-export const completeStaffPortfolioUpload = onCall({ region: REGION, cors: true, invoker: "public" }, async (request): Promise<void> => {
+export const completeStaffPortfolioUpload = onCall({ region: REGION, cors: true, invoker: "public", memory: "512MiB" }, async (request): Promise<void> => {
   if (!request.auth?.uid) throw new HttpsError("unauthenticated", "Authentication is required.");
   const orgId = assertId(request.data?.orgId, "orgId"); const itemId = assertId(request.data?.itemId, "itemId"); const actor = await caller(orgId, request.auth.uid);
   const ref = getFirestore().doc(`orgs/${orgId}/staffPortfolioItems/${itemId}`); const snapshot = await ref.get();
@@ -143,7 +143,7 @@ export const completeStaffPortfolioUpload = onCall({ region: REGION, cors: true,
   await ref.update({ uploadPending: false, updatedAt: Date.now() });
 });
 
-export const archiveStaffPortfolioItem = onCall({ region: REGION, cors: true, invoker: "public" }, async (request): Promise<void> => {
+export const archiveStaffPortfolioItem = onCall({ region: REGION, cors: true, invoker: "public", memory: "512MiB" }, async (request): Promise<void> => {
   if (!request.auth?.uid) throw new HttpsError("unauthenticated", "Authentication is required.");
   const orgId = assertId(request.data?.orgId, "orgId"); const itemId = assertId(request.data?.itemId, "itemId"); const actor = await caller(orgId, request.auth.uid);
   const ref = getFirestore().doc(`orgs/${orgId}/staffPortfolioItems/${itemId}`); const snapshot = await ref.get(); const parsed = StaffPortfolioItemSchema.safeParse({ id: itemId, orgId, ...snapshot.data() });
@@ -151,10 +151,95 @@ export const archiveStaffPortfolioItem = onCall({ region: REGION, cors: true, in
   const now = Date.now(); await ref.update({ status: "ARCHIVED", archivedAt: now, archivedByUid: request.auth.uid, archivedByPersonId: actor.personId, updatedAt: now });
 });
 
-export const getStaffPortfolioFileUrl = onCall({ region: REGION, cors: true, invoker: "public" }, async (request): Promise<{ url: string; originalName: string }> => {
-  if (!request.auth?.uid) throw new HttpsError("unauthenticated", "Authentication is required.");
-  const orgId = assertId(request.data?.orgId, "orgId"); const itemId = assertId(request.data?.itemId, "itemId"); const actor = await caller(orgId, request.auth.uid); const items = await allowedItems({ orgId, uid: request.auth.uid, ownOnly: isStaffPortfolioTeacherRole(actor.role) }); const item = items.find((candidate) => candidate.id === itemId);
-  if (!item) throw new HttpsError("permission-denied", "You cannot access this portfolio evidence.");
-  const [url] = await getStorage().bucket().file(item.file.storagePath).getSignedUrl({ action: "read", expires: Date.now() + 5 * 60 * 1000, responseDisposition: `inline; filename="${item.file.originalName.replace(/[\"\\r\\n]/g, "")}"` });
-  return { url, originalName: item.file.originalName };
-});
+export const getStaffPortfolioFileUrl = onCall(
+  { region: REGION, cors: true, invoker: "public", memory: "512MiB" },
+  async (request): Promise<{ url: string; originalName: string }> => {
+    if (!request.auth?.uid) {
+      throw new HttpsError("unauthenticated", "Authentication is required.");
+    }
+
+    const orgId = assertId(request.data?.orgId, "orgId");
+    const itemId = assertId(request.data?.itemId, "itemId");
+
+    /**
+     * فتح مؤقت:
+     * أي عضو نشط داخل المؤسسة يستطيع فتح ملفات الإنجاز.
+     * لاحقًا يمكن الرجوع لمنطق canReadStaffPortfolioItem / reviewer access.
+     */
+    await caller(orgId, request.auth.uid);
+
+    const itemRef = getFirestore().doc(
+      `orgs/${orgId}/staffPortfolioItems/${itemId}`,
+    );
+
+    const snapshot = await itemRef.get();
+
+    if (!snapshot.exists) {
+      throw new HttpsError("not-found", "ملف الإنجاز غير موجود.");
+    }
+
+    const parsed = StaffPortfolioItemSchema.safeParse({
+      id: itemId,
+      ...snapshot.data(),
+      orgId,
+    });
+
+    if (!parsed.success) {
+      throw new HttpsError(
+        "failed-precondition",
+        "بيانات ملف الإنجاز غير مكتملة أو غير صالحة.",
+      );
+    }
+
+    const item = parsed.data;
+
+    if (snapshot.data()?.uploadPending === true) {
+      throw new HttpsError(
+        "failed-precondition",
+        "لم يكتمل رفع ملف الإنجاز بعد.",
+      );
+    }
+
+    if (!item.file?.storagePath) {
+      throw new HttpsError(
+        "failed-precondition",
+        "مسار ملف الإنجاز غير موجود.",
+      );
+    }
+
+    const file = getStorage().bucket().file(item.file.storagePath);
+    const [exists] = await file.exists();
+
+    if (!exists) {
+      throw new HttpsError(
+        "not-found",
+        "ملف PDF غير موجود في التخزين. قد يكون تم حذفه أو لم يكتمل رفعه.",
+      );
+    }
+
+    try {
+      const safeOriginalName = item.file.originalName.replace(
+        /["\r\n]/g,
+        "",
+      );
+
+      const [url] = await file.getSignedUrl({
+        action: "read",
+        expires: Date.now() + 5 * 60 * 1000,
+        responseDisposition: `inline; filename="${safeOriginalName}"`,
+      });
+
+      return {
+        url,
+        originalName: item.file.originalName,
+      };
+    } catch (error) {
+      const message =
+        error instanceof Error
+          ? error.message
+          : "تعذر إنشاء رابط مؤقت لملف الإنجاز.";
+
+      throw new HttpsError("internal", message);
+    }
+  },
+);

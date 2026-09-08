@@ -741,6 +741,7 @@ function resolveVisibleModules(params: {
       "MY_EVALUATIONS",
       "MESSAGES",
       "GUARDIAN_SERVICES",
+      "PDF_FILES",
     ];
   }
 
@@ -760,6 +761,7 @@ function resolveVisibleModules(params: {
 
   modules.add("HOME");
   modules.add("MESSAGES");
+  modules.add("PDF_FILES");
 
   if (params.visibleClasses.length > 0) {
     modules.add("CLASSES");
