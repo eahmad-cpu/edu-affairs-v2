@@ -8,10 +8,8 @@ import { useStaffActor } from "@/components/staff/staff-actor-provider";
 import { Button } from "@/components/ui/button";
 import { canAccessTeacherWork } from "@/lib/teacher-work-access";
 import {
-  loadTeacherWorkSummaries,
-  teacherWorkMetricLabels,
-  teacherWorkMetricOrder,
-  type TeacherWorkSummary,
+  loadTeacherWorkDirectory,
+  type TeacherWorkDirectoryEntry,
 } from "@/lib/teacher-work";
 
 function errorMessage(error: unknown) {
@@ -39,7 +37,7 @@ function Chips({ items, emptyLabel }: { items: string[]; emptyLabel: string }) {
   );
 }
 
-function TeacherCard({ teacher }: { teacher: TeacherWorkSummary }) {
+function TeacherCard({ teacher }: { teacher: TeacherWorkDirectoryEntry }) {
   return (
     <article className="flex min-h-full flex-col rounded-2xl border bg-card p-5 shadow-sm">
       <div>
@@ -60,18 +58,9 @@ function TeacherCard({ teacher }: { teacher: TeacherWorkSummary }) {
         </div>
       </div>
 
-      <div className="mt-5 grid grid-cols-3 gap-2">
-        {teacherWorkMetricOrder.map((key) => (
-          <div key={key} className="rounded-xl bg-muted/60 px-2 py-2.5 text-center">
-            <p className="text-base font-bold text-foreground">{teacher.metrics[key].count.toLocaleString("ar-SA")}</p>
-            <p className="mt-0.5 text-[11px] text-muted-foreground">{teacherWorkMetricLabels[key]}</p>
-          </div>
-        ))}
-      </div>
-
       <Button asChild className="mt-5 w-full">
         <Link href={`/staff/teacher-work/${encodeURIComponent(teacher.teacherPersonId)}`}>
-          عرض الأعمال
+          عرض أعمال المعلم
           <ArrowLeft className="size-4" />
         </Link>
       </Button>
@@ -81,7 +70,7 @@ function TeacherCard({ teacher }: { teacher: TeacherWorkSummary }) {
 
 export default function TeacherWorkPage() {
   const { actor } = useStaffActor();
-  const [teachers, setTeachers] = useState<TeacherWorkSummary[]>([]);
+  const [teachers, setTeachers] = useState<TeacherWorkDirectoryEntry[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [schoolId, setSchoolId] = useState("");
@@ -94,7 +83,7 @@ export default function TeacherWorkPage() {
     setError(null);
     try {
       setTeachers(
-        await loadTeacherWorkSummaries({
+        await loadTeacherWorkDirectory({
           orgId: actor.orgId,
           academicYearId: actor.currentTerm?.academicYearId,
         }),

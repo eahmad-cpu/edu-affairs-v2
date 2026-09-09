@@ -48,6 +48,7 @@ export type WorkDocumentationRoleGroup =
   | "COUNSELOR"
   | "PRINCIPAL"
   | "VICE_PRINCIPAL"
+  | "KG_VICE_PRINCIPAL"
   | "EDU_SUPERVISOR";
 
 export type WorkDocumentationInstanceMode = "SINGLE" | "MULTIPLE";
@@ -827,6 +828,59 @@ const vicePrincipalTemplates: WorkDocumentationTemplate[] = [
       ]),
     ]),
   ]),
+  template(
+    "kindergarten-supervision-plan",
+    "الخطة الإشرافية للوكيلة",
+    "KG_VICE_PRINCIPAL",
+    [
+      section("الزيارة الأولى", [
+        table("firstVisitRows", "الزيارة الأولى", [
+          { key: "day", label: "اليوم" },
+          { key: "date", label: "التاريخ", type: "date" },
+          { key: "level", label: "المرحلة" },
+          { key: "class", label: "الفصل" },
+          { key: "teacherName", label: "اسم المعلمة" },
+          { key: "yearsOfService", label: "سنوات الخدمة", type: "number" },
+          {
+            key: "visitCompleted",
+            label: "تمت الزيارة",
+            type: "select",
+            options: ["نعم", "لا"],
+          },
+          {
+            key: "reportSubmitted",
+            label: "تم رفع التقرير",
+            type: "select",
+            options: ["نعم", "لا"],
+          },
+          { key: "notes", label: "ملاحظات" },
+        ]),
+      ]),
+      section("الزيارة الثانية", [
+        table("secondVisitRows", "الزيارة الثانية", [
+          { key: "day", label: "اليوم" },
+          { key: "date", label: "التاريخ", type: "date" },
+          { key: "level", label: "المرحلة" },
+          { key: "class", label: "الفصل" },
+          { key: "teacherName", label: "اسم المعلمة" },
+          { key: "yearsOfService", label: "سنوات الخدمة", type: "number" },
+          {
+            key: "visitCompleted",
+            label: "تمت الزيارة",
+            type: "select",
+            options: ["نعم", "لا"],
+          },
+          {
+            key: "reportSubmitted",
+            label: "تم رفع التقرير",
+            type: "select",
+            options: ["نعم", "لا"],
+          },
+          { key: "notes", label: "ملاحظات" },
+        ]),
+      ]),
+    ],
+  ),
 ];
 
 const educationalSupervisorTemplates: WorkDocumentationTemplate[] = [
@@ -883,6 +937,7 @@ const ROLE_GROUPS: Record<WorkDocumentationRoleGroup, string[]> = {
     "GIRLS_VP",
     "KG_VP",
   ],
+  KG_VICE_PRINCIPAL: ["KG_VP"],
   EDU_SUPERVISOR: ["EDU_SUPERVISOR"],
 };
 
@@ -917,14 +972,14 @@ export function getWorkDocumentationRole(roles: string[]) {
 }
 
 export function getWorkDocumentationTemplates(roleKey: string) {
-  const roleGroup = (Object.entries(ROLE_GROUPS).find(([, roleKeys]) =>
-    roleKeys.includes(roleKey),
-  )?.[0] ?? null) as WorkDocumentationRoleGroup | null;
+  const roleGroups = Object.entries(ROLE_GROUPS)
+    .filter(([, roleKeys]) => roleKeys.includes(roleKey))
+    .map(([roleGroup]) => roleGroup as WorkDocumentationRoleGroup);
 
-  if (!roleGroup) return [];
+  if (!roleGroups.length) return [];
 
   return WORK_DOCUMENTATION_TEMPLATES.filter(
-    (item) => item.roleGroup === roleGroup,
+    (item) => roleGroups.includes(item.roleGroup),
   );
 }
 

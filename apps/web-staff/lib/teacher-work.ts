@@ -27,13 +27,16 @@ export type TeacherWorkMetric = {
   subjectLabels: string[];
 };
 
-export type TeacherWorkSummary = {
+export type TeacherWorkDirectoryEntry = {
   teacherPersonId: string;
   displayName: string;
   schoolIds: string[];
   schoolNames: string[];
   classLabels: string[];
   subjectLabels: string[];
+};
+
+export type TeacherWorkSummary = TeacherWorkDirectoryEntry & {
   metrics: Record<TeacherWorkMetricKey, TeacherWorkMetric>;
 };
 
@@ -181,8 +184,7 @@ type TeacherWorkCallableInput = {
 
 type TeacherWorkOverviewResponse = {
   academicYearId: string;
-  period: TeacherWorkPeriod;
-  teachers: TeacherWorkSummary[];
+  teachers: TeacherWorkDirectoryEntry[];
 };
 
 type TeacherWorkDetailInput = TeacherWorkCallableInput & {
@@ -207,15 +209,13 @@ const getTeacherWorkDetail = httpsCallable<
   TeacherWorkDetailResponse
 >(functions, "getTeacherWorkDetail");
 
-export async function loadTeacherWorkSummaries(params: {
+export async function loadTeacherWorkDirectory(params: {
   orgId: string;
   academicYearId?: string;
-  period?: TeacherWorkPeriod;
 }) {
   const result = await getTeacherWorkOverview({
     orgId: params.orgId,
     academicYearId: params.academicYearId || undefined,
-    period: params.period ?? "ALL",
   });
 
   return result.data.teachers;

@@ -37,9 +37,20 @@ async function main() {
     dryRunSummary: {
       createByCollection: creates,
       endByCollection: ends,
+      transferCount: report.transfers.length,
+      transferSummaries: report.transfers.map((transfer) => ({
+        teacherEmail: transfer.teacher.email,
+        personId: transfer.teacher.personId,
+        fromSchoolId: transfer.fromSchoolId,
+        toSchoolId: transfer.toSchoolId,
+        status: transfer.status,
+        oldActiveCounts: transfer.oldActiveCounts,
+        newDesiredCounts: transfer.newDesiredCounts,
+      })),
+      writesByCollectionAction: report.writesByCollectionAction,
       distinctDesiredTeacherClassOfferingRoles: desiredTeacherAssignments.size,
-      totalCreate: Object.values(creates).reduce((sum, count) => sum + count, 0),
-      totalEnd: Object.values(ends).reduce((sum, count) => sum + count, 0),
+      totalCreate: report.summary.create || 0,
+      totalEnd: report.summary.end || 0,
     },
   }, null, 2));
   if (report.blockers.length > 0) process.exitCode = 1;

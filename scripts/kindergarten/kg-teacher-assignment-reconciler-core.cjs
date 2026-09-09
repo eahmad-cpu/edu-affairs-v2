@@ -25,6 +25,22 @@ const INPUT_PATH = path.resolve(
   "kg-teacher-assignment-map.xlsx",
 );
 
+/*
+ * Transfers are deliberately kept outside the assignment workbook.  A row moving
+ * between schools is not enough evidence to change a teacher's school scope.
+ */
+const TRANSFER_ACTIONS = [
+  "TRANSFER_MEMBERSHIP_SCOPE",
+  "END_OLD_TEACHER_ASSIGNMENT",
+  "END_OLD_CLASS_LINK",
+  "END_OLD_OPERATIONAL_ASSIGNMENT",
+  "CREATE_NEW_TEACHER_ASSIGNMENT",
+  "CREATE_NEW_CLASS_LINK",
+  "CREATE_NEW_OPERATIONAL_ASSIGNMENT",
+  "KEEP_HISTORY",
+  "BLOCKED",
+];
+
 const DISTRIBUTION_HEADERS = [
   "schoolId",
   "schoolName",
@@ -156,9 +172,68 @@ function classKey(schoolId, classId) {
   return [schoolId, classId].join("|");
 }
 
+function uniqueStrings(values) {
+  return Array.from(new Set(values.map(text).filter(Boolean))).sort();
+}
+
+function sameStrings(left, right) {
+  const normalizedLeft = uniqueStrings(Array.isArray(left) ? left : []);
+  const normalizedRight = uniqueStrings(Array.isArray(right) ? right : []);
+  return normalizedLeft.length === normalizedRight.length &&
+    normalizedLeft.every((value, index) => value === normalizedRight[index]);
+}
+
+function isWriteAction(action) {
+  return action === "CREATE" || action === "END" ||
+    action === "TRANSFER_MEMBERSHIP_SCOPE" ||
+    action.startsWith("CREATE_NEW_") ||
+    action.startsWith("END_OLD_");
+}
+
+function isCreateAction(action) {
+  return action === "CREATE" || action.startsWith("CREATE_NEW_");
+}
+
+function isEndAction(action) {
+  return action === "END" || action.startsWith("END_OLD_");
+}
+
 function getInputPath() {
   const argument = process.argv.find((item) => item.startsWith("--input="));
   return argument ? path.resolve(process.cwd(), argument.slice("--input=".length)) : INPUT_PATH;
+}
+
+function getTransferInputPath() {
+  const argument = process.argv.find((item) => item.startsWith("--transfer-input="));
+  return argument
+    ? path.resolve(process.cwd(), argument.slice("--transfer-input=".length))
+    : "";
+}
+
+function readTransfers(transferInputPath) {
+  if (!transferInputPath) return [];
+  if (!fs.existsSync(transferInputPath)) {
+    throw new Error(`Transfer input file not found: ${transferInputPath}`);
+  }
+
+  let parsed;
+  try {
+    parsed = JSON.parse(fs.readFileSync(transferInputPath, "utf8"));
+  } catch (error) {
+    throw new Error(`Transfer input is not valid JSON: ${error.message}`);
+  }
+
+  if (!parsed || typeof parsed !== "object" || !Array.isArray(parsed.transfers)) {
+    throw new Error('Transfer input must be an object with a "transfers" array.');
+  }
+
+  return parsed.transfers.map((item, index) => ({
+    inputIndex: index,
+    personId: text(item?.personId),
+    teacherEmail: email(item?.teacherEmail),
+    transferFromSchoolId: text(item?.transferFromSchoolId),
+    transferToSchoolId: text(item?.transferToSchoolId),
+  }));
 }
 
 async function readDistribution(inputPath) {
@@ -293,6 +368,279 @@ async function resolveTeacher({ db, row, people, memberships, nestedMembershipCa
     uid,
     membershipPath: nested.path,
   };
+}
+
+function isKgTeacherRole(data) {
+  return text(data?.roleKey || data?.role) === "KG_TEACHER";
+}
+
+function membershipMatchesSchoolScope({ membership, uid, personId, schoolId }) {
+  return Boolean(membership) &&
+    active(membership) &&
+    isKgTeacherRole(membership) &&
+    text(membership.uid) === uid &&
+    text(membership.personId) === personId &&
+    text(membership.scopeType) === "SCHOOL" &&
+    text(membership.scopeId) === schoolId &&
+    sameStrings(membership.scopes?.schoolIds, [schoolId]);
+}
+
+function profileMatchesSchoolScope({ user, claims, uid, personId, schoolId }) {
+  return text(user?.personId) === personId &&
+    sameStrings(user?.schoolIds, [schoolId]) &&
+    text(claims?.orgId) === ORG_ID &&
+    text(claims?.personId) === personId &&
+    text(claims?.role) === "teacher" &&
+    text(claims?.roleKey) === "KG_TEACHER" &&
+    sameStrings(claims?.schoolIds, [schoolId]) &&
+    Boolean(uid);
+}
+
+function transferRowMatches(transfer, row) {
+  const rowPersonId = text(row.personId);
+  const rowEmail = email(row.teacherEmail);
+  if (rowPersonId && rowPersonId !== transfer.teacher.personId) return false;
+  if (rowEmail && rowEmail !== transfer.teacher.email) return false;
+  return Boolean(rowPersonId || rowEmail);
+}
+
+function isKgTeacherAssignment(assignment, kgOfferingById) {
+  return text(assignment.targetScopeType) === "CLASS" &&
+    (isKgId(assignment.gradeId) || kgOfferingById.has(text(assignment.classSubjectOfferingId)));
+}
+
+function buildTransferredScopes(currentScopes, toSchoolId) {
+  const scopes = currentScopes && typeof currentScopes === "object" ? currentScopes : {};
+  return {
+    ...scopes,
+    schoolIds: [toSchoolId],
+    gradeIds: [],
+    classIds: [],
+    subjectKeys: [],
+    routeIds: Array.isArray(scopes.routeIds) ? scopes.routeIds.map(text).filter(Boolean) : [],
+    canAccessAllSchools: false,
+  };
+}
+
+function buildTransferMembershipWrites({ transfer, now }) {
+  const { teacher, toSchoolId, current } = transfer;
+  const newClaims = {
+    ...current.claims,
+    orgId: ORG_ID,
+    personId: teacher.personId,
+    role: "teacher",
+    roleKey: "KG_TEACHER",
+    schoolIds: [toSchoolId],
+  };
+
+  return {
+    claims: {
+      oldClaims: current.claims,
+      newClaims,
+    },
+    writes: [
+      {
+        collection: "users",
+        id: teacher.uid,
+        path: `users/${teacher.uid}`,
+        payload: {
+          schoolIds: [toSchoolId],
+          roleKey: "KG_TEACHER",
+          updatedAt: now,
+        },
+      },
+      {
+        collection: "orgMemberships",
+        id: ORG_ID,
+        path: `users/${teacher.uid}/orgMemberships/${ORG_ID}`,
+        payload: {
+          role: "teacher",
+          roleKey: "KG_TEACHER",
+          scopeType: "SCHOOL",
+          scopeId: toSchoolId,
+          scopes: buildTransferredScopes(current.userMembership.scopes, toSchoolId),
+          updatedAt: now,
+        },
+      },
+      {
+        collection: "memberships",
+        id: teacher.uid,
+        path: `orgs/${ORG_ID}/memberships/${teacher.uid}`,
+        payload: {
+          role: "teacher",
+          roleKey: "KG_TEACHER",
+          scopeType: "SCHOOL",
+          scopeId: toSchoolId,
+          scopes: buildTransferredScopes(current.orgMembership.scopes, toSchoolId),
+          updatedAt: now,
+        },
+      },
+    ],
+  };
+}
+
+async function resolveTransfer({ db, request, state, now }) {
+  const errors = [];
+  const fromSchoolId = request.transferFromSchoolId;
+  const toSchoolId = request.transferToSchoolId;
+
+  if (!request.personId && !request.teacherEmail) {
+    errors.push("transfer requires personId or teacherEmail");
+  }
+  if (!fromSchoolId || !toSchoolId) {
+    errors.push("transferFromSchoolId and transferToSchoolId are required");
+  }
+  if (fromSchoolId === toSchoolId) {
+    errors.push("transferFromSchoolId and transferToSchoolId must differ");
+  }
+  if (!/^kg-/i.test(fromSchoolId) || !/^kg-/i.test(toSchoolId)) {
+    errors.push("transfer schools must be KG school IDs");
+  }
+  if (errors.length > 0) {
+    return {
+      id: `transfer-input-${request.inputIndex + 1}`,
+      fromSchoolId,
+      toSchoolId,
+      status: "BLOCKED",
+      blockers: errors,
+      teacher: { uid: "", personId: request.personId, email: request.teacherEmail, displayName: "" },
+      oldActiveCounts: { teacherAssignments: 0, teacherAssignmentClassLinks: 0, operationalAssignments: 0 },
+      newDesiredCounts: { teacherAssignments: 0, teacherAssignmentClassLinks: 0, operationalAssignments: 0 },
+    };
+  }
+
+  const idMatches = request.personId
+    ? state.people.filter((person) => text(person.id) === request.personId)
+    : [];
+  const emailMatches = request.teacherEmail
+    ? state.people.filter((person) => email(person.email) === request.teacherEmail)
+    : [];
+  const matches = request.personId && request.teacherEmail
+    ? idMatches.filter((person) => email(person.email) === request.teacherEmail)
+    : request.personId ? idMatches : emailMatches;
+
+  if (matches.length !== 1) {
+    errors.push(`teacher identity is ${matches.length === 0 ? "not found" : "ambiguous"}`);
+  }
+  const person = matches[0];
+  const canonicalEmail = person ? email(person.email) : request.teacherEmail;
+
+  let authUser = null;
+  if (canonicalEmail) {
+    try {
+      authUser = await admin.auth().getUserByEmail(canonicalEmail);
+    } catch (error) {
+      if (error?.code !== "auth/user-not-found") throw error;
+    }
+  }
+  if (!authUser) errors.push("Firebase Auth user is not found");
+
+  const uid = authUser?.uid || "";
+  const [destinationSchoolSnap, userSnap, usersByEmailSnap, userMembershipSnap, orgMembershipSnap] = uid
+    ? await Promise.all([
+      db.doc(`orgs/${ORG_ID}/schools/${toSchoolId}`).get(),
+      db.doc(`users/${uid}`).get(),
+      db.collection("users").where("email", "==", canonicalEmail).limit(2).get(),
+      db.doc(`users/${uid}/orgMemberships/${ORG_ID}`).get(),
+      db.doc(`orgs/${ORG_ID}/memberships/${uid}`).get(),
+    ])
+    : [null, null, null, null, null];
+
+  if (!destinationSchoolSnap?.exists) errors.push(`destination school does not exist: ${toSchoolId}`);
+  if (!userSnap?.exists) errors.push("users document is not found for the Auth uid");
+  if (usersByEmailSnap && usersByEmailSnap.size !== 1) errors.push("users email identity is missing or ambiguous");
+  if (usersByEmailSnap?.docs[0] && usersByEmailSnap.docs[0].id !== uid) {
+    errors.push("Firebase Auth uid does not match the users email identity");
+  }
+  if (!userMembershipSnap?.exists || !orgMembershipSnap?.exists) {
+    errors.push("both membership mirrors are required for a transfer");
+  }
+
+  const user = userSnap?.data() || {};
+  const userMembership = userMembershipSnap?.data() || {};
+  const orgMembership = orgMembershipSnap?.data() || {};
+  const claims = authUser?.customClaims || {};
+  const personId = text(person?.id);
+  const teacher = {
+    uid,
+    personId,
+    email: canonicalEmail,
+    displayName: text(person?.displayName),
+  };
+
+  const activeLegacyMemberships = state.memberships.filter((membership) =>
+    active(membership) && isKgTeacherRole(membership) &&
+    text(membership.personId) === personId && text(membership.uid) === uid,
+  );
+  if (activeLegacyMemberships.length !== 1 ||
+      activeLegacyMemberships[0]?.path !== `orgs/${ORG_ID}/memberships/${uid}`) {
+    errors.push("active KG_TEACHER organization membership is ambiguous or does not match the Auth uid");
+  }
+
+  const sourceMembershipMatches = membershipMatchesSchoolScope({
+    membership: userMembership, uid, personId, schoolId: fromSchoolId,
+  }) && membershipMatchesSchoolScope({
+    membership: orgMembership, uid, personId, schoolId: fromSchoolId,
+  }) && profileMatchesSchoolScope({ user, claims, uid, personId, schoolId: fromSchoolId });
+  const destinationMembershipMatches = membershipMatchesSchoolScope({
+    membership: userMembership, uid, personId, schoolId: toSchoolId,
+  }) && membershipMatchesSchoolScope({
+    membership: orgMembership, uid, personId, schoolId: toSchoolId,
+  }) && profileMatchesSchoolScope({ user, claims, uid, personId, schoolId: toSchoolId });
+
+  let status = "BLOCKED";
+  if (sourceMembershipMatches) status = "PENDING";
+  else if (destinationMembershipMatches) status = "COMPLETED";
+  else errors.push("membership, users.schoolIds, and Auth claims must all point exclusively to the transfer source or destination school");
+
+  const kgOfferingById = new Map(
+    state.offerings.filter((offering) => isKgId(offering.gradeId)).map((offering) => [text(offering.id), offering]),
+  );
+  const activeTeacherAssignments = state.assignments.filter((assignment) =>
+    active(assignment) && text(assignment.orgId) === ORG_ID && text(assignment.teacherPersonId) === personId,
+  );
+  const activeSourceAssignments = activeTeacherAssignments.filter((assignment) => text(assignment.schoolId) === fromSchoolId);
+  const activeKgSourceAssignments = activeSourceAssignments.filter((assignment) => isKgTeacherAssignment(assignment, kgOfferingById));
+  const unrelatedActiveSourceAssignments = activeSourceAssignments.filter((assignment) => !isKgTeacherAssignment(assignment, kgOfferingById));
+  const activeOutsideExpectedSchool = activeTeacherAssignments.filter((assignment) => {
+    if (!isKgTeacherAssignment(assignment, kgOfferingById)) return false;
+    const expectedSchoolId = status === "COMPLETED" ? toSchoolId : fromSchoolId;
+    return text(assignment.schoolId) !== expectedSchoolId;
+  });
+
+  if (unrelatedActiveSourceAssignments.length > 0) {
+    errors.push("active non-KG teacher assignments in the source school make this transfer unsafe");
+  }
+  if (activeOutsideExpectedSchool.length > 0) {
+    errors.push("active KG teacher assignments exist outside the single allowed transfer school scope");
+  }
+  if (status === "PENDING" && activeKgSourceAssignments.length === 0) {
+    errors.push("no active KG teacher assignments exist in the transfer source school");
+  }
+
+  const transfer = {
+    id: stableId(["kg-teacher-transfer", personId || request.personId || request.teacherEmail, fromSchoolId, toSchoolId]),
+    request,
+    fromSchoolId,
+    toSchoolId,
+    status: errors.length > 0 ? "BLOCKED" : status,
+    blockers: errors,
+    teacher,
+    current: { user, userMembership, orgMembership, claims },
+    sourceAssignments: state.assignments.filter((assignment) =>
+      text(assignment.orgId) === ORG_ID && text(assignment.teacherPersonId) === personId &&
+      text(assignment.schoolId) === fromSchoolId && isKgTeacherAssignment(assignment, kgOfferingById),
+    ),
+    oldActiveAssignments: activeKgSourceAssignments,
+    kgOfferingById,
+    oldActiveCounts: { teacherAssignments: activeKgSourceAssignments.length, teacherAssignmentClassLinks: 0, operationalAssignments: 0 },
+    newDesiredCounts: { teacherAssignments: 0, teacherAssignmentClassLinks: 0, operationalAssignments: 0 },
+    membershipWrites: null,
+  };
+  if (transfer.status === "PENDING") {
+    transfer.membershipWrites = buildTransferMembershipWrites({ transfer, now });
+  }
+  return transfer;
 }
 
 function expectedOperationKinds(offering) {
@@ -453,13 +801,28 @@ function endedPayload(now) {
   };
 }
 
-function pushAction(actions, collectionName, document, action, reason = "") {
+function transferEndedPayload(now) {
+  return {
+    ...endedPayload(now),
+    active: false,
+    endedAt: now,
+  };
+}
+
+function pushAction(actions, collectionName, document, action, reason = "", transfer = null) {
   actions.push({
     collection: collectionName,
     id: document.id,
     path: document.path || `orgs/${ORG_ID}/${collectionName}/${document.id}`,
     action,
     ...(reason ? { reason } : {}),
+    ...(transfer ? {
+      transferId: transfer.id,
+      teacherEmail: transfer.teacher.email,
+      personId: transfer.teacher.personId,
+      fromSchoolId: transfer.fromSchoolId,
+      toSchoolId: transfer.toSchoolId,
+    } : {}),
     payload: document.payload,
   });
 }
@@ -557,6 +920,169 @@ async function loadState(db, rows) {
   };
 }
 
+function blockTransfer(transfer, message) {
+  if (!transfer.blockers.includes(message)) transfer.blockers.push(message);
+  transfer.status = "BLOCKED";
+}
+
+function transferActionName(transfer, regularAction, transferAction) {
+  return transfer ? transferAction : regularAction;
+}
+
+function oldAssignmentKey(assignment) {
+  return [
+    text(assignment.classId || assignment.targetScopeId),
+    text(assignment.classSubjectOfferingId),
+  ].join("|");
+}
+
+function planTransferOldSchoolReconciliation({ state, transfer, actions, now }) {
+  if (transfer.status === "BLOCKED") return;
+
+  const allSourceAssignmentIds = new Set(transfer.sourceAssignments.map((assignment) => assignment.id));
+  const sourceAssignmentKeys = new Set(transfer.sourceAssignments.map(oldAssignmentKey));
+  const sourceLinks = state.links.filter((link) =>
+    allSourceAssignmentIds.has(text(link.assignmentId || link.teacherAssignmentId)),
+  );
+  const activeSourceLinks = sourceLinks.filter(active);
+  const allSourceOperations = state.operations.filter((operation) =>
+    allSourceAssignmentIds.has(text(operation.sourceTeacherAssignmentId)) ||
+    (text(operation.orgId) === ORG_ID &&
+      text(operation.schoolId) === transfer.fromSchoolId &&
+      text(operation.actorPersonId) === transfer.teacher.personId &&
+      text(operation.scopeType) === "CLASS" &&
+      sourceAssignmentKeys.has([
+        text(operation.classId || operation.scopeId),
+        text(operation.classSubjectOfferingId),
+      ].join("|"))),
+  );
+  const activeSourceOperations = allSourceOperations.filter(active);
+  const unrelatedActiveOperations = state.operations.filter((operation) =>
+    active(operation) && text(operation.orgId) === ORG_ID &&
+    text(operation.schoolId) === transfer.fromSchoolId &&
+    text(operation.actorPersonId) === transfer.teacher.personId &&
+    !allSourceOperations.some((candidate) => candidate.id === operation.id),
+  );
+
+  transfer.oldActiveCounts.teacherAssignments = transfer.oldActiveAssignments.length;
+  transfer.oldActiveCounts.teacherAssignmentClassLinks = activeSourceLinks.length;
+  transfer.oldActiveCounts.operationalAssignments = activeSourceOperations.length;
+  transfer.historyCounts = {
+    teacherAssignments: transfer.sourceAssignments.filter((assignment) => !active(assignment)).length,
+    teacherAssignmentClassLinks: sourceLinks.filter((link) => !active(link)).length,
+    operationalAssignments: allSourceOperations.filter((operation) => !active(operation)).length,
+  };
+
+  if (unrelatedActiveOperations.length > 0) {
+    blockTransfer(transfer, "active source-school operational assignments are not traceable to the KG assignment graph");
+    return;
+  }
+
+  if (transfer.status === "COMPLETED") {
+    if (transfer.oldActiveCounts.teacherAssignments > 0 ||
+        transfer.oldActiveCounts.teacherAssignmentClassLinks > 0 ||
+        transfer.oldActiveCounts.operationalAssignments > 0) {
+      blockTransfer(transfer, "completed transfer still has active source-school KG graph records");
+      return;
+    }
+    for (const assignment of transfer.sourceAssignments) {
+      pushAction(actions, "teacherAssignments", assignment, "KEEP_HISTORY", "historical source-school assignment is retained", transfer);
+    }
+    for (const link of sourceLinks) {
+      pushAction(actions, "teacherAssignmentClassLinks", link, "KEEP_HISTORY", "historical source-school class link is retained", transfer);
+    }
+    for (const operation of allSourceOperations) {
+      pushAction(actions, "operationalAssignments", operation, "KEEP_HISTORY", "historical source-school operational assignment is retained", transfer);
+    }
+    return;
+  }
+
+  pushAction(actions, "membershipScope", {
+    id: transfer.teacher.uid,
+    path: `users/${transfer.teacher.uid}/orgMemberships/${ORG_ID}`,
+  }, "TRANSFER_MEMBERSHIP_SCOPE", `${transfer.fromSchoolId} -> ${transfer.toSchoolId}`, transfer);
+
+  for (const assignment of transfer.oldActiveAssignments) {
+    pushAction(actions, "teacherAssignments", {
+      id: assignment.id,
+      path: assignment.path,
+      payload: transferEndedPayload(now),
+    }, "END_OLD_TEACHER_ASSIGNMENT", "explicit KG teacher transfer", transfer);
+  }
+  for (const link of activeSourceLinks) {
+    pushAction(actions, "teacherAssignmentClassLinks", {
+      id: link.id,
+      path: link.path,
+      payload: transferEndedPayload(now),
+    }, "END_OLD_CLASS_LINK", "dependent on an old-school KG teacher assignment", transfer);
+  }
+  for (const operation of activeSourceOperations) {
+    pushAction(actions, "operationalAssignments", {
+      id: operation.id,
+      path: operation.path,
+      payload: transferEndedPayload(now),
+    }, "END_OLD_OPERATIONAL_ASSIGNMENT", "dependent on an old-school KG teacher assignment", transfer);
+  }
+}
+
+function finalizeTransferPlans({ transfers, actions, blockers }) {
+  for (const transfer of transfers) {
+    const sourceAssignments = transfer.sourceAssignments || [];
+    for (const blocker of transfer.blockers) {
+      if (!blockers.includes(`transfer ${transfer.id}: ${blocker}`)) {
+        blockers.push(`transfer ${transfer.id}: ${blocker}`);
+      }
+    }
+
+    const transferActions = actions.filter((action) => action.transferId === transfer.id);
+    const transferWrites = transferActions.filter((action) =>
+      action.action !== "TRANSFER_MEMBERSHIP_SCOPE" && isWriteAction(action.action),
+    );
+    const membershipWriteCount = transfer.status === "PENDING" ? 3 : 0;
+    transfer.firestoreWriteCount = transferWrites.length + membershipWriteCount;
+    if (transfer.firestoreWriteCount > 450) {
+      const writeLimitBlocker = `transfer requires ${transfer.firestoreWriteCount} Firestore writes; the single atomic transfer limit is 450`;
+      blockTransfer(transfer, writeLimitBlocker);
+      if (!blockers.includes(`transfer ${transfer.id}: ${writeLimitBlocker}`)) {
+        blockers.push(`transfer ${transfer.id}: ${writeLimitBlocker}`);
+      }
+    }
+
+    const destinationActions = transferActions.filter((action) =>
+      action.action.startsWith("CREATE_NEW_") || action.action === "KEEP",
+    );
+    const destinationCreates = destinationActions.filter((action) => action.action.startsWith("CREATE_NEW_"));
+    const destinationKeeps = destinationActions.filter((action) => action.action === "KEEP");
+    const keptByCollection = (collectionName) => destinationKeeps.filter((action) => action.collection === collectionName).length;
+    const createByCollection = (collectionName) => destinationCreates.filter((action) => action.collection === collectionName).length;
+
+    transfer.verification = {
+      sameUidAndPersonId: Boolean(transfer.teacher.uid && transfer.teacher.personId),
+      membershipScopeOnlyDestination: transfer.status === "COMPLETED",
+      usersSchoolIdsAndAuthClaimsMatch: transfer.status === "COMPLETED",
+      zeroActiveOldTeacherAssignments: transfer.oldActiveCounts.teacherAssignments === 0,
+      zeroActiveOldClassLinks: transfer.oldActiveCounts.teacherAssignmentClassLinks === 0,
+      zeroActiveOldOperationalAssignments: transfer.oldActiveCounts.operationalAssignments === 0,
+      destinationGraphComplete:
+        transfer.status === "COMPLETED" &&
+        createByCollection("teacherAssignments") === 0 &&
+        createByCollection("teacherAssignmentClassLinks") === 0 &&
+        createByCollection("operationalAssignments") === 0 &&
+        keptByCollection("teacherAssignments") === transfer.newDesiredCounts.teacherAssignments &&
+        keptByCollection("teacherAssignmentClassLinks") === transfer.newDesiredCounts.teacherAssignmentClassLinks &&
+        keptByCollection("operationalAssignments") === transfer.newDesiredCounts.operationalAssignments,
+      historicalOldSchoolRecordsRetained:
+        transfer.historyCounts &&
+        transfer.historyCounts.teacherAssignments > 0 &&
+        sourceAssignments.every((assignment) => !active(assignment)),
+    };
+    transfer.verification.passed = transfer.status === "COMPLETED" &&
+      Object.entries(transfer.verification)
+        .filter(([key]) => key !== "passed")
+        .every(([, value]) => value === true);
+  }
+}
+
 function validateClass({ target, klass }) {
   if (!klass) throw new Error(`class not found: ${target.schoolId}/${target.classId}`);
   if (text(klass.orgId) !== ORG_ID || text(klass.schoolId) !== target.schoolId ||
@@ -568,12 +1094,52 @@ function validateClass({ target, klass }) {
   }
 }
 
-function buildPlanReport({ inputPath, termId, rows, actions, blockers, teachers, offeringsByClass }) {
+function buildPlanReport({ inputPath, transferInputPath, termId, rows, actions, blockers, teachers, offeringsByClass, transfers = [] }) {
   const cleanActions = actions.map(({ payload, ...action }) => action);
   const counts = cleanActions.reduce((result, action) => {
     result[action.action] = (result[action.action] || 0) + 1;
     return result;
   }, {});
+  const writesByCollectionAction = cleanActions
+    .filter((action) => isWriteAction(action.action))
+    .reduce((result, action) => {
+      const key = `${action.collection}:${action.action}`;
+      result[key] = (result[key] || 0) + 1;
+      return result;
+    }, {});
+  const transferReports = transfers.map((transfer) => {
+    const groupedActions = Object.fromEntries(
+      TRANSFER_ACTIONS.map((actionName) => [
+        actionName,
+        cleanActions.filter((action) => action.transferId === transfer.id && action.action === actionName),
+      ]),
+    );
+    groupedActions.BLOCKED = transfer.blockers.map((reason) => ({
+      action: "BLOCKED",
+      teacherEmail: transfer.teacher.email,
+      personId: transfer.teacher.personId,
+      fromSchoolId: transfer.fromSchoolId,
+      toSchoolId: transfer.toSchoolId,
+      reason,
+    }));
+    return {
+      id: transfer.id,
+      status: transfer.status,
+      teacher: transfer.teacher,
+      fromSchoolId: transfer.fromSchoolId,
+      toSchoolId: transfer.toSchoolId,
+      oldActiveCounts: transfer.oldActiveCounts,
+      historicalCounts: transfer.historyCounts || {
+        teacherAssignments: 0,
+        teacherAssignmentClassLinks: 0,
+        operationalAssignments: 0,
+      },
+      newDesiredCounts: transfer.newDesiredCounts,
+      firestoreWriteCount: transfer.firestoreWriteCount || 0,
+      actionGroups: groupedActions,
+      verification: transfer.verification,
+    };
+  });
   return {
     metadata: {
       mode: "DRY_RUN",
@@ -581,6 +1147,7 @@ function buildPlanReport({ inputPath, termId, rows, actions, blockers, teachers,
       academicYearId: ACADEMIC_YEAR_ID,
       termId,
       inputPath,
+      transferInputPath: transferInputPath || null,
       source: SOURCE,
       version: VERSION,
       offeringsModified: false,
@@ -608,19 +1175,30 @@ function buildPlanReport({ inputPath, termId, rows, actions, blockers, teachers,
     resolvedTeachers: teachers,
     offeringsByClass,
     actions: cleanActions,
+    transfers: transferReports,
+    writesByCollectionAction,
     summary: {
-      create: counts.CREATE || 0,
+      create: cleanActions.filter((action) => isCreateAction(action.action)).length,
       keep: counts.KEEP || 0,
-      end: counts.END || 0,
+      end: cleanActions.filter((action) => isEndAction(action.action)).length,
+      transferMembershipScope: counts.TRANSFER_MEMBERSHIP_SCOPE || 0,
       blocked: blockers.length,
     },
     blockers: Array.from(new Set(blockers)),
-    _writes: actions.filter((action) => action.action === "CREATE" || action.action === "END"),
+    _writes: actions.filter((action) => isWriteAction(action.action) && !action.transferId),
+    _transfers: transfers,
+    _transferActions: actions.filter((action) => Boolean(action.transferId)),
   };
 }
 
-async function buildPlan({ inputPath = getInputPath(), now = Date.now(), offeringOverrides = [] } = {}) {
+async function buildPlan({
+  inputPath = getInputPath(),
+  transferInputPath = getTransferInputPath(),
+  now = Date.now(),
+  offeringOverrides = [],
+} = {}) {
   const rows = await readDistribution(inputPath);
+  const transferRequests = readTransfers(transferInputPath);
   const db = admin.firestore();
   const state = await loadState(db, rows);
   const overridesById = new Map(
@@ -645,6 +1223,30 @@ async function buildPlan({ inputPath = getInputPath(), now = Date.now(), offerin
   const teachers = [];
   const offeringsByClass = [];
   const nestedMembershipCache = new Map();
+  const transfers = [];
+  const transferPersonIds = new Set();
+  for (const request of transferRequests) {
+    const transfer = await resolveTransfer({ db, request, state, now });
+    if (transfer.teacher.personId) {
+      if (transferPersonIds.has(transfer.teacher.personId)) {
+        blockTransfer(transfer, "the same teacher appears in more than one explicit transfer request");
+      }
+      transferPersonIds.add(transfer.teacher.personId);
+    }
+    if (transfer.status !== "BLOCKED") {
+      const relatedRows = rows.filter((row) => transferRowMatches(transfer, row));
+      const destinationRows = relatedRows.filter((row) => row.schoolId === transfer.toSchoolId);
+      const nonDestinationRows = relatedRows.filter((row) => row.schoolId !== transfer.toSchoolId);
+      if (destinationRows.length === 0) {
+        blockTransfer(transfer, "the KG assignment map has no destination rows for this explicit transfer");
+      }
+      if (nonDestinationRows.length > 0) {
+        blockTransfer(transfer, "the KG assignment map still assigns this transfer teacher outside the destination school");
+      }
+      transfer.destinationRowNumbers = new Set(destinationRows.map((row) => row.rowNumber));
+    }
+    transfers.push(transfer);
+  }
   const termCandidates = state.terms.filter((term) => text(term.status).toUpperCase() === "ACTIVE" || term.isCurrent === true);
   const termId = termCandidates.length === 1 ? text(termCandidates[0].id) : "";
   if (termCandidates.length !== 1) {
@@ -682,9 +1284,28 @@ async function buildPlan({ inputPath = getInputPath(), now = Date.now(), offerin
   const teacherClassRoles = new Map();
   for (const row of rows) {
     if (!row.schoolId || !row.assignmentRole || row.classIds.length === 0 || row.gradeIds.length === 0) continue;
+    const matchingTransfers = transfers.filter((transfer) =>
+      transferRowMatches(transfer, row),
+    );
+    if (matchingTransfers.length > 1) {
+      blockers.push(`row ${row.rowNumber}: multiple explicit transfers match this teacher`);
+      continue;
+    }
+    const transfer = matchingTransfers[0] || null;
+    if (transfer?.status === "BLOCKED") {
+      blockers.push(`row ${row.rowNumber}: explicit transfer is blocked: ${transfer.blockers.join("; ")}`);
+      continue;
+    }
+    if (transfer && row.schoolId !== transfer.toSchoolId) {
+      blockTransfer(transfer, "the KG assignment map contains a transfer-teacher row outside the destination school");
+      blockers.push(`row ${row.rowNumber}: explicit transfer row is outside ${transfer.toSchoolId}`);
+      continue;
+    }
     let teacher;
     try {
-      teacher = await resolveTeacher({ db, row, people: state.people, memberships: state.memberships, nestedMembershipCache });
+      teacher = transfer
+        ? transfer.teacher
+        : await resolveTeacher({ db, row, people: state.people, memberships: state.memberships, nestedMembershipCache });
     } catch (error) {
       blockers.push(`row ${row.rowNumber}: ${error.message}`);
       continue;
@@ -703,7 +1324,7 @@ async function buildPlan({ inputPath = getInputPath(), now = Date.now(), offerin
         teacherClassRoles.set(roleKey, true);
       }
       if (!state.requestedClasses.has(classKey(target.schoolId, target.classId))) continue;
-      resolvedRows.push({ row, teacher, target });
+      resolvedRows.push({ row, teacher, target, transfer });
     }
   }
 
@@ -714,11 +1335,12 @@ async function buildPlan({ inputPath = getInputPath(), now = Date.now(), offerin
 
   // Never create or end anything when the term is not uniquely resolved.
   if (!termId) {
-    return buildPlanReport({ inputPath, termId, rows, actions, blockers, teachers, offeringsByClass });
+    finalizeTransferPlans({ transfers, actions, blockers });
+    return buildPlanReport({ inputPath, transferInputPath, termId, rows, actions, blockers, teachers, offeringsByClass, transfers });
   }
 
   for (const resolved of resolvedRows) {
-    const { row, teacher, target } = resolved;
+    const { row, teacher, target, transfer } = resolved;
     const klass = state.classes.find((item) => item.id === target.classId && item.schoolId === target.schoolId);
     if (!klass || text(klass.gradeId) !== target.gradeId) continue;
     targetTeacherSchools.add(`${teacher.personId}|${target.schoolId}`);
@@ -767,19 +1389,20 @@ async function buildPlan({ inputPath = getInputPath(), now = Date.now(), offerin
         now,
         role: row.assignmentRole,
       });
+      if (transfer) transfer.newDesiredCounts.teacherAssignments += 1;
       if (existingAssignment) {
         if (!expectedAssignmentMatches(existingAssignment, expectedAssignment)) {
           blockers.push(`row ${row.rowNumber}: active assignment does not exactly match ${offering.id}`);
           continue;
         }
-        pushAction(actions, "teacherAssignments", { id: existingAssignment.id, path: existingAssignment.path }, "KEEP");
+        pushAction(actions, "teacherAssignments", { id: existingAssignment.id, path: existingAssignment.path }, "KEEP", "", transfer);
       } else {
         const occupied = findById(state.assignments, deterministicAssignmentId);
         if (occupied) {
           blockers.push(`row ${row.rowNumber}: deterministic assignment ID is already occupied: ${deterministicAssignmentId}`);
           continue;
         }
-        pushAction(actions, "teacherAssignments", { id: deterministicAssignmentId, payload: expectedAssignment }, "CREATE");
+        pushAction(actions, "teacherAssignments", { id: deterministicAssignmentId, payload: expectedAssignment }, transferActionName(transfer, "CREATE", "CREATE_NEW_TEACHER_ASSIGNMENT"), "", transfer);
       }
       const deterministicLinkId = stableId([assignmentId, "class-link", target.classId]);
       const matchingLinks = state.links.filter((link) => active(link) && text(link.assignmentId || link.teacherAssignmentId) === assignmentId);
@@ -788,11 +1411,17 @@ async function buildPlan({ inputPath = getInputPath(), now = Date.now(), offerin
       } else if (matchingLinks.length === 1) {
         const expectedLink = linkPayload({ id: matchingLinks[0].id, assignmentId, schoolId: target.schoolId, termId, classTarget: target, offering });
         if (!expectedLinkMatches(matchingLinks[0], expectedLink)) blockers.push(`row ${row.rowNumber}: active class link does not exactly match ${assignmentId}`);
-        else pushAction(actions, "teacherAssignmentClassLinks", { id: matchingLinks[0].id, path: matchingLinks[0].path }, "KEEP");
+        else {
+          if (transfer) transfer.newDesiredCounts.teacherAssignmentClassLinks += 1;
+          pushAction(actions, "teacherAssignmentClassLinks", { id: matchingLinks[0].id, path: matchingLinks[0].path }, "KEEP", "", transfer);
+        }
       } else {
         const occupied = findById(state.links, deterministicLinkId);
         if (occupied) blockers.push(`row ${row.rowNumber}: deterministic class-link ID is already occupied: ${deterministicLinkId}`);
-        else pushAction(actions, "teacherAssignmentClassLinks", { id: deterministicLinkId, payload: linkPayload({ id: deterministicLinkId, assignmentId, schoolId: target.schoolId, termId, classTarget: target, offering }) }, "CREATE");
+        else {
+          if (transfer) transfer.newDesiredCounts.teacherAssignmentClassLinks += 1;
+          pushAction(actions, "teacherAssignmentClassLinks", { id: deterministicLinkId, payload: linkPayload({ id: deterministicLinkId, assignmentId, schoolId: target.schoolId, termId, classTarget: target, offering }) }, transferActionName(transfer, "CREATE", "CREATE_NEW_CLASS_LINK"), "", transfer);
+        }
       }
 
       for (const operationKind of expectedOperationKinds(offering)) {
@@ -811,13 +1440,14 @@ async function buildPlan({ inputPath = getInputPath(), now = Date.now(), offerin
         const existingOperation = existingOperations[0] || null;
         const operationId = existingOperation?.id || deterministicOperationId;
         const expectedOperation = operationPayload({ id: operationId, teacher, schoolId: target.schoolId, termId, classTarget: target, offering, assignmentId, operationKind, now });
+        if (transfer) transfer.newDesiredCounts.operationalAssignments += 1;
         if (existingOperation) {
           if (!expectedOperationMatches(existingOperation, expectedOperation)) blockers.push(`row ${row.rowNumber}: operational assignment does not exactly match ${offering.id}/${operationKind}`);
-          else pushAction(actions, "operationalAssignments", { id: existingOperation.id, path: existingOperation.path }, "KEEP");
+          else pushAction(actions, "operationalAssignments", { id: existingOperation.id, path: existingOperation.path }, "KEEP", "", transfer);
         } else {
           const occupied = findById(state.operations, deterministicOperationId);
           if (occupied) blockers.push(`row ${row.rowNumber}: deterministic operational ID is already occupied: ${deterministicOperationId}`);
-          else pushAction(actions, "operationalAssignments", { id: deterministicOperationId, payload: expectedOperation }, "CREATE");
+          else pushAction(actions, "operationalAssignments", { id: deterministicOperationId, payload: expectedOperation }, transferActionName(transfer, "CREATE", "CREATE_NEW_OPERATIONAL_ASSIGNMENT"), "", transfer);
         }
       }
     }
@@ -862,16 +1492,150 @@ async function buildPlan({ inputPath = getInputPath(), now = Date.now(), offerin
     }
   }
 
-  const report = buildPlanReport({ inputPath, termId, rows, actions, blockers, teachers, offeringsByClass });
+  for (const transfer of transfers) {
+    const destinationRowBlockers = blockers.filter((blocker) =>
+      Array.from(transfer.destinationRowNumbers || []).some((rowNumber) =>
+        blocker.startsWith(`row ${rowNumber}:`),
+      ),
+    );
+    if (destinationRowBlockers.length > 0) {
+      blockTransfer(transfer, "one or more destination desired class/role rows are invalid");
+    }
+    if (transfer.status !== "BLOCKED" && transfer.newDesiredCounts.teacherAssignments === 0) {
+      blockTransfer(transfer, "destination desired class/role rows did not resolve to any valid KG assignments");
+    }
+    planTransferOldSchoolReconciliation({ state, transfer, actions, now });
+  }
+  finalizeTransferPlans({ transfers, actions, blockers });
+
+  const report = buildPlanReport({ inputPath, transferInputPath, termId, rows, actions, blockers, teachers, offeringsByClass, transfers });
   return report;
+}
+
+async function applyTransferPlan({ db, transfer, actions }) {
+  if (transfer.status !== "PENDING" || !transfer.membershipWrites) {
+    return { firestoreWrites: 0, authClaimsUpdated: false };
+  }
+
+  const graphWrites = actions.filter((action) =>
+    action.transferId === transfer.id &&
+    action.action !== "TRANSFER_MEMBERSHIP_SCOPE" &&
+    isWriteAction(action.action),
+  );
+  const writeCount = transfer.membershipWrites.writes.length + graphWrites.length;
+  if (writeCount > 450) {
+    throw new Error(`Transfer ${transfer.id} exceeds the single atomic transfer limit.`);
+  }
+
+  const auth = admin.auth();
+  const authUser = await auth.getUser(transfer.teacher.uid);
+  if (email(authUser.email) !== transfer.teacher.email) {
+    throw new Error(`Transfer ${transfer.id} Auth identity changed after preview.`);
+  }
+  const currentClaims = authUser.customClaims || {};
+  if (!profileMatchesSchoolScope({
+    user: transfer.current.user,
+    claims: currentClaims,
+    uid: transfer.teacher.uid,
+    personId: transfer.teacher.personId,
+    schoolId: transfer.fromSchoolId,
+  })) {
+    throw new Error(`Transfer ${transfer.id} Auth claims no longer match the source school scope.`);
+  }
+
+  const newClaims = {
+    ...currentClaims,
+    orgId: ORG_ID,
+    personId: transfer.teacher.personId,
+    role: "teacher",
+    roleKey: "KG_TEACHER",
+    schoolIds: [transfer.toSchoolId],
+  };
+
+  // This mirrors the existing school-scope repair convention.  A failed Firestore
+  // transaction rolls the claims back before the error is surfaced.
+  await auth.setCustomUserClaims(transfer.teacher.uid, newClaims);
+  try {
+    await db.runTransaction(async (transaction) => {
+      const membershipRefs = transfer.membershipWrites.writes.map((write) => db.doc(write.path));
+      const graphRefs = graphWrites.map((write) => db.doc(write.path));
+      const snapshots = [];
+      for (const ref of [...membershipRefs, ...graphRefs]) {
+        snapshots.push(await transaction.get(ref));
+      }
+
+      const [userSnap, userMembershipSnap, orgMembershipSnap] = snapshots;
+      if (!userSnap.exists || !userMembershipSnap.exists || !orgMembershipSnap.exists ||
+          !membershipMatchesSchoolScope({
+            membership: userMembershipSnap.data(),
+            uid: transfer.teacher.uid,
+            personId: transfer.teacher.personId,
+            schoolId: transfer.fromSchoolId,
+          }) ||
+          !membershipMatchesSchoolScope({
+            membership: orgMembershipSnap.data(),
+            uid: transfer.teacher.uid,
+            personId: transfer.teacher.personId,
+            schoolId: transfer.fromSchoolId,
+          }) ||
+          !sameStrings(userSnap.data()?.schoolIds, [transfer.fromSchoolId])) {
+        throw new Error(`Transfer ${transfer.id} school scope changed after preview.`);
+      }
+
+      graphWrites.forEach((write, index) => {
+        const snapshot = snapshots[membershipRefs.length + index];
+        if (write.action.startsWith("END_OLD_")) {
+          if (!snapshot.exists || !active(snapshot.data())) {
+            throw new Error(`Transfer ${transfer.id} old graph changed after preview: ${write.path}`);
+          }
+          return;
+        }
+        if (write.action.startsWith("CREATE_NEW_") && snapshot.exists) {
+          throw new Error(`Transfer ${transfer.id} destination graph changed after preview: ${write.path}`);
+        }
+      });
+
+      transfer.membershipWrites.writes.forEach((write, index) => {
+        transaction.set(membershipRefs[index], write.payload, { merge: true });
+      });
+      graphWrites.forEach((write, index) => {
+        const ref = graphRefs[index];
+        if (write.action.startsWith("CREATE_NEW_")) {
+          transaction.create(ref, write.payload);
+        } else {
+          transaction.set(ref, write.payload, { merge: true });
+        }
+      });
+    });
+  } catch (error) {
+    try {
+      await auth.setCustomUserClaims(transfer.teacher.uid, currentClaims);
+    } catch (rollbackError) {
+      console.error(`Could not roll back Auth claims for transfer ${transfer.id}.`);
+      console.error(rollbackError);
+    }
+    throw error;
+  }
+
+  return { firestoreWrites: writeCount, authClaimsUpdated: true };
 }
 
 async function applyPlan(report) {
   if (report.blockers.length > 0) throw new Error(`Apply blocked: ${report.blockers.join(" | ")}`);
   const db = admin.firestore();
-  const writes = report._writes || [];
+  let firestoreWrites = 0;
+  let authClaimsUpdated = 0;
+
+  for (const transfer of report._transfers || []) {
+    const result = await applyTransferPlan({ db, transfer, actions: report._transferActions || [] });
+    firestoreWrites += result.firestoreWrites;
+    authClaimsUpdated += result.authClaimsUpdated ? 1 : 0;
+  }
+
   const uniqueWrites = new Map();
-  for (const write of writes) uniqueWrites.set(`${write.collection}/${write.id}`, write);
+  for (const write of report._writes || []) {
+    uniqueWrites.set(`${write.collection}/${write.id}`, write);
+  }
   const entries = Array.from(uniqueWrites.values());
   for (let offset = 0; offset < entries.length; offset += 450) {
     const batch = db.batch();
@@ -880,11 +1644,15 @@ async function applyPlan(report) {
     }
     await batch.commit();
   }
-  return entries.length;
+
+  return {
+    firestoreWrites: firestoreWrites + entries.length,
+    authClaimsUpdated,
+  };
 }
 
 function publicReport(report) {
-  const { _writes, ...visible } = report;
+  const { _writes, _transfers, _transferActions, ...visible } = report;
   return visible;
 }
 

@@ -46,13 +46,16 @@ type TeacherWorkMetric = {
   subjectLabels: string[];
 };
 
-type TeacherWorkSummary = {
+type TeacherWorkDirectoryEntry = {
   teacherPersonId: string;
   displayName: string;
   schoolIds: string[];
   schoolNames: string[];
   classLabels: string[];
   subjectLabels: string[];
+};
+
+type TeacherWorkSummary = TeacherWorkDirectoryEntry & {
   metrics: Record<TeacherWorkMetricKey, TeacherWorkMetric>;
 };
 
@@ -186,6 +189,11 @@ type TeacherWorkResponse = {
   academicYearId: string;
   period: TeacherWorkPeriod;
   teachers: TeacherWorkSummary[];
+};
+
+type TeacherWorkDirectoryResponse = {
+  academicYearId: string;
+  teachers: TeacherWorkDirectoryEntry[];
 };
 
 type MetricAccumulator = TeacherWorkMetric & {
@@ -532,18 +540,23 @@ async function listRowsForSchools(params: {
 
 async function loadTeacherNames(orgId: string, teacherPersonIds: string[]) {
   const db = getFirestore();
-  const snapshots = await Promise.all(
-    teacherPersonIds.map((personId) =>
-      db.doc(`orgs/${orgId}/people/${personId}`).get(),
-    ),
-  );
+  const names = new Map<string, string>();
 
-  return new Map(
-    snapshots.map((snapshot, index) => [
-      teacherPersonIds[index] ?? "",
-      text(snapshot.data()?.displayName),
-    ] as const),
-  );
+  for (let start = 0; start < teacherPersonIds.length; start += 100) {
+    const personIdChunk = teacherPersonIds.slice(start, start + 100);
+    const snapshots = await db.getAll(
+      ...personIdChunk.map((personId) =>
+        db.doc(`orgs/${orgId}/people/${personId}`),
+      ),
+    );
+
+    snapshots.forEach((snapshot, index) => {
+      const personId = personIdChunk[index];
+      if (personId) names.set(personId, text(snapshot.data()?.displayName));
+    });
+  }
+
+  return names;
 }
 
 async function loadClassLabels(params: {
@@ -631,6 +644,77 @@ function addMetric(params: {
     params.subjectLabel,
   ]);
   if (params.studentId) params.metric.studentIds.add(params.studentId);
+}
+
+async function buildTeacherWorkDirectory(params: {
+  orgId: string;
+  actor: TeacherWorkActor;
+  academicYearId: string;
+}): Promise<TeacherWorkDirectoryEntry[]> {
+  const [assignmentRows, linkRows, offeringRows] = await Promise.all([
+    listRowsForSchools({ orgId: params.orgId, schoolIds: params.actor.schoolIds, collectionName: "teacherAssignments" }),
+    listRowsForSchools({ orgId: params.orgId, schoolIds: params.actor.schoolIds, collectionName: "teacherAssignmentClassLinks" }),
+    listRowsForSchools({ orgId: params.orgId, schoolIds: params.actor.schoolIds, collectionName: "classSubjectOfferings" }),
+  ]);
+
+  const assignments = assignmentRows.filter((assignment) =>
+    isActiveAssignment(assignment, Date.now(), params.academicYearId),
+  );
+  const assignmentIds = new Set(assignments.map((assignment) => text(assignment.id)));
+  const links = linkRows.filter((link) => assignmentIds.has(text(link.assignmentId)));
+  const offeringById = new Map(offeringRows.map((offering) => [text(offering.id), offering]));
+  const scopedAssignments = assignments.filter((assignment) =>
+    canViewTeacherWorkSubject({
+      actor: params.actor,
+      orgId: params.orgId,
+      schoolId: text(assignment.schoolId),
+      subjectKey: subjectKeyFor(
+        assignment,
+        offeringById.get(text(assignment.classSubjectOfferingId)),
+      ),
+    }),
+  );
+  const scopedAssignmentIds = new Set(scopedAssignments.map((assignment) => text(assignment.id)));
+  const scopedLinks = links.filter((link) => scopedAssignmentIds.has(text(link.assignmentId)));
+  const teacherPersonIds = unique(scopedAssignments.map((assignment) => text(assignment.teacherPersonId)));
+  const [teacherNames, classLabels] = await Promise.all([
+    loadTeacherNames(params.orgId, teacherPersonIds),
+    loadClassLabels({ orgId: params.orgId, assignments: scopedAssignments, links: scopedLinks }),
+  ]);
+  const schoolNameById = new Map(params.actor.schools.map((school) => [school.id, school.name]));
+
+  return teacherPersonIds
+    .map((teacherPersonId) => {
+      const teacherAssignments = scopedAssignments.filter(
+        (assignment) => text(assignment.teacherPersonId) === teacherPersonId,
+      );
+      const teacherAssignmentIds = new Set(teacherAssignments.map((assignment) => text(assignment.id)));
+      const teacherLinks = scopedLinks.filter((link) => teacherAssignmentIds.has(text(link.assignmentId)));
+      const classIds = unique([
+        ...teacherAssignments.map((assignment) =>
+          text(assignment.targetScopeType) === "CLASS" ? text(assignment.targetScopeId) : "",
+        ),
+        ...teacherAssignments.map((assignment) =>
+          text(offeringById.get(text(assignment.classSubjectOfferingId))?.classId),
+        ),
+        ...teacherLinks.map((link) => text(link.classId)),
+      ]);
+      const schoolIds = unique(teacherAssignments.map((assignment) => text(assignment.schoolId)));
+
+      return {
+        teacherPersonId,
+        displayName: teacherNames.get(teacherPersonId) || "معلم غير محدد",
+        schoolIds,
+        schoolNames: schoolIds.map((schoolId) => schoolNameById.get(schoolId) || "").filter(Boolean),
+        classLabels: unique(classIds.map((classId) => classLabels.get(classId) || "")),
+        subjectLabels: unique(
+          teacherAssignments.map((assignment) =>
+            offeringLabel(offeringById.get(text(assignment.classSubjectOfferingId))),
+          ),
+        ),
+      };
+    })
+    .sort((left, right) => left.displayName.localeCompare(right.displayName, "ar"));
 }
 
 async function buildTeacherWorkSummaries(params: {
@@ -1191,14 +1275,30 @@ async function getTeacherWork(params: {
   return { academicYearId, period, teachers };
 }
 
+async function getTeacherWorkDirectory(params: {
+  uid: string;
+  input: Row;
+}): Promise<TeacherWorkDirectoryResponse> {
+  const orgId = requireId(params.input.orgId, "orgId");
+  const academicYearId = optionalId(params.input.academicYearId, "academicYearId");
+  const actor = await resolveActor({ orgId, uid: params.uid });
+  const teachers = await buildTeacherWorkDirectory({
+    orgId,
+    actor,
+    academicYearId,
+  });
+
+  return { academicYearId, teachers };
+}
+
 export const getTeacherWorkOverview = onCall(
-  { region: REGION, cors: true, invoker: "public" },
-  async (request): Promise<TeacherWorkResponse> => {
+  { region: REGION, cors: true, invoker: "public", memory: "512MiB" },
+  async (request): Promise<TeacherWorkDirectoryResponse> => {
     if (!request.auth?.uid) {
       throw new HttpsError("unauthenticated", "Authentication is required.");
     }
 
-    return getTeacherWork({
+    return getTeacherWorkDirectory({
       uid: request.auth.uid,
       input: row(request.data),
     });

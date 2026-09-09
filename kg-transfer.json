@@ -1,0 +1,10 @@
+{
+  "transfers": [
+    {
+      "personId": "p-alanoodf",
+      "teacherEmail": "alanoodf@qz.org.sa",
+      "transferFromSchoolId": "kg-01",
+      "transferToSchoolId": "kg-04"
+    }
+  ]
+}

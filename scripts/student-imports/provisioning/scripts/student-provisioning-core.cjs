@@ -1,6 +1,9 @@
 const fs = require("node:fs");
 const path = require("node:path");
 const ExcelJS = require("exceljs");
+const JSZip = require(require.resolve("jszip", {
+  paths: [path.dirname(require.resolve("exceljs/package.json"))],
+}));
 const {
   applicationDefault,
   cert,
@@ -33,6 +36,7 @@ const ENROLLMENT_STATUSES = new Set([
   "PENDING",
 ]);
 const APPLY_TOKEN = "APPLY_STUDENT_PROVISIONING";
+const SPREADSHEETML_NAMESPACE = "http://schemas.openxmlformats.org/spreadsheetml/2006/main";
 
 function parseArgs() {
   const args = {};
@@ -95,13 +99,43 @@ async function initializeFirebase(args) {
   initializeApp({ credential: applicationDefault() });
 }
 
+function normalizePrefixedSpreadsheetXml(xml) {
+  const namespaceDeclaration = new RegExp(`\\s+xmlns:x=(["'])${SPREADSHEETML_NAMESPACE}\\1`);
+  if (!namespaceDeclaration.test(xml)) return xml;
+  return xml
+    .replace(namespaceDeclaration, ` xmlns="${SPREADSHEETML_NAMESPACE}"`)
+    .replace(/<(\/?)x:/g, "<$1")
+    .replace(/\s+x:([A-Za-z_][A-Za-z0-9_.-]*)=/g, " $1=");
+}
+
+async function loadWorkbook(inputFile) {
+  const workbook = new ExcelJS.Workbook();
+  try {
+    await workbook.xlsx.readFile(inputFile);
+    return workbook;
+  } catch (originalError) {
+    const zip = await JSZip.loadAsync(fs.readFileSync(inputFile));
+    let normalized = false;
+    for (const entry of Object.values(zip.files)) {
+      if (entry.dir || !entry.name.endsWith(".xml")) continue;
+      const xml = await entry.async("string");
+      const normalizedXml = normalizePrefixedSpreadsheetXml(xml);
+      if (normalizedXml === xml) continue;
+      zip.file(entry.name, normalizedXml);
+      normalized = true;
+    }
+    if (!normalized) throw originalError;
+    await workbook.xlsx.load(await zip.generateAsync({ type: "nodebuffer" }));
+    return workbook;
+  }
+}
+
 async function readExcelRows(config) {
   if (!fs.existsSync(config.inputFile)) {
     throw new Error(`Excel file not found: ${config.inputFile}`);
   }
 
-  const workbook = new ExcelJS.Workbook();
-  await workbook.xlsx.readFile(config.inputFile);
+  const workbook = await loadWorkbook(config.inputFile);
   const worksheet = config.sheetName
     ? workbook.getWorksheet(config.sheetName)
     : workbook.worksheets[0];
