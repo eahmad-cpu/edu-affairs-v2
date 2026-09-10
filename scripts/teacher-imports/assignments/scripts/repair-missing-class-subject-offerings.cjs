@@ -7,7 +7,7 @@ const { FieldValue, getFirestore } = require("firebase-admin/firestore");
 
 const ORG_ID = "takween";
 const ACADEMIC_YEAR_ID = "ay-1448";
-const EXPECTED_TARGET_COUNT = 111;
+const EXPECTED_TARGET_COUNT = 113;
 
 const ENABLED_MODULE_KEYS = [
   "ASSESSMENTS",
@@ -204,6 +204,11 @@ const TARGET_OFFERING_IDS = [
   "mrb-girls-g6-general-1-life-skills",
   "mrb-girls-g6-quran-1-life-skills",
   "mrb-girls-g6-quran-1-pe",
+"mrb-girls-g6-general-1-quran",
+"mrb-girls-g6-quran-1-quran"
+
+
+  
 ];
 
 function parseArgs() {

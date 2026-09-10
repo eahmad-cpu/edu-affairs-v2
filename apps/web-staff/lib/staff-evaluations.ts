@@ -76,6 +76,54 @@ function asNumber(value: unknown, fallback = 0) {
   return typeof value === "number" ? value : fallback;
 }
 
+
+
+
+
+function asNonEmptyString(value: unknown, fallback = "") {
+  if (typeof value !== "string") return fallback;
+
+  const trimmed = value.trim();
+
+  return trimmed.length > 0 ? trimmed : fallback;
+}
+
+function resolveEvaluatorAssignmentPlanTitle(
+  assignment: FirestoreDoc,
+  plan: FirestoreDoc | null,
+) {
+  return (
+    asNonEmptyString(assignment.displayTitle) ||
+    asNonEmptyString(assignment.evaluatorDisplayTitle) ||
+    asNonEmptyString(assignment.planTitle) ||
+    asNonEmptyString(assignment.title) ||
+    asNonEmptyString(plan?.title) ||
+    asNonEmptyString(plan?.shortTitle) ||
+    "خطة تقييم"
+  );
+}
+
+function resolveEvaluatorAssignmentFrameworkTitle(
+  assignment: FirestoreDoc,
+  framework: FirestoreDoc | null,
+  fallbackPlanTitle: string,
+) {
+  return (
+    asNonEmptyString(assignment.frameworkTitle) ||
+    asNonEmptyString(framework?.title) ||
+    fallbackPlanTitle ||
+    "تقييم"
+  );
+}
+
+
+
+
+
+
+
+
+
 function normalizeSchoolIds(values: string[]) {
   return Array.from(
     new Set(values.map((value) => value.trim()).filter(Boolean)),
@@ -338,19 +386,30 @@ export async function buildStaffEvaluationWorkspace(params: {
 
       const submissionId = submission?.id ? String(submission.id) : undefined;
 
+const resolvedPlanTitle = resolveEvaluatorAssignmentPlanTitle(
+  assignment,
+  plan,
+);
+
+const resolvedFrameworkTitle = resolveEvaluatorAssignmentFrameworkTitle(
+  assignment,
+  framework,
+  resolvedPlanTitle,
+);
+
       return {
         id: String(assignment.id),
         orgId,
 
         planId,
-        planTitle: asString(plan?.title, "خطة تقييم"),
+        planTitle: resolvedPlanTitle,
 
         cycleId,
         cycleTitle: asString(cycle?.title, "دورة تقييم"),
         cycleStatus: asString(cycle?.status),
 
         frameworkId,
-        frameworkTitle: asString(framework?.title, "تقييم"),
+        frameworkTitle: resolvedFrameworkTitle,
 
         targetPersonId,
         targetEmail: asString(targetAssignment?.targetEmail),
@@ -683,6 +742,18 @@ export async function loadEvaluationSubmissionForm(params: {
   ].includes(evaluatorPersonId);
   const canApprove = canApproveByPolicy || canApproveOwnSubmission;
 
+
+const resolvedPlanTitle = resolveEvaluatorAssignmentPlanTitle(
+  assignment,
+  plan,
+);
+
+const resolvedFrameworkTitle = resolveEvaluatorAssignmentFrameworkTitle(
+  assignment,
+  framework,
+  resolvedPlanTitle,
+);
+
   return {
     orgId,
     schoolId,
@@ -690,14 +761,14 @@ export async function loadEvaluationSubmissionForm(params: {
     termId,
 
     planId,
-    planTitle: asString(plan.title, "خطة تقييم"),
+    planTitle: resolvedPlanTitle,
 
     cycleId,
     cycleTitle: asString(cycle.title, "دورة تقييم"),
     cycleStatus: asString(cycle.status),
 
     frameworkId,
-    frameworkTitle: asString(framework.title, "تقييم"),
+    frameworkTitle: resolvedFrameworkTitle,
 
     targetPersonId,
     targetDisplayName: asString(

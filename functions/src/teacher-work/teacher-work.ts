@@ -361,8 +361,7 @@ function hasAllSchoolsAccess(membership: Row, role: MembershipRoleType) {
 }
 
 function getPeriod(value: unknown): TeacherWorkPeriod {
-  if (value === "WEEK" || value === "MONTH" || value === "ALL") return value;
-  return "ALL";
+  return value === "WEEK" || value === "MONTH" || value === "ALL" ? value : "ALL";
 }
 
 function periodStart(period: TeacherWorkPeriod) {

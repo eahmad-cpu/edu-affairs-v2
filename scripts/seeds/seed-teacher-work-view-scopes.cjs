@@ -10,22 +10,16 @@ const CAPABILITY = "TEACHER_WORK_VIEW";
 
 const TARGETS = [
   {
-    label: "الوكيل التعليمي - السيح",
-    email: "m.alateeq@qz.org.sa",
-    personId: "p-m-alateeq",
-    schoolId: "mrb-boys-sayh",
-  },
-  {
-    label: "الوكيل التعليمي - الفالح",
-    email: "educational-agent-faleh@qz.org.sa",
-    personId: "staff-8DVZ68FaCoWqiC3jkSBNIqs4T203",
-    schoolId: "mrb-boys-faleh",
-  },
-  {
-    label: "المشرفة التعليمية - منار بنات",
-    email: "edu-supervisor-mrb@qz.org.sa",
-    personId: "staff-ZKSVVOeoJOhUhIu4HDFapMwApo83",
-    schoolId: "mrb-girls",
+    label: "فاطمة حماد الحماد",
+    email: "f-alhamaad@qz.org.sa",
+    personId: "p-f-alhamaad",
+    schoolIds: [
+      "mrb-girls",
+      "kg-01",
+      "kg-02",
+      "kg-03",
+      "kg-04",
+    ],
   },
 ];
 
@@ -51,8 +45,8 @@ function assert(condition, message) {
   }
 }
 
-function buildScopeId(target) {
-  return `${target.personId}__${CAPABILITY}__${target.schoolId}`;
+function buildScopeId(personId, schoolId) {
+  return `${personId}__${CAPABILITY}__${schoolId}`;
 }
 
 async function main() {
@@ -72,42 +66,18 @@ async function main() {
   const results = [];
 
   for (const target of TARGETS) {
-    const scopeId = buildScopeId(target);
-
     const personRef = db.doc(
       `${orgRoot}/people/${target.personId}`,
     );
 
-    const schoolRef = db.doc(
-      `${orgRoot}/schools/${target.schoolId}`,
-    );
-
-    const scopeRef = db.doc(
-      `${orgRoot}/personSupervisionScopes/${scopeId}`,
-    );
-
-    const [personSnap, schoolSnap, scopeSnap] =
-      await Promise.all([
-        personRef.get(),
-        schoolRef.get(),
-        scopeRef.get(),
-      ]);
+    const personSnap = await personRef.get();
 
     assert(
       personSnap.exists,
       `Person not found: ${target.personId} (${target.email})`,
     );
 
-    assert(
-      schoolSnap.exists,
-      `School not found: ${target.schoolId}`,
-    );
-
     const personData = personSnap.data() || {};
-    const schoolData = schoolSnap.data() || {};
-    const existingScope = scopeSnap.exists
-      ? scopeSnap.data()
-      : null;
 
     console.log("========================================");
     console.log(target.label);
@@ -118,60 +88,102 @@ async function main() {
       "Person:",
       personData.displayName || target.personId,
     );
-    console.log("School ID:", target.schoolId);
-    console.log(
-      "School:",
-      schoolData.name || target.schoolId,
-    );
-    console.log("Scope ID:", scopeId);
-    console.log(
-      "Existing:",
-      scopeSnap.exists ? "YES" : "NO",
+    console.log("");
+
+    assert(
+      Array.isArray(target.schoolIds) &&
+        target.schoolIds.length > 0,
+      `No schoolIds configured for ${target.personId}`,
     );
 
-    if (existingScope) {
-      console.log("Current scope:");
-      console.dir(existingScope, {
+    for (const schoolId of target.schoolIds) {
+      const schoolRef = db.doc(
+        `${orgRoot}/schools/${schoolId}`,
+      );
+
+      const schoolSnap = await schoolRef.get();
+
+      assert(
+        schoolSnap.exists,
+        `School not found: ${schoolId}`,
+      );
+
+      const schoolData = schoolSnap.data() || {};
+
+      const scopeId = buildScopeId(
+        target.personId,
+        schoolId,
+      );
+
+      const scopeRef = db.doc(
+        `${orgRoot}/personSupervisionScopes/${scopeId}`,
+      );
+
+      const scopeSnap = await scopeRef.get();
+
+      const existingScope = scopeSnap.exists
+        ? scopeSnap.data()
+        : null;
+
+      const now = Date.now();
+
+      const desiredScope = {
+        id: scopeId,
+        orgId: ORG_ID,
+        personId: target.personId,
+        capability: CAPABILITY,
+        schoolId,
+        subjectScope: "ALL_SUBJECTS",
+        subjectKeys: [],
+        isActive: true,
+        createdAt:
+          typeof existingScope?.createdAt === "number"
+            ? existingScope.createdAt
+            : now,
+        updatedAt: now,
+      };
+
+      console.log("School ID:", schoolId);
+      console.log(
+        "School:",
+        schoolData.name || schoolId,
+      );
+      console.log("Scope ID:", scopeId);
+      console.log(
+        "Existing:",
+        scopeSnap.exists ? "YES" : "NO",
+      );
+
+      if (existingScope) {
+        console.log("Current scope:");
+        console.dir(existingScope, {
+          depth: null,
+        });
+      }
+
+      console.log("Desired scope:");
+      console.dir(desiredScope, {
         depth: null,
       });
+
+      console.log("");
+
+      results.push({
+        label: target.label,
+        personId: target.personId,
+        schoolId,
+        scopeId,
+        scopeRef,
+        desiredScope,
+      });
     }
-
-    const now = Date.now();
-
-    const desiredScope = {
-      id: scopeId,
-      orgId: ORG_ID,
-      personId: target.personId,
-      capability: CAPABILITY,
-      schoolId: target.schoolId,
-      subjectScope: "ALL_SUBJECTS",
-      subjectKeys: [],
-      isActive: true,
-      createdAt:
-        typeof existingScope?.createdAt === "number"
-          ? existingScope.createdAt
-          : now,
-      updatedAt: now,
-    };
-
-    console.log("Desired scope:");
-    console.dir(desiredScope, {
-      depth: null,
-    });
-
-    results.push({
-      target,
-      scopeId,
-      scopeRef,
-      desiredScope,
-      existedBefore: scopeSnap.exists,
-    });
-
-    console.log("");
   }
 
+  console.log("========================================");
+  console.log("Total scopes:", results.length);
+  console.log("");
+
   if (!APPLY) {
-    console.log("========================================");
     console.log("PREVIEW COMPLETE");
     console.log("No writes performed.");
     console.log("");
@@ -181,7 +193,6 @@ async function main() {
     return;
   }
 
-  console.log("========================================");
   console.log("Writing scopes...");
   console.log("");
 
@@ -203,7 +214,8 @@ async function main() {
   console.log("");
 
   for (const result of results) {
-    const verifiedSnap = await result.scopeRef.get();
+    const verifiedSnap =
+      await result.scopeRef.get();
 
     assert(
       verifiedSnap.exists,
@@ -223,12 +235,12 @@ async function main() {
     );
 
     assert(
-      data.personId === result.target.personId,
+      data.personId === result.personId,
       `Invalid personId for ${result.scopeId}`,
     );
 
     assert(
-      data.schoolId === result.target.schoolId,
+      data.schoolId === result.schoolId,
       `Invalid schoolId for ${result.scopeId}`,
     );
 
@@ -254,9 +266,8 @@ async function main() {
     );
 
     console.log(
-      `OK: ${result.target.label}`,
+      `OK: ${result.label} -> ${result.schoolId}`,
     );
-    console.log(`    ${result.scopeId}`);
   }
 
   console.log("");

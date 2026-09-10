@@ -9,30 +9,13 @@ const ORG_ID = "takween";
 const CAPABILITY = "STAFF_WORK_VIEW";
 
 const TARGETS = [
+  
   {
-    label: "رئيس الإشراف",
-    personId: "p-h-alnasser",
+    label: "أسماء محمد المنصور",
+    email: "a-almansur@qz.org.sa",
+    personId: "p-a-almansur",
     schoolIds: [
-      "mrb-boys-sayh",
-      "mrb-boys-faleh",
-    ],
-  },
-  {
-    label: "منصور الرميح",
-    email: "malrameh@qz.org.sa",
-    personId: "p-malrameh",
-    schoolIds: [
-      "kg-01",
-      "kg-02",
-      "kg-03",
-      "kg-04",
-    ],
-  },
-  {
-    label: "فاطمة الحماد",
-    email: "f-alhamaad@qz.org.sa",
-    personId: "p-f-alhamaad",
-    schoolIds: [
+      "mrb-girls",
       "kg-01",
       "kg-02",
       "kg-03",
