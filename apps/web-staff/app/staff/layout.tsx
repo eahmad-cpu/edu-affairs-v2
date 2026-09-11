@@ -301,11 +301,15 @@ function StaffShell({ children }: { children: ReactNode }) {
               <p>الوحدات: {stats.visibleModulesCount}</p>
             </div>
 
-            {process.env.NODE_ENV === "development" ? (
+            {/* {process.env.NODE_ENV === "development" ? (
               <p className="mt-2 break-all text-[11px] text-muted-foreground/70">
                 personId: {actor.personId || "غير مربوط"}
               </p>
-            ) : null}
+            ) : null} */}
+
+            <p className="mt-2 break-all text-[11px] text-muted-foreground/70">
+              personId: {actor.personId || "غير مربوط"}
+            </p>
           </div>
 
           <Separator className="my-3" />
