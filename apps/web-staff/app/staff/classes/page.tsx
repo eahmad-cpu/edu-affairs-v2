@@ -398,7 +398,7 @@ export default function StaffClassesPage() {
     return (
       <main
         dir="rtl"
-        className="min-h-screen bg-slate-50 p-4 text-slate-950 dark:bg-slate-950 dark:text-slate-50 sm:p-6"
+        className=" bg-slate-50 p-4 text-slate-950 dark:bg-slate-950 dark:text-slate-50 sm:p-6"
       >
         <section className="mx-auto max-w-7xl">
           <p className="text-sm text-slate-500 dark:text-slate-400">
@@ -412,7 +412,7 @@ export default function StaffClassesPage() {
   return (
     <main
       dir="rtl"
-      className="min-h-screen bg-slate-50 p-4 text-slate-950 dark:bg-slate-950 dark:text-slate-50 sm:p-6"
+      className=" bg-slate-50 p-4 text-slate-950 dark:bg-slate-950 dark:text-slate-50 sm:p-6"
     >
       <section className="mx-auto flex max-w-7xl flex-col gap-5">
         <header className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
@@ -470,7 +470,11 @@ export default function StaffClassesPage() {
             </p>
           </div>
         ) : (
+
+
           <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+
+
             {filteredClasses.map((item) => {
               const studentCount = getStudentCount(item);
               const subjectNames = subjectsByClassId.get(item.id) ?? [];
@@ -523,6 +527,8 @@ export default function StaffClassesPage() {
                 </article>
               );
             })}
+
+
           </div>
         )}
       </section>
