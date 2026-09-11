@@ -40,17 +40,17 @@ function compactGradeName(value: string) {
     .map(
       (word) =>
         ({
-          "الأول": "أول",
-          "الاول": "أول",
-          "الثاني": "ثان",
-          "الثانى": "ثان",
-          "الثالث": "ثالث",
-          "الرابع": "رابع",
-          "الخامس": "خامس",
-          "السادس": "سادس",
-          "السابع": "سابع",
-          "الثامن": "ثامن",
-          "التاسع": "تاسع",
+          الأول: "أول",
+          الاول: "أول",
+          الثاني: "ثان",
+          الثانى: "ثان",
+          الثالث: "ثالث",
+          الرابع: "رابع",
+          الخامس: "خامس",
+          السادس: "سادس",
+          السابع: "سابع",
+          الثامن: "ثامن",
+          التاسع: "تاسع",
         })[word] ?? word,
     );
 
@@ -121,14 +121,27 @@ export function getFriendlyClassTitle(
   const sameGradeAndStream = sameGrade.filter(
     (other) => other.streamKey === context.streamKey,
   );
+
   const sectionCount = new Set(
     sameGradeAndStream.map((other) => other.sectionLabel).filter(Boolean),
   ).size;
 
+  const gradeName = normalizeText(context.gradeName);
+  const sectionLabel = normalizeText(context.sectionLabel);
+
+  const gradeAlreadyIncludesSection =
+    Boolean(sectionLabel) &&
+    (gradeName === sectionLabel ||
+      gradeName.startsWith(`${sectionLabel} `) ||
+      gradeName.endsWith(` ${sectionLabel}`) ||
+      gradeName.includes(` ${sectionLabel} `));
+
   return [
     context.gradeName,
     streamCount > 1 ? context.streamName : "",
-    sectionCount > 1 ? context.sectionLabel : "",
+    sectionCount > 1 && !gradeAlreadyIncludesSection
+      ? context.sectionLabel
+      : "",
   ]
     .filter(Boolean)
     .join(" ");
