@@ -3,11 +3,7 @@
 import { ReactNode, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import {
-  Building2,
-  LayoutDashboard,
-  LogOut,
-} from "lucide-react";
+import { Building2, LayoutDashboard, LogOut } from "lucide-react";
 import { signOut } from "firebase/auth";
 
 import {
@@ -52,6 +48,57 @@ function StaffShell({ children }: { children: ReactNode }) {
   const actorName = getStaffActorDisplayName(actor);
   const actorRole = getStaffActorPrimaryRole(actor);
   const stats = getStaffActorStats(actor);
+
+  const schoolContext = useMemo(() => {
+    const hasOrgWideAccess = actor.roles.some((role) =>
+      ["platform_owner", "platform_admin", "org_owner", "org_admin"].includes(
+        role,
+      ),
+    );
+
+    if (hasOrgWideAccess) {
+      return {
+        label: "المدرسة / الروضة:",
+        value: "جميع المدارس والروضات",
+        count: actor.schools.length,
+      };
+    }
+
+    const schoolIds = new Set<string>();
+
+    for (const membership of actor.memberships) {
+      for (const schoolId of membership.scopes?.schoolIds ?? []) {
+        if (schoolId) {
+          schoolIds.add(schoolId);
+        }
+      }
+    }
+
+    for (const classItem of actor.visibleClasses) {
+      if (classItem.schoolId) {
+        schoolIds.add(classItem.schoolId);
+      }
+    }
+
+    const schools = actor.schools.filter((school) => schoolIds.has(school.id));
+
+    if (schools.length === 0) {
+      return {
+        label: "المدرسة / الروضة:",
+        value: "غير محددة",
+        count: 0,
+      };
+    }
+
+    const names = schools.map((school) => school.name || school.id);
+
+    return {
+      label: names.length === 1 ? "المدرسة / الروضة:" : "المدارس / الروضات:",
+      value: names.join("، "),
+      count: names.length,
+    };
+  }, [actor]);
+
   const [supervisionScopes, setSupervisionScopes] = useState<
     PersonSupervisionScope[]
   >([]);
@@ -128,38 +175,43 @@ function StaffShell({ children }: { children: ReactNode }) {
   const isTeachingResourcesRoute =
     pathname === "/staff/teaching-resources" ||
     pathname.startsWith("/staff/teaching-resources/");
-  const isMyPortfolioRoute = pathname === "/staff/my-portfolio" || pathname.startsWith("/staff/my-portfolio/");
-  const isTeacherPortfolioRoute = pathname === "/staff/teacher-portfolio" || pathname.startsWith("/staff/teacher-portfolio/");
+  const isMyPortfolioRoute =
+    pathname === "/staff/my-portfolio" ||
+    pathname.startsWith("/staff/my-portfolio/");
+  const isTeacherPortfolioRoute =
+    pathname === "/staff/teacher-portfolio" ||
+    pathname.startsWith("/staff/teacher-portfolio/");
   const isPerformanceImprovementRoute =
     pathname === "/staff/performance-improvement" ||
     pathname.startsWith("/staff/performance-improvement/");
   const isTeacherWorkRoute =
-    pathname === "/staff/teacher-work" || pathname.startsWith("/staff/teacher-work/");
+    pathname === "/staff/teacher-work" ||
+    pathname.startsWith("/staff/teacher-work/");
   const isStaffWorkRoute =
-    pathname === "/staff/staff-work" || pathname.startsWith("/staff/staff-work/");
+    pathname === "/staff/staff-work" ||
+    pathname.startsWith("/staff/staff-work/");
   const isLessonPrepApprovalsRoute =
     pathname === "/staff/lesson-prep/approvals" ||
     pathname.startsWith("/staff/lesson-prep/approvals/");
-  const canAccessCurrentRoute =
-    isTeacherWorkRoute
-      ? canAccessTeacherWorkRoute
-      : isStaffWorkRoute
+  const canAccessCurrentRoute = isTeacherWorkRoute
+    ? canAccessTeacherWorkRoute
+    : isStaffWorkRoute
       ? scopesLoading || canAccessStaffWorkRoute
       : isLessonPrepApprovalsRoute
-      ? scopesLoading || canAccessLessonPrepApprovals
-      : isPerformanceImprovementRoute
-      ? canAccessPerformanceImprovementRoute
-      : isWorkDocumentationRoute
-      ? canAccessDocumentation
-      : isPdfManagementRoute
-        ? canManageDocuments
-      : isTeachingResourcesRoute
-        ? canAccessTeachingResources
-      : isMyPortfolioRoute
-        ? canAccessMyPortfolio
-      : isTeacherPortfolioRoute
-        ? canAccessTeacherPortfolio
-      : !requiredModule || visibleModuleSet.has(requiredModule);
+        ? scopesLoading || canAccessLessonPrepApprovals
+        : isPerformanceImprovementRoute
+          ? canAccessPerformanceImprovementRoute
+          : isWorkDocumentationRoute
+            ? canAccessDocumentation
+            : isPdfManagementRoute
+              ? canManageDocuments
+              : isTeachingResourcesRoute
+                ? canAccessTeachingResources
+                : isMyPortfolioRoute
+                  ? canAccessMyPortfolio
+                  : isTeacherPortfolioRoute
+                    ? canAccessTeacherPortfolio
+                    : !requiredModule || visibleModuleSet.has(requiredModule);
 
   useEffect(() => {
     if (!canAccessCurrentRoute) {
@@ -198,9 +250,7 @@ function StaffShell({ children }: { children: ReactNode }) {
             </div>
 
             <div>
-              <p className="text-sm font-semibold text-foreground">
-                مدار
-              </p>
+              <p className="text-sm font-semibold text-foreground">مدار</p>
               <p className="text-xs text-muted-foreground">
                 {actorName}
                 {actorRole ? ` · ${actorRole}` : ""}
@@ -235,12 +285,18 @@ function StaffShell({ children }: { children: ReactNode }) {
         <aside className="hidden rounded-2xl border border-border bg-card p-3 shadow-sm md:block">
           <div className="px-3 py-2">
             <p className="text-xs font-medium text-muted-foreground">
-              المؤسسة الحالية
+              {schoolContext.label}
             </p>
-            <p className="mt-1 line-clamp-2 text-sm font-semibold">{orgName}</p>
+
+            <p className="mt-1 line-clamp-2 text-sm font-semibold">
+              {schoolContext.value}
+            </p>
 
             <div className="mt-2 space-y-1 text-xs text-muted-foreground">
-              <p>المدارس: {stats.schoolsCount}</p>
+              {schoolContext.count > 1 ? (
+                <p>عدد المدارس / الروضات: {schoolContext.count}</p>
+              ) : null}
+
               <p>الفصول المرئية: {stats.visibleClassesCount}</p>
               <p>الوحدات: {stats.visibleModulesCount}</p>
             </div>
