@@ -76,10 +76,6 @@ function asNumber(value: unknown, fallback = 0) {
   return typeof value === "number" ? value : fallback;
 }
 
-
-
-
-
 function asNonEmptyString(value: unknown, fallback = "") {
   if (typeof value !== "string") return fallback;
 
@@ -116,13 +112,9 @@ function resolveEvaluatorAssignmentFrameworkTitle(
   );
 }
 
-
-
-
-
-
-
-
+function isEvaluationFrameworkActive(framework: FirestoreDoc | null) {
+  return asString(framework?.status, "ACTIVE") === "ACTIVE";
+}
 
 function normalizeSchoolIds(values: string[]) {
   return Array.from(
@@ -349,8 +341,8 @@ export async function buildStaffEvaluationWorkspace(params: {
     }
   }
 
-  const tasks = await Promise.all(
-    assignments.map(async (assignment): Promise<StaffEvaluationTask> => {
+  const taskResults = await Promise.all(
+    assignments.map(async (assignment): Promise<StaffEvaluationTask | null> => {
       const planId = asString(assignment.planId);
       const cycleId = asString(assignment.cycleId);
       const targetPersonId = asString(assignment.targetPersonId);
@@ -371,6 +363,10 @@ export async function buildStaffEvaluationWorkspace(params: {
         ? await getDocData(`orgs/${orgId}/evaluationFrameworks/${frameworkId}`)
         : null;
 
+      if (!isEvaluationFrameworkActive(framework)) {
+        return null;
+      }
+
       const submission = findMatchingSubmission(submissions, {
         planId,
         cycleId,
@@ -386,16 +382,16 @@ export async function buildStaffEvaluationWorkspace(params: {
 
       const submissionId = submission?.id ? String(submission.id) : undefined;
 
-const resolvedPlanTitle = resolveEvaluatorAssignmentPlanTitle(
-  assignment,
-  plan,
-);
+      const resolvedPlanTitle = resolveEvaluatorAssignmentPlanTitle(
+        assignment,
+        plan,
+      );
 
-const resolvedFrameworkTitle = resolveEvaluatorAssignmentFrameworkTitle(
-  assignment,
-  framework,
-  resolvedPlanTitle,
-);
+      const resolvedFrameworkTitle = resolveEvaluatorAssignmentFrameworkTitle(
+        assignment,
+        framework,
+        resolvedPlanTitle,
+      );
 
       return {
         id: String(assignment.id),
@@ -437,6 +433,10 @@ const resolvedFrameworkTitle = resolveEvaluatorAssignmentFrameworkTitle(
         actionHref: `/staff/evaluations/cycles/${cycleId}/targets/${targetPersonId}`,
       } satisfies StaffEvaluationTask;
     }),
+  );
+
+  const tasks = taskResults.filter(
+    (task): task is StaffEvaluationTask => task !== null,
   );
 
   const summary = {
@@ -642,11 +642,7 @@ export async function loadEvaluationSubmissionForm(params: {
   );
   const cycleSchoolId = asString(cycle?.schoolId);
 
-  if (
-    !cycle ||
-    !cycleSchoolId ||
-    !allowedSchoolIds.includes(cycleSchoolId)
-  ) {
+  if (!cycle || !cycleSchoolId || !allowedSchoolIds.includes(cycleSchoolId)) {
     return null;
   }
 
@@ -702,32 +698,29 @@ export async function loadEvaluationSubmissionForm(params: {
 
   const evaluatorRoleKey = asString(assignment.evaluatorRoleKey);
 
-  const [
-    framework,
-    sections,
-    items,
-    submissions,
-    canApproveByPolicy,
-  ] = await Promise.all([
-    getDocData(`orgs/${orgId}/evaluationFrameworks/${frameworkId}`),
-    getRubricSections(orgId, frameworkId),
-    getRubricItems(orgId, frameworkId),
-    getSubmissionsForEvaluation({
-      orgId,
-      schoolId,
-      cycleId,
-      targetPersonId,
-      evaluatorPersonId,
-    }),
-    canEvaluatorApprove({
-      orgId,
-      schoolId,
-      planId,
-      evaluatorRoleKey,
-    }),
-  ]);
+  const [framework, sections, items, submissions, canApproveByPolicy] =
+    await Promise.all([
+      getDocData(`orgs/${orgId}/evaluationFrameworks/${frameworkId}`),
+      getRubricSections(orgId, frameworkId),
+      getRubricItems(orgId, frameworkId),
+      getSubmissionsForEvaluation({
+        orgId,
+        schoolId,
+        cycleId,
+        targetPersonId,
+        evaluatorPersonId,
+      }),
+      canEvaluatorApprove({
+        orgId,
+        schoolId,
+        planId,
+        evaluatorRoleKey,
+      }),
+    ]);
 
   if (!framework) return null;
+
+  if (!isEvaluationFrameworkActive(framework)) return null;
 
   const existingSubmission = findMatchingSubmission(submissions, {
     planId,
@@ -735,24 +728,25 @@ export async function loadEvaluationSubmissionForm(params: {
     targetPersonId,
     evaluatorPersonId,
   });
-  const canApproveOwnSubmission = Boolean(existingSubmission) && [
-    asString(existingSubmission?.evaluatorPersonId),
-    asString(existingSubmission?.submittedByPersonId),
-    asString(existingSubmission?.createdByPersonId),
-  ].includes(evaluatorPersonId);
+  const canApproveOwnSubmission =
+    Boolean(existingSubmission) &&
+    [
+      asString(existingSubmission?.evaluatorPersonId),
+      asString(existingSubmission?.submittedByPersonId),
+      asString(existingSubmission?.createdByPersonId),
+    ].includes(evaluatorPersonId);
   const canApprove = canApproveByPolicy || canApproveOwnSubmission;
 
+  const resolvedPlanTitle = resolveEvaluatorAssignmentPlanTitle(
+    assignment,
+    plan,
+  );
 
-const resolvedPlanTitle = resolveEvaluatorAssignmentPlanTitle(
-  assignment,
-  plan,
-);
-
-const resolvedFrameworkTitle = resolveEvaluatorAssignmentFrameworkTitle(
-  assignment,
-  framework,
-  resolvedPlanTitle,
-);
+  const resolvedFrameworkTitle = resolveEvaluatorAssignmentFrameworkTitle(
+    assignment,
+    framework,
+    resolvedPlanTitle,
+  );
 
   return {
     orgId,
