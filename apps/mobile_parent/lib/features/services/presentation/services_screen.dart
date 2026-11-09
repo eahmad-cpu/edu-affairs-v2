@@ -6,6 +6,7 @@ import '../../../app/theme_controller.dart';
 import '../../../shared/theme/app_tokens.dart';
 import '../../../shared/widgets/app_card.dart';
 import '../../../shared/widgets/app_content_container.dart';
+import '../../../shared/widgets/privacy_policy_link.dart';
 import '../../../services/device_token_service.dart';
 
 class ServicesScreen extends StatelessWidget {
@@ -127,6 +128,7 @@ class ServicesScreen extends StatelessWidget {
                 trailing: const Icon(Icons.chevron_left_rounded),
               ),
             ),
+            const PrivacyPolicyLink(),
           ],
           ),
         ),

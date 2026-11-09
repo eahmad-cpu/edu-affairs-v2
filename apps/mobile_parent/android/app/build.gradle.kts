@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     // START: FlutterFire Configuration
@@ -5,6 +7,32 @@ plugins {
     // END: FlutterFire Configuration
     // The Flutter Gradle Plugin must be applied after the Android Gradle plugin.
     id("dev.flutter.flutter-gradle-plugin")
+}
+
+val uploadPropertiesFile = rootProject.file("key.properties")
+val uploadProperties = Properties().apply {
+    if (uploadPropertiesFile.isFile) {
+        uploadPropertiesFile.inputStream().use { load(it) }
+    }
+}
+val uploadStorePath = uploadProperties.getProperty("storeFile")?.takeIf { it.isNotBlank() }
+val uploadStoreFile = uploadStorePath?.let { rootProject.file(it) }
+
+// Validate only when app release tasks are requested, so debug builds remain usable.
+gradle.taskGraph.whenReady {
+    if (allTasks.any { it.project == project && it.name.contains("release", ignoreCase = true) }) {
+        val required = listOf("storeFile", "storePassword", "keyAlias", "keyPassword")
+        val missing = required.filter { uploadProperties.getProperty(it).isNullOrBlank() }
+        if (!uploadPropertiesFile.isFile || missing.isNotEmpty()) {
+            throw GradleException(
+                "Release signing requires android/key.properties with non-empty " +
+                    "storeFile, storePassword, keyAlias and keyPassword."
+            )
+        }
+        if (uploadStoreFile == null || !uploadStoreFile.isFile || !uploadStoreFile.canRead()) {
+            throw GradleException("Release signing requires a readable upload keystore at the configured storeFile.")
+        }
+    }
 }
 
 android {
@@ -28,11 +56,18 @@ android {
         versionName = flutter.versionName
     }
 
+    signingConfigs {
+        create("upload") {
+            storeFile = uploadStoreFile
+            storePassword = uploadProperties.getProperty("storePassword")
+            keyAlias = uploadProperties.getProperty("keyAlias")
+            keyPassword = uploadProperties.getProperty("keyPassword")
+        }
+    }
+
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.getByName("debug")
+            signingConfig = signingConfigs.getByName("upload")
         }
     }
 }

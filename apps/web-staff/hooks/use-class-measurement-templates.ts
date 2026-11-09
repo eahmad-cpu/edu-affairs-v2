@@ -154,6 +154,8 @@ export type ClassMeasurementTemplatesData = {
 type UseClassMeasurementTemplatesOptions = {
   orgId: string;
   classInfo: StaffMeasurementClassInfo | null;
+  /** Used only for template eligibility; it does not alter the class itself. */
+  measurementGradeId?: string;
   enabled?: boolean;
 };
 
@@ -458,6 +460,7 @@ function sortOptions(
 export function useClassMeasurementTemplates({
   orgId,
   classInfo,
+  measurementGradeId,
   enabled = true,
 }: UseClassMeasurementTemplatesOptions) {
   const classSignature = [
@@ -468,6 +471,7 @@ export function useClassMeasurementTemplates({
     classInfo?.gradeTitle ?? "",
     classInfo?.streamId ?? "",
     classInfo?.schoolType ?? "",
+    measurementGradeId ?? "",
   ].join("|");
 
   const canLoad = enabled && !!orgId && !!classInfo;
@@ -476,7 +480,10 @@ export function useClassMeasurementTemplates({
     useCallback(async (): Promise<ClassMeasurementTemplatesData | null> => {
       if (!canLoad || !classInfo) return null;
 
-      const schoolType = inferSchoolType(classInfo);
+      const selectionClassInfo = measurementGradeId
+        ? { ...classInfo, gradeId: measurementGradeId }
+        : classInfo;
+      const schoolType = inferSchoolType(selectionClassInfo);
 
       const assessmentTemplatesRef = collection(
         db,
@@ -505,7 +512,7 @@ export function useClassMeasurementTemplates({
         .filter((item) =>
           assessmentTemplateMatchesClass({
             template: item,
-            classInfo,
+            classInfo: selectionClassInfo,
             schoolType,
           }),
         )
@@ -519,7 +526,7 @@ export function useClassMeasurementTemplates({
         .filter((item) =>
           trackerTemplateMatchesClass({
             template: item,
-            classInfo,
+            classInfo: selectionClassInfo,
             schoolType,
           }),
         )
@@ -532,11 +539,11 @@ export function useClassMeasurementTemplates({
 
       return {
         orgId,
-        classId: classInfo.id,
-        schoolId: classInfo.schoolId ?? "",
+        classId: selectionClassInfo.id,
+        schoolId: selectionClassInfo.schoolId ?? "",
         schoolType,
-        gradeId: classInfo.gradeId ?? "",
-        streamId: classInfo.streamId ?? "",
+        gradeId: selectionClassInfo.gradeId ?? "",
+        streamId: selectionClassInfo.streamId ?? "",
 
         assessmentTemplates,
         trackerTemplates,
@@ -546,7 +553,7 @@ export function useClassMeasurementTemplates({
         assessmentCount: assessmentTemplates.length,
         trackerCount: trackerTemplates.length,
       };
-    }, [canLoad, orgId, classInfo]);
+    }, [canLoad, orgId, classInfo, measurementGradeId]);
 
   return useDocumentLoader<ClassMeasurementTemplatesData>({
     enabled: canLoad,

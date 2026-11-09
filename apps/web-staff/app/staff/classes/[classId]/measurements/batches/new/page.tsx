@@ -25,6 +25,7 @@ import {
 } from "firebase/firestore";
 
 import { db } from "@/lib/firebase";
+import { resolveMeasurementGradeId } from "@/lib/measurement-grade-override";
 import { useStaffActor } from "@/components/staff/staff-actor-provider";
 import {
   useClassStudents,
@@ -1128,6 +1129,7 @@ function buildAssessmentRecordPayload({
   academicYearId,
   classSubjectOfferingId,
   subjectKey,
+  measurementGradeId,
   template,
   now,
 }: {
@@ -1145,6 +1147,7 @@ function buildAssessmentRecordPayload({
   academicYearId: string;
   classSubjectOfferingId: string;
   subjectKey: string;
+  measurementGradeId: string;
   template: StaffMeasurementTemplateOption;
   now: number;
 }) {
@@ -1171,7 +1174,7 @@ function buildAssessmentRecordPayload({
 
     studentId: row.studentId,
     enrollmentId: row.enrollmentId || "",
-    gradeId: classInfo.gradeId ?? "",
+    gradeId: measurementGradeId,
     classId: classInfo.id,
     classSubjectOfferingId,
 
@@ -1220,6 +1223,7 @@ function buildTrackerEntryPayload({
   academicYearId,
   classSubjectOfferingId,
   subjectKey,
+  measurementGradeId,
   template,
   now,
 }: {
@@ -1237,6 +1241,7 @@ function buildTrackerEntryPayload({
   academicYearId: string;
   classSubjectOfferingId: string;
   subjectKey: string;
+  measurementGradeId: string;
   template: StaffMeasurementTemplateOption;
   now: number;
 }) {
@@ -1259,7 +1264,7 @@ function buildTrackerEntryPayload({
 
     studentId: row.studentId,
     enrollmentId: row.enrollmentId || "",
-    gradeId: classInfo.gradeId ?? "",
+    gradeId: measurementGradeId,
     classId: classInfo.id,
     classSubjectOfferingId,
 
@@ -1377,6 +1382,58 @@ export default function StaffNewMeasurementBatchPage() {
 
   const hasCurrentTerm = !!currentTerm?.id;
 
+  const effectiveSubjectKey = normalizeKey(
+    selectedClassSubjectOffering?.subjectKey || subjectKeyFromQuery,
+  );
+  const currentClassIsKg = isKgClass(classInfo);
+  const requiresTeacherAssignedContext =
+    currentClassIsKg &&
+    Boolean(staffActor?.personId?.trim()) &&
+    ((staffActor?.teacherAssignments?.length ?? 0) > 0 ||
+      Boolean(teacherAssignmentIdFromQuery));
+  const templateSelectionContextResolution = useMemo(() => {
+    if (!requiresTeacherAssignedContext || !effectiveSubjectKey) return null;
+
+    return resolveMeasurementContext({
+      actor: staffActor,
+      orgId: resolvedOrgId,
+      schoolId: resolvedSchoolId,
+      academicYearId: resolvedAcademicYearId,
+      termId: termContext.termId,
+      classId: classInfo?.id ?? "",
+      subjectKey: effectiveSubjectKey,
+      preferredClassSubjectOfferingId: classSubjectOfferingId,
+      preferredTeacherAssignmentId: teacherAssignmentIdFromQuery,
+    });
+  }, [
+    classInfo?.id,
+    classSubjectOfferingId,
+    effectiveSubjectKey,
+    requiresTeacherAssignedContext,
+    resolvedAcademicYearId,
+    resolvedOrgId,
+    resolvedSchoolId,
+    staffActor,
+    teacherAssignmentIdFromQuery,
+    termContext.termId,
+  ]);
+  const templateSelectionContext =
+    templateSelectionContextResolution?.kind === "RESOLVED"
+      ? templateSelectionContextResolution.context
+      : null;
+  const templateSelectionGradeId = resolveMeasurementGradeId({
+    actorPersonId: staffActor?.personId,
+    schoolId: resolvedSchoolId,
+    classId: classInfo?.id,
+    academicYearId: resolvedAcademicYearId,
+    termId: termContext.termId,
+    subjectKey: effectiveSubjectKey,
+    classSubjectOfferingId:
+      templateSelectionContext?.classSubjectOfferingId ?? "",
+    teacherAssignmentId: templateSelectionContext?.teacherAssignmentId ?? "",
+    classGradeId: classInfo?.gradeId,
+  });
+
   const classStudents = useClassStudents({
     orgId: resolvedOrgId,
     classId,
@@ -1388,14 +1445,9 @@ export default function StaffNewMeasurementBatchPage() {
   const classTemplates = useClassMeasurementTemplates({
     orgId: resolvedOrgId,
     classInfo,
+    measurementGradeId: templateSelectionGradeId,
     enabled: !!staffActor && !!classInfo && !!resolvedOrgId,
   });
-
-  const effectiveSubjectKey = normalizeKey(
-    selectedClassSubjectOffering?.subjectKey || subjectKeyFromQuery,
-  );
-
-  const currentClassIsKg = isKgClass(classInfo);
   const subjectKeyIsBlocked = isBlockedSubjectKey(effectiveSubjectKey);
   const canResolveMissingKgSubjectAfterTemplateSelection =
     currentClassIsKg &&
@@ -1449,11 +1501,6 @@ export default function StaffNewMeasurementBatchPage() {
   const contextSubjectKey = normalizeKey(
     effectiveSubjectKey || selectedTemplate?.subjectKey,
   );
-  const requiresTeacherAssignedContext =
-    currentClassIsKg &&
-    Boolean(staffActor?.personId?.trim()) &&
-    ((staffActor?.teacherAssignments?.length ?? 0) > 0 ||
-      Boolean(teacherAssignmentIdFromQuery));
   const measurementContextResolution = useMemo(() => {
     if (!requiresTeacherAssignedContext || !selectedTemplate) return null;
 
@@ -1493,6 +1540,17 @@ export default function StaffNewMeasurementBatchPage() {
 
   const resolvedSubjectKey =
     resolvedMeasurementContext?.subjectKey || contextSubjectKey;
+  const newMeasurementGradeId = resolveMeasurementGradeId({
+    actorPersonId: staffActor?.personId,
+    schoolId: resolvedSchoolId,
+    classId: classInfo?.id,
+    academicYearId: resolvedAcademicYearId,
+    termId: termContext.termId,
+    subjectKey: resolvedSubjectKey,
+    classSubjectOfferingId: resolvedMeasurementContext?.classSubjectOfferingId,
+    teacherAssignmentId: resolvedMeasurementContext?.teacherAssignmentId,
+    classGradeId: classInfo?.gradeId,
+  });
 
   const unitSelectionRequired = requiresUnitSelection(resolvedSubjectKey);
 
@@ -1831,7 +1889,7 @@ export default function StaffNewMeasurementBatchPage() {
         schoolId: resolvedSchoolId,
         academicYearId: resolvedAcademicYearId,
         ...termContext,
-        gradeId: classInfo.gradeId ?? "",
+        gradeId: newMeasurementGradeId,
         classId: classInfo.id,
         classSubjectOfferingId: resolvedClassSubjectOfferingId,
 
@@ -2062,6 +2120,7 @@ export default function StaffNewMeasurementBatchPage() {
                 ...termContext,
                 classSubjectOfferingId: resolvedClassSubjectOfferingId,
                 subjectKey: resolvedSubjectKey,
+                measurementGradeId: newMeasurementGradeId,
                 template: selectedTemplate,
                 now,
               })
@@ -2081,6 +2140,7 @@ export default function StaffNewMeasurementBatchPage() {
                 ...termContext,
                 classSubjectOfferingId: resolvedClassSubjectOfferingId,
                 subjectKey: resolvedSubjectKey,
+                measurementGradeId: newMeasurementGradeId,
                 template: selectedTemplate,
                 now,
               });
@@ -2126,7 +2186,7 @@ export default function StaffNewMeasurementBatchPage() {
         schoolId: resolvedSchoolId,
         academicYearId: resolvedAcademicYearId,
         ...termContext,
-        gradeId: classInfo.gradeId ?? "",
+        gradeId: newMeasurementGradeId,
         classId: classInfo.id,
         classSubjectOfferingId: resolvedClassSubjectOfferingId,
 

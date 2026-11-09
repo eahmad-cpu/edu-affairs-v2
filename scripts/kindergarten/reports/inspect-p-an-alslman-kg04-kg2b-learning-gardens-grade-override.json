@@ -1,0 +1,778 @@
+{
+  "metadata": {
+    "generatedAt": "2026-11-09T04:50:05.839Z",
+    "readOnlyFirestoreInspection": true,
+    "organizationId": "takween",
+    "target": {
+      "teacherPersonId": "p-an-alslman",
+      "schoolId": "kg-04",
+      "classId": "kg2-b",
+      "academicYearId": "ay-1448",
+      "termId": "term-1",
+      "subjectKey": "LEARNING_GARDENS",
+      "classSubjectOfferingId": "kg-04-kg2-b-learning-gardens",
+      "teacherAssignmentId": "teacher-provisioning__p-an-alslman__kg-04__ay-1448__term-1__kg-04-kg2-b-learning-gardens",
+      "currentGradeId": "kg2",
+      "futureMeasurementGradeId": "kg3"
+    },
+    "localReportPath": "C:\\dev\\edu-affairs-v2\\scripts\\kindergarten\\reports\\inspect-p-an-alslman-kg04-kg2b-learning-gardens-grade-override.json"
+  },
+  "context": {
+    "classDocument": {
+      "classId": "kg2-b",
+      "title": "فصل الغيوم",
+      "gradeId": "kg2",
+      "schoolId": "kg-04",
+      "academicYearId": "ay-1448"
+    },
+    "classSubjectOffering": {
+      "id": "kg-04-kg2-b-learning-gardens",
+      "classId": "kg2-b",
+      "gradeId": "kg2",
+      "schoolId": "kg-04",
+      "academicYearId": "ay-1448",
+      "subjectKey": "LEARNING_GARDENS",
+      "status": "ACTIVE",
+      "isActive": true,
+      "active": true
+    },
+    "teacherAssignment": {
+      "id": "teacher-provisioning__p-an-alslman__kg-04__ay-1448__term-1__kg-04-kg2-b-learning-gardens",
+      "teacherPersonId": "p-an-alslman",
+      "classId": null,
+      "gradeId": "kg2",
+      "schoolId": "kg-04",
+      "academicYearId": "ay-1448",
+      "termId": "term-1",
+      "classSubjectOfferingId": "kg-04-kg2-b-learning-gardens",
+      "subjectKey": "LEARNING_GARDENS",
+      "status": "ACTIVE",
+      "isActive": null,
+      "active": true
+    },
+    "teacherAssignmentClassLinks": [
+      {
+        "id": "teacher-provisioning__p-an-alslman__kg-04__ay-1448__term-1__kg-04-kg2-b-learning-gardens__class-link__kg2-b",
+        "assignmentId": "teacher-provisioning__p-an-alslman__kg-04__ay-1448__term-1__kg-04-kg2-b-learning-gardens",
+        "classId": "kg2-b",
+        "gradeId": "kg2",
+        "schoolId": "kg-04",
+        "academicYearId": "ay-1448",
+        "termId": "term-1",
+        "classSubjectOfferingId": "kg-04-kg2-b-learning-gardens",
+        "isPrimaryClass": true
+      }
+    ]
+  },
+  "batches": [
+    {
+      "batchId": "pthuALWbBxTUTBz9PaYT",
+      "firestorePath": "orgs/takween/studentMeasurementBatches/pthuALWbBxTUTBz9PaYT",
+      "status": "IN_PROGRESS",
+      "batchKind": "TRACKER",
+      "templateId": "kg2-learning-gardens-extra-tracker",
+      "templateTitle": "بساتين المعرفة — المستوى الثاني — متابعة الفصل الأول",
+      "gradeId": "kg2",
+      "classId": "kg2-b",
+      "classSubjectOfferingId": "kg-04-kg2-b-learning-gardens",
+      "teacherAssignmentId": "teacher-provisioning__p-an-alslman__kg-04__ay-1448__term-1__kg-04-kg2-b-learning-gardens",
+      "createdByPersonId": "p-an-alslman",
+      "createdAt": "2026-10-07T21:18:00.706Z",
+      "updatedAt": "2026-11-05T06:05:21.826Z",
+      "studentRowsCount": 16,
+      "completedCount": 16,
+      "targetCount": 16,
+      "recordRefsCount": 16,
+      "exactOperationalContext": true,
+      "templateGradeId": "kg2",
+      "numericItemScoresEntered": 283,
+      "studentRowsContainItemScoresSnapshots": true,
+      "studentRowsWithItemScoresSnapshots": 16
+    },
+    {
+      "batchId": "Sz9uBEqTtk5zwsxVSCuj",
+      "firestorePath": "orgs/takween/studentMeasurementBatches/Sz9uBEqTtk5zwsxVSCuj",
+      "status": "IN_PROGRESS",
+      "batchKind": "ASSESSMENT",
+      "templateId": "kg2-learning-gardens-term1-week06-assessment-1",
+      "templateTitle": "بساتين المعرفة — المستوى الثاني — القياس الأول — الفصل الدراسي الأول — الأسبوع السادس",
+      "gradeId": "kg2",
+      "classId": "kg2-b",
+      "classSubjectOfferingId": "kg-04-kg2-b-learning-gardens",
+      "teacherAssignmentId": "teacher-provisioning__p-an-alslman__kg-04__ay-1448__term-1__kg-04-kg2-b-learning-gardens",
+      "createdByPersonId": "p-an-alslman",
+      "createdAt": "2026-10-04T16:58:14.082Z",
+      "updatedAt": "2026-10-04T17:02:34.697Z",
+      "studentRowsCount": 16,
+      "completedCount": 13,
+      "targetCount": 16,
+      "recordRefsCount": 16,
+      "exactOperationalContext": true,
+      "templateGradeId": "kg2",
+      "numericItemScoresEntered": 39,
+      "studentRowsContainItemScoresSnapshots": true,
+      "studentRowsWithItemScoresSnapshots": 16
+    },
+    {
+      "batchId": "XQCU9jeMTRoVU5qpWDro",
+      "firestorePath": "orgs/takween/studentMeasurementBatches/XQCU9jeMTRoVU5qpWDro",
+      "status": "SUBMITTED",
+      "batchKind": "ASSESSMENT",
+      "templateId": "kg2-learning-gardens-ay1448-term1-vp-assessment",
+      "templateTitle": "بساتين المعرفة — المستوى الثاني — قياس الوكيلة",
+      "gradeId": "kg2",
+      "classId": "kg2-b",
+      "classSubjectOfferingId": "kg-04-kg2-b-learning-gardens",
+      "teacherAssignmentId": "teacher-provisioning__p-an-alslman__kg-04__ay-1448__term-1__kg-04-kg2-b-learning-gardens",
+      "createdByPersonId": "p-an-alslman",
+      "createdAt": "2026-11-02T09:51:34.909Z",
+      "updatedAt": "2026-11-02T09:51:34.909Z",
+      "studentRowsCount": 16,
+      "completedCount": 16,
+      "targetCount": 16,
+      "recordRefsCount": 16,
+      "exactOperationalContext": true,
+      "templateGradeId": "kg2",
+      "numericItemScoresEntered": 48,
+      "studentRowsContainItemScoresSnapshots": true,
+      "studentRowsWithItemScoresSnapshots": 16
+    },
+    {
+      "batchId": "ylGQ2VWucjyNJYsgqlMf",
+      "firestorePath": "orgs/takween/studentMeasurementBatches/ylGQ2VWucjyNJYsgqlMf",
+      "status": "SUBMITTED",
+      "batchKind": "ASSESSMENT",
+      "templateId": "kg2-learning-gardens-term1-week06-assessment-1",
+      "templateTitle": "بساتين المعرفة — المستوى الثاني — القياس الأول — الفصل الدراسي الأول — الأسبوع السادس",
+      "gradeId": "kg2",
+      "classId": "kg2-b",
+      "classSubjectOfferingId": "kg-04-kg2-b-learning-gardens",
+      "teacherAssignmentId": "teacher-provisioning__p-an-alslman__kg-04__ay-1448__term-1__kg-04-kg2-b-learning-gardens",
+      "createdByPersonId": "p-an-alslman",
+      "createdAt": "2026-11-04T06:35:36.628Z",
+      "updatedAt": "2026-11-04T06:35:36.628Z",
+      "studentRowsCount": 16,
+      "completedCount": 16,
+      "targetCount": 16,
+      "recordRefsCount": 16,
+      "exactOperationalContext": true,
+      "templateGradeId": "kg2",
+      "numericItemScoresEntered": 48,
+      "studentRowsContainItemScoresSnapshots": true,
+      "studentRowsWithItemScoresSnapshots": 16
+    }
+  ],
+  "batchStatusCounts": {
+    "DRAFT": 0,
+    "IN_PROGRESS": 2,
+    "SUBMITTED": 2,
+    "REVIEWED": 0,
+    "LOCKED": 0,
+    "CANCELLED": 0,
+    "other": 0
+  },
+  "openBatchAnalysis": [
+    {
+      "batchId": "pthuALWbBxTUTBz9PaYT",
+      "status": "IN_PROGRESS",
+      "exactOperationalContext": true,
+      "currentGradeId": "kg2",
+      "templateId": "kg2-learning-gardens-extra-tracker",
+      "templateGradeId": "kg2",
+      "templateIsKg2": true,
+      "templateIsKg3": false,
+      "enteredNumericScores": 283,
+      "studentRowsContainItemScoresSnapshots": true,
+      "futureOnlyTemplateSelectionLeavesDraftUnchanged": true,
+      "recommendedHandling": "PRESERVE_AS_HISTORICAL_KG2_DATA"
+    },
+    {
+      "batchId": "Sz9uBEqTtk5zwsxVSCuj",
+      "status": "IN_PROGRESS",
+      "exactOperationalContext": true,
+      "currentGradeId": "kg2",
+      "templateId": "kg2-learning-gardens-term1-week06-assessment-1",
+      "templateGradeId": "kg2",
+      "templateIsKg2": true,
+      "templateIsKg3": false,
+      "enteredNumericScores": 39,
+      "studentRowsContainItemScoresSnapshots": true,
+      "futureOnlyTemplateSelectionLeavesDraftUnchanged": true,
+      "recommendedHandling": "PRESERVE_AS_HISTORICAL_KG2_DATA"
+    }
+  ],
+  "finalBatchAnalysis": [
+    {
+      "batchId": "XQCU9jeMTRoVU5qpWDro",
+      "status": "SUBMITTED",
+      "currentGradeId": "kg2",
+      "templateId": "kg2-learning-gardens-ay1448-term1-vp-assessment",
+      "templateGradeId": "kg2",
+      "assessmentRecordsExist": true,
+      "trackerEntriesExist": false,
+      "linkedRecordIds": [
+        "92dQJitUaoazxcMGeuhd",
+        "B5zOJCe3OV2Fu55ycwPa",
+        "bBhYaOcPKlY6rwDSwLqy",
+        "cvkfAykWfHqRnockMhgW",
+        "d6GtI7wenEhZksAO1qFT",
+        "DLVIUvBfavakrJP9APfq",
+        "EaHjFqKip31GCq4S1Xcp",
+        "ExRLCo69HYS8XiKLWQGM",
+        "jzIwZkxUqaJ4Tvx9AJWt",
+        "KiOH3AxhTpiDfJSgX34Q",
+        "kuoabrCMBwE6iYMi5KKS",
+        "pTj15nuaHVKy2x1lXZTc",
+        "s9VpSlsCj5JT2OTY86jt",
+        "uktVtIMrhDiol6IFQIsV",
+        "vYR63RoFwEa4jnNOaoDr",
+        "YCu5BkYjKWMvfdhTVWqD"
+      ],
+      "historicalFinalDataShouldRemainUntouched": true
+    },
+    {
+      "batchId": "ylGQ2VWucjyNJYsgqlMf",
+      "status": "SUBMITTED",
+      "currentGradeId": "kg2",
+      "templateId": "kg2-learning-gardens-term1-week06-assessment-1",
+      "templateGradeId": "kg2",
+      "assessmentRecordsExist": true,
+      "trackerEntriesExist": false,
+      "linkedRecordIds": [
+        "2gIX7nPyzwDJ4k0Wq8Ol",
+        "4XLRBObQbz3vHN8kZyKF",
+        "A8F0TVqBrNXJSjgO4o7F",
+        "By2iRf93W88729AJ4cOS",
+        "gSVcj5H1flqWbB3dADfG",
+        "Hm8sMOPQGUaxxK2Hl2RV",
+        "jonxIunQjiSiXkJd1td2",
+        "Jw2iiIy0aJFNJF9S3jlp",
+        "KRr48rh1KOvjp3aoI2vf",
+        "OnLIwIbq6vRmitjcy3V3",
+        "p372LNYBywnJebvlGewA",
+        "qW8E982xUlEo9om39Vej",
+        "uK3H5dvfYBwwMq8tqx4j",
+        "VAusexSljm0TvTN9uyRt",
+        "VGMaRzqimYDdzux42MuU",
+        "yCGOOgHG8hRIRinW9wdj"
+      ],
+      "historicalFinalDataShouldRemainUntouched": true
+    }
+  ],
+  "records": {
+    "totalAssessmentRecords": 32,
+    "totalTrackerEntries": 0,
+    "assessmentRecords": [
+      {
+        "recordId": "2gIX7nPyzwDJ4k0Wq8Ol",
+        "batchId": "ylGQ2VWucjyNJYsgqlMf",
+        "templateId": "kg2-learning-gardens-term1-week06-assessment-1",
+        "gradeId": "kg2",
+        "classId": "kg2-b",
+        "classSubjectOfferingId": "kg-04-kg2-b-learning-gardens",
+        "subjectKey": "LEARNING_GARDENS",
+        "createdAt": "2026-11-04T06:35:36.628Z",
+        "updatedAt": "2026-11-04T06:35:36.628Z"
+      },
+      {
+        "recordId": "4XLRBObQbz3vHN8kZyKF",
+        "batchId": "ylGQ2VWucjyNJYsgqlMf",
+        "templateId": "kg2-learning-gardens-term1-week06-assessment-1",
+        "gradeId": "kg2",
+        "classId": "kg2-b",
+        "classSubjectOfferingId": "kg-04-kg2-b-learning-gardens",
+        "subjectKey": "LEARNING_GARDENS",
+        "createdAt": "2026-11-04T06:35:36.628Z",
+        "updatedAt": "2026-11-04T06:35:36.628Z"
+      },
+      {
+        "recordId": "92dQJitUaoazxcMGeuhd",
+        "batchId": "XQCU9jeMTRoVU5qpWDro",
+        "templateId": "kg2-learning-gardens-ay1448-term1-vp-assessment",
+        "gradeId": "kg2",
+        "classId": "kg2-b",
+        "classSubjectOfferingId": "kg-04-kg2-b-learning-gardens",
+        "subjectKey": "LEARNING_GARDENS",
+        "createdAt": "2026-11-02T09:51:34.909Z",
+        "updatedAt": "2026-11-02T09:51:34.909Z"
+      },
+      {
+        "recordId": "A8F0TVqBrNXJSjgO4o7F",
+        "batchId": "ylGQ2VWucjyNJYsgqlMf",
+        "templateId": "kg2-learning-gardens-term1-week06-assessment-1",
+        "gradeId": "kg2",
+        "classId": "kg2-b",
+        "classSubjectOfferingId": "kg-04-kg2-b-learning-gardens",
+        "subjectKey": "LEARNING_GARDENS",
+        "createdAt": "2026-11-04T06:35:36.628Z",
+        "updatedAt": "2026-11-04T06:35:36.628Z"
+      },
+      {
+        "recordId": "B5zOJCe3OV2Fu55ycwPa",
+        "batchId": "XQCU9jeMTRoVU5qpWDro",
+        "templateId": "kg2-learning-gardens-ay1448-term1-vp-assessment",
+        "gradeId": "kg2",
+        "classId": "kg2-b",
+        "classSubjectOfferingId": "kg-04-kg2-b-learning-gardens",
+        "subjectKey": "LEARNING_GARDENS",
+        "createdAt": "2026-11-02T09:51:34.909Z",
+        "updatedAt": "2026-11-02T09:51:34.909Z"
+      },
+      {
+        "recordId": "bBhYaOcPKlY6rwDSwLqy",
+        "batchId": "XQCU9jeMTRoVU5qpWDro",
+        "templateId": "kg2-learning-gardens-ay1448-term1-vp-assessment",
+        "gradeId": "kg2",
+        "classId": "kg2-b",
+        "classSubjectOfferingId": "kg-04-kg2-b-learning-gardens",
+        "subjectKey": "LEARNING_GARDENS",
+        "createdAt": "2026-11-02T09:51:34.909Z",
+        "updatedAt": "2026-11-02T09:51:34.909Z"
+      },
+      {
+        "recordId": "By2iRf93W88729AJ4cOS",
+        "batchId": "ylGQ2VWucjyNJYsgqlMf",
+        "templateId": "kg2-learning-gardens-term1-week06-assessment-1",
+        "gradeId": "kg2",
+        "classId": "kg2-b",
+        "classSubjectOfferingId": "kg-04-kg2-b-learning-gardens",
+        "subjectKey": "LEARNING_GARDENS",
+        "createdAt": "2026-11-04T06:35:36.628Z",
+        "updatedAt": "2026-11-04T06:35:36.628Z"
+      },
+      {
+        "recordId": "cvkfAykWfHqRnockMhgW",
+        "batchId": "XQCU9jeMTRoVU5qpWDro",
+        "templateId": "kg2-learning-gardens-ay1448-term1-vp-assessment",
+        "gradeId": "kg2",
+        "classId": "kg2-b",
+        "classSubjectOfferingId": "kg-04-kg2-b-learning-gardens",
+        "subjectKey": "LEARNING_GARDENS",
+        "createdAt": "2026-11-02T09:51:34.909Z",
+        "updatedAt": "2026-11-02T09:51:34.909Z"
+      },
+      {
+        "recordId": "d6GtI7wenEhZksAO1qFT",
+        "batchId": "XQCU9jeMTRoVU5qpWDro",
+        "templateId": "kg2-learning-gardens-ay1448-term1-vp-assessment",
+        "gradeId": "kg2",
+        "classId": "kg2-b",
+        "classSubjectOfferingId": "kg-04-kg2-b-learning-gardens",
+        "subjectKey": "LEARNING_GARDENS",
+        "createdAt": "2026-11-02T09:51:34.909Z",
+        "updatedAt": "2026-11-02T09:51:34.909Z"
+      },
+      {
+        "recordId": "DLVIUvBfavakrJP9APfq",
+        "batchId": "XQCU9jeMTRoVU5qpWDro",
+        "templateId": "kg2-learning-gardens-ay1448-term1-vp-assessment",
+        "gradeId": "kg2",
+        "classId": "kg2-b",
+        "classSubjectOfferingId": "kg-04-kg2-b-learning-gardens",
+        "subjectKey": "LEARNING_GARDENS",
+        "createdAt": "2026-11-02T09:51:34.909Z",
+        "updatedAt": "2026-11-02T09:51:34.909Z"
+      },
+      {
+        "recordId": "EaHjFqKip31GCq4S1Xcp",
+        "batchId": "XQCU9jeMTRoVU5qpWDro",
+        "templateId": "kg2-learning-gardens-ay1448-term1-vp-assessment",
+        "gradeId": "kg2",
+        "classId": "kg2-b",
+        "classSubjectOfferingId": "kg-04-kg2-b-learning-gardens",
+        "subjectKey": "LEARNING_GARDENS",
+        "createdAt": "2026-11-02T09:51:34.909Z",
+        "updatedAt": "2026-11-02T09:51:34.909Z"
+      },
+      {
+        "recordId": "ExRLCo69HYS8XiKLWQGM",
+        "batchId": "XQCU9jeMTRoVU5qpWDro",
+        "templateId": "kg2-learning-gardens-ay1448-term1-vp-assessment",
+        "gradeId": "kg2",
+        "classId": "kg2-b",
+        "classSubjectOfferingId": "kg-04-kg2-b-learning-gardens",
+        "subjectKey": "LEARNING_GARDENS",
+        "createdAt": "2026-11-02T09:51:34.909Z",
+        "updatedAt": "2026-11-02T09:51:34.909Z"
+      },
+      {
+        "recordId": "gSVcj5H1flqWbB3dADfG",
+        "batchId": "ylGQ2VWucjyNJYsgqlMf",
+        "templateId": "kg2-learning-gardens-term1-week06-assessment-1",
+        "gradeId": "kg2",
+        "classId": "kg2-b",
+        "classSubjectOfferingId": "kg-04-kg2-b-learning-gardens",
+        "subjectKey": "LEARNING_GARDENS",
+        "createdAt": "2026-11-04T06:35:36.628Z",
+        "updatedAt": "2026-11-04T06:35:36.628Z"
+      },
+      {
+        "recordId": "Hm8sMOPQGUaxxK2Hl2RV",
+        "batchId": "ylGQ2VWucjyNJYsgqlMf",
+        "templateId": "kg2-learning-gardens-term1-week06-assessment-1",
+        "gradeId": "kg2",
+        "classId": "kg2-b",
+        "classSubjectOfferingId": "kg-04-kg2-b-learning-gardens",
+        "subjectKey": "LEARNING_GARDENS",
+        "createdAt": "2026-11-04T06:35:36.628Z",
+        "updatedAt": "2026-11-04T06:35:36.628Z"
+      },
+      {
+        "recordId": "jonxIunQjiSiXkJd1td2",
+        "batchId": "ylGQ2VWucjyNJYsgqlMf",
+        "templateId": "kg2-learning-gardens-term1-week06-assessment-1",
+        "gradeId": "kg2",
+        "classId": "kg2-b",
+        "classSubjectOfferingId": "kg-04-kg2-b-learning-gardens",
+        "subjectKey": "LEARNING_GARDENS",
+        "createdAt": "2026-11-04T06:35:36.628Z",
+        "updatedAt": "2026-11-04T06:35:36.628Z"
+      },
+      {
+        "recordId": "Jw2iiIy0aJFNJF9S3jlp",
+        "batchId": "ylGQ2VWucjyNJYsgqlMf",
+        "templateId": "kg2-learning-gardens-term1-week06-assessment-1",
+        "gradeId": "kg2",
+        "classId": "kg2-b",
+        "classSubjectOfferingId": "kg-04-kg2-b-learning-gardens",
+        "subjectKey": "LEARNING_GARDENS",
+        "createdAt": "2026-11-04T06:35:36.628Z",
+        "updatedAt": "2026-11-04T06:35:36.628Z"
+      },
+      {
+        "recordId": "jzIwZkxUqaJ4Tvx9AJWt",
+        "batchId": "XQCU9jeMTRoVU5qpWDro",
+        "templateId": "kg2-learning-gardens-ay1448-term1-vp-assessment",
+        "gradeId": "kg2",
+        "classId": "kg2-b",
+        "classSubjectOfferingId": "kg-04-kg2-b-learning-gardens",
+        "subjectKey": "LEARNING_GARDENS",
+        "createdAt": "2026-11-02T09:51:34.909Z",
+        "updatedAt": "2026-11-02T09:51:34.909Z"
+      },
+      {
+        "recordId": "KiOH3AxhTpiDfJSgX34Q",
+        "batchId": "XQCU9jeMTRoVU5qpWDro",
+        "templateId": "kg2-learning-gardens-ay1448-term1-vp-assessment",
+        "gradeId": "kg2",
+        "classId": "kg2-b",
+        "classSubjectOfferingId": "kg-04-kg2-b-learning-gardens",
+        "subjectKey": "LEARNING_GARDENS",
+        "createdAt": "2026-11-02T09:51:34.909Z",
+        "updatedAt": "2026-11-02T09:51:34.909Z"
+      },
+      {
+        "recordId": "KRr48rh1KOvjp3aoI2vf",
+        "batchId": "ylGQ2VWucjyNJYsgqlMf",
+        "templateId": "kg2-learning-gardens-term1-week06-assessment-1",
+        "gradeId": "kg2",
+        "classId": "kg2-b",
+        "classSubjectOfferingId": "kg-04-kg2-b-learning-gardens",
+        "subjectKey": "LEARNING_GARDENS",
+        "createdAt": "2026-11-04T06:35:36.628Z",
+        "updatedAt": "2026-11-04T06:35:36.628Z"
+      },
+      {
+        "recordId": "kuoabrCMBwE6iYMi5KKS",
+        "batchId": "XQCU9jeMTRoVU5qpWDro",
+        "templateId": "kg2-learning-gardens-ay1448-term1-vp-assessment",
+        "gradeId": "kg2",
+        "classId": "kg2-b",
+        "classSubjectOfferingId": "kg-04-kg2-b-learning-gardens",
+        "subjectKey": "LEARNING_GARDENS",
+        "createdAt": "2026-11-02T09:51:34.909Z",
+        "updatedAt": "2026-11-02T09:51:34.909Z"
+      },
+      {
+        "recordId": "OnLIwIbq6vRmitjcy3V3",
+        "batchId": "ylGQ2VWucjyNJYsgqlMf",
+        "templateId": "kg2-learning-gardens-term1-week06-assessment-1",
+        "gradeId": "kg2",
+        "classId": "kg2-b",
+        "classSubjectOfferingId": "kg-04-kg2-b-learning-gardens",
+        "subjectKey": "LEARNING_GARDENS",
+        "createdAt": "2026-11-04T06:35:36.628Z",
+        "updatedAt": "2026-11-04T06:35:36.628Z"
+      },
+      {
+        "recordId": "p372LNYBywnJebvlGewA",
+        "batchId": "ylGQ2VWucjyNJYsgqlMf",
+        "templateId": "kg2-learning-gardens-term1-week06-assessment-1",
+        "gradeId": "kg2",
+        "classId": "kg2-b",
+        "classSubjectOfferingId": "kg-04-kg2-b-learning-gardens",
+        "subjectKey": "LEARNING_GARDENS",
+        "createdAt": "2026-11-04T06:35:36.628Z",
+        "updatedAt": "2026-11-04T06:35:36.628Z"
+      },
+      {
+        "recordId": "pTj15nuaHVKy2x1lXZTc",
+        "batchId": "XQCU9jeMTRoVU5qpWDro",
+        "templateId": "kg2-learning-gardens-ay1448-term1-vp-assessment",
+        "gradeId": "kg2",
+        "classId": "kg2-b",
+        "classSubjectOfferingId": "kg-04-kg2-b-learning-gardens",
+        "subjectKey": "LEARNING_GARDENS",
+        "createdAt": "2026-11-02T09:51:34.909Z",
+        "updatedAt": "2026-11-02T09:51:34.909Z"
+      },
+      {
+        "recordId": "qW8E982xUlEo9om39Vej",
+        "batchId": "ylGQ2VWucjyNJYsgqlMf",
+        "templateId": "kg2-learning-gardens-term1-week06-assessment-1",
+        "gradeId": "kg2",
+        "classId": "kg2-b",
+        "classSubjectOfferingId": "kg-04-kg2-b-learning-gardens",
+        "subjectKey": "LEARNING_GARDENS",
+        "createdAt": "2026-11-04T06:35:36.628Z",
+        "updatedAt": "2026-11-04T06:35:36.628Z"
+      },
+      {
+        "recordId": "s9VpSlsCj5JT2OTY86jt",
+        "batchId": "XQCU9jeMTRoVU5qpWDro",
+        "templateId": "kg2-learning-gardens-ay1448-term1-vp-assessment",
+        "gradeId": "kg2",
+        "classId": "kg2-b",
+        "classSubjectOfferingId": "kg-04-kg2-b-learning-gardens",
+        "subjectKey": "LEARNING_GARDENS",
+        "createdAt": "2026-11-02T09:51:34.909Z",
+        "updatedAt": "2026-11-02T09:51:34.909Z"
+      },
+      {
+        "recordId": "uK3H5dvfYBwwMq8tqx4j",
+        "batchId": "ylGQ2VWucjyNJYsgqlMf",
+        "templateId": "kg2-learning-gardens-term1-week06-assessment-1",
+        "gradeId": "kg2",
+        "classId": "kg2-b",
+        "classSubjectOfferingId": "kg-04-kg2-b-learning-gardens",
+        "subjectKey": "LEARNING_GARDENS",
+        "createdAt": "2026-11-04T06:35:36.628Z",
+        "updatedAt": "2026-11-04T06:35:36.628Z"
+      },
+      {
+        "recordId": "uktVtIMrhDiol6IFQIsV",
+        "batchId": "XQCU9jeMTRoVU5qpWDro",
+        "templateId": "kg2-learning-gardens-ay1448-term1-vp-assessment",
+        "gradeId": "kg2",
+        "classId": "kg2-b",
+        "classSubjectOfferingId": "kg-04-kg2-b-learning-gardens",
+        "subjectKey": "LEARNING_GARDENS",
+        "createdAt": "2026-11-02T09:51:34.909Z",
+        "updatedAt": "2026-11-02T09:51:34.909Z"
+      },
+      {
+        "recordId": "VAusexSljm0TvTN9uyRt",
+        "batchId": "ylGQ2VWucjyNJYsgqlMf",
+        "templateId": "kg2-learning-gardens-term1-week06-assessment-1",
+        "gradeId": "kg2",
+        "classId": "kg2-b",
+        "classSubjectOfferingId": "kg-04-kg2-b-learning-gardens",
+        "subjectKey": "LEARNING_GARDENS",
+        "createdAt": "2026-11-04T06:35:36.628Z",
+        "updatedAt": "2026-11-04T06:35:36.628Z"
+      },
+      {
+        "recordId": "VGMaRzqimYDdzux42MuU",
+        "batchId": "ylGQ2VWucjyNJYsgqlMf",
+        "templateId": "kg2-learning-gardens-term1-week06-assessment-1",
+        "gradeId": "kg2",
+        "classId": "kg2-b",
+        "classSubjectOfferingId": "kg-04-kg2-b-learning-gardens",
+        "subjectKey": "LEARNING_GARDENS",
+        "createdAt": "2026-11-04T06:35:36.628Z",
+        "updatedAt": "2026-11-04T06:35:36.628Z"
+      },
+      {
+        "recordId": "vYR63RoFwEa4jnNOaoDr",
+        "batchId": "XQCU9jeMTRoVU5qpWDro",
+        "templateId": "kg2-learning-gardens-ay1448-term1-vp-assessment",
+        "gradeId": "kg2",
+        "classId": "kg2-b",
+        "classSubjectOfferingId": "kg-04-kg2-b-learning-gardens",
+        "subjectKey": "LEARNING_GARDENS",
+        "createdAt": "2026-11-02T09:51:34.909Z",
+        "updatedAt": "2026-11-02T09:51:34.909Z"
+      },
+      {
+        "recordId": "yCGOOgHG8hRIRinW9wdj",
+        "batchId": "ylGQ2VWucjyNJYsgqlMf",
+        "templateId": "kg2-learning-gardens-term1-week06-assessment-1",
+        "gradeId": "kg2",
+        "classId": "kg2-b",
+        "classSubjectOfferingId": "kg-04-kg2-b-learning-gardens",
+        "subjectKey": "LEARNING_GARDENS",
+        "createdAt": "2026-11-04T06:35:36.628Z",
+        "updatedAt": "2026-11-04T06:35:36.628Z"
+      },
+      {
+        "recordId": "YCu5BkYjKWMvfdhTVWqD",
+        "batchId": "XQCU9jeMTRoVU5qpWDro",
+        "templateId": "kg2-learning-gardens-ay1448-term1-vp-assessment",
+        "gradeId": "kg2",
+        "classId": "kg2-b",
+        "classSubjectOfferingId": "kg-04-kg2-b-learning-gardens",
+        "subjectKey": "LEARNING_GARDENS",
+        "createdAt": "2026-11-02T09:51:34.909Z",
+        "updatedAt": "2026-11-02T09:51:34.909Z"
+      }
+    ],
+    "trackerEntries": [],
+    "gradeIdDistribution": {
+      "kg2": 32
+    },
+    "gradeIdValues": [
+      "kg2"
+    ],
+    "templateIdsUsed": [
+      "kg2-learning-gardens-term1-week06-assessment-1",
+      "kg2-learning-gardens-ay1448-term1-vp-assessment"
+    ],
+    "batchIdsUsed": [
+      "ylGQ2VWucjyNJYsgqlMf",
+      "XQCU9jeMTRoVU5qpWDro"
+    ],
+    "anyRecordsUseKg3": false,
+    "allHistoricalRecordsConsistentlyKg2": true
+  },
+  "kg3Templates": [
+    {
+      "templateId": "kg3-learning-gardens-ay1448-term1-supervisor-assessment",
+      "firestorePath": "orgs/takween/studentAssessmentTemplates/kg3-learning-gardens-ay1448-term1-supervisor-assessment",
+      "templateCollection": "studentAssessmentTemplates",
+      "templateKind": "CUSTOM_ASSESSMENT",
+      "title": "بساتين المعرفة — المستوى الثالث — قياس المشرفة",
+      "gradeId": "kg3",
+      "subjectKey": "LEARNING_GARDENS",
+      "activeState": {
+        "status": "ACTIVE",
+        "isActive": true,
+        "active": true
+      },
+      "eligibleIfMeasurementGradeIsKg3": true,
+      "eligibilityReason": "Active KG3 template with compatible year and term scope."
+    },
+    {
+      "templateId": "kg3-learning-gardens-ay1448-term1-vp-assessment",
+      "firestorePath": "orgs/takween/studentAssessmentTemplates/kg3-learning-gardens-ay1448-term1-vp-assessment",
+      "templateCollection": "studentAssessmentTemplates",
+      "templateKind": "CUSTOM_ASSESSMENT",
+      "title": "بساتين المعرفة — المستوى الثالث — قياس الوكيلة",
+      "gradeId": "kg3",
+      "subjectKey": "LEARNING_GARDENS",
+      "activeState": {
+        "status": "ACTIVE",
+        "isActive": true,
+        "active": true
+      },
+      "eligibleIfMeasurementGradeIsKg3": true,
+      "eligibilityReason": "Active KG3 template with compatible year and term scope."
+    },
+    {
+      "templateId": "kg3-learning-gardens-extra-tracker",
+      "firestorePath": "orgs/takween/studentTrackerTemplates/kg3-learning-gardens-extra-tracker",
+      "templateCollection": "studentTrackerTemplates",
+      "templateKind": "KG_LEARNING_GARDENS_TRACKER",
+      "title": "بساتين المعرفة — المستوى الثالث — متابعة الفصل الأول",
+      "gradeId": "kg3",
+      "subjectKey": "LEARNING_GARDENS",
+      "activeState": {
+        "status": "ACTIVE",
+        "isActive": true,
+        "active": true
+      },
+      "eligibleIfMeasurementGradeIsKg3": true,
+      "eligibilityReason": "Active KG3 template with compatible year and term scope."
+    },
+    {
+      "templateId": "kg3-learning-gardens-part2-tracker",
+      "firestorePath": "orgs/takween/studentTrackerTemplates/kg3-learning-gardens-part2-tracker",
+      "templateCollection": "studentTrackerTemplates",
+      "templateKind": "KG_LEARNING_GARDENS_TRACKER",
+      "title": "بساتين المعرفة — المستوى الثالث — الجزء الثاني — متابعة الفصل الأول",
+      "gradeId": "kg3",
+      "subjectKey": "LEARNING_GARDENS",
+      "activeState": {
+        "status": "ACTIVE",
+        "isActive": true,
+        "active": true
+      },
+      "eligibleIfMeasurementGradeIsKg3": true,
+      "eligibilityReason": "Active KG3 template with compatible year and term scope."
+    },
+    {
+      "templateId": "kg3-learning-gardens-term1-week06-assessment-1",
+      "firestorePath": "orgs/takween/studentAssessmentTemplates/kg3-learning-gardens-term1-week06-assessment-1",
+      "templateCollection": "studentAssessmentTemplates",
+      "templateKind": "KG_MEASUREMENT_1",
+      "title": "بساتين المعرفة — المستوى الثالث — القياس الأول — الفصل الدراسي الأول — الأسبوع السادس",
+      "gradeId": "kg3",
+      "subjectKey": "LEARNING_GARDENS",
+      "activeState": {
+        "status": "ACTIVE",
+        "isActive": true,
+        "active": true
+      },
+      "eligibleIfMeasurementGradeIsKg3": true,
+      "eligibilityReason": "Active KG3 template with compatible year and term scope."
+    },
+    {
+      "templateId": "kg3-learning-gardens-term1-week09-assessment-2",
+      "firestorePath": "orgs/takween/studentAssessmentTemplates/kg3-learning-gardens-term1-week09-assessment-2",
+      "templateCollection": "studentAssessmentTemplates",
+      "templateKind": "KG_MEASUREMENT_2",
+      "title": "بساتين المعرفة — المستوى الثالث — القياس الثاني — الفصل الدراسي الأول — الأسبوع التاسع",
+      "gradeId": "kg3",
+      "subjectKey": "LEARNING_GARDENS",
+      "activeState": {
+        "status": "ACTIVE",
+        "isActive": true,
+        "active": true
+      },
+      "eligibleIfMeasurementGradeIsKg3": true,
+      "eligibilityReason": "Active KG3 template with compatible year and term scope."
+    },
+    {
+      "templateId": "kg3-learning-gardens-term1-week13-assessment-3",
+      "firestorePath": "orgs/takween/studentAssessmentTemplates/kg3-learning-gardens-term1-week13-assessment-3",
+      "templateCollection": "studentAssessmentTemplates",
+      "templateKind": "KG_MEASUREMENT_3",
+      "title": "بساتين المعرفة — المستوى الثالث — القياس الثالث — الفصل الدراسي الأول — الأسبوع الثالث عشر",
+      "gradeId": "kg3",
+      "subjectKey": "LEARNING_GARDENS",
+      "activeState": {
+        "status": "ACTIVE",
+        "isActive": true,
+        "active": true
+      },
+      "eligibleIfMeasurementGradeIsKg3": true,
+      "eligibilityReason": "Active KG3 template with compatible year and term scope."
+    },
+    {
+      "templateId": "kg3-learning-gardens-term1-week16-assessment-4",
+      "firestorePath": "orgs/takween/studentAssessmentTemplates/kg3-learning-gardens-term1-week16-assessment-4",
+      "templateCollection": "studentAssessmentTemplates",
+      "templateKind": "CUSTOM_ASSESSMENT",
+      "title": "بساتين المعرفة — المستوى الثالث — القياس الرابع — الفصل الدراسي الأول — الأسبوع السادس عشر",
+      "gradeId": "kg3",
+      "subjectKey": "LEARNING_GARDENS",
+      "activeState": {
+        "status": "ACTIVE",
+        "isActive": true,
+        "active": true
+      },
+      "eligibleIfMeasurementGradeIsKg3": true,
+      "eligibilityReason": "Active KG3 template with compatible year and term scope."
+    }
+  ],
+  "safetyAssessment": {
+    "safeForFutureOnlyOverride": true,
+    "blockingReasons": [],
+    "risks": [
+      {
+        "type": "OPEN_HISTORICAL_BATCHES_PRESENT",
+        "details": "Existing DRAFT and IN_PROGRESS batches must remain bound to their current KG2 snapshots and must not be re-selected, rewritten, or migrated by a future-only override."
+      }
+    ],
+    "recommendedImplementationBoundary": "Introduce an explicit, narrowly scoped measurementGradeId=kg3 decision only when creating a new Learning Gardens measurement or tracker for this exact teacherAssignmentId/classSubjectOfferingId. Use it solely for template eligibility and the gradeId written to newly created batch and record documents. Do not mutate or reinterpret the class, offering, assignment, links, students, enrollments, attendance, or any existing batch/record; explicitly exclude existing DRAFT, IN_PROGRESS, SUBMITTED, REVIEWED, and LOCKED batches."
+  }
+}

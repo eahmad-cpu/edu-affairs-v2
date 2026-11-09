@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../shared/widgets/app_background.dart';
 import '../../../shared/widgets/app_card.dart';
+import '../../../shared/widgets/privacy_policy_link.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -161,6 +162,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       color: Theme.of(context).colorScheme.onSurfaceVariant,
                     ),
                   ),
+                  const PrivacyPolicyLink(),
                   ],
                 ),
               ),
